@@ -395,6 +395,13 @@
             background: rgba(255,255,255,0.06);
             color: var(--text);
         }
+        #panelContent {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
         .panel-body {
             flex: 1;
             overflow-y: auto;
@@ -960,6 +967,20 @@ function initGraph() {
             .attr('fill-opacity', 0.4);
     });
 
+    // Default arrow marker for unknown types
+    defs.append('marker')
+        .attr('id', 'arrow-default')
+        .attr('viewBox', '0 -4 8 8')
+        .attr('refX', 12)
+        .attr('refY', 0)
+        .attr('markerWidth', 6)
+        .attr('markerHeight', 6)
+        .attr('orient', 'auto')
+        .append('path')
+        .attr('d', 'M0,-3L7,0L0,3')
+        .attr('fill', '#4b5563')
+        .attr('fill-opacity', 0.4);
+
     // Zoom
     zoom = d3.zoom()
         .scaleExtent([0.1, 5])
@@ -982,6 +1003,11 @@ function initGraph() {
             return src ? TYPE_COLORS[src.type] || '#4b5563' : '#4b5563';
         })
         .attr('stroke-width', 1.5)
+        .attr('marker-end', d => {
+            const src = nodeMap.get(typeof d.source === 'object' ? d.source.id : d.source);
+            const type = src ? src.type : 'default';
+            return `url(#arrow-${type})`;
+        })
         .attr('data-type', d => d.type);
 
     // Edge labels
@@ -1037,8 +1063,21 @@ function initGraph() {
             links
                 .attr('x1', d => d.source.x)
                 .attr('y1', d => d.source.y)
-                .attr('x2', d => d.target.x)
-                .attr('y2', d => d.target.y);
+                .attr('x2', d => {
+                    // Calculate edge endpoint to stop at circle boundary
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const ratio = (dist - d.target.radius - 3) / dist; // -3 for arrow space
+                    return d.source.x + dx * ratio;
+                })
+                .attr('y2', d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const ratio = (dist - d.target.radius - 3) / dist;
+                    return d.source.y + dy * ratio;
+                });
 
             edgeLabels
                 .attr('x', d => (d.source.x + d.target.x) / 2)

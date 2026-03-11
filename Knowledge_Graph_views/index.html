@@ -99,6 +99,53 @@
     }
     .btn-hero.primary:hover {
       background: linear-gradient(135deg, rgba(34,197,94,0.35), rgba(96,165,250,0.3));
+      border-color: rgba(34,197,94,0.5);
+    }
+    .graph-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .graph-selector-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .graph-selector select {
+      padding: 6px 32px 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%239ca3af" d="M6 8L2 4h8z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      min-width: 200px;
+    }
+    .graph-selector select:hover {
+      border-color: rgba(255,255,255,0.16);
+      background-color: var(--bg);
+    }
+    .graph-selector select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.1);
+    }
+    .btn-hero.primary:hover {
+      background: linear-gradient(135deg, rgba(34,197,94,0.35), rgba(96,165,250,0.3));
       box-shadow: 0 8px 32px rgba(34,197,94,0.15);
     }
 
@@ -284,6 +331,15 @@
 </head>
 <body>
 
+  <!-- Global Graph Selector -->
+  <div class="graph-selector">
+    <span class="graph-selector-label">📊 Graph:</span>
+    <select id="globalGraphSelector">
+      <option value="knowledge_graph.json">Default Graph</option>
+      <option value="knowledge_graph_generated.json">Generated Graph</option>
+    </select>
+  </div>
+
   <!-- Hero -->
   <div class="hero">
     <div class="hero-logo">🧠</div>
@@ -292,7 +348,7 @@
     <div class="hero-actions">
       <a class="btn-hero primary" href="support_agent.html">🤖 Support AI Agent</a>
       <a class="btn-hero" href="graph_explorer.html">🕸️ Graph Explorer</a>
-      <a class="btn-hero" href="knowledge_graph.json" target="_blank">📄 Raw JSON</a>
+      <a class="btn-hero" id="rawJsonLink" href="knowledge_graph.json" target="_blank">📄 Raw JSON</a>
     </div>
   </div>
 
@@ -402,14 +458,67 @@
 
   <!-- Footer -->
   <footer>
-    <p>Knowledge Graph Explorer &mdash; Support AI Agent &bull; <a href="graph_explorer.html">Open Explorer</a> &bull; <a href="knowledge_graph.json" target="_blank">View JSON</a></p>
+    <p>Knowledge Graph Explorer &mdash; Support AI Agent &bull; <a href="graph_explorer.html">Open Explorer</a> &bull; <a id="footerJsonLink" href="knowledge_graph.json" target="_blank">View JSON</a></p>
   </footer>
 
   <script>
-    // Load stats from JSON
-    fetch('knowledge_graph.json')
-      .then(r => r.json())
-      .then(data => {
+    // Global graph management
+    const STORAGE_KEY = 'selected_knowledge_graph';
+    
+    function getSelectedGraph() {
+      return localStorage.getItem(STORAGE_KEY) || 'knowledge_graph.json';
+    }
+    
+    function setSelectedGraph(graphFile) {
+      localStorage.setItem(STORAGE_KEY, graphFile);
+      // Update UI links
+      document.getElementById('rawJsonLink').href = graphFile;
+      document.getElementById('footerJsonLink').href = graphFile;
+      // Notify backend
+      fetch('/api/switch-graph', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ graph_file: graphFile })
+      }).catch(err => console.warn('Backend not available:', err));
+    }
+    
+    // Load available graphs
+    async function loadAvailableGraphs() {
+      try {
+        const resp = await fetch('/api/list-graphs');
+        const data = await resp.json();
+        const selector = document.getElementById('globalGraphSelector');
+        selector.innerHTML = '';
+        
+        const currentGraph = getSelectedGraph();
+        
+        data.graphs.forEach(graph => {
+          const option = document.createElement('option');
+          option.value = graph.filename;
+          option.textContent = graph.display_name;
+          if (graph.filename === currentGraph) {
+            option.selected = true;
+          }
+          selector.appendChild(option);
+        });
+      } catch (e) {
+        console.warn('Could not load available graphs:', e);
+      }
+    }
+    
+    // Handle graph selection change
+    document.getElementById('globalGraphSelector').addEventListener('change', (e) => {
+      const selected = e.target.value;
+      setSelectedGraph(selected);
+      loadStats();
+    });
+    
+    // Load stats from selected graph
+    function loadStats() {
+      const graphFile = getSelectedGraph();
+      fetch(graphFile + '?t=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
         document.getElementById('s-nodes').textContent = data.nodes.length;
         document.getElementById('s-edges').textContent = data.edges.length;
         document.getElementById('s-types').textContent = data.node_types.length;
@@ -433,6 +542,7 @@
           Team:'👥', Customer:'🏢', Infrastructure:'🖥️', Configuration:'🔧', FAQ:'❓', Feature:'✨'
         };
         const grid = document.getElementById('schemaGrid');
+        grid.innerHTML = ''; // Clear previous items
         Object.entries(counts).sort((a,b) => b[1]-a[1]).forEach(([type, count]) => {
           const el = document.createElement('div');
           el.className = 'schema-item';
@@ -442,6 +552,18 @@
         });
       })
       .catch(() => {});
+    }
+    
+    // Initialize
+    loadAvailableGraphs().then(() => {
+      const initialGraph = getSelectedGraph();
+      // Update UI links immediately
+      document.getElementById('rawJsonLink').href = initialGraph;
+      document.getElementById('footerJsonLink').href = initialGraph;
+      loadStats();
+      // Sync with backend
+      setSelectedGraph(initialGraph);
+    });
   </script>
 </body>
 </html>

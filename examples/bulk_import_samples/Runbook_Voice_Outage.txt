@@ -1,0 +1,87 @@
+RUNBOOK — RB-Voice-Outage
+Voice Channel Outage Recovery
+
+--- DESCRIPTION ---
+Runbook ID: RB-Voice-Outage
+Title: Voice Channel Outage Recovery
+Type: Diagnostic + Remediation
+Author: SRE Team
+Last Updated: 2026-03-05
+
+This runbook guides you through diagnosing and recovering from voice channel outages.
+
+--- WHEN TO USE ---
+- No inbound or outbound calls working
+- Calls connecting but no audio
+- High call failure rate (>10%)
+- Known Issue KI-Voice-Transfer-Drop is active
+
+--- PREREQUISITES ---
+- Access to Azure Portal
+- kubectl access to AKS cluster
+- PagerDuty access for escalation
+- Follow SOP-P1-Escalation if customer-facing outage
+
+--- DIAGNOSTIC STEPS ---
+
+Step 1: Check Azure Communication Services Status
+- Navigate to Azure Portal → Communication Services
+- Check service health dashboard
+- Look for active incidents or degradations
+- Screenshot any errors for post-mortem
+
+Step 2: Verify SIP Trunk Connectivity
+- Run: kubectl exec -it voice-gateway-0 -- sip-status
+- Expected output: "SIP trunk ACTIVE, 0 errors"
+- If errors, proceed to Step 4
+
+Step 3: Check Voice Gateway Pods
+- Run: kubectl get pods -n voice -l app=voice-gateway
+- All pods should show STATUS: Running
+- If CrashLoopBackOff, check logs: kubectl logs voice-gateway-0 -n voice
+
+Step 4: Validate Call Flow
+- Place test call to +1-555-TEST-001
+- Expected: IVR greeting within 2 seconds
+- If no audio, check codec configuration (see FAQ-Voice-Quality)
+
+--- REMEDIATION STEPS ---
+
+Step 5: Restart Voice Gateway (Low Risk)
+- Run: kubectl rollout restart deployment/voice-gateway -n voice
+- Wait 60 seconds for pods to stabilize
+- Re-test call flow (Step 4)
+
+Step 6: Clear SIP Session Cache (Medium Risk)
+- Run: kubectl exec -it voice-gateway-0 -- sip-cache-clear
+- Warning: Drops active calls - get approval first
+- Requires SOP-P1-Escalation approval if >10 active calls
+
+Step 7: Emergency: Switch to Backup Voice Provider (High Risk)
+- This is a last resort - requires VP Engineering approval
+- Run: kubectl apply -f config/voice-failover.yaml
+- Update status page: "Voice on backup provider"
+- Follow SOP-PostIncidentReview after resolution
+
+--- VALIDATION ---
+- Call failure rate < 1% for 15 minutes
+- Test calls successful (both inbound and outbound)
+- No error logs in voice-gateway pods
+- Customer reports confirm resolution
+
+--- ROLLBACK ---
+If remediation makes things worse:
+- Step 5 rollback: kubectl rollout undo deployment/voice-gateway -n voice
+- Step 6 rollback: Restart pods (no cache restore available)
+- Step 7 rollback: kubectl apply -f config/voice-primary.yaml
+
+--- SUCCESS RATE ---
+82% (41 successful executions, 9 needed escalation)
+
+--- RELATED DOCUMENTS ---
+- Known Issues: KI-Voice-Transfer-Drop, KI-Voice-Quality
+- SOP: SOP-P1-Escalation, SOP-PostIncidentReview
+- FAQ: FAQ-Voice-Quality
+
+--- KEYWORDS ---
+voice, outage, diagnostics, sip, azure communication services, recovery

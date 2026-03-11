@@ -184,6 +184,40 @@
             height: 24px;
             background: var(--border);
         }
+        .graph-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .graph-selector-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .graph-selector select {
+            padding: 7px 32px 7px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-size: 12px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%239ca3af" d="M6 8L2 4h8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        .graph-selector select:hover {
+            border-color: var(--border-hover);
+            background-color: var(--surface3);
+        }
+        .graph-selector select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.1);
+        }
         .stats-pill {
             padding: 5px 12px;
             border-radius: 20px;
@@ -608,6 +642,13 @@
         </div>
     </div>
     <div class="header-right">
+        <div class="graph-selector">
+            <span class="graph-selector-label">Graph:</span>
+            <select id="graphSelector">
+                <option value="knowledge_graph.json">Default (knowledge_graph.json)</option>
+                <option value="knowledge_graph_generated.json">Generated (knowledge_graph_generated.json)</option>
+            </select>
+        </div>
         <a href="index.html" class="btn">← Back to Dashboard</a>
     </div>
 </header>
@@ -762,12 +803,81 @@ let zoom;
 let selectedNode = null;
 let activeFilter = 'all';
 let searchTerm = '';
+let currentGraphFile = 'knowledge_graph.json';
+
+// Global graph management - sync with localStorage
+const STORAGE_KEY = 'selected_knowledge_graph';
+
+function getSelectedGraph() {
+    return localStorage.getItem(STORAGE_KEY) || 'knowledge_graph.json';
+}
+
+function setSelectedGraph(graphFile) {
+    localStorage.setItem(STORAGE_KEY, graphFile);
+    currentGraphFile = graphFile;
+}
+
+// ── Load Available Graphs ──
+async function loadAvailableGraphs() {
+    try {
+        const resp = await fetch('/api/list-graphs');
+        const data = await resp.json();
+        const selector = document.getElementById('graphSelector');
+        selector.innerHTML = '';
+        
+        const currentGraph = getSelectedGraph();
+        
+        data.graphs.forEach(graph => {
+            const option = document.createElement('option');
+            option.value = graph.filename;
+            option.textContent = graph.display_name;
+            if (graph.filename === currentGraph) {
+                option.selected = true;
+            }
+            selector.appendChild(option);
+        });
+    } catch (e) {
+        console.warn('Could not load available graphs, using defaults:', e);
+    }
+}
 
 // ── Load Data ──
-async function loadGraph() {
+async function loadGraph(graphFile = currentGraphFile) {
     try {
-        const resp = await fetch('knowledge_graph.json');
+        // Show loading overlay
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.style.display = 'flex';
+        overlay.innerHTML = `
+            <div class="loader">
+                <div class="loader-spinner"></div>
+                <div class="loader-text">Loading ${graphFile}...</div>
+            </div>`;
+        
+        // Reset UI state
+        activeFilter = 'all';
+        searchTerm = '';
+        document.getElementById('searchInput').value = '';
+        
+        // Reset filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === 'all');
+        });
+        
+        // Tell backend to switch graph
+        await fetch('/api/switch-graph', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ graph_file: graphFile })
+        });
+        
+        // Load the graph data
+        const resp = await fetch(graphFile + '?t=' + Date.now()); // Cache bust
         graphData = await resp.json();
+        setSelectedGraph(graphFile);
+        
+        // Update selector
+        document.getElementById('graphSelector').value = graphFile;
+        
         // Defer init to next frame so flex layout has computed dimensions
         requestAnimationFrame(() => requestAnimationFrame(() => initGraph()));
     } catch (e) {
@@ -775,13 +885,34 @@ async function loadGraph() {
         document.getElementById('loadingOverlay').innerHTML = `
             <div class="loader">
                 <div style="font-size:40px;margin-bottom:16px">⚠️</div>
-                <div class="loader-text">Failed to load knowledge_graph.json</div>
+                <div class="loader-text">Failed to load ${graphFile}</div>
                 <div class="loader-text" style="margin-top:8px;font-size:12px;color:#6b7280">${e.message}</div>
             </div>`;
     }
 }
 
 function initGraph() {
+    // ── Cleanup Previous Graph ──
+    // Stop previous simulation if it exists
+    if (simulation) {
+        simulation.stop();
+        simulation = null;
+    }
+
+    // Clear SVG completely
+    const svgElement = d3.select('#graphSvg');
+    svgElement.selectAll('*').remove();
+
+    // Reset side panel
+    selectedNode = null;
+    document.getElementById('panelContent').innerHTML = `
+        <div class="empty-panel">
+            <div class="icon">🕸️</div>
+            <h3>Select a Node</h3>
+            <p>Click on any node in the graph to view its details, properties, and connections.</p>
+        </div>`;
+
+    // ── Initialize New Graph ──
     const nodes = graphData.nodes.map(n => ({
         ...n,
         radius: NODE_SIZES[n.type] || 16,
@@ -806,7 +937,7 @@ function initGraph() {
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || (window.innerHeight - 200);
 
-    svg = d3.select('#graphSvg')
+    svg = svgElement
         .attr('width', width)
         .attr('height', height);
 
@@ -1326,8 +1457,19 @@ window.addEventListener('resize', () => {
     }
 });
 
+// ── Graph Selector Change ──
+document.getElementById('graphSelector').addEventListener('change', (e) => {
+    const selectedGraph = e.target.value;
+    if (selectedGraph !== currentGraphFile) {
+        loadGraph(selectedGraph);
+    }
+});
+
 // ── Init ──
-loadGraph();
+loadAvailableGraphs().then(() => {
+    const initialGraph = getSelectedGraph();
+    loadGraph(initialGraph);
+});
 </script>
 
 </body>

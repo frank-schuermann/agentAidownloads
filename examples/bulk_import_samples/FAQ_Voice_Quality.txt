@@ -1,0 +1,67 @@
+FAQ — FAQ-Voice-Quality
+Voice quality issues and troubleshooting
+
+--- QUESTION ---
+Why is the voice quality poor during calls (crackling, robotic, choppy audio)?
+
+--- ANSWER ---
+Poor voice quality in CCaaS calls can be caused by several factors:
+
+**1. Network Latency**
+- Check ping to Azure regions: should be <50ms
+- Run: ping eastus2.azure.com
+- If >100ms, contact network team
+
+**2. Insufficient Bandwidth**
+- Minimum required: 100 kbps per concurrent call
+- Check current usage: bandwidth-monitor.company.com
+- Consider QoS prioritization for voice traffic
+
+**3. Codec Mismatch**
+- Ensure G.711 codec is enabled (highest quality)
+- Check codec configuration in voice gateway
+- Avoid G.729 unless bandwidth is severely limited
+
+**4. Packet Loss**
+- Voice is very sensitive to packet loss (>1% is noticeable)
+- Check QoS settings on network equipment
+- Run: traceroute -q 1 eastus2.azure.com
+
+**5. Jitter**
+- Should be <30ms
+- Check jitter buffer settings in voice gateway config
+- Increase buffer size if jitter is high (trade-off: slight delay)
+
+--- DETAILED TROUBLESHOOTING ---
+
+For persistent voice quality issues:
+1. Follow Runbook RB-Voice-Diagnostics for step-by-step diagnosis
+2. Collect network traces: tcpdump -i any -w voice_trace.pcap port 5060
+3. Check Known Issue KI-Voice-Transfer-Drop (may be related)
+4. If affecting multiple customers, follow SOP-P2-Incident
+
+--- QUICK CHECKS ---
+```
+# Test call quality
+curl https://voice-api.company.com/test-call
+
+# Check codec negotiation
+kubectl logs voice-gateway-0 -n voice | grep "codec"
+
+# Monitor real-time quality metrics
+https://grafana.company.com/voice-quality-dashboard
+```
+
+--- CATEGORY ---
+Voice, Quality, Network, Troubleshooting
+
+--- HELPFUL VOTES ---
+47 users found this helpful
+
+--- RELATED DOCUMENTS ---
+- Runbook: RB-Voice-Diagnostics, RB-Voice-Outage
+- Known Issue: KI-Voice-Transfer-Drop
+- User Guide: UserGuide-VoiceChannel-Setup
+
+--- KEYWORDS ---
+voice quality, audio issues, crackling, robotic, choppy, latency, codec

@@ -1,0 +1,59 @@
+KNOWN ISSUE — KI-Voice-Transfer-Drop
+Voice transfer calls drop unexpectedly
+
+--- DESCRIPTION ---
+ID: KI-Voice-Transfer-Drop
+Title: Voice transfer calls drop unexpectedly
+Category: Voice
+Priority: P2
+Status: Open
+
+--- SYMPTOMS ---
+- Call drops when agent attempts to transfer
+- Customer hears silence then disconnect tone
+- Affects approximately 5% of transfer attempts
+- More frequent during peak hours (9-11 AM, 2-4 PM)
+- Only affects warm transfers (not cold transfers)
+
+--- ROOT CAUSE ---
+Race condition in SIP session handoff during transfer.
+The SIP REFER message times out before the target agent accepts the session.
+This is caused by insufficient timeout settings in the voice gateway configuration.
+
+--- IMPACT ---
+- 50-100 dropped transfers per day
+- Customer satisfaction impact: -2 CSAT points
+- Requires agent to call back customer
+- Average recovery time: 3 minutes per incident
+
+--- WORKAROUND ---
+1. Follow Runbook RB-Voice-Outage to restart voice gateway
+2. Temporarily disable warm transfers in routing configuration
+3. Use cold transfers instead (announce, then transfer)
+4. Monitor transfer success rate via dashboard
+
+For detailed troubleshooting, see FAQ-Voice-Quality.
+
+--- PERMANENT FIX ---
+Configuration update deployed in Release REL-2026-W12
+- Increase SIP REFER timeout from 5s to 15s
+- Enable session keepalive during transfer
+- Add retry logic for failed transfers
+
+--- AFFECTED SERVICES ---
+- Voice Channel (SVC-Voice)
+- Transfer Service (SVC-Transfer)
+- SIP Gateway (INFRA-SIPGateway)
+
+--- RELATED DOCUMENTS ---
+- Runbook: RB-Voice-Outage
+- FAQ: FAQ-Voice-Quality
+- SOP: SOP-P2-Incident
+- User Guide: UserGuide-AgentDesktop
+
+--- MONITORING ---
+Dashboard: https://grafana.company.com/voice-transfer-metrics
+Alert: transfer_drop_rate > 3%
+
+--- KEYWORDS ---
+voice, transfer, sip, call drop, warm transfer, routing

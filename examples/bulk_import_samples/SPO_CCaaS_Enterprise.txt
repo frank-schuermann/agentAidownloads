@@ -1,0 +1,223 @@
+SPO — SPO-CCaaS-Enterprise
+Standard Practice Operations for CCaaS Enterprise Platform
+
+--- DESCRIPTION ---
+SPO ID: SPO-CCaaS-Enterprise
+Title: CCaaS Enterprise Platform Operations
+Category: Platform Operations
+Owner: Platform Engineering Team
+Last Updated: 2026-03-01
+
+This document defines standard practices for operating the CCaaS Enterprise Platform.
+
+---
+
+## Platform Architecture
+
+### Services
+- Voice Channel (SVC-Voice)
+- Chat Channel (SVC-Chat)
+- Email Channel (SVC-Email)
+- Routing Engine (SVC-Routing)
+- Agent Desktop (SVC-AgentDesktop)
+- Copilot Service (SVC-Copilot)
+- Analytics Platform (SVC-Analytics)
+
+### Infrastructure
+- Azure Communication Services (INFRA-ACS)
+- SIP Gateway (INFRA-SIPGateway)
+- AKS Cluster (INFRA-AKS)
+- Cosmos DB (INFRA-CosmosDB)
+- Redis Cache (INFRA-Redis)
+
+---
+
+## Standard Operations
+
+### Monitoring & Alerting
+
+**Dashboard:** https://grafana.company.com/ccaas-platform
+
+**Key Metrics:**
+- Service availability: >99.9%
+- API latency p95: <200ms
+- Call failure rate: <1%
+- Chat response time: <30s
+
+**Alerts:**
+- PagerDuty for P0/P1 incidents
+- Slack #platform-alerts for P2/P3
+- Email for informational notices
+
+### Deployment Procedures
+
+**Standard Release Schedule:**
+- Weekly releases: Every Wednesday 10 PM UTC
+- Hotfixes: As needed with approval
+
+**Deployment Process:**
+1. Code review + approval (2 reviewers)
+2. Staging deployment + smoke tests
+3. Production deployment (blue-green)
+4. 30-minute monitoring period
+5. Rollback if error rate >0.5%
+
+**Approval Matrix:**
+- Standard release: Team lead approval
+- Hotfix: VP Engineering approval
+- Emergency fix during outage: On-call engineer (escalate immediately)
+
+### Backup & Recovery
+
+**Backup Schedule:**
+- Cosmos DB: Continuous (point-in-time recovery 30 days)
+- Configuration: Daily at 2 AM UTC
+- Metrics: 90-day retention
+
+**Recovery Time Objectives (RTO):**
+- P0 outage: 1 hour RTO
+- P1 degradation: 4 hours RTO
+- Data loss: 5 minutes RPO
+
+### Security Practices
+
+**Access Control:**
+- Production access: MFA + JIT required
+- Audit logs: 1-year retention
+- Secrets rotation: 90 days
+
+**Compliance:**
+- SOC 2 Type II certified
+- GDPR compliant
+- PCI DSS for payment data
+
+---
+
+## Common Operations
+
+### Service Restart
+- Follow Runbook RB-Service-Restart
+- Get approval if peak hours (9 AM - 5 PM local time)
+- Requires team lead approval for production
+
+### Configuration Changes
+- All changes via GitOps (config repo)
+- Review + approval required
+- Auto-deployment to staging
+- Manual promotion to production
+
+### Incident Response
+- P0/P1: Follow SOP-P1-Escalation
+- P2: Follow SOP-P2-Incident
+- P3/P4: Create ticket, work during business hours
+
+### Known Issues Management
+- Document in KG (see Known Issues Guide)
+- Link to affected services
+- Update workarounds in FAQ
+- Track in Jira (PLAT-XXXX tickets)
+
+---
+
+## Runbooks
+
+**Voice Channel:**
+- RB-Voice-Outage (outage recovery)
+- RB-Voice-Diagnostics (quality issues)
+- RB-SIP-Gateway-Restart (gateway issues)
+
+**Platform:**
+- RB-DB-Pool (database connection issues)
+- RB-API-Restart (API issues)
+- RB-Cache-Clear (Redis cache issues)
+
+**Copilot:**
+- RB-Copilot-Reset (reset Copilot state)
+- RB-Copilot-Model-Update (update AI model)
+
+---
+
+## Known Issues
+
+**Active Issues:**
+- KI-Voice-Transfer-Drop (P2)
+  - Workaround: Use cold transfers
+  - Fix: Deploying in REL-2026-W12
+
+- KI-Copilot-Latency (P3)
+  - Workaround: Cache warm-up script
+  - Fix: Model optimization in progress
+
+**Resolved Issues:**
+- KI-Chat-Widget-Safari (Resolved 2026-02-15)
+- KI-Dashboard-Timeout (Resolved 2026-01-28)
+
+---
+
+## Release Management
+
+**Upcoming Releases:**
+- REL-2026-W12 (Week 12)
+  - Voice transfer timeout fix (KI-Voice-Transfer-Drop)
+  - Copilot latency improvements
+  - New WhatsApp channel
+
+- REL-2026-W16 (Week 16)
+  - Enhanced routing engine
+  - Multi-language Copilot
+  - Advanced analytics dashboard
+
+**Release Notes:**
+- Published to stakeholder portal
+- Linked in Knowledge Graph
+- Communicated via email + Slack
+
+---
+
+## Team Contacts
+
+**Platform Engineering:**
+- Slack: #platform-team
+- Email: platform@company.com
+- On-call: PagerDuty "Platform Oncall"
+
+**SRE Team:**
+- Slack: #sre-team
+- Email: sre@company.com
+- On-call: PagerDuty "SRE Oncall"
+
+**Product Team:**
+- Slack: #product
+- Email: product@company.com
+
+---
+
+## Related Documents
+
+**SOPs:**
+- SOP-P1-Escalation (P1 incident procedure)
+- SOP-P2-Incident (P2 incident procedure)
+- SOP-PostIncidentReview (PIR process)
+
+**Runbooks:**
+- RB-Voice-Outage
+- RB-DB-Pool
+- RB-API-Restart
+- RB-Copilot-Reset
+
+**User Guides:**
+- UserGuide-AgentDesktop (agent setup)
+- UserGuide-Copilot-Setup (Copilot configuration)
+
+**FAQs:**
+- FAQ-Voice-Quality
+- FAQ-AgentDesktop-Support
+
+**Known Issues:**
+- KI-Voice-Transfer-Drop
+- KI-Copilot-Latency
+
+---
+
+## Keywords
+spo, platform operations, ccaas, enterprise, monitoring, deployment, incident response, runbooks, known issues

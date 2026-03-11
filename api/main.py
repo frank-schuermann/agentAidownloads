@@ -18,6 +18,7 @@ from api.routes import agents, orchestration, websocket, simulation
 from api.middleware import setup_middleware
 from api.dependencies import initialize_dependencies
 from api.routes.resolve_issue import router as resolve_router
+from api.routes.bulk_import import router as bulk_import_router
 
 from core.config_manager import ConfigManager
 from core.logging_service import LoggingService
@@ -185,6 +186,7 @@ app.include_router(orchestration.router)
 app.include_router(websocket.router)
 app.include_router(simulation.router)
 app.include_router(resolve_router, prefix="/kg")
+app.include_router(bulk_import_router)
 
 
 if __name__ == "__main__":

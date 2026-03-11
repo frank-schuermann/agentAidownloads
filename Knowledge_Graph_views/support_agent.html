@@ -855,6 +855,21 @@ async function checkLLMStatus() {
     document.getElementById('statusText').textContent = 'Backend Offline';
   }
 }
+
+// ─── Graph Sync ───────────────────────────────────────────
+const STORAGE_KEY = 'selected_knowledge_graph';
+
+function syncGraphWithBackend() {
+  const selectedGraph = localStorage.getItem(STORAGE_KEY) || 'knowledge_graph.json';
+  fetch('/api/switch-graph', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ graph_file: selectedGraph })
+  }).catch(err => console.warn('Could not sync graph:', err));
+}
+
+// ─── Initialize ───────────────────────────────────────────
+syncGraphWithBackend(); // Ensure backend uses the selected graph
 checkLLMStatus();
 setInterval(checkLLMStatus, 15000);
 

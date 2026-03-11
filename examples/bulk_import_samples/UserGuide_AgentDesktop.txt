@@ -1,0 +1,180 @@
+USER GUIDE — UserGuide-AgentDesktop
+CCaaS Agent Desktop Setup and Configuration
+
+--- DESCRIPTION ---
+Guide ID: UserGuide-AgentDesktop
+Title: CCaaS Agent Desktop Setup and Configuration
+Category: User Guide
+Last Updated: 2026-03-01
+
+Complete guide for setting up and using the CCaaS Agent Desktop application.
+
+---
+
+## Installation
+
+### Prerequisites
+- Windows 10/11 or macOS 10.15+
+- 4 GB RAM minimum
+- Chrome browser (latest version)
+- Headset with USB connection
+
+### Download
+1. Navigate to https://portal.ccaas.company.com
+2. Click "Download Agent Desktop"
+3. Select your operating system
+4. Run installer with administrator privileges
+
+### Organization Setup
+- Enter Organization ID (provided by IT)
+- Format: ORG-XXXX-YYYY
+- If you don't have it, contact IT Support (see FAQ-AgentDesktop-Support)
+
+---
+
+## Configuration
+
+### First-Time Setup
+
+**Step 1: Login**
+- Use your corporate email and password
+- Enable MFA if prompted
+- Accept terms of service
+
+**Step 2: Presence Settings**
+- Set initial presence to "Away"
+- Configure presence auto-timeout: 5 minutes (recommended)
+- Enable presence sync with Teams (optional)
+
+**Step 3: Softphone Configuration**
+- Select audio device: USB Headset recommended
+- Test microphone: Speak and watch the meter
+- Test speakers: Click "Play test tone"
+- Adjust volume to comfortable level
+
+**Step 4: Channel Preferences**
+- Enable channels: Voice, Chat, Email
+- Set max concurrent interactions: 1 (voice), 3 (chat), 5 (email)
+- Enable screen pop for customer context
+
+---
+
+## Daily Operations
+
+### Starting Your Shift
+1. Launch Agent Desktop
+2. Set presence to "Available"
+3. Verify audio devices connected
+4. Check queue assignments in dashboard
+
+### Handling Voice Calls
+- Incoming call: Answer button or spacebar
+- Transfer: Click "Transfer" → Search agent → "Warm Transfer"
+  - Note: If transfers drop, see Known Issue KI-Voice-Transfer-Drop
+- Hold: Click "Hold" (max 2 minutes per policy)
+- After-call work: Auto-enters ACW state (90 seconds)
+
+### Handling Chat
+- Accept chat: Click "Accept" (15 second timeout)
+- Type responses or use canned responses (Ctrl+K)
+- Transfer chat: Same as voice transfer
+- End chat: Customer must end or timeout after 5 minutes idle
+
+### Using Copilot (New Feature)
+- AI-powered suggestions appear in right panel
+- Click suggestion to insert into response
+- Copilot learns from your corrections
+- For latency issues, see Known Issue KI-Copilot-Latency
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+**Problem: No incoming calls**
+- Check presence is "Available" (not Away/DND)
+- Verify queue membership in dashboard
+- Check audio device connected
+- If persists, follow Runbook RB-Voice-Outage
+
+**Problem: Voice quality poor**
+- See FAQ-Voice-Quality for detailed troubleshooting
+- Quick fix: Reconnect headset, restart desktop app
+- Check network latency (<50ms required)
+
+**Problem: Transfer calls drop**
+- This is a known issue: KI-Voice-Transfer-Drop
+- Workaround: Use cold transfers instead
+- Permanent fix deploying in Release REL-2026-W12
+
+**Problem: Copilot suggestions not showing**
+- Verify Copilot is enabled in settings
+- Clear browser cache and refresh
+- Check Known Issue KI-Copilot-Latency
+
+**Problem: Screen pop not working**
+- Enable screen pop in Preferences → Integrations
+- Verify CRM connector is active
+- Restart Agent Desktop
+
+---
+
+## Advanced Features
+
+### Canned Responses
+- Create custom templates: Settings → Canned Responses
+- Keyboard shortcut: Ctrl+K → Type keyword → Enter
+- Use variables: {customer_name}, {ticket_id}, {product_name}
+
+### Disposition Codes
+- Required for all interactions
+- Select appropriate code before ending interaction
+- Custom codes per queue (configured by supervisor)
+
+### Warm vs Cold Transfer
+- **Warm Transfer**: Announce customer, then transfer
+  - Customer stays on hold while you talk to agent
+  - Use when context is complex
+  - Known to drop occasionally (see KI-Voice-Transfer-Drop)
+
+- **Cold Transfer**: Blind transfer without announcement
+  - Faster but agent has no context
+  - More reliable (no drops)
+  - Use for simple routing corrections
+
+---
+
+## Support
+
+### Where to Get Help
+
+**Knowledge Base:**
+- FAQ: FAQ-AgentDesktop-Support
+- Runbooks: RB-Voice-Outage, RB-AgentDesktop-Reset
+
+**Known Issues:**
+- Voice transfer drops: KI-Voice-Transfer-Drop
+- Copilot latency: KI-Copilot-Latency
+
+**Escalation:**
+- P2 issues: SOP-P2-Support
+- P1 outages: SOP-P1-Escalation
+
+**Contact:**
+- IT Helpdesk: ext. 5555
+- Email: agentdesk-support@company.com
+- Slack: #agent-desktop-help
+
+---
+
+## Related Documents
+- FAQ: FAQ-AgentDesktop-Support, FAQ-Voice-Quality
+- Known Issues: KI-Voice-Transfer-Drop, KI-Copilot-Latency
+- Runbooks: RB-Voice-Outage, RB-AgentDesktop-Reset
+- SOPs: SOP-P2-Support
+
+---
+
+## Keywords
+agent desktop, setup, configuration, voice, chat, transfer, copilot, troubleshooting

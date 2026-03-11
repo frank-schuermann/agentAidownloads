@@ -1,0 +1,108 @@
+SOP — SOP-P2-Incident
+P2 Incident Response Procedure
+
+--- DESCRIPTION ---
+SOP ID: SOP-P2-Incident
+Title: P2 Incident Response Procedure
+Category: incident_response
+Status: Active
+Last Updated: 2026-02-15
+
+Standard Operating Procedure for handling P2 severity incidents.
+
+--- SEVERITY DEFINITION ---
+P2 Incident = Significant degradation of service
+- Affects subset of users (<20%)
+- Workaround available
+- No customer-facing outage
+- Response SLA: 1 hour
+- Resolution SLA: 4 hours
+
+Examples:
+- Voice transfer drops (see Known Issue KI-Voice-Transfer-Drop)
+- Dashboard latency issues
+- Non-critical API timeouts
+
+--- PROCEDURE ---
+
+**1. DETECTION (0-5 minutes)**
+- Alert received via PagerDuty or manual report
+- Verify severity level (P0/P1/P2/P3)
+- If P0 or P1, escalate to SOP-P1-Escalation instead
+
+**2. TRIAGE (5-15 minutes)**
+- Create incident ticket in ServiceNow
+- Post to Slack #incidents channel
+  Template: "🟡 P2 Incident - [Brief Description] - Ticket: INC-12345"
+- Identify affected services
+- Check for related Known Issues (search KG)
+
+**3. DIAGNOSIS (15-60 minutes)**
+- Follow relevant Runbook (e.g., RB-Voice-Outage)
+- Collect logs and diagnostics
+- Identify root cause or workaround
+- Update ticket every 15 minutes
+
+**4. MITIGATION (60-240 minutes)**
+- Apply workaround if available
+- If permanent fix needed, create change request
+- Test fix in staging first
+- Get approval from team lead before production changes
+
+**5. VALIDATION (After fix)**
+- Monitor affected metrics for 30 minutes
+- Confirm user reports are resolved
+- Update status in Slack: "✅ P2 Resolved - [Brief Description]"
+
+**6. DOCUMENTATION (Within 24 hours)**
+- Complete post-incident summary in ticket
+- Update Known Issue if applicable
+- Update Runbook with new learnings
+- If systemic issue, schedule Post-Incident Review (SOP-PostIncidentReview)
+
+--- APPROVAL REQUIRED ---
+No (for P2 incidents)
+
+For production changes during P2:
+- 1 peer review required
+- Team lead notification required
+- No VP approval needed (unlike P0/P1)
+
+--- COMMUNICATION PLAN ---
+- Internal: Slack #incidents every 15 minutes
+- External: Status page update if customer-facing
+- Customer notifications: Email to affected customers after resolution
+
+--- ESCALATION TRIGGERS ---
+Escalate to P1 if:
+- Issue affects >20% of users
+- Workaround fails
+- SLA breach imminent
+- Customer-facing impact detected
+
+Follow SOP-P1-Escalation for escalation procedure.
+
+--- EXAMPLE INCIDENTS ---
+- 2026-02-10: Voice transfer drops (KI-Voice-Transfer-Drop)
+  - Workaround: Disabled warm transfers
+  - Permanent fix: Config update in REL-2026-W12
+  - Resolution time: 2.5 hours
+
+- 2026-01-25: Dashboard latency
+  - Root cause: DB connection pool exhaustion
+  - Fix: Increased pool size + restart (RB-DB-Pool)
+  - Resolution time: 1.8 hours
+
+--- RELATED DOCUMENTS ---
+- SOP: SOP-P1-Escalation (for escalation)
+- SOP: SOP-PostIncidentReview (for PIR process)
+- Runbooks: RB-Voice-Outage, RB-DB-Pool
+- Known Issues: KI-Voice-Transfer-Drop
+
+--- RUNBOOKS COMMONLY USED ---
+- RB-Voice-Outage (voice issues)
+- RB-DB-Pool (database issues)
+- RB-API-Restart (API issues)
+
+--- KEYWORDS ---
+incident response, P2, triage, escalation, sla, procedure

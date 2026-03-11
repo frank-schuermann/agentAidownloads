@@ -28,8 +28,7 @@ except ImportError:
     print("          Install with: pip install openai")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# KG_PATH = os.path.join(BASE_DIR, "knowledge_graph_generated.json")
-KG_PATH = os.path.join(BASE_DIR, "knowledge_graph.json")
+KG_PATH = os.path.join(BASE_DIR, "knowledge_graph.json")  # Default graph
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 # LLM Provider Configuration
@@ -65,9 +64,58 @@ elif USE_AZURE_OPENAI:
 
 # ─── Knowledge Graph Loader ─────────────────────────────────────────────────
 
-def load_knowledge_graph():
-    with open(KG_PATH, "r", encoding="utf-8") as f:
+def load_knowledge_graph(graph_path=None):
+    """Load knowledge graph from specified path or use default KG_PATH."""
+    path = graph_path or KG_PATH
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def reload_knowledge_graph(graph_file):
+    """Reload knowledge graph from a new file."""
+    global KG, NODES, EDGES, KG_PATH
+    
+    new_path = os.path.join(BASE_DIR, graph_file)
+    if not os.path.exists(new_path):
+        raise FileNotFoundError(f"Graph file not found: {graph_file}")
+    
+    KG = load_knowledge_graph(new_path)
+    NODES = {n["id"]: n for n in KG["nodes"]}
+    EDGES = KG["edges"]
+    KG_PATH = new_path
+    
+    print(f"[INFO] Knowledge graph reloaded: {graph_file}")
+    print(f"[INFO] Loaded {len(NODES)} nodes, {len(EDGES)} edges")
+    return True
+
+
+def list_available_graphs():
+    """List all available knowledge graph JSON files."""
+    import glob
+    graphs = []
+    
+    # Find all knowledge_graph*.json files
+    pattern = os.path.join(BASE_DIR, "knowledge_graph*.json")
+    for filepath in glob.glob(pattern):
+        filename = os.path.basename(filepath)
+        # Create display name from filename
+        display_name = filename.replace("knowledge_graph", "KG").replace(".json", "").replace("_", " ").title()
+        if display_name == "KG":
+            display_name = "Default Graph"
+        
+        # Get file size and modification time
+        stat = os.stat(filepath)
+        
+        graphs.append({
+            "filename": filename,
+            "display_name": display_name,
+            "size_kb": round(stat.st_size / 1024, 1),
+            "modified": time.strftime("%Y-%m-%d %H:%M", time.localtime(stat.st_mtime))
+        })
+    
+    # Sort by filename
+    graphs.sort(key=lambda x: x["filename"])
+    return graphs
 
 
 KG = load_knowledge_graph()
@@ -656,6 +704,8 @@ class SupportAgentHandler(http.server.SimpleHTTPRequestHandler):
             self._handle_chat_stream()
         elif parsed.path == "/api/graph-search":
             self._handle_graph_search()
+        elif parsed.path == "/api/switch-graph":
+            self._handle_switch_graph()
         else:
             self.send_error(404, "Endpoint not found")
 
@@ -675,7 +725,14 @@ class SupportAgentHandler(http.server.SimpleHTTPRequestHandler):
                 "total_nodes": len(NODES),
                 "total_edges": len(EDGES),
                 "node_types": list(set(n["type"] for n in NODES.values())),
-                "product": KG["metadata"]["product"]
+                "product": KG["metadata"]["product"],
+                "current_graph": os.path.basename(KG_PATH)
+            })
+        elif parsed.path == "/api/list-graphs":
+            # Return list of available knowledge graph files
+            self._send_json({
+                "graphs": list_available_graphs(),
+                "current": os.path.basename(KG_PATH)
             })
         elif parsed.path == "/api/ollama-status" or parsed.path == "/api/llm-status":
             self._check_llm_status()
@@ -933,6 +990,33 @@ class SupportAgentHandler(http.server.SimpleHTTPRequestHandler):
             "results": [{"id": n["id"], "type": n["type"], "label": n["label"],
                          "tags": n.get("tags", [])} for n in results]
         })
+
+    def _handle_switch_graph(self):
+        """Handle switching to a different knowledge graph file."""
+        try:
+            content_length = int(self.headers["Content-Length"])
+            body = self.rfile.read(content_length)
+            data = json.loads(body.decode("utf-8"))
+
+            graph_file = data.get("graph_file", "")
+            if not graph_file:
+                self._send_json({"error": "graph_file parameter required"}, status=400)
+                return
+
+            # Reload the knowledge graph
+            reload_knowledge_graph(graph_file)
+
+            self._send_json({
+                "status": "success",
+                "message": f"Switched to {graph_file}",
+                "graph_file": graph_file,
+                "total_nodes": len(NODES),
+                "total_edges": len(EDGES)
+            })
+        except FileNotFoundError as e:
+            self._send_json({"error": str(e)}, status=404)
+        except Exception as e:
+            self._send_json({"error": f"Failed to switch graph: {str(e)}"}, status=500)
 
     def _check_llm_status(self):
         """Check status of configured LLM provider (Azure OpenAI or Ollama)."""

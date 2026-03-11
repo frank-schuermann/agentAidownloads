@@ -1,0 +1,579 @@
+{
+  "metadata": {
+    "graph_name": "Knowledge Graph Schema (Ontology)",
+    "version": "1.0.0",
+    "description": "Meta-graph showing the schema structure and allowed relationships between node types",
+    "created_date": "2026-03-11",
+    "last_updated": "2026-03-11",
+    "product": "Microsoft Dynamics 365 Contact Center (CCaaS)",
+    "total_nodes": 16,
+    "total_edges": 51,
+    "schema_version": "v2",
+    "generated_by": "generate_schema_graph.py",
+    "purpose": "Schema visualization and ontology reference"
+  },
+  "node_types": [
+    "NodeType"
+  ],
+  "edge_types": [
+    "ASSIGNED_TO",
+    "BELONGS_TO_SPO",
+    "CONFIGURED_BY",
+    "DEPENDS_ON",
+    "DOCUMENTED_IN",
+    "ESCALATES_TO",
+    "FIXED_IN",
+    "HAS_FAQ",
+    "HAS_FEATURE",
+    "HAS_KNOWN_ISSUE",
+    "HAS_RELEASE_NOTE",
+    "HAS_RUNBOOK",
+    "HAS_SERVICE",
+    "HAS_SOP",
+    "IMPACTED_BY",
+    "OWNS",
+    "RELATED_TO",
+    "REPORTED_INCIDENT",
+    "RESOLVED_BY",
+    "RUNS_ON",
+    "SUBSCRIBES_TO",
+    "WORKAROUND_IN"
+  ],
+  "nodes": [
+    {
+      "id": "Product",
+      "type": "Product",
+      "label": "Product",
+      "properties": {
+        "description": "Top-level product or solution",
+        "color": "#22c55e",
+        "icon": "📦",
+        "represents": "Product"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Service",
+      "type": "Service",
+      "label": "Service",
+      "properties": {
+        "description": "Individual services or components",
+        "color": "#60a5fa",
+        "icon": "⚙️",
+        "represents": "Service"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "SPO",
+      "type": "SPO",
+      "label": "SPO",
+      "properties": {
+        "description": "Service Purchase Order / License",
+        "color": "#a78bfa",
+        "icon": "📋",
+        "represents": "SPO"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "ReleaseNote",
+      "type": "ReleaseNote",
+      "label": "ReleaseNote",
+      "properties": {
+        "description": "Product release notes and updates",
+        "color": "#f59e0b",
+        "icon": "📝",
+        "represents": "ReleaseNote"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "UserGuide",
+      "type": "UserGuide",
+      "label": "UserGuide",
+      "properties": {
+        "description": "Documentation and user guides",
+        "color": "#06b6d4",
+        "icon": "📖",
+        "represents": "UserGuide"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "KnownIssue",
+      "type": "KnownIssue",
+      "label": "KnownIssue",
+      "properties": {
+        "description": "Known bugs and issues",
+        "color": "#ef4444",
+        "icon": "⚠️",
+        "represents": "KnownIssue"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Runbook",
+      "type": "Runbook",
+      "label": "Runbook",
+      "properties": {
+        "description": "Operational runbooks and procedures",
+        "color": "#10b981",
+        "icon": "📘",
+        "represents": "Runbook"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "SOP",
+      "type": "SOP",
+      "label": "SOP",
+      "properties": {
+        "description": "Standard Operating Procedures",
+        "color": "#8b5cf6",
+        "icon": "📑",
+        "represents": "SOP"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Incident",
+      "type": "Incident",
+      "label": "Incident",
+      "properties": {
+        "description": "Support incidents and tickets",
+        "color": "#f97316",
+        "icon": "🚨",
+        "represents": "Incident"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Expert",
+      "type": "Expert",
+      "label": "Expert",
+      "properties": {
+        "description": "Subject matter experts",
+        "color": "#ec4899",
+        "icon": "👤",
+        "represents": "Expert"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Team",
+      "type": "Team",
+      "label": "Team",
+      "properties": {
+        "description": "Support or development teams",
+        "color": "#14b8a6",
+        "icon": "👥",
+        "represents": "Team"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Customer",
+      "type": "Customer",
+      "label": "Customer",
+      "properties": {
+        "description": "Customer organizations",
+        "color": "#eab308",
+        "icon": "🏢",
+        "represents": "Customer"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Infrastructure",
+      "type": "Infrastructure",
+      "label": "Infrastructure",
+      "properties": {
+        "description": "Infrastructure components",
+        "color": "#64748b",
+        "icon": "🖥️",
+        "represents": "Infrastructure"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Configuration",
+      "type": "Configuration",
+      "label": "Configuration",
+      "properties": {
+        "description": "Configuration settings",
+        "color": "#94a3b8",
+        "icon": "🔧",
+        "represents": "Configuration"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "FAQ",
+      "type": "FAQ",
+      "label": "FAQ",
+      "properties": {
+        "description": "Frequently asked questions",
+        "color": "#06b6d4",
+        "icon": "❓",
+        "represents": "FAQ"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    },
+    {
+      "id": "Feature",
+      "type": "Feature",
+      "label": "Feature",
+      "properties": {
+        "description": "Product features",
+        "color": "#34d399",
+        "icon": "✨",
+        "represents": "Feature"
+      },
+      "tags": [
+        "Schema",
+        "NodeType"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "Product",
+      "target": "Service",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "Product",
+      "target": "SPO",
+      "type": "BELONGS_TO_SPO"
+    },
+    {
+      "source": "Product",
+      "target": "ReleaseNote",
+      "type": "HAS_RELEASE_NOTE"
+    },
+    {
+      "source": "Product",
+      "target": "SOP",
+      "type": "HAS_SOP"
+    },
+    {
+      "source": "Product",
+      "target": "Feature",
+      "type": "HAS_FEATURE"
+    },
+    {
+      "source": "Service",
+      "target": "Infrastructure",
+      "type": "RUNS_ON"
+    },
+    {
+      "source": "Service",
+      "target": "Configuration",
+      "type": "CONFIGURED_BY"
+    },
+    {
+      "source": "Service",
+      "target": "Service",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Service",
+      "target": "UserGuide",
+      "type": "DOCUMENTED_IN"
+    },
+    {
+      "source": "Service",
+      "target": "KnownIssue",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "Service",
+      "target": "Runbook",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "Service",
+      "target": "FAQ",
+      "type": "HAS_FAQ"
+    },
+    {
+      "source": "Service",
+      "target": "Feature",
+      "type": "HAS_FEATURE"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "ReleaseNote",
+      "type": "FIXED_IN"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "Configuration",
+      "type": "WORKAROUND_IN"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "Incident",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "Runbook",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "UserGuide",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "KnownIssue",
+      "target": "FAQ",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Customer",
+      "target": "Incident",
+      "type": "REPORTED_INCIDENT"
+    },
+    {
+      "source": "Customer",
+      "target": "SPO",
+      "type": "SUBSCRIBES_TO"
+    },
+    {
+      "source": "Incident",
+      "target": "Service",
+      "type": "IMPACTED_BY"
+    },
+    {
+      "source": "Incident",
+      "target": "Runbook",
+      "type": "RESOLVED_BY"
+    },
+    {
+      "source": "Incident",
+      "target": "Expert",
+      "type": "ASSIGNED_TO"
+    },
+    {
+      "source": "Incident",
+      "target": "KnownIssue",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Incident",
+      "target": "Configuration",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Incident",
+      "target": "UserGuide",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Runbook",
+      "target": "Configuration",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Runbook",
+      "target": "UserGuide",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Runbook",
+      "target": "KnownIssue",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Runbook",
+      "target": "SOP",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Runbook",
+      "target": "Service",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "UserGuide",
+      "target": "KnownIssue",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "UserGuide",
+      "target": "Runbook",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "UserGuide",
+      "target": "Service",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "ReleaseNote",
+      "target": "KnownIssue",
+      "type": "FIXED_IN"
+    },
+    {
+      "source": "ReleaseNote",
+      "target": "Feature",
+      "type": "HAS_FEATURE"
+    },
+    {
+      "source": "FAQ",
+      "target": "KnownIssue",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "FAQ",
+      "target": "Runbook",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "FAQ",
+      "target": "Service",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "FAQ",
+      "target": "UserGuide",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "FAQ",
+      "target": "Configuration",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Team",
+      "target": "Service",
+      "type": "OWNS"
+    },
+    {
+      "source": "Team",
+      "target": "Expert",
+      "type": "ASSIGNED_TO"
+    },
+    {
+      "source": "SOP",
+      "target": "Team",
+      "type": "ESCALATES_TO"
+    },
+    {
+      "source": "SOP",
+      "target": "Runbook",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "SOP",
+      "target": "KnownIssue",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "SOP",
+      "target": "Service",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "SPO",
+      "target": "Service",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "SPO",
+      "target": "UserGuide",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "SPO",
+      "target": "Feature",
+      "type": "HAS_FEATURE"
+    }
+  ],
+  "statistics": {
+    "node_types_count": 16,
+    "edge_rules_count": 51,
+    "edge_type_usage": {
+      "HAS_SERVICE": 2,
+      "BELONGS_TO_SPO": 1,
+      "HAS_RELEASE_NOTE": 1,
+      "HAS_SOP": 1,
+      "HAS_FEATURE": 4,
+      "RUNS_ON": 1,
+      "CONFIGURED_BY": 1,
+      "DEPENDS_ON": 1,
+      "DOCUMENTED_IN": 1,
+      "HAS_KNOWN_ISSUE": 1,
+      "HAS_RUNBOOK": 1,
+      "HAS_FAQ": 1,
+      "FIXED_IN": 2,
+      "WORKAROUND_IN": 1,
+      "RELATED_TO": 24,
+      "REPORTED_INCIDENT": 1,
+      "SUBSCRIBES_TO": 1,
+      "IMPACTED_BY": 1,
+      "RESOLVED_BY": 1,
+      "ASSIGNED_TO": 2,
+      "OWNS": 1,
+      "ESCALATES_TO": 1
+    }
+  },
+  "ai_agent_instructions": {
+    "purpose": "This schema graph shows the ontology/structure of the knowledge graph. Each node represents a node type, and edges show allowed relationships.",
+    "usage": [
+      "Use this to understand the knowledge graph structure",
+      "Identify valid relationship paths between node types",
+      "Discover which node types connect to which",
+      "Plan graph traversal strategies",
+      "Validate edge type usage"
+    ]
+  }
+}

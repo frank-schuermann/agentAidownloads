@@ -1,0 +1,12 @@
+Release Note ID: RN-003
+Version: 2025 Release Wave 2 (WFM Updates)
+Release date: 2025-10-01
+Highlights:
+
+Forecast accuracy improvements (holiday weighting)
+
+Faster schedule generation pipeline
+
+Intraday staffing gap alerts enhancements
+
+Admin job monitoring improvements

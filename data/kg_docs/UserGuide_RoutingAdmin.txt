@@ -1,0 +1,202 @@
+================================================================================
+USER GUIDE — Microsoft Dynamics 365 Contact Center
+Unified Routing Administration Guide
+================================================================================
+
+TABLE OF CONTENTS:
+------------------
+1. Routing Architecture Overview
+2. Workstreams Configuration
+3. Queues
+4. Classification Rules
+5. Skills-Based Routing
+6. Capacity Profiles
+7. Assignment Methods
+8. Overflow Rules
+9. Routing Diagnostics
+10. Common Mistakes & Fixes
+
+--------------------------------------------------------------------------------
+1. ROUTING ARCHITECTURE OVERVIEW
+--------------------------------------------------------------------------------
+Unified Routing processes work items through this pipeline:
+  Intake → Classification → Route-to-Queue → Assignment → Agent
+
+- Intake: Work item enters from channel (voice call, chat, email)
+- Classification: AI or rule-based classification determines queue
+- Route-to-Queue: Rules match work item to the correct queue
+- Assignment: System finds best available agent in the queue
+- Agent: Work item delivered to agent via notification
+
+--------------------------------------------------------------------------------
+2. WORKSTREAMS CONFIGURATION
+--------------------------------------------------------------------------------
+A workstream defines a pipeline for a specific channel.
+
+Path: Admin center > Customer support > Workstreams
+
+Create workstream:
+1. Name and description
+2. Channel type: Voice, Chat, SMS, Email, etc.
+3. Work distribution mode: Push (auto-assign) or Pick (agent selects)
+4. Capacity: Number of concurrent items an agent can handle
+5. Operating hours: Define business hours or 24/7
+6. Allowed presence: Which statuses can receive work (Available, Busy)
+
+IMPORTANT: Each channel type needs its own workstream.
+
+--------------------------------------------------------------------------------
+3. QUEUES
+--------------------------------------------------------------------------------
+Queues group agents who handle specific types of work.
+
+Path: Admin center > Customer support > Queues
+
+Queue properties:
+- Name and description
+- Priority (1-10, higher = more important)
+- Operating hours
+- Overflow queue (where items go if primary queue is overloaded)
+
+Agent membership:
+- Add agents directly or via team
+- Set agent skills within queue context
+- Configure individual capacity overrides
+
+Best practice: Create separate queues for complexity tiers:
+  L1 General Queue → L2 Specialist Queue → L3 Expert Queue
+
+--------------------------------------------------------------------------------
+4. CLASSIFICATION RULES
+--------------------------------------------------------------------------------
+Classification rulesets analyze incoming work items and set attributes.
+
+Path: Workstream > Classification tab
+
+Rule types:
+- RULE-BASED: If condition (e.g., subject contains "billing") → set attribute
+- ML-BASED: Train a model on historical data to auto-classify
+
+Example rule-based classification:
+  IF   customer.segment = "Enterprise"
+  AND  conversation.channel = "Voice"
+  THEN set priority = "High"
+  AND  set skill = "Enterprise Voice"
+
+CRITICAL: Always publish rulesets after editing. Unpublished changes are not
+active. Avoid circular dependencies between rules — this causes routing
+engine to loop (see Incident INC-20260203-002).
+
+--------------------------------------------------------------------------------
+5. SKILLS-BASED ROUTING
+--------------------------------------------------------------------------------
+Skills ensure work items reach agents with the right expertise.
+
+Skill types:
+- Proficiency (e.g., Spanish: Beginner/Intermediate/Expert)
+- Boolean (e.g., Has PCI Compliance Training: Yes/No)
+
+Configure skills:
+1. Admin center > Agent experience > Skills
+2. Create skill with type (Proficiency or Boolean)
+3. Assign skills to agents
+4. Set required skills in classification rules or queue config
+
+Skill matching modes:
+- Exact Match: Agent must have all required skills at exact level
+- Closest Match: Best available agent, relaxing proficiency if needed
+- No Match: Ignore skills (use for fallback)
+
+--------------------------------------------------------------------------------
+6. CAPACITY PROFILES
+--------------------------------------------------------------------------------
+Capacity profiles define how many concurrent work items an agent handles.
+
+Example:
+  Voice: 1 concurrent (voice calls require full attention)
+  Chat:  3 concurrent
+  Email: 5 concurrent
+
+Blended capacity: Agent can handle 1 voice + 2 chats simultaneously.
+
+Path: Admin center > Agent experience > Capacity profiles
+
+Assign profiles to agents individually or via queue membership.
+
+--------------------------------------------------------------------------------
+7. ASSIGNMENT METHODS
+--------------------------------------------------------------------------------
+Choose how the system picks the agent within a queue:
+
+- Round Robin: Equal distribution, cycles through agents
+- Highest Capacity: Agent with most available capacity gets item first
+- Most Idle: Agent who has been idle longest gets item first
+- Custom (Advanced): Define assignment rulesets with conditions
+
+Path: Queue > Assignment method
+
+Custom assignment example:
+  IF   work_item.priority = "Critical"
+  AND  work_item.skill = "Enterprise Voice"
+  THEN assign_to agent WHERE skill_match = Exact AND status = Available
+  ORDER_BY idle_time DESC
+
+--------------------------------------------------------------------------------
+8. OVERFLOW RULES
+--------------------------------------------------------------------------------
+When a queue is overloaded, overflow rules redirect work items.
+
+Triggers:
+- Wait time exceeds threshold (e.g., > 5 minutes)
+- Queue depth exceeds threshold (e.g., > 20 items)
+- No available agents in queue
+
+Actions:
+- Transfer to overflow queue (with relaxed skill matching)
+- Send to voicemail (voice only)
+- End conversation with message (chat)
+- Offer callback (voice)
+
+Config: Queue > Overflow tab
+
+2025 Wave 2 New: Priority-based overflow — high priority items overflow
+to specialist queues, low priority overflow to general queues.
+
+--------------------------------------------------------------------------------
+9. ROUTING DIAGNOSTICS
+--------------------------------------------------------------------------------
+Debug why a specific work item was routed incorrectly.
+
+Path: Admin center > Routing diagnostics
+
+Steps:
+1. Enter work item ID or conversation ID
+2. View the classification output (which rules fired)
+3. View queue selection (which queue matched)
+4. View assignment attempt (which agents were evaluated)
+5. See reject/timeout events
+
+Use this tool FIRST when investigating routing complaints.
+
+--------------------------------------------------------------------------------
+10. COMMON MISTAKES & FIXES
+--------------------------------------------------------------------------------
+
+Mistake: Forgot to publish classification ruleset
+Fix: Go to workstream > Classification > Publish
+
+Mistake: Circular dependency in rules (Rule A depends on attribute set by
+        Rule B, and Rule B depends on attribute set by Rule A)
+Fix: Reorder rules. Ensure no cycles. Use routing diagnostics to identify loop.
+
+Mistake: No agents in queue during off-hours
+Fix: Configure operating hours and set offline queue/voicemail.
+
+Mistake: Skills too restrictive — work items waiting indefinitely
+Fix: Enable skill relaxation (Closest Match) or add overflow rule.
+
+Mistake: Capacity profile not assigned — agent never receives work
+Fix: Assign capacity profile via admin center > Agent experience.
+
+For help: Contact James Wilson (CCaaS Platform Architect) or the
+CCaaS Digital & Routing Team at #ccaas-digital-oncall (Teams).

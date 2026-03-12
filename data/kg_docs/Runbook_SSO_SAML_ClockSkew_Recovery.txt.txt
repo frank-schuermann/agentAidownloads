@@ -1,0 +1,27 @@
+Runbook: SSO SAML Clock Drift Recovery
+
+Runbook ID: RB-015
+Category: Authentication Recovery
+Estimated Time: 20 minutes
+
+When to use:
+- Multiple users report SSO login loops.
+- Auth gateway logs show repeated SAML assertion validation failures.
+
+Steps:
+1. Confirm symptoms:
+   - Attempt login with a test user and capture the error.
+2. Inspect auth gateway logs:
+   - Look for “SAML_ASSERTION_EXPIRED” or “ASSERTION_NOT_YET_VALID”.
+3. Validate time synchronization:
+   - Verify NTP status on all auth gateway nodes.
+   - Confirm drift is < 30 seconds.
+4. Apply temporary mitigation:
+   - Increase SAML clock-skew tolerance from 2 minutes → 5 minutes.
+5. Restart auth gateway:
+   - Rolling restart to avoid full outage.
+6. Validate:
+   - Test 3 logins (agent + supervisor + admin).
+   - Confirm session token issuance and portal access.
+7. Roll back mitigation:
+   - Reduce skew tolerance back to normal once clocks are stable.

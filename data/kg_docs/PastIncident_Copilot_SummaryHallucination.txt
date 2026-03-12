@@ -1,0 +1,17 @@
+Incident: Copilot summary hallucination affecting coaching notes
+
+Incident ID: INC-016
+Severity: P2
+Status: Resolved
+
+Summary:
+Supervisors reported inaccurate Copilot summaries showing fabricated tasks and incorrect outcomes.
+
+Impact:
+- Agents saved incorrect follow-ups in CRM notes.
+- Coaching dashboards displayed unreliable “Next Steps”.
+
+Resolution:
+- Disabled auto-summary temporarily.
+- Restarted transcript ingestion workers to clear backlog.
+- Ensured summarization triggers only after transcript finalization.

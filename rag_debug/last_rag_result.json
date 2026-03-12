@@ -1,0 +1,1400 @@
+{
+  "query": "SSO login failures",
+  "rag_results": {
+    "semantic_results": [
+      {
+        "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+        "text": "ng engine failure (no work items being assigned)\n- More than 50 agents unable to log in or receive work items\n- Complete loss of Copilot functionality across all agents\n- Data loss or security breach involving customer PII\n- Complete loss of real-time analytics for supervisors\n\n================================================================================\nESCALATION PROCEDURE:\n================================================================================\n\nSTEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)\n-------------------------------------------------\n1.1  L1 agent receives initial report (ticket, call, or monitoring alert)\n1.2  Validate P1 criteria using the checklist above\n1.3  If criteria met \u2192 proceed with P1 escalation\n1.4  If criteria NOT met \u2192 classify as P2 or P3, follow standard triage\n1.5  Collect initial information:\n     - Customer name and environment\n     - Affected service (Voice, Routing, Copilot, etc.)\n     - Number of agents/customers affected\n     - Timestamp of",
+        "metadata": {
+          "chunk_start": 850,
+          "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+          "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "primary_category": "outage",
+          "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "chunk_index": 1,
+          "format": "text",
+          "doc_type": "SOP",
+          "chunk_end": 1850,
+          "file_name": "SOP_P1_Escalation.txt"
+        },
+        "score": 0.6900798678398132,
+        "rank": 1,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+        "text": "Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the following KQL query:\n     customEvents\n     | where name == \"VoiceCallEvent\"\n     | where timestamp > ago(1h)\n     | where customDimensions.status == \"Failed\"\n     | summarize count() by tostring(customDimensions.errorCode),\n       tostring(customDimensions.errorMessage)\n     | order by count_ desc\n\n4.3  Common error codes:\n     - 403: Authentication failure \u2192 Check ACS connection string\n     - 408: Timeout \u2192 Network/DNS issue \u2192 Check STEP 5\n     - 480: Temporarily Unavailable \u2192 ACS capacity \u2192 Check STEP 5\n     - 503: Service Unavailable \u2192 ACS outage \u2192 Check STEP 5\n\nSTEP 5: ENABLE GEO-REDUNDANT FAILOVER\n--------------------------------------\n5.1  If primary ACS region is degraded:\n     Azure Portal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:",
+        "metadata": {
+          "chunk_start": 2550,
+          "chunk_end": 3550,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_index": 3,
+          "format": "text"
+        },
+        "score": 0.7037166357040405,
+        "rank": 2,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+        "text": "AT & NPS Trends\n- SLA Adherence Report\n\n--------------------------------------------------------------------------------\n7. TROUBLESHOOTING\n--------------------------------------------------------------------------------\nIssue: Dashboard shows no data\nFix: Verify you have Omnichannel Supervisor role. Check that real-time\nanalytics is enabled in admin center.\n\nIssue: Agent status shows stale (not updating)\nFix: Check agent's browser connectivity. Force refresh from admin view.\n\nIssue: Sentiment not displaying\nFix: Verify sentiment analysis is enabled at workstream level.\n\nFor help: Contact L2 support or CCaaS Digital & Routing Team.",
+        "metadata": {
+          "primary_category": "routing",
+          "chunk_end": 4889,
+          "format": "text",
+          "category_tags": "[\"chat\", \"copilot\", \"knowledge\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_Supervisor.txt",
+          "file_name": "UserGuide_Supervisor.txt",
+          "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_start": 4250,
+          "chunk_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_index": 5,
+          "doc_type": "UserGuide",
+          "category_scores": "{\"outage\": 1, \"routing\": 4, \"voice\": 1, \"chat\": 1, \"copilot\": 1, \"knowledge\": 2, \"wfm\": 1, \"qm\": 2}"
+        },
+        "score": 0.7396892309188843,
+        "rank": 3,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+        "text": "tal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:\n     a. Create secondary ACS resource in failover region\n     b. Assign same phone numbers (porting may take 24-48h)\n     c. Update CCaaS admin center to point to secondary ACS\n5.4  If configured:\n     a. Azure Portal > ACS resource > Geo-redundancy\n     b. Click \"Initiate Failover\"\n     c. Confirm failover to secondary region\n     d. Wait 5-10 minutes for DNS propagation\n5.5  Verify calls are now routing through secondary region\n\nSTEP 6: RESTART OMNICHANNEL PROVISIONING\n-----------------------------------------\n6.1  Use ONLY if ACS is healthy but CCaaS voice is still down\n6.2  Dynamics 365 admin center > Customer Service > Manage\n6.3  Click \"Omnichannel\" > Check provisioning status\n6.4  If status shows issues:\n     a. Click \"Reprovision Omnichannel\"\n     b. This resets the connection between D365 and ACS\n     c. Takes approximately 10-15",
+        "metadata": {
+          "chunk_start": 3400,
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "chunk_index": 4,
+          "file_name": "Runbook_VoiceOutage.txt",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "format": "text",
+          "chunk_end": 4400,
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt"
+        },
+        "score": 0.7952526807785034,
+        "rank": 4,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-001\nVoice Call Drops During Warm Transfer\n================================================================================\n\nIssue ID     : KI-2025-001\nSeverity     : P1 (Critical)\nStatus       : Fix in Progress\nETA Fix      : March 15, 2026\nReported     : November 10, 2025\nAffected     : 2025 Wave 1, 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent initiates a warm (consultive) transfer to another agent\n2. Customer hears dead air for 3-5 seconds\n3. Call disconnects \u2014 customer is dropped\n4. Transfer failure is logged in Azure Communication Services call logs\n5. Agent sees \"Transfer Failed\" notification in agent desktop\n6. Occurs intermittently \u2014 approximately 8% of warm transfers affected\n\nAFFECTED SCENARIOS:\n-------------------\n- Warm transfer between agents in DIFFERENT Azure regions (e.g., US East to US West)\n- Does NOT affect cold (blind) transfers\n- Does NOT affect transfers within the s",
+        "metadata": {
+          "id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+          "entity_id": "KI-2025-001",
+          "chunk_start": 0,
+          "chunk_id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+          "doc_type": "KnownIssue",
+          "chunk_index": 0,
+          "chunk_end": 1000,
+          "format": "text",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_VoiceTransferDrop.txt",
+          "file_name": "KnownIssue_VoiceTransferDrop.txt",
+          "category_tags": "[\"latency\", \"outage\", \"qm\", \"routing\", \"voice\"]",
+          "primary_category": "voice",
+          "category_scores": "{\"outage\": 2, \"latency\": 1, \"routing\": 3, \"voice\": 6, \"qm\": 1}"
+        },
+        "score": 0.8053496479988098,
+        "rank": 5,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_0",
+        "text": "================================================================================\nRUNBOOK \u2014 RB-ROUTE-001\nRouting Misconfiguration Fix\n================================================================================\n\nRunbook ID        : RB-ROUTE-001\nCategory          : Configuration Fix\nEstimated Time    : 20 minutes\nLast Updated      : February 2026\nOwner             : CCaaS Digital & Routing Team (James Wilson)\nTrigger           : Work items stuck in queue, routing incorrectly, or not routing at all\n\n================================================================================\nSTEP-BY-STEP FIX:\n================================================================================\n\nSTEP 1: IDENTIFY AFFECTED WORKSTREAM\n--------------------------------------\n1.1  Admin center > Customer support > Workstreams\n1.2  Check status of each workstream (Active, Inactive, Error)\n1.3  Identify which workstream has routing issues:\n     - Check queue depths \u2014 abnormally high = items not being assigned",
+        "metadata": {
+          "file_name": "Runbook_RoutingFix.txt",
+          "doc_type": "Runbook",
+          "chunk_index": 0,
+          "category_scores": "{\"outage\": 1, \"latency\": 1, \"routing\": 5, \"voice\": 2, \"chat\": 1, \"copilot\": 1, \"qm\": 1}",
+          "primary_category": "routing",
+          "chunk_start": 0,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_RoutingFix.txt",
+          "id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_0",
+          "format": "text",
+          "chunk_end": 1000,
+          "category_tags": "[\"chat\", \"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"voice\"]",
+          "chunk_id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_0"
+        },
+        "score": 0.815835177898407,
+        "rank": 6,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+        "text": "ess (if P1 escalation needed)\n\n================================================================================\nSTEP-BY-STEP RECOVERY:\n================================================================================\n\nSTEP 1: CHECK AZURE COMMUNICATION SERVICES HEALTH\n--------------------------------------------------\n1.1  Navigate to https://status.azure.com\n1.2  Check \"Azure Communication Services\" row\n1.3  Look at affected regions: US East, US West, EU West\n1.4  If Azure-side outage is confirmed:\n     \u2192 Skip to STEP 5 (geo-redundant failover)\n1.5  If Azure status is healthy \u2192 continue to Step 2\n\nSTEP 2: CHECK ACS RESOURCE HEALTH\n----------------------------------\n2.1  Azure Portal > Navigate to ACS resource\n2.2  Click \"Resource Health\" in left nav\n2.3  Review health status and recent events\n2.4  Check \"Diagnose and solve problems\" for recommendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGene",
+        "metadata": {
+          "primary_category": "outage",
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "chunk_end": 1850,
+          "chunk_index": 1,
+          "doc_type": "Runbook",
+          "chunk_start": 850,
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+          "format": "text"
+        },
+        "score": 0.8308665156364441,
+        "rank": 7,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_7",
+        "text": "=====================================\nESCALATION:\n================================================================================\nIf not resolved in 20 minutes:\n1. Contact James Wilson (CCaaS Platform Architect)\n2. Join #ccaas-digital-oncall (Teams)\n3. Open Microsoft support case if platform-side bug suspected",
+        "metadata": {
+          "category_tags": "[\"chat\", \"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"voice\"]",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_RoutingFix.txt",
+          "chunk_start": 5950,
+          "file_name": "Runbook_RoutingFix.txt",
+          "doc_type": "Runbook",
+          "category_scores": "{\"outage\": 1, \"latency\": 1, \"routing\": 5, \"voice\": 2, \"chat\": 1, \"copilot\": 1, \"qm\": 1}",
+          "id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_7",
+          "primary_category": "routing",
+          "format": "text",
+          "chunk_end": 6262,
+          "chunk_index": 7,
+          "chunk_id": "Runbook_RoutingFix__Runbook_RoutingFix__chunk_7"
+        },
+        "score": 0.8313684463500977,
+        "rank": 8,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+        "text": "commendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGenerated > ago(1h)\n       | where CallType == \"Group\" or CallType == \"P2P\"\n       | summarize total = count(), failed = countif(EndReason != \"0\")\n         by bin(TimeGenerated, 5m)\n       | extend failure_rate = failed * 100.0 / total\n\nSTEP 3: CHECK CCAAS VOICE CHANNEL STATUS\n-----------------------------------------\n3.1  Dynamics 365 admin center > Customer Service > Channels > Voice\n3.2  Check provisioning status for each phone number\n3.3  If status shows \"Error\" or \"Not Provisioned\":\n     \u2192 Click \"Reprovision\" for affected numbers\n     \u2192 Wait 5 minutes for provisioning to complete\n3.4  Check voice workstream status:\n     Admin center > Workstreams > [Voice Workstream]\n     Verify status is \"Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the foll",
+        "metadata": {
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+          "format": "text",
+          "chunk_index": 2,
+          "primary_category": "outage",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "doc_type": "Runbook",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "chunk_end": 2700,
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_start": 1700
+        },
+        "score": 0.8396372199058533,
+        "rank": 9,
+        "retrieval_type": "semantic"
+      },
+      {
+        "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+        "text": "Outage Recovery)\n     - Routing failure \u2192 RB-ROUTE-001 (Routing Misconfiguration Fix)\n     - Other \u2192 Use relevant diagnostic procedures\n4.4  L2 provides status updates every 15 minutes on the bridge\n\nSTEP 5: ESCALATE TO MICROSOFT PREMIER SUPPORT (if not resolved in 30 min)\n--------------------------------------------------------------------------\n5.1  If L2 cannot resolve within 30 minutes:\n     Open Microsoft Premier Support case:\n     - https://admin.microsoft.com > Support > New service request\n     - Severity: Sev A (Critical \u2014 Production down)\n     - Product: Dynamics 365 Contact Center\n     - Include: Incident ID, timeline, steps already taken\n5.2  Request Microsoft callback within 15 minutes\n5.3  Share bridge call details with Microsoft engineer\n5.4  Continue L2 troubleshooting in parallel\n\nSTEP 6: NOTIFY STAKEHOLDERS\n-----------------------------\n6.1  Within 30 minutes of P1 confirmation, notify:\n     - VP Support Operations (email + Teams message)\n     - Customer Success Mana",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+          "doc_type": "SOP",
+          "chunk_index": 4,
+          "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+          "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+          "chunk_end": 4400,
+          "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+          "format": "text",
+          "file_name": "SOP_P1_Escalation.txt",
+          "chunk_start": 3400,
+          "primary_category": "outage"
+        },
+        "score": 0.8406220078468323,
+        "rank": 10,
+        "retrieval_type": "semantic"
+      }
+    ],
+    "keyword_results": [
+      {
+        "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+        "text": "Title: Workforce Management \u2014 Admin Guide (Forecasting & Scheduling)\nDoc ID: UG-004\nAudience: WFM Admins\nTopics:\n\nForecast creation and recalculation\n\nSchedule generation\n\nIntraday monitoring\n\nCommon job failures and retries\n\nPermissions & roles",
+        "metadata": {
+          "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "wfm",
+          "entity_id": "UG-004",
+          "doc_type": "UserGuide",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_WFM_Admin.txt",
+          "format": "text",
+          "category_tags": "[\"outage\", \"wfm\"]",
+          "chunk_id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_end": 245,
+          "file_name": "UserGuide_WFM_Admin.txt",
+          "category_scores": "{\"outage\": 1, \"wfm\": 5}",
+          "chunk_start": 0
+        },
+        "score": 5.871857699036718,
+        "rank": 1,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+        "text": "FAQ: Why did the same interaction score differently when re-scored?\n\nFAQ ID: FAQ-005\nQ: The same call was scored differently when re-evaluated. Why?\nA:\nThis typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.\nFirst verify the active rubric version, then run the \u201cQM Rubric Cache Reset + Re-score\u201d recovery steps.\nIf the issue persists, escalate to platform on-call because the rollout may be incomplete.",
+        "metadata": {
+          "chunk_id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "doc_type": "FAQ",
+          "chunk_start": 0,
+          "chunk_end": 482,
+          "category_scores": "{\"voice\": 1, \"qm\": 2}",
+          "entity_id": "FAQ-005",
+          "format": "text",
+          "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "qm",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\FAQ_QM_Drift.txt",
+          "file_name": "FAQ_QM_Drift.txt",
+          "category_tags": "[\"qm\", \"voice\"]"
+        },
+        "score": 0.0,
+        "rank": 2,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-002\nCopilot Suggestions Delayed > 10 Seconds\n================================================================================\n\nIssue ID     : KI-2025-002\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 22, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent opens a conversation and Copilot panel loads\n2. Copilot shows spinning indicator for 10-30 seconds\n3. Sometimes Copilot request times out completely\n4. Most frequent during peak hours (9 AM - 12 PM local time)\n5. Non-peak hours: Copilot responds in expected 2-3 seconds\n\nROOT CAUSE:\n-----------\nAzure OpenAI Service throttling when tenant exceeds the configured\nTokens Per Minute (TPM) quota. The default quota for most tenants is\n120K TPM. During peak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approxi",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "chunk_end": 1000,
+          "entity_id": "KI-2025-002",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "format": "text",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_index": 0,
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_start": 0,
+          "doc_type": "KnownIssue",
+          "primary_category": "latency"
+        },
+        "score": 0.0,
+        "rank": 3,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+        "text": "ak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approximately:\n- Case summarization: ~2,000 tokens\n- Response suggestion: ~1,500 tokens\n- Knowledge recommendation: ~1,000 tokens\n\nWith 200 agents active, each generating ~3 requests/min:\n  200 \u00d7 3 \u00d7 1,500 avg = 900K TPM >> 120K quota\n\nIMPACT:\n-------\n- Copilot unusable during peak for tenants with > 150 concurrent agents\n- Agent productivity drops ~15% when Copilot is unavailable\n- No data loss \u2014 requests are queued or retried\n\nWORKAROUND:\n-----------\nOption 1 (Recommended): Request Azure OpenAI Quota Increase\n  1. Azure Portal > Azure OpenAI resource > Quotas\n  2. Click \"Request Quota Increase\"\n  3. Recommended: 500K TPM for 200 agents, 1M TPM for 500+ agents\n  4. Turnaround: 24-48 hours for approval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Ca",
+        "metadata": {
+          "primary_category": "latency",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "chunk_index": 1,
+          "doc_type": "KnownIssue",
+          "format": "text",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "entity_id": "KI-2025-002",
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "chunk_end": 1850,
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "chunk_start": 850
+        },
+        "score": 0.0,
+        "rank": 4,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+        "text": "oval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Cache TTL: 15 minutes (default)\n  4. Reduces unique Azure OpenAI calls by ~40%\n\nOption 3: Stagger Copilot Features\n  - Disable less critical features during peak:\n    1. Admin center > Productivity > Copilot\n    2. Keep: Case summarization (most valuable)\n    3. Disable temporarily: Response suggestions, Knowledge recommendations\n  - Re-enable during off-peak\n\nMONITORING:\n-----------\nCheck Azure OpenAI usage:\n  Azure Portal > Azure OpenAI resource > Metrics\n  - Metric: \"Tokens per minute\" (TPM) used vs. quota\n  - Metric: \"HTTP 429 responses\" (throttling events)\n  - Set alert: When 429 count > 10 in 5-minute window\n\nCheck Copilot latency in Application Insights:\n  requests\n  | where name contains \"Copilot\"\n  | summarize avg_duration_ms = avg(duration), p95 = percentile(duration, 95)\n      by bin(timestamp, 5m)\n  | render timechart",
+        "metadata": {
+          "chunk_end": 2689,
+          "doc_type": "KnownIssue",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "chunk_index": 2,
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "format": "text",
+          "chunk_start": 1700,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "entity_id": "KI-2025-002",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+          "primary_category": "latency",
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2"
+        },
+        "score": 0.0,
+        "rank": 5,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-005__KnownIssue_QM_ScorecardDrift__chunk_0",
+        "text": "Known Issue: QM scorecards show inconsistent results across runs\n\nIssue ID: KI-005\nSeverity: P2\nStatus: Workaround Available\nAffected Versions: 2025 Wave 2\n\nSymptoms:\n- The same call is scored differently when re-evaluated (\u00b115\u201325 points).\n- Coaching recommendations flip between \u201cNeeds Improvement\u201d and \u201cMeets Expectations\u201d.\n- Supervisors report sudden spikes in \u201cpolicy violation\u201d tags with no process change.\n\nRoot Cause (hypothesis):\nA scoring model version mismatch: some jobs still use the previous rubric weights after a background configuration rollout.\nCached rubric weights are not invalidated for long-running evaluation workers.\n\nWorkaround:\n- Force-refresh rubric configuration and clear QM scoring cache.\n- Re-run scoring in \u201cstrict rubric mode\u201d for impacted queues until rollout completes.\n\nOperational Notes:\n- Check recent config deployments for QM rubric/weights changes.\n- Validate that all workers are on the same scoring configuration version.",
+        "metadata": {
+          "id": "KI-005__KnownIssue_QM_ScorecardDrift__chunk_0",
+          "chunk_start": 0,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_QM_ScorecardDrift.txt",
+          "format": "text",
+          "primary_category": "qm",
+          "chunk_id": "KI-005__KnownIssue_QM_ScorecardDrift__chunk_0",
+          "chunk_index": 0,
+          "category_tags": "[\"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "entity_id": "KI-005",
+          "doc_type": "KnownIssue",
+          "chunk_end": 964,
+          "file_name": "KnownIssue_QM_ScorecardDrift.txt",
+          "category_scores": "{\"routing\": 1, \"voice\": 1, \"wfm\": 1, \"qm\": 4}"
+        },
+        "score": 0.0,
+        "rank": 6,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-003__KnownIssue_SafariChat__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-003\nChat Widget Not Loading on Safari\n================================================================================\n\nIssue ID     : KI-2025-003\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 30, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Live chat widget fails to render on Safari 17+\n2. Browser console shows \"SecurityError: Blocked a frame with origin...\"\n3. Widget iframe loads but session cookie is rejected\n4. Affects both macOS Safari and iOS Safari\n5. Works correctly on Chrome, Edge, and Firefox\n\nROOT CAUSE:\n-----------\nSafari's Intelligent Tracking Prevention (ITP) blocks third-party cookies\nby default. The CCaaS chat widget runs in an iframe from a Microsoft domain\n(*.omnichannelengagementhub.com), which Safari treats as a third-party\ncontext. The session authentication cookie is blocked, preventing the\nwidget from establishing a chat",
+        "metadata": {
+          "chunk_index": 0,
+          "chunk_start": 0,
+          "category_tags": "[\"chat\", \"outage\", \"sso\"]",
+          "file_name": "KnownIssue_SafariChat.txt",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_SafariChat.txt",
+          "doc_type": "KnownIssue",
+          "chunk_end": 1000,
+          "chunk_id": "KI-2025-003__KnownIssue_SafariChat__chunk_0",
+          "entity_id": "KI-2025-003",
+          "id": "KI-2025-003__KnownIssue_SafariChat__chunk_0",
+          "format": "text",
+          "primary_category": "chat",
+          "category_scores": "{\"outage\": 2, \"chat\": 3, \"sso\": 1}"
+        },
+        "score": 0.0,
+        "rank": 7,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-003__KnownIssue_SafariChat__chunk_1",
+        "text": "nthub.com), which Safari treats as a third-party\ncontext. The session authentication cookie is blocked, preventing the\nwidget from establishing a chat session.\n\nIMPACT:\n-------\n- All customers using Safari (approx. 15% of web traffic) cannot use live chat\n- iOS users (Safari is default browser) are fully affected\n- Customers see an empty chat panel or \"Chat unavailable\" message\n\nWORKAROUND:\n-----------\nRecommended Fix: Enable First-Party Cookie Mode\n\n1. In admin center > Channels > Chat > Widget settings\n2. Find \"Cookie configuration\" section\n3. Set cookieDomain to the customer's own domain:\n   Example: If customer website is www.contoso.com\n   Set cookieDomain = \"contoso.com\"\n\n4. Update the chat widget JavaScript snippet:\n   Add the following attribute to the widget init script:\n\n   <script>\n     Microsoft.Omnichannel.LiveChatWidget.SDK.setContextProvider({\n       cookieDomain: \"contoso.com\",\n       usePrimaryDomainCookies: true\n     });\n   </script>\n\n5. Deploy updated snippet to cust",
+        "metadata": {
+          "id": "KI-2025-003__KnownIssue_SafariChat__chunk_1",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_SafariChat.txt",
+          "category_tags": "[\"chat\", \"outage\", \"sso\"]",
+          "category_scores": "{\"outage\": 2, \"chat\": 3, \"sso\": 1}",
+          "entity_id": "KI-2025-003",
+          "chunk_index": 1,
+          "format": "text",
+          "chunk_start": 850,
+          "chunk_end": 1850,
+          "chunk_id": "KI-2025-003__KnownIssue_SafariChat__chunk_1",
+          "doc_type": "KnownIssue",
+          "file_name": "KnownIssue_SafariChat.txt",
+          "primary_category": "chat"
+        },
+        "score": 0.0,
+        "rank": 8,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-003__KnownIssue_SafariChat__chunk_2",
+        "text": "setContextProvider({\n       cookieDomain: \"contoso.com\",\n       usePrimaryDomainCookies: true\n     });\n   </script>\n\n5. Deploy updated snippet to customer website\n6. Test on Safari (macOS and iOS)\n\nThis forces the widget to use first-party cookies under the customer's\ndomain, which Safari trusts.\n\nAlternative: Request customer users to disable ITP in Safari:\n  Safari > Settings > Privacy > Uncheck \"Prevent cross-site tracking\"\n  (NOT recommended \u2014 requires end-user action)\n\nTESTING:\n--------\nAfter applying the workaround:\n1. Open customer website in Safari 17+ (macOS or iOS)\n2. Click the chat widget button\n3. Verify the chat widget loads and pre-chat survey appears\n4. Submit a test message\n5. Verify conversation appears in agent desktop\n6. Check: No SecurityError in browser console\n\nAFFECTED CUSTOMERS:\n-------------------\n- Any customer deploying the standard CCaaS chat widget\n- Northwind Traders reported this issue first (EU West region)\n- Contoso Corp confirmed same issue on their cu",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_SafariChat.txt",
+          "category_tags": "[\"chat\", \"outage\", \"sso\"]",
+          "chunk_start": 1700,
+          "chunk_index": 2,
+          "category_scores": "{\"outage\": 2, \"chat\": 3, \"sso\": 1}",
+          "chunk_end": 2700,
+          "format": "text",
+          "entity_id": "KI-2025-003",
+          "chunk_id": "KI-2025-003__KnownIssue_SafariChat__chunk_2",
+          "doc_type": "KnownIssue",
+          "file_name": "KnownIssue_SafariChat.txt",
+          "id": "KI-2025-003__KnownIssue_SafariChat__chunk_2",
+          "primary_category": "chat"
+        },
+        "score": 0.0,
+        "rank": 9,
+        "retrieval_type": "keyword"
+      },
+      {
+        "id": "KI-2025-003__KnownIssue_SafariChat__chunk_3",
+        "text": "eploying the standard CCaaS chat widget\n- Northwind Traders reported this issue first (EU West region)\n- Contoso Corp confirmed same issue on their customer portal",
+        "metadata": {
+          "doc_type": "KnownIssue",
+          "file_name": "KnownIssue_SafariChat.txt",
+          "id": "KI-2025-003__KnownIssue_SafariChat__chunk_3",
+          "chunk_start": 2550,
+          "category_tags": "[\"chat\", \"outage\", \"sso\"]",
+          "entity_id": "KI-2025-003",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_SafariChat.txt",
+          "chunk_id": "KI-2025-003__KnownIssue_SafariChat__chunk_3",
+          "category_scores": "{\"outage\": 2, \"chat\": 3, \"sso\": 1}",
+          "chunk_end": 2713,
+          "format": "text",
+          "primary_category": "chat",
+          "chunk_index": 3
+        },
+        "score": 0.0,
+        "rank": 10,
+        "retrieval_type": "keyword"
+      }
+    ],
+    "fused_results": [
+      {
+        "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+        "text": "ng engine failure (no work items being assigned)\n- More than 50 agents unable to log in or receive work items\n- Complete loss of Copilot functionality across all agents\n- Data loss or security breach involving customer PII\n- Complete loss of real-time analytics for supervisors\n\n================================================================================\nESCALATION PROCEDURE:\n================================================================================\n\nSTEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)\n-------------------------------------------------\n1.1  L1 agent receives initial report (ticket, call, or monitoring alert)\n1.2  Validate P1 criteria using the checklist above\n1.3  If criteria met \u2192 proceed with P1 escalation\n1.4  If criteria NOT met \u2192 classify as P2 or P3, follow standard triage\n1.5  Collect initial information:\n     - Customer name and environment\n     - Affected service (Voice, Routing, Copilot, etc.)\n     - Number of agents/customers affected\n     - Timestamp of",
+        "metadata": {
+          "chunk_start": 850,
+          "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+          "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "primary_category": "outage",
+          "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "chunk_index": 1,
+          "format": "text",
+          "doc_type": "SOP",
+          "chunk_end": 1850,
+          "file_name": "SOP_P1_Escalation.txt"
+        },
+        "rrf_score": 0.01639344262295082,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+        "text": "Title: Workforce Management \u2014 Admin Guide (Forecasting & Scheduling)\nDoc ID: UG-004\nAudience: WFM Admins\nTopics:\n\nForecast creation and recalculation\n\nSchedule generation\n\nIntraday monitoring\n\nCommon job failures and retries\n\nPermissions & roles",
+        "metadata": {
+          "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "wfm",
+          "entity_id": "UG-004",
+          "doc_type": "UserGuide",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_WFM_Admin.txt",
+          "format": "text",
+          "category_tags": "[\"outage\", \"wfm\"]",
+          "chunk_id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_end": 245,
+          "file_name": "UserGuide_WFM_Admin.txt",
+          "category_scores": "{\"outage\": 1, \"wfm\": 5}",
+          "chunk_start": 0
+        },
+        "rrf_score": 0.01639344262295082,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+        "text": "Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the following KQL query:\n     customEvents\n     | where name == \"VoiceCallEvent\"\n     | where timestamp > ago(1h)\n     | where customDimensions.status == \"Failed\"\n     | summarize count() by tostring(customDimensions.errorCode),\n       tostring(customDimensions.errorMessage)\n     | order by count_ desc\n\n4.3  Common error codes:\n     - 403: Authentication failure \u2192 Check ACS connection string\n     - 408: Timeout \u2192 Network/DNS issue \u2192 Check STEP 5\n     - 480: Temporarily Unavailable \u2192 ACS capacity \u2192 Check STEP 5\n     - 503: Service Unavailable \u2192 ACS outage \u2192 Check STEP 5\n\nSTEP 5: ENABLE GEO-REDUNDANT FAILOVER\n--------------------------------------\n5.1  If primary ACS region is degraded:\n     Azure Portal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:",
+        "metadata": {
+          "chunk_start": 2550,
+          "chunk_end": 3550,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_index": 3,
+          "format": "text"
+        },
+        "rrf_score": 0.016129032258064516,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+        "text": "FAQ: Why did the same interaction score differently when re-scored?\n\nFAQ ID: FAQ-005\nQ: The same call was scored differently when re-evaluated. Why?\nA:\nThis typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.\nFirst verify the active rubric version, then run the \u201cQM Rubric Cache Reset + Re-score\u201d recovery steps.\nIf the issue persists, escalate to platform on-call because the rollout may be incomplete.",
+        "metadata": {
+          "chunk_id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "doc_type": "FAQ",
+          "chunk_start": 0,
+          "chunk_end": 482,
+          "category_scores": "{\"voice\": 1, \"qm\": 2}",
+          "entity_id": "FAQ-005",
+          "format": "text",
+          "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "qm",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\FAQ_QM_Drift.txt",
+          "file_name": "FAQ_QM_Drift.txt",
+          "category_tags": "[\"qm\", \"voice\"]"
+        },
+        "rrf_score": 0.016129032258064516,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+        "text": "AT & NPS Trends\n- SLA Adherence Report\n\n--------------------------------------------------------------------------------\n7. TROUBLESHOOTING\n--------------------------------------------------------------------------------\nIssue: Dashboard shows no data\nFix: Verify you have Omnichannel Supervisor role. Check that real-time\nanalytics is enabled in admin center.\n\nIssue: Agent status shows stale (not updating)\nFix: Check agent's browser connectivity. Force refresh from admin view.\n\nIssue: Sentiment not displaying\nFix: Verify sentiment analysis is enabled at workstream level.\n\nFor help: Contact L2 support or CCaaS Digital & Routing Team.",
+        "metadata": {
+          "primary_category": "routing",
+          "chunk_end": 4889,
+          "format": "text",
+          "category_tags": "[\"chat\", \"copilot\", \"knowledge\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_Supervisor.txt",
+          "file_name": "UserGuide_Supervisor.txt",
+          "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_start": 4250,
+          "chunk_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_index": 5,
+          "doc_type": "UserGuide",
+          "category_scores": "{\"outage\": 1, \"routing\": 4, \"voice\": 1, \"chat\": 1, \"copilot\": 1, \"knowledge\": 2, \"wfm\": 1, \"qm\": 2}"
+        },
+        "rrf_score": 0.015873015873015872,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-002\nCopilot Suggestions Delayed > 10 Seconds\n================================================================================\n\nIssue ID     : KI-2025-002\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 22, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent opens a conversation and Copilot panel loads\n2. Copilot shows spinning indicator for 10-30 seconds\n3. Sometimes Copilot request times out completely\n4. Most frequent during peak hours (9 AM - 12 PM local time)\n5. Non-peak hours: Copilot responds in expected 2-3 seconds\n\nROOT CAUSE:\n-----------\nAzure OpenAI Service throttling when tenant exceeds the configured\nTokens Per Minute (TPM) quota. The default quota for most tenants is\n120K TPM. During peak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approxi",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "chunk_end": 1000,
+          "entity_id": "KI-2025-002",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "format": "text",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_index": 0,
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_start": 0,
+          "doc_type": "KnownIssue",
+          "primary_category": "latency"
+        },
+        "rrf_score": 0.015873015873015872,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+        "text": "tal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:\n     a. Create secondary ACS resource in failover region\n     b. Assign same phone numbers (porting may take 24-48h)\n     c. Update CCaaS admin center to point to secondary ACS\n5.4  If configured:\n     a. Azure Portal > ACS resource > Geo-redundancy\n     b. Click \"Initiate Failover\"\n     c. Confirm failover to secondary region\n     d. Wait 5-10 minutes for DNS propagation\n5.5  Verify calls are now routing through secondary region\n\nSTEP 6: RESTART OMNICHANNEL PROVISIONING\n-----------------------------------------\n6.1  Use ONLY if ACS is healthy but CCaaS voice is still down\n6.2  Dynamics 365 admin center > Customer Service > Manage\n6.3  Click \"Omnichannel\" > Check provisioning status\n6.4  If status shows issues:\n     a. Click \"Reprovision Omnichannel\"\n     b. This resets the connection between D365 and ACS\n     c. Takes approximately 10-15",
+        "metadata": {
+          "chunk_start": 3400,
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "chunk_index": 4,
+          "file_name": "Runbook_VoiceOutage.txt",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "format": "text",
+          "chunk_end": 4400,
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt"
+        },
+        "rrf_score": 0.015625,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+        "text": "ak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approximately:\n- Case summarization: ~2,000 tokens\n- Response suggestion: ~1,500 tokens\n- Knowledge recommendation: ~1,000 tokens\n\nWith 200 agents active, each generating ~3 requests/min:\n  200 \u00d7 3 \u00d7 1,500 avg = 900K TPM >> 120K quota\n\nIMPACT:\n-------\n- Copilot unusable during peak for tenants with > 150 concurrent agents\n- Agent productivity drops ~15% when Copilot is unavailable\n- No data loss \u2014 requests are queued or retried\n\nWORKAROUND:\n-----------\nOption 1 (Recommended): Request Azure OpenAI Quota Increase\n  1. Azure Portal > Azure OpenAI resource > Quotas\n  2. Click \"Request Quota Increase\"\n  3. Recommended: 500K TPM for 200 agents, 1M TPM for 500+ agents\n  4. Turnaround: 24-48 hours for approval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Ca",
+        "metadata": {
+          "primary_category": "latency",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "chunk_index": 1,
+          "doc_type": "KnownIssue",
+          "format": "text",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "entity_id": "KI-2025-002",
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "chunk_end": 1850,
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "chunk_start": 850
+        },
+        "rrf_score": 0.015625,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-001\nVoice Call Drops During Warm Transfer\n================================================================================\n\nIssue ID     : KI-2025-001\nSeverity     : P1 (Critical)\nStatus       : Fix in Progress\nETA Fix      : March 15, 2026\nReported     : November 10, 2025\nAffected     : 2025 Wave 1, 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent initiates a warm (consultive) transfer to another agent\n2. Customer hears dead air for 3-5 seconds\n3. Call disconnects \u2014 customer is dropped\n4. Transfer failure is logged in Azure Communication Services call logs\n5. Agent sees \"Transfer Failed\" notification in agent desktop\n6. Occurs intermittently \u2014 approximately 8% of warm transfers affected\n\nAFFECTED SCENARIOS:\n-------------------\n- Warm transfer between agents in DIFFERENT Azure regions (e.g., US East to US West)\n- Does NOT affect cold (blind) transfers\n- Does NOT affect transfers within the s",
+        "metadata": {
+          "id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+          "entity_id": "KI-2025-001",
+          "chunk_start": 0,
+          "chunk_id": "KI-2025-001__KnownIssue_VoiceTransferDrop__chunk_0",
+          "doc_type": "KnownIssue",
+          "chunk_index": 0,
+          "chunk_end": 1000,
+          "format": "text",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_VoiceTransferDrop.txt",
+          "file_name": "KnownIssue_VoiceTransferDrop.txt",
+          "category_tags": "[\"latency\", \"outage\", \"qm\", \"routing\", \"voice\"]",
+          "primary_category": "voice",
+          "category_scores": "{\"outage\": 2, \"latency\": 1, \"routing\": 3, \"voice\": 6, \"qm\": 1}"
+        },
+        "rrf_score": 0.015384615384615385,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+        "text": "oval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Cache TTL: 15 minutes (default)\n  4. Reduces unique Azure OpenAI calls by ~40%\n\nOption 3: Stagger Copilot Features\n  - Disable less critical features during peak:\n    1. Admin center > Productivity > Copilot\n    2. Keep: Case summarization (most valuable)\n    3. Disable temporarily: Response suggestions, Knowledge recommendations\n  - Re-enable during off-peak\n\nMONITORING:\n-----------\nCheck Azure OpenAI usage:\n  Azure Portal > Azure OpenAI resource > Metrics\n  - Metric: \"Tokens per minute\" (TPM) used vs. quota\n  - Metric: \"HTTP 429 responses\" (throttling events)\n  - Set alert: When 429 count > 10 in 5-minute window\n\nCheck Copilot latency in Application Insights:\n  requests\n  | where name contains \"Copilot\"\n  | summarize avg_duration_ms = avg(duration), p95 = percentile(duration, 95)\n      by bin(timestamp, 5m)\n  | render timechart",
+        "metadata": {
+          "chunk_end": 2689,
+          "doc_type": "KnownIssue",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "chunk_index": 2,
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "format": "text",
+          "chunk_start": 1700,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "entity_id": "KI-2025-002",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+          "primary_category": "latency",
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2"
+        },
+        "rrf_score": 0.015384615384615385,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 10
+      }
+    ],
+    "boosted_results": [
+      {
+        "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+        "text": "ng engine failure (no work items being assigned)\n- More than 50 agents unable to log in or receive work items\n- Complete loss of Copilot functionality across all agents\n- Data loss or security breach involving customer PII\n- Complete loss of real-time analytics for supervisors\n\n================================================================================\nESCALATION PROCEDURE:\n================================================================================\n\nSTEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)\n-------------------------------------------------\n1.1  L1 agent receives initial report (ticket, call, or monitoring alert)\n1.2  Validate P1 criteria using the checklist above\n1.3  If criteria met \u2192 proceed with P1 escalation\n1.4  If criteria NOT met \u2192 classify as P2 or P3, follow standard triage\n1.5  Collect initial information:\n     - Customer name and environment\n     - Affected service (Voice, Routing, Copilot, etc.)\n     - Number of agents/customers affected\n     - Timestamp of",
+        "metadata": {
+          "chunk_start": 850,
+          "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+          "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+          "primary_category": "outage",
+          "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "chunk_index": 1,
+          "format": "text",
+          "doc_type": "SOP",
+          "chunk_end": 1850,
+          "file_name": "SOP_P1_Escalation.txt"
+        },
+        "rrf_score": 0.01639344262295082,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 1,
+        "final_score": 0.04639344262295082
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+        "text": "Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the following KQL query:\n     customEvents\n     | where name == \"VoiceCallEvent\"\n     | where timestamp > ago(1h)\n     | where customDimensions.status == \"Failed\"\n     | summarize count() by tostring(customDimensions.errorCode),\n       tostring(customDimensions.errorMessage)\n     | order by count_ desc\n\n4.3  Common error codes:\n     - 403: Authentication failure \u2192 Check ACS connection string\n     - 408: Timeout \u2192 Network/DNS issue \u2192 Check STEP 5\n     - 480: Temporarily Unavailable \u2192 ACS capacity \u2192 Check STEP 5\n     - 503: Service Unavailable \u2192 ACS outage \u2192 Check STEP 5\n\nSTEP 5: ENABLE GEO-REDUNDANT FAILOVER\n--------------------------------------\n5.1  If primary ACS region is degraded:\n     Azure Portal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:",
+        "metadata": {
+          "chunk_start": 2550,
+          "chunk_end": 3550,
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_index": 3,
+          "format": "text"
+        },
+        "rrf_score": 0.016129032258064516,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 2,
+        "final_score": 0.046129032258064515
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+        "text": "tal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:\n     a. Create secondary ACS resource in failover region\n     b. Assign same phone numbers (porting may take 24-48h)\n     c. Update CCaaS admin center to point to secondary ACS\n5.4  If configured:\n     a. Azure Portal > ACS resource > Geo-redundancy\n     b. Click \"Initiate Failover\"\n     c. Confirm failover to secondary region\n     d. Wait 5-10 minutes for DNS propagation\n5.5  Verify calls are now routing through secondary region\n\nSTEP 6: RESTART OMNICHANNEL PROVISIONING\n-----------------------------------------\n6.1  Use ONLY if ACS is healthy but CCaaS voice is still down\n6.2  Dynamics 365 admin center > Customer Service > Manage\n6.3  Click \"Omnichannel\" > Check provisioning status\n6.4  If status shows issues:\n     a. Click \"Reprovision Omnichannel\"\n     b. This resets the connection between D365 and ACS\n     c. Takes approximately 10-15",
+        "metadata": {
+          "chunk_start": 3400,
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "primary_category": "outage",
+          "chunk_index": 4,
+          "file_name": "Runbook_VoiceOutage.txt",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "doc_type": "Runbook",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "format": "text",
+          "chunk_end": 4400,
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt"
+        },
+        "rrf_score": 0.015625,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 3,
+        "final_score": 0.045625
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+        "text": "ess (if P1 escalation needed)\n\n================================================================================\nSTEP-BY-STEP RECOVERY:\n================================================================================\n\nSTEP 1: CHECK AZURE COMMUNICATION SERVICES HEALTH\n--------------------------------------------------\n1.1  Navigate to https://status.azure.com\n1.2  Check \"Azure Communication Services\" row\n1.3  Look at affected regions: US East, US West, EU West\n1.4  If Azure-side outage is confirmed:\n     \u2192 Skip to STEP 5 (geo-redundant failover)\n1.5  If Azure status is healthy \u2192 continue to Step 2\n\nSTEP 2: CHECK ACS RESOURCE HEALTH\n----------------------------------\n2.1  Azure Portal > Navigate to ACS resource\n2.2  Click \"Resource Health\" in left nav\n2.3  Review health status and recent events\n2.4  Check \"Diagnose and solve problems\" for recommendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGene",
+        "metadata": {
+          "primary_category": "outage",
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "chunk_end": 1850,
+          "chunk_index": 1,
+          "doc_type": "Runbook",
+          "chunk_start": 850,
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+          "format": "text"
+        },
+        "rrf_score": 0.014925373134328358,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 4,
+        "final_score": 0.04492537313432836
+      },
+      {
+        "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+        "text": "commendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGenerated > ago(1h)\n       | where CallType == \"Group\" or CallType == \"P2P\"\n       | summarize total = count(), failed = countif(EndReason != \"0\")\n         by bin(TimeGenerated, 5m)\n       | extend failure_rate = failed * 100.0 / total\n\nSTEP 3: CHECK CCAAS VOICE CHANNEL STATUS\n-----------------------------------------\n3.1  Dynamics 365 admin center > Customer Service > Channels > Voice\n3.2  Check provisioning status for each phone number\n3.3  If status shows \"Error\" or \"Not Provisioned\":\n     \u2192 Click \"Reprovision\" for affected numbers\n     \u2192 Wait 5 minutes for provisioning to complete\n3.4  Check voice workstream status:\n     Admin center > Workstreams > [Voice Workstream]\n     Verify status is \"Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the foll",
+        "metadata": {
+          "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+          "format": "text",
+          "chunk_index": 2,
+          "primary_category": "outage",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+          "doc_type": "Runbook",
+          "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+          "chunk_end": 2700,
+          "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+          "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+          "file_name": "Runbook_VoiceOutage.txt",
+          "chunk_start": 1700
+        },
+        "rrf_score": 0.014492753623188406,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 5,
+        "final_score": 0.04449275362318841
+      },
+      {
+        "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+        "text": "Outage Recovery)\n     - Routing failure \u2192 RB-ROUTE-001 (Routing Misconfiguration Fix)\n     - Other \u2192 Use relevant diagnostic procedures\n4.4  L2 provides status updates every 15 minutes on the bridge\n\nSTEP 5: ESCALATE TO MICROSOFT PREMIER SUPPORT (if not resolved in 30 min)\n--------------------------------------------------------------------------\n5.1  If L2 cannot resolve within 30 minutes:\n     Open Microsoft Premier Support case:\n     - https://admin.microsoft.com > Support > New service request\n     - Severity: Sev A (Critical \u2014 Production down)\n     - Product: Dynamics 365 Contact Center\n     - Include: Incident ID, timeline, steps already taken\n5.2  Request Microsoft callback within 15 minutes\n5.3  Share bridge call details with Microsoft engineer\n5.4  Continue L2 troubleshooting in parallel\n\nSTEP 6: NOTIFY STAKEHOLDERS\n-----------------------------\n6.1  Within 30 minutes of P1 confirmation, notify:\n     - VP Support Operations (email + Teams message)\n     - Customer Success Mana",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+          "doc_type": "SOP",
+          "chunk_index": 4,
+          "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+          "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+          "chunk_end": 4400,
+          "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+          "format": "text",
+          "file_name": "SOP_P1_Escalation.txt",
+          "chunk_start": 3400,
+          "primary_category": "outage"
+        },
+        "rrf_score": 0.014285714285714285,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 6,
+        "final_score": 0.04428571428571428
+      },
+      {
+        "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+        "text": "Title: Workforce Management \u2014 Admin Guide (Forecasting & Scheduling)\nDoc ID: UG-004\nAudience: WFM Admins\nTopics:\n\nForecast creation and recalculation\n\nSchedule generation\n\nIntraday monitoring\n\nCommon job failures and retries\n\nPermissions & roles",
+        "metadata": {
+          "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "wfm",
+          "entity_id": "UG-004",
+          "doc_type": "UserGuide",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_WFM_Admin.txt",
+          "format": "text",
+          "category_tags": "[\"outage\", \"wfm\"]",
+          "chunk_id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+          "chunk_end": 245,
+          "file_name": "UserGuide_WFM_Admin.txt",
+          "category_scores": "{\"outage\": 1, \"wfm\": 5}",
+          "chunk_start": 0
+        },
+        "rrf_score": 0.01639344262295082,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 7,
+        "final_score": 0.01639344262295082
+      },
+      {
+        "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+        "text": "FAQ: Why did the same interaction score differently when re-scored?\n\nFAQ ID: FAQ-005\nQ: The same call was scored differently when re-evaluated. Why?\nA:\nThis typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.\nFirst verify the active rubric version, then run the \u201cQM Rubric Cache Reset + Re-score\u201d recovery steps.\nIf the issue persists, escalate to platform on-call because the rollout may be incomplete.",
+        "metadata": {
+          "chunk_id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "doc_type": "FAQ",
+          "chunk_start": 0,
+          "chunk_end": 482,
+          "category_scores": "{\"voice\": 1, \"qm\": 2}",
+          "entity_id": "FAQ-005",
+          "format": "text",
+          "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+          "chunk_index": 0,
+          "primary_category": "qm",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\FAQ_QM_Drift.txt",
+          "file_name": "FAQ_QM_Drift.txt",
+          "category_tags": "[\"qm\", \"voice\"]"
+        },
+        "rrf_score": 0.016129032258064516,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 8,
+        "final_score": 0.016129032258064516
+      },
+      {
+        "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+        "text": "AT & NPS Trends\n- SLA Adherence Report\n\n--------------------------------------------------------------------------------\n7. TROUBLESHOOTING\n--------------------------------------------------------------------------------\nIssue: Dashboard shows no data\nFix: Verify you have Omnichannel Supervisor role. Check that real-time\nanalytics is enabled in admin center.\n\nIssue: Agent status shows stale (not updating)\nFix: Check agent's browser connectivity. Force refresh from admin view.\n\nIssue: Sentiment not displaying\nFix: Verify sentiment analysis is enabled at workstream level.\n\nFor help: Contact L2 support or CCaaS Digital & Routing Team.",
+        "metadata": {
+          "primary_category": "routing",
+          "chunk_end": 4889,
+          "format": "text",
+          "category_tags": "[\"chat\", \"copilot\", \"knowledge\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_Supervisor.txt",
+          "file_name": "UserGuide_Supervisor.txt",
+          "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_start": 4250,
+          "chunk_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+          "chunk_index": 5,
+          "doc_type": "UserGuide",
+          "category_scores": "{\"outage\": 1, \"routing\": 4, \"voice\": 1, \"chat\": 1, \"copilot\": 1, \"knowledge\": 2, \"wfm\": 1, \"qm\": 2}"
+        },
+        "rrf_score": 0.015873015873015872,
+        "sources": [
+          "semantic"
+        ],
+        "rank": 9,
+        "final_score": 0.015873015873015872
+      },
+      {
+        "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+        "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-002\nCopilot Suggestions Delayed > 10 Seconds\n================================================================================\n\nIssue ID     : KI-2025-002\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 22, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent opens a conversation and Copilot panel loads\n2. Copilot shows spinning indicator for 10-30 seconds\n3. Sometimes Copilot request times out completely\n4. Most frequent during peak hours (9 AM - 12 PM local time)\n5. Non-peak hours: Copilot responds in expected 2-3 seconds\n\nROOT CAUSE:\n-----------\nAzure OpenAI Service throttling when tenant exceeds the configured\nTokens Per Minute (TPM) quota. The default quota for most tenants is\n120K TPM. During peak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approxi",
+        "metadata": {
+          "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+          "chunk_end": 1000,
+          "entity_id": "KI-2025-002",
+          "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+          "file_name": "KnownIssue_CopilotDelay.txt",
+          "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+          "format": "text",
+          "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_index": 0,
+          "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "chunk_start": 0,
+          "doc_type": "KnownIssue",
+          "primary_category": "latency"
+        },
+        "rrf_score": 0.015873015873015872,
+        "sources": [
+          "keyword"
+        ],
+        "rank": 10,
+        "final_score": 0.015873015873015872
+      }
+    ],
+    "grouped_results": [
+      {
+        "entity_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+        "doc_type": "SOP",
+        "file_name": "SOP_P1_Escalation.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+        "best_text": "ng engine failure (no work items being assigned)\n- More than 50 agents unable to log in or receive work items\n- Complete loss of Copilot functionality across all agents\n- Data loss or security breach involving customer PII\n- Complete loss of real-time analytics for supervisors\n\n================================================================================\nESCALATION PROCEDURE:\n================================================================================\n\nSTEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)\n-------------------------------------------------\n1.1  L1 agent receives initial report (ticket, call, or monitoring alert)\n1.2  Validate P1 criteria using the checklist above\n1.3  If criteria met \u2192 proceed with P1 escalation\n1.4  If criteria NOT met \u2192 classify as P2 or P3, follow standard triage\n1.5  Collect initial information:\n     - Customer name and environment\n     - Affected service (Voice, Routing, Copilot, etc.)\n     - Number of agents/customers affected\n     - Timestamp of",
+        "best_score": 0.04639344262295082,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1"
+        ],
+        "supporting_results": [
+          {
+            "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+            "text": "ng engine failure (no work items being assigned)\n- More than 50 agents unable to log in or receive work items\n- Complete loss of Copilot functionality across all agents\n- Data loss or security breach involving customer PII\n- Complete loss of real-time analytics for supervisors\n\n================================================================================\nESCALATION PROCEDURE:\n================================================================================\n\nSTEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)\n-------------------------------------------------\n1.1  L1 agent receives initial report (ticket, call, or monitoring alert)\n1.2  Validate P1 criteria using the checklist above\n1.3  If criteria met \u2192 proceed with P1 escalation\n1.4  If criteria NOT met \u2192 classify as P2 or P3, follow standard triage\n1.5  Collect initial information:\n     - Customer name and environment\n     - Affected service (Voice, Routing, Copilot, etc.)\n     - Number of agents/customers affected\n     - Timestamp of",
+            "metadata": {
+              "chunk_start": 850,
+              "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+              "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+              "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_1",
+              "primary_category": "outage",
+              "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+              "chunk_index": 1,
+              "format": "text",
+              "doc_type": "SOP",
+              "chunk_end": 1850,
+              "file_name": "SOP_P1_Escalation.txt"
+            },
+            "rrf_score": 0.01639344262295082,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 1,
+            "final_score": 0.04639344262295082
+          }
+        ],
+        "rank": 1
+      },
+      {
+        "entity_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+        "doc_type": "Runbook",
+        "file_name": "Runbook_VoiceOutage.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+        "best_text": "Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the following KQL query:\n     customEvents\n     | where name == \"VoiceCallEvent\"\n     | where timestamp > ago(1h)\n     | where customDimensions.status == \"Failed\"\n     | summarize count() by tostring(customDimensions.errorCode),\n       tostring(customDimensions.errorMessage)\n     | order by count_ desc\n\n4.3  Common error codes:\n     - 403: Authentication failure \u2192 Check ACS connection string\n     - 408: Timeout \u2192 Network/DNS issue \u2192 Check STEP 5\n     - 480: Temporarily Unavailable \u2192 ACS capacity \u2192 Check STEP 5\n     - 503: Service Unavailable \u2192 ACS outage \u2192 Check STEP 5\n\nSTEP 5: ENABLE GEO-REDUNDANT FAILOVER\n--------------------------------------\n5.1  If primary ACS region is degraded:\n     Azure Portal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:",
+        "best_score": 0.046129032258064515,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3"
+        ],
+        "supporting_results": [
+          {
+            "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+            "text": "Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the following KQL query:\n     customEvents\n     | where name == \"VoiceCallEvent\"\n     | where timestamp > ago(1h)\n     | where customDimensions.status == \"Failed\"\n     | summarize count() by tostring(customDimensions.errorCode),\n       tostring(customDimensions.errorMessage)\n     | order by count_ desc\n\n4.3  Common error codes:\n     - 403: Authentication failure \u2192 Check ACS connection string\n     - 408: Timeout \u2192 Network/DNS issue \u2192 Check STEP 5\n     - 480: Temporarily Unavailable \u2192 ACS capacity \u2192 Check STEP 5\n     - 503: Service Unavailable \u2192 ACS outage \u2192 Check STEP 5\n\nSTEP 5: ENABLE GEO-REDUNDANT FAILOVER\n--------------------------------------\n5.1  If primary ACS region is degraded:\n     Azure Portal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:",
+            "metadata": {
+              "chunk_start": 2550,
+              "chunk_end": 3550,
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+              "doc_type": "Runbook",
+              "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+              "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+              "primary_category": "outage",
+              "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_3",
+              "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+              "file_name": "Runbook_VoiceOutage.txt",
+              "chunk_index": 3,
+              "format": "text"
+            },
+            "rrf_score": 0.016129032258064516,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 2,
+            "final_score": 0.046129032258064515
+          }
+        ],
+        "rank": 2
+      },
+      {
+        "entity_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+        "doc_type": "Runbook",
+        "file_name": "Runbook_VoiceOutage.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+        "best_text": "tal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:\n     a. Create secondary ACS resource in failover region\n     b. Assign same phone numbers (porting may take 24-48h)\n     c. Update CCaaS admin center to point to secondary ACS\n5.4  If configured:\n     a. Azure Portal > ACS resource > Geo-redundancy\n     b. Click \"Initiate Failover\"\n     c. Confirm failover to secondary region\n     d. Wait 5-10 minutes for DNS propagation\n5.5  Verify calls are now routing through secondary region\n\nSTEP 6: RESTART OMNICHANNEL PROVISIONING\n-----------------------------------------\n6.1  Use ONLY if ACS is healthy but CCaaS voice is still down\n6.2  Dynamics 365 admin center > Customer Service > Manage\n6.3  Click \"Omnichannel\" > Check provisioning status\n6.4  If status shows issues:\n     a. Click \"Reprovision Omnichannel\"\n     b. This resets the connection between D365 and ACS\n     c. Takes approximately 10-15",
+        "best_score": 0.045625,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4"
+        ],
+        "supporting_results": [
+          {
+            "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+            "text": "tal > ACS resource > Properties\n5.2  Check if geo-redundancy is configured:\n     Settings > Geo-redundancy > Failover region\n5.3  If not configured:\n     a. Create secondary ACS resource in failover region\n     b. Assign same phone numbers (porting may take 24-48h)\n     c. Update CCaaS admin center to point to secondary ACS\n5.4  If configured:\n     a. Azure Portal > ACS resource > Geo-redundancy\n     b. Click \"Initiate Failover\"\n     c. Confirm failover to secondary region\n     d. Wait 5-10 minutes for DNS propagation\n5.5  Verify calls are now routing through secondary region\n\nSTEP 6: RESTART OMNICHANNEL PROVISIONING\n-----------------------------------------\n6.1  Use ONLY if ACS is healthy but CCaaS voice is still down\n6.2  Dynamics 365 admin center > Customer Service > Manage\n6.3  Click \"Omnichannel\" > Check provisioning status\n6.4  If status shows issues:\n     a. Click \"Reprovision Omnichannel\"\n     b. This resets the connection between D365 and ACS\n     c. Takes approximately 10-15",
+            "metadata": {
+              "chunk_start": 3400,
+              "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+              "primary_category": "outage",
+              "chunk_index": 4,
+              "file_name": "Runbook_VoiceOutage.txt",
+              "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+              "doc_type": "Runbook",
+              "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+              "format": "text",
+              "chunk_end": 4400,
+              "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_4",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt"
+            },
+            "rrf_score": 0.015625,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 3,
+            "final_score": 0.045625
+          }
+        ],
+        "rank": 3
+      },
+      {
+        "entity_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+        "doc_type": "Runbook",
+        "file_name": "Runbook_VoiceOutage.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+        "best_text": "ess (if P1 escalation needed)\n\n================================================================================\nSTEP-BY-STEP RECOVERY:\n================================================================================\n\nSTEP 1: CHECK AZURE COMMUNICATION SERVICES HEALTH\n--------------------------------------------------\n1.1  Navigate to https://status.azure.com\n1.2  Check \"Azure Communication Services\" row\n1.3  Look at affected regions: US East, US West, EU West\n1.4  If Azure-side outage is confirmed:\n     \u2192 Skip to STEP 5 (geo-redundant failover)\n1.5  If Azure status is healthy \u2192 continue to Step 2\n\nSTEP 2: CHECK ACS RESOURCE HEALTH\n----------------------------------\n2.1  Azure Portal > Navigate to ACS resource\n2.2  Click \"Resource Health\" in left nav\n2.3  Review health status and recent events\n2.4  Check \"Diagnose and solve problems\" for recommendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGene",
+        "best_score": 0.04492537313432836,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1"
+        ],
+        "supporting_results": [
+          {
+            "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+            "text": "ess (if P1 escalation needed)\n\n================================================================================\nSTEP-BY-STEP RECOVERY:\n================================================================================\n\nSTEP 1: CHECK AZURE COMMUNICATION SERVICES HEALTH\n--------------------------------------------------\n1.1  Navigate to https://status.azure.com\n1.2  Check \"Azure Communication Services\" row\n1.3  Look at affected regions: US East, US West, EU West\n1.4  If Azure-side outage is confirmed:\n     \u2192 Skip to STEP 5 (geo-redundant failover)\n1.5  If Azure status is healthy \u2192 continue to Step 2\n\nSTEP 2: CHECK ACS RESOURCE HEALTH\n----------------------------------\n2.1  Azure Portal > Navigate to ACS resource\n2.2  Click \"Resource Health\" in left nav\n2.3  Review health status and recent events\n2.4  Check \"Diagnose and solve problems\" for recommendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGene",
+            "metadata": {
+              "primary_category": "outage",
+              "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+              "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+              "file_name": "Runbook_VoiceOutage.txt",
+              "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+              "chunk_end": 1850,
+              "chunk_index": 1,
+              "doc_type": "Runbook",
+              "chunk_start": 850,
+              "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_1",
+              "format": "text"
+            },
+            "rrf_score": 0.014925373134328358,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 4,
+            "final_score": 0.04492537313432836
+          }
+        ],
+        "rank": 4
+      },
+      {
+        "entity_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+        "doc_type": "Runbook",
+        "file_name": "Runbook_VoiceOutage.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+        "best_text": "commendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGenerated > ago(1h)\n       | where CallType == \"Group\" or CallType == \"P2P\"\n       | summarize total = count(), failed = countif(EndReason != \"0\")\n         by bin(TimeGenerated, 5m)\n       | extend failure_rate = failed * 100.0 / total\n\nSTEP 3: CHECK CCAAS VOICE CHANNEL STATUS\n-----------------------------------------\n3.1  Dynamics 365 admin center > Customer Service > Channels > Voice\n3.2  Check provisioning status for each phone number\n3.3  If status shows \"Error\" or \"Not Provisioned\":\n     \u2192 Click \"Reprovision\" for affected numbers\n     \u2192 Wait 5 minutes for provisioning to complete\n3.4  Check voice workstream status:\n     Admin center > Workstreams > [Voice Workstream]\n     Verify status is \"Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the foll",
+        "best_score": 0.04449275362318841,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2"
+        ],
+        "supporting_results": [
+          {
+            "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+            "text": "commendations\n2.5  Review call logs:\n     Azure Portal > ACS resource > Logs (Log Analytics)\n     Query:\n       ACSCallSummary\n       | where TimeGenerated > ago(1h)\n       | where CallType == \"Group\" or CallType == \"P2P\"\n       | summarize total = count(), failed = countif(EndReason != \"0\")\n         by bin(TimeGenerated, 5m)\n       | extend failure_rate = failed * 100.0 / total\n\nSTEP 3: CHECK CCAAS VOICE CHANNEL STATUS\n-----------------------------------------\n3.1  Dynamics 365 admin center > Customer Service > Channels > Voice\n3.2  Check provisioning status for each phone number\n3.3  If status shows \"Error\" or \"Not Provisioned\":\n     \u2192 Click \"Reprovision\" for affected numbers\n     \u2192 Wait 5 minutes for provisioning to complete\n3.4  Check voice workstream status:\n     Admin center > Workstreams > [Voice Workstream]\n     Verify status is \"Active\"\n\nSTEP 4: REVIEW CALL FAILURE LOGS\n---------------------------------\n4.1  Open Application Insights for the CCaaS environment\n4.2  Run the foll",
+            "metadata": {
+              "chunk_id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+              "format": "text",
+              "chunk_index": 2,
+              "primary_category": "outage",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\Runbook_VoiceOutage.txt",
+              "doc_type": "Runbook",
+              "category_scores": "{\"outage\": 6, \"latency\": 1, \"routing\": 2, \"voice\": 3, \"copilot\": 1, \"wfm\": 1, \"qm\": 1, \"sso\": 1}",
+              "chunk_end": 2700,
+              "category_tags": "[\"copilot\", \"latency\", \"outage\", \"qm\", \"routing\", \"sso\", \"voice\", \"wfm\"]",
+              "id": "Runbook_VoiceOutage__Runbook_VoiceOutage__chunk_2",
+              "file_name": "Runbook_VoiceOutage.txt",
+              "chunk_start": 1700
+            },
+            "rrf_score": 0.014492753623188406,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 5,
+            "final_score": 0.04449275362318841
+          }
+        ],
+        "rank": 5
+      },
+      {
+        "entity_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+        "doc_type": "SOP",
+        "file_name": "SOP_P1_Escalation.txt",
+        "primary_category": "outage",
+        "best_chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+        "best_text": "Outage Recovery)\n     - Routing failure \u2192 RB-ROUTE-001 (Routing Misconfiguration Fix)\n     - Other \u2192 Use relevant diagnostic procedures\n4.4  L2 provides status updates every 15 minutes on the bridge\n\nSTEP 5: ESCALATE TO MICROSOFT PREMIER SUPPORT (if not resolved in 30 min)\n--------------------------------------------------------------------------\n5.1  If L2 cannot resolve within 30 minutes:\n     Open Microsoft Premier Support case:\n     - https://admin.microsoft.com > Support > New service request\n     - Severity: Sev A (Critical \u2014 Production down)\n     - Product: Dynamics 365 Contact Center\n     - Include: Incident ID, timeline, steps already taken\n5.2  Request Microsoft callback within 15 minutes\n5.3  Share bridge call details with Microsoft engineer\n5.4  Continue L2 troubleshooting in parallel\n\nSTEP 6: NOTIFY STAKEHOLDERS\n-----------------------------\n6.1  Within 30 minutes of P1 confirmation, notify:\n     - VP Support Operations (email + Teams message)\n     - Customer Success Mana",
+        "best_score": 0.04428571428571428,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4"
+        ],
+        "supporting_results": [
+          {
+            "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+            "text": "Outage Recovery)\n     - Routing failure \u2192 RB-ROUTE-001 (Routing Misconfiguration Fix)\n     - Other \u2192 Use relevant diagnostic procedures\n4.4  L2 provides status updates every 15 minutes on the bridge\n\nSTEP 5: ESCALATE TO MICROSOFT PREMIER SUPPORT (if not resolved in 30 min)\n--------------------------------------------------------------------------\n5.1  If L2 cannot resolve within 30 minutes:\n     Open Microsoft Premier Support case:\n     - https://admin.microsoft.com > Support > New service request\n     - Severity: Sev A (Critical \u2014 Production down)\n     - Product: Dynamics 365 Contact Center\n     - Include: Incident ID, timeline, steps already taken\n5.2  Request Microsoft callback within 15 minutes\n5.3  Share bridge call details with Microsoft engineer\n5.4  Continue L2 troubleshooting in parallel\n\nSTEP 6: NOTIFY STAKEHOLDERS\n-----------------------------\n6.1  Within 30 minutes of P1 confirmation, notify:\n     - VP Support Operations (email + Teams message)\n     - Customer Success Mana",
+            "metadata": {
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_P1_Escalation.txt",
+              "doc_type": "SOP",
+              "chunk_index": 4,
+              "category_scores": "{\"outage\": 5, \"routing\": 1, \"voice\": 2, \"copilot\": 2, \"wfm\": 1, \"qm\": 1}",
+              "category_tags": "[\"copilot\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+              "chunk_id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+              "chunk_end": 4400,
+              "id": "SOP_P1_Escalation__SOP_P1_Escalation__chunk_4",
+              "format": "text",
+              "file_name": "SOP_P1_Escalation.txt",
+              "chunk_start": 3400,
+              "primary_category": "outage"
+            },
+            "rrf_score": 0.014285714285714285,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 6,
+            "final_score": 0.04428571428571428
+          }
+        ],
+        "rank": 6
+      },
+      {
+        "entity_id": "UG-004",
+        "doc_type": "UserGuide",
+        "file_name": "UserGuide_WFM_Admin.txt",
+        "primary_category": "wfm",
+        "best_chunk_id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+        "best_text": "Title: Workforce Management \u2014 Admin Guide (Forecasting & Scheduling)\nDoc ID: UG-004\nAudience: WFM Admins\nTopics:\n\nForecast creation and recalculation\n\nSchedule generation\n\nIntraday monitoring\n\nCommon job failures and retries\n\nPermissions & roles",
+        "best_score": 0.01639344262295082,
+        "sources": [
+          "keyword"
+        ],
+        "supporting_chunks": [
+          "UG-004__UserGuide_WFM_Admin__chunk_0"
+        ],
+        "supporting_results": [
+          {
+            "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+            "text": "Title: Workforce Management \u2014 Admin Guide (Forecasting & Scheduling)\nDoc ID: UG-004\nAudience: WFM Admins\nTopics:\n\nForecast creation and recalculation\n\nSchedule generation\n\nIntraday monitoring\n\nCommon job failures and retries\n\nPermissions & roles",
+            "metadata": {
+              "id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+              "chunk_index": 0,
+              "primary_category": "wfm",
+              "entity_id": "UG-004",
+              "doc_type": "UserGuide",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_WFM_Admin.txt",
+              "format": "text",
+              "category_tags": "[\"outage\", \"wfm\"]",
+              "chunk_id": "UG-004__UserGuide_WFM_Admin__chunk_0",
+              "chunk_end": 245,
+              "file_name": "UserGuide_WFM_Admin.txt",
+              "category_scores": "{\"outage\": 1, \"wfm\": 5}",
+              "chunk_start": 0
+            },
+            "rrf_score": 0.01639344262295082,
+            "sources": [
+              "keyword"
+            ],
+            "rank": 7,
+            "final_score": 0.01639344262295082
+          }
+        ],
+        "rank": 7
+      },
+      {
+        "entity_id": "FAQ-005",
+        "doc_type": "FAQ",
+        "file_name": "FAQ_QM_Drift.txt",
+        "primary_category": "qm",
+        "best_chunk_id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+        "best_text": "FAQ: Why did the same interaction score differently when re-scored?\n\nFAQ ID: FAQ-005\nQ: The same call was scored differently when re-evaluated. Why?\nA:\nThis typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.\nFirst verify the active rubric version, then run the \u201cQM Rubric Cache Reset + Re-score\u201d recovery steps.\nIf the issue persists, escalate to platform on-call because the rollout may be incomplete.",
+        "best_score": 0.016129032258064516,
+        "sources": [
+          "keyword"
+        ],
+        "supporting_chunks": [
+          "FAQ-005__FAQ_QM_Drift__chunk_0"
+        ],
+        "supporting_results": [
+          {
+            "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+            "text": "FAQ: Why did the same interaction score differently when re-scored?\n\nFAQ ID: FAQ-005\nQ: The same call was scored differently when re-evaluated. Why?\nA:\nThis typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.\nFirst verify the active rubric version, then run the \u201cQM Rubric Cache Reset + Re-score\u201d recovery steps.\nIf the issue persists, escalate to platform on-call because the rollout may be incomplete.",
+            "metadata": {
+              "chunk_id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+              "doc_type": "FAQ",
+              "chunk_start": 0,
+              "chunk_end": 482,
+              "category_scores": "{\"voice\": 1, \"qm\": 2}",
+              "entity_id": "FAQ-005",
+              "format": "text",
+              "id": "FAQ-005__FAQ_QM_Drift__chunk_0",
+              "chunk_index": 0,
+              "primary_category": "qm",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\FAQ_QM_Drift.txt",
+              "file_name": "FAQ_QM_Drift.txt",
+              "category_tags": "[\"qm\", \"voice\"]"
+            },
+            "rrf_score": 0.016129032258064516,
+            "sources": [
+              "keyword"
+            ],
+            "rank": 8,
+            "final_score": 0.016129032258064516
+          }
+        ],
+        "rank": 8
+      },
+      {
+        "entity_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+        "doc_type": "UserGuide",
+        "file_name": "UserGuide_Supervisor.txt",
+        "primary_category": "routing",
+        "best_chunk_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+        "best_text": "AT & NPS Trends\n- SLA Adherence Report\n\n--------------------------------------------------------------------------------\n7. TROUBLESHOOTING\n--------------------------------------------------------------------------------\nIssue: Dashboard shows no data\nFix: Verify you have Omnichannel Supervisor role. Check that real-time\nanalytics is enabled in admin center.\n\nIssue: Agent status shows stale (not updating)\nFix: Check agent's browser connectivity. Force refresh from admin view.\n\nIssue: Sentiment not displaying\nFix: Verify sentiment analysis is enabled at workstream level.\n\nFor help: Contact L2 support or CCaaS Digital & Routing Team.",
+        "best_score": 0.015873015873015872,
+        "sources": [
+          "semantic"
+        ],
+        "supporting_chunks": [
+          "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5"
+        ],
+        "supporting_results": [
+          {
+            "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+            "text": "AT & NPS Trends\n- SLA Adherence Report\n\n--------------------------------------------------------------------------------\n7. TROUBLESHOOTING\n--------------------------------------------------------------------------------\nIssue: Dashboard shows no data\nFix: Verify you have Omnichannel Supervisor role. Check that real-time\nanalytics is enabled in admin center.\n\nIssue: Agent status shows stale (not updating)\nFix: Check agent's browser connectivity. Force refresh from admin view.\n\nIssue: Sentiment not displaying\nFix: Verify sentiment analysis is enabled at workstream level.\n\nFor help: Contact L2 support or CCaaS Digital & Routing Team.",
+            "metadata": {
+              "primary_category": "routing",
+              "chunk_end": 4889,
+              "format": "text",
+              "category_tags": "[\"chat\", \"copilot\", \"knowledge\", \"outage\", \"qm\", \"routing\", \"voice\", \"wfm\"]",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\UserGuide_Supervisor.txt",
+              "file_name": "UserGuide_Supervisor.txt",
+              "id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+              "chunk_start": 4250,
+              "chunk_id": "UserGuide_Supervisor__UserGuide_Supervisor__chunk_5",
+              "chunk_index": 5,
+              "doc_type": "UserGuide",
+              "category_scores": "{\"outage\": 1, \"routing\": 4, \"voice\": 1, \"chat\": 1, \"copilot\": 1, \"knowledge\": 2, \"wfm\": 1, \"qm\": 2}"
+            },
+            "rrf_score": 0.015873015873015872,
+            "sources": [
+              "semantic"
+            ],
+            "rank": 9,
+            "final_score": 0.015873015873015872
+          }
+        ],
+        "rank": 9
+      },
+      {
+        "entity_id": "KI-2025-002",
+        "doc_type": "KnownIssue",
+        "file_name": "KnownIssue_CopilotDelay.txt",
+        "primary_category": "latency",
+        "best_chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+        "best_text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-002\nCopilot Suggestions Delayed > 10 Seconds\n================================================================================\n\nIssue ID     : KI-2025-002\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 22, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent opens a conversation and Copilot panel loads\n2. Copilot shows spinning indicator for 10-30 seconds\n3. Sometimes Copilot request times out completely\n4. Most frequent during peak hours (9 AM - 12 PM local time)\n5. Non-peak hours: Copilot responds in expected 2-3 seconds\n\nROOT CAUSE:\n-----------\nAzure OpenAI Service throttling when tenant exceeds the configured\nTokens Per Minute (TPM) quota. The default quota for most tenants is\n120K TPM. During peak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approxi",
+        "best_score": 0.015873015873015872,
+        "sources": [
+          "keyword"
+        ],
+        "supporting_chunks": [
+          "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+          "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+          "KI-2025-002__KnownIssue_CopilotDelay__chunk_2"
+        ],
+        "supporting_results": [
+          {
+            "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+            "text": "================================================================================\nKNOWN ISSUE \u2014 KI-2025-002\nCopilot Suggestions Delayed > 10 Seconds\n================================================================================\n\nIssue ID     : KI-2025-002\nSeverity     : P2\nStatus       : Workaround Available\nReported     : October 22, 2025\nAffected     : 2025 Wave 2\n\nSYMPTOMS:\n---------\n1. Agent opens a conversation and Copilot panel loads\n2. Copilot shows spinning indicator for 10-30 seconds\n3. Sometimes Copilot request times out completely\n4. Most frequent during peak hours (9 AM - 12 PM local time)\n5. Non-peak hours: Copilot responds in expected 2-3 seconds\n\nROOT CAUSE:\n-----------\nAzure OpenAI Service throttling when tenant exceeds the configured\nTokens Per Minute (TPM) quota. The default quota for most tenants is\n120K TPM. During peak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approxi",
+            "metadata": {
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+              "chunk_end": 1000,
+              "entity_id": "KI-2025-002",
+              "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+              "file_name": "KnownIssue_CopilotDelay.txt",
+              "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+              "format": "text",
+              "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+              "chunk_index": 0,
+              "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_0",
+              "chunk_start": 0,
+              "doc_type": "KnownIssue",
+              "primary_category": "latency"
+            },
+            "rrf_score": 0.015873015873015872,
+            "sources": [
+              "keyword"
+            ],
+            "rank": 10,
+            "final_score": 0.015873015873015872
+          },
+          {
+            "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+            "text": "ak hours, concurrent Copilot requests from multiple\nagents can exceed this limit, causing queuing and timeouts.\n\nEach Copilot request consumes approximately:\n- Case summarization: ~2,000 tokens\n- Response suggestion: ~1,500 tokens\n- Knowledge recommendation: ~1,000 tokens\n\nWith 200 agents active, each generating ~3 requests/min:\n  200 \u00d7 3 \u00d7 1,500 avg = 900K TPM >> 120K quota\n\nIMPACT:\n-------\n- Copilot unusable during peak for tenants with > 150 concurrent agents\n- Agent productivity drops ~15% when Copilot is unavailable\n- No data loss \u2014 requests are queued or retried\n\nWORKAROUND:\n-----------\nOption 1 (Recommended): Request Azure OpenAI Quota Increase\n  1. Azure Portal > Azure OpenAI resource > Quotas\n  2. Click \"Request Quota Increase\"\n  3. Recommended: 500K TPM for 200 agents, 1M TPM for 500+ agents\n  4. Turnaround: 24-48 hours for approval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Ca",
+            "metadata": {
+              "primary_category": "latency",
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+              "chunk_index": 1,
+              "doc_type": "KnownIssue",
+              "format": "text",
+              "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+              "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+              "entity_id": "KI-2025-002",
+              "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+              "chunk_end": 1850,
+              "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_1",
+              "file_name": "KnownIssue_CopilotDelay.txt",
+              "chunk_start": 850
+            },
+            "rrf_score": 0.015625,
+            "sources": [
+              "keyword"
+            ],
+            "rank": 11,
+            "final_score": 0.015625
+          },
+          {
+            "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+            "text": "oval\n\nOption 2: Enable Copilot Response Caching\n  1. Admin center > Productivity > Copilot > Settings\n  2. Enable \"Cache frequent suggestions\"\n  3. Cache TTL: 15 minutes (default)\n  4. Reduces unique Azure OpenAI calls by ~40%\n\nOption 3: Stagger Copilot Features\n  - Disable less critical features during peak:\n    1. Admin center > Productivity > Copilot\n    2. Keep: Case summarization (most valuable)\n    3. Disable temporarily: Response suggestions, Knowledge recommendations\n  - Re-enable during off-peak\n\nMONITORING:\n-----------\nCheck Azure OpenAI usage:\n  Azure Portal > Azure OpenAI resource > Metrics\n  - Metric: \"Tokens per minute\" (TPM) used vs. quota\n  - Metric: \"HTTP 429 responses\" (throttling events)\n  - Set alert: When 429 count > 10 in 5-minute window\n\nCheck Copilot latency in Application Insights:\n  requests\n  | where name contains \"Copilot\"\n  | summarize avg_duration_ms = avg(duration), p95 = percentile(duration, 95)\n      by bin(timestamp, 5m)\n  | render timechart",
+            "metadata": {
+              "chunk_end": 2689,
+              "doc_type": "KnownIssue",
+              "category_scores": "{\"outage\": 2, \"latency\": 4, \"routing\": 1, \"voice\": 1, \"copilot\": 3, \"knowledge\": 1}",
+              "chunk_index": 2,
+              "category_tags": "[\"copilot\", \"knowledge\", \"latency\", \"outage\", \"routing\", \"voice\"]",
+              "file_name": "KnownIssue_CopilotDelay.txt",
+              "format": "text",
+              "chunk_start": 1700,
+              "source": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_CopilotDelay.txt",
+              "entity_id": "KI-2025-002",
+              "id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2",
+              "primary_category": "latency",
+              "chunk_id": "KI-2025-002__KnownIssue_CopilotDelay__chunk_2"
+            },
+            "rrf_score": 0.015384615384615385,
+            "sources": [
+              "keyword"
+            ],
+            "rank": 13,
+            "final_score": 0.015384615384615385
+          }
+        ],
+        "rank": 10
+      }
+    ]
+  }
+}

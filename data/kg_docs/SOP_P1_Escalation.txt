@@ -1,0 +1,142 @@
+================================================================================
+STANDARD OPERATING PROCEDURE — SOP-ESC-P1
+P1 Incident Escalation Process
+Microsoft Dynamics 365 Contact Center (CCaaS)
+================================================================================
+
+SOP ID            : SOP-ESC-P1
+Category          : Escalation
+Effective Date    : January 1, 2026
+Last Reviewed     : February 15, 2026
+Owner             : VP Support Operations
+Applies To        : All CCaaS Support Engineers (L1, L2, L3)
+
+================================================================================
+P1 SEVERITY DEFINITION:
+================================================================================
+An incident qualifies as P1 (Critical) if ANY of the following are true:
+- Complete voice channel outage (inbound or outbound)
+- Unified routing engine failure (no work items being assigned)
+- More than 50 agents unable to log in or receive work items
+- Complete loss of Copilot functionality across all agents
+- Data loss or security breach involving customer PII
+- Complete loss of real-time analytics for supervisors
+
+================================================================================
+ESCALATION PROCEDURE:
+================================================================================
+
+STEP 1: L1 CONFIRMS P1 SEVERITY (0 - 5 minutes)
+-------------------------------------------------
+1.1  L1 agent receives initial report (ticket, call, or monitoring alert)
+1.2  Validate P1 criteria using the checklist above
+1.3  If criteria met → proceed with P1 escalation
+1.4  If criteria NOT met → classify as P2 or P3, follow standard triage
+1.5  Collect initial information:
+     - Customer name and environment
+     - Affected service (Voice, Routing, Copilot, etc.)
+     - Number of agents/customers affected
+     - Timestamp of first occurrence
+     - Any recent changes or deployments
+
+STEP 2: CREATE INCIDENT TICKET (5 minutes)
+-------------------------------------------
+2.1  Create incident in ServiceNow:
+     - Priority: P1 — Critical
+     - Category: Microsoft CCaaS
+     - Subcategory: [Affected Service]
+     - Tag: MS-CCaaS
+2.2  Include in description:
+     - Customer name
+     - Severity justification
+     - Symptoms and error messages
+     - Initial assessment
+     - Link to relevant monitoring dashboards
+2.3  Set impact and urgency both to "1 — Critical"
+
+STEP 3: PAGE ON-CALL L2 ENGINEER (within 5 minutes of confirmation)
+--------------------------------------------------------------------
+3.1  Page via PagerDuty:
+     - Voice issues → Service: "CCaaS Voice Platform"
+       On-call: Priya Sharma (primary), rotation schedule in PagerDuty
+     - Routing/Digital/Copilot → Service: "CCaaS Digital & Routing"
+       On-call: James Wilson (primary), rotation schedule in PagerDuty
+3.2  If no acknowledgment in 5 minutes → escalate to secondary on-call
+3.3  If no acknowledgment in 10 minutes → page Team Lead directly
+
+STEP 4: L2 JOINS BRIDGE AND BEGINS TRIAGE (within 10 minutes)
+--------------------------------------------------------------
+4.1  L2 engineer joins the incident bridge call
+4.2  Bridge details:
+     - Voice: Teams channel #ccaas-voice-oncall or #ccaas-digital-oncall
+     - Create dedicated Teams meeting if cross-team coordination needed
+4.3  L2 begins triage using the appropriate runbook:
+     - Voice outage → RB-VOICE-001 (Voice Channel Outage Recovery)
+     - Routing failure → RB-ROUTE-001 (Routing Misconfiguration Fix)
+     - Other → Use relevant diagnostic procedures
+4.4  L2 provides status updates every 15 minutes on the bridge
+
+STEP 5: ESCALATE TO MICROSOFT PREMIER SUPPORT (if not resolved in 30 min)
+--------------------------------------------------------------------------
+5.1  If L2 cannot resolve within 30 minutes:
+     Open Microsoft Premier Support case:
+     - https://admin.microsoft.com > Support > New service request
+     - Severity: Sev A (Critical — Production down)
+     - Product: Dynamics 365 Contact Center
+     - Include: Incident ID, timeline, steps already taken
+5.2  Request Microsoft callback within 15 minutes
+5.3  Share bridge call details with Microsoft engineer
+5.4  Continue L2 troubleshooting in parallel
+
+STEP 6: NOTIFY STAKEHOLDERS
+-----------------------------
+6.1  Within 30 minutes of P1 confirmation, notify:
+     - VP Support Operations (email + Teams message)
+     - Customer Success Manager (CSM) for affected customers
+     - Affected customer primary contacts
+     - Internal stakeholders (VP Engineering, Security if data involved)
+6.2  Use the P1 Notification Template:
+     Subject: [P1] CCaaS — [Brief Description] — [Customer(s)] — [Status]
+     Body:
+       Incident: [INC-ID]
+       Start Time: [UTC timestamp]
+       Affected: [Service] for [Customer(s)]
+       Impact: [Brief impact]
+       Status: [Investigating / Identified / Mitigated / Resolved]
+       Next Update: [ETA]
+6.3  Send status updates every 30 minutes until resolved
+
+STEP 7: POST-INCIDENT ACTIVITIES
+----------------------------------
+7.1  After resolution, update incident ticket:
+     - Root cause
+     - Resolution steps
+     - Duration
+     - Impact metrics (calls dropped, agents affected, etc.)
+7.2  Send resolution notification to all stakeholders
+7.3  Schedule Root Cause Analysis (RCA) meeting within 48 hours
+7.4  RCA document must include:
+     - Timeline of events
+     - Root cause (5 Whys analysis)
+     - Impact assessment
+     - Corrective actions with owners and deadlines
+     - Preventive measures
+7.5  Share RCA with customer (redacted if needed) within 5 business days
+
+================================================================================
+SLA TARGETS:
+================================================================================
+- P1 Detection to L2 Engaged : < 10 minutes
+- P1 Customer Notification    : < 30 minutes
+- P1 Resolution Target        : < 4 hours
+- P1 RCA Delivery             : < 48 hours (draft), < 5 days (final)
+- P1 Corrective Actions       : Tracked in JIRA, closed within 30 days
+
+================================================================================
+CONTACTS:
+================================================================================
+- Voice Team Lead    : Priya Sharma    (priya.sharma@hcltech.com)
+- Digital/Routing Lead: James Wilson   (james.wilson@hcltech.com)
+- VP Support Ops     : Mark Thompson   (mark.thompson@hcltech.com)
+- PagerDuty Admin    : itops@hcltech.com
+- MS Premier Support : https://admin.microsoft.com > Support

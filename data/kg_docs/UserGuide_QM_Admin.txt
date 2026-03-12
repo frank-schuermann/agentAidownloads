@@ -1,0 +1,13 @@
+User Guide: Quality Management — Admin Guide (Rubrics, Scoring, Re-score)
+
+Doc ID: UG-005
+Audience: QM Admins
+Pages: 28
+
+Topics:
+- Rubric management and versioning
+- Scoring modes (standard vs strict rubric mode)
+- Job monitoring for scoring workers
+- Re-score workflows and safe reruns
+- Common failure patterns (cache drift, worker mismatch)
+- Permissions & roles for supervisors vs admins

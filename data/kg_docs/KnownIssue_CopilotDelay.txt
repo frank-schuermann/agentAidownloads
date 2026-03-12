@@ -1,0 +1,75 @@
+================================================================================
+KNOWN ISSUE — KI-2025-002
+Copilot Suggestions Delayed > 10 Seconds
+================================================================================
+
+Issue ID     : KI-2025-002
+Severity     : P2
+Status       : Workaround Available
+Reported     : October 22, 2025
+Affected     : 2025 Wave 2
+
+SYMPTOMS:
+---------
+1. Agent opens a conversation and Copilot panel loads
+2. Copilot shows spinning indicator for 10-30 seconds
+3. Sometimes Copilot request times out completely
+4. Most frequent during peak hours (9 AM - 12 PM local time)
+5. Non-peak hours: Copilot responds in expected 2-3 seconds
+
+ROOT CAUSE:
+-----------
+Azure OpenAI Service throttling when tenant exceeds the configured
+Tokens Per Minute (TPM) quota. The default quota for most tenants is
+120K TPM. During peak hours, concurrent Copilot requests from multiple
+agents can exceed this limit, causing queuing and timeouts.
+
+Each Copilot request consumes approximately:
+- Case summarization: ~2,000 tokens
+- Response suggestion: ~1,500 tokens
+- Knowledge recommendation: ~1,000 tokens
+
+With 200 agents active, each generating ~3 requests/min:
+  200 × 3 × 1,500 avg = 900K TPM >> 120K quota
+
+IMPACT:
+-------
+- Copilot unusable during peak for tenants with > 150 concurrent agents
+- Agent productivity drops ~15% when Copilot is unavailable
+- No data loss — requests are queued or retried
+
+WORKAROUND:
+-----------
+Option 1 (Recommended): Request Azure OpenAI Quota Increase
+  1. Azure Portal > Azure OpenAI resource > Quotas
+  2. Click "Request Quota Increase"
+  3. Recommended: 500K TPM for 200 agents, 1M TPM for 500+ agents
+  4. Turnaround: 24-48 hours for approval
+
+Option 2: Enable Copilot Response Caching
+  1. Admin center > Productivity > Copilot > Settings
+  2. Enable "Cache frequent suggestions"
+  3. Cache TTL: 15 minutes (default)
+  4. Reduces unique Azure OpenAI calls by ~40%
+
+Option 3: Stagger Copilot Features
+  - Disable less critical features during peak:
+    1. Admin center > Productivity > Copilot
+    2. Keep: Case summarization (most valuable)
+    3. Disable temporarily: Response suggestions, Knowledge recommendations
+  - Re-enable during off-peak
+
+MONITORING:
+-----------
+Check Azure OpenAI usage:
+  Azure Portal > Azure OpenAI resource > Metrics
+  - Metric: "Tokens per minute" (TPM) used vs. quota
+  - Metric: "HTTP 429 responses" (throttling events)
+  - Set alert: When 429 count > 10 in 5-minute window
+
+Check Copilot latency in Application Insights:
+  requests
+  | where name contains "Copilot"
+  | summarize avg_duration_ms = avg(duration), p95 = percentile(duration, 95)
+      by bin(timestamp, 5m)
+  | render timechart

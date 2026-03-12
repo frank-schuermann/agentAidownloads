@@ -1,0 +1,13 @@
+Service: Copilot Conversation Intelligence
+
+Service ID: SVC-016
+Owner Team: AI Platform Reliability
+Tier: Customer-Facing AI
+
+Description:
+Generates conversation summaries and coaching insights from transcripts and interaction metadata.
+
+Dependencies:
+- Transcript Streaming Service
+- LLM Inference Cluster
+- Interaction Metadata Pipeline

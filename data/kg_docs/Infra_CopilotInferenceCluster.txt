@@ -1,0 +1,15 @@
+Infrastructure: Copilot Inference Cluster
+
+Infra ID: INF-016
+Component: LLM Inference Cluster
+Environment: Production
+
+Responsibilities:
+- Generates summaries and coaching insights
+- Applies prompt templates and guardrails
+- Logs inference metadata
+
+Signals to check:
+- Transcript completeness rate
+- Summarization job retry rate
+- Hallucination report count

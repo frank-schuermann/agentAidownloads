@@ -1,0 +1,11 @@
+Customer: RetailPlus Customer Care
+
+Customer ID: CUST-016
+Tier: Enterprise
+Region: NA
+Environment: Shared
+
+Notes:
+- 1,100 voice + chat agents.
+- Copilot enabled for summaries in coaching dashboards.
+- Hallucinated follow-ups caused supervisor escalations.

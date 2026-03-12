@@ -1,0 +1,15 @@
+Infrastructure: Authentication Gateway Cluster
+
+Infra ID: INF-015
+Component: Auth Gateway (SAML/OAuth)
+Environment: Production
+
+Responsibilities:
+- Validates IdP assertions/tokens
+- Issues platform session tokens
+- Enforces access policies and session lifecycle
+
+Signals to check:
+- SAML validation error count
+- Login success rate
+- NTP drift across nodes

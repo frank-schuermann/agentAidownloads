@@ -1,0 +1,14 @@
+Title: Workforce Management — Admin Guide (Forecasting & Scheduling)
+Doc ID: UG-004
+Audience: WFM Admins
+Topics:
+
+Forecast creation and recalculation
+
+Schedule generation
+
+Intraday monitoring
+
+Common job failures and retries
+
+Permissions & roles

@@ -1,0 +1,75 @@
+================================================================================
+SERVICE PURCHASE ORDER — MS-CCaaS-ENT-2025
+Microsoft Dynamics 365 Contact Center — Enterprise License
+================================================================================
+
+Effective Date    : January 1, 2025
+Expiration Date   : December 31, 2025 (auto-renew)
+Pricing Model     : Per Agent / Per Month
+List Price        : $110.00 USD / agent / month
+Volume Discount   : 10% for 200+ agents, 15% for 500+ agents
+
+INCLUDED COMPONENTS:
+--------------------
+1. Omnichannel Voice
+   - Inbound/outbound voice via Azure Communication Services
+   - IVR with Copilot Studio integration
+   - Call recording and real-time transcription
+   - Post-call sentiment analysis
+
+2. Digital Messaging Channels
+   - Live Chat (embedded web widget)
+   - SMS (via Azure Communication Services)
+   - WhatsApp Business API
+   - Facebook Messenger
+   - Apple Messages for Business
+   - Custom channel SDK
+
+3. Unified Intelligent Routing
+   - AI-based classification and routing
+   - Skills-based, capacity-based, and priority-based routing
+   - Queue overflow and fallback rules
+   - Sentiment-based routing (reroute to specialist on negative sentiment)
+
+4. Copilot for Agents
+   - Real-time AI suggestions
+   - Case summarization
+   - Knowledge article recommendations
+   - Response drafting
+   - Customer sentiment indicator
+
+5. Agent Desktop (Unified Workspace)
+   - 360-degree customer view
+   - Embedded knowledge search
+   - Multi-session handling (up to 6 concurrent)
+   - Case management and timeline
+
+6. Real-Time Analytics & Reporting
+   - Supervisor dashboards (real-time + historical)
+   - Power BI embedded reports
+   - Agent performance metrics
+   - CSAT, NPS, and sentiment dashboards
+
+7. Knowledge Management
+   - Article authoring and versioning
+   - AI-powered search and suggestions
+   - Analytics on article usage
+
+8. Power Virtual Agents / Copilot Studio
+   - Self-service bot for voice and chat
+   - Escalation to live agent with context
+   - Pre-built templates
+
+SUPPORT:
+--------
+- Support Tier      : Premier (24/7)
+- Response Time SLA : P1 = 15 min, P2 = 1 hour, P3 = 4 hours
+- Designated CSM    : Yes
+- Quarterly Business Reviews : Included
+
+INFRASTRUCTURE REQUIREMENTS:
+-----------------------------
+- Azure tenant with Dynamics 365 environment
+- Azure Communication Services resource (voice)
+- Azure OpenAI resource (Copilot)
+- Network: UDP 3478-3481, TCP 443, TURN/STUN endpoints whitelisted

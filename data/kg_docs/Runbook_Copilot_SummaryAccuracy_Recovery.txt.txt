@@ -1,0 +1,26 @@
+Runbook: Copilot Summary Hallucination Recovery
+
+Runbook ID: RB-016
+Category: AI Service Recovery
+Estimated Time: 25 minutes
+
+When to use:
+- Copilot summaries contain fabricated details.
+- Transcript ingestion is delayed or incomplete at summary time.
+
+Steps:
+1. Confirm issue:
+   - Compare 3 recent transcripts to their generated summaries.
+   - Identify hallucinated statements or tasks.
+2. Check transcript ingestion:
+   - Review ingestion latency metrics (p95) and completeness flag rates.
+3. Validate trigger logic:
+   - Ensure summarization starts only after transcript finalized event.
+4. Apply mitigation:
+   - Disable “Auto Summary” for impacted queues/tenants.
+5. Restart ingestion workers:
+   - Rolling restart transcript streaming workers if backlog exists.
+6. Re-enable:
+   - Once p95 latency stabilizes, re-enable auto-summary.
+7. Validate:
+   - Generate summaries for 5 recent interactions and confirm accuracy.

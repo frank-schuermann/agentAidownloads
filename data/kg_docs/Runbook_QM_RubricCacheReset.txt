@@ -1,0 +1,26 @@
+Runbook: QM Rubric Cache Reset + Re-score
+
+Runbook ID: RB-005
+Category: Incident Recovery
+Estimated Time: 30 minutes
+
+When to use:
+- QM scoring results drift between runs
+- Sudden scoring distribution shifts after a config rollout
+- Supervisors report inconsistent coaching recommendations
+
+Steps:
+1. Confirm drift: pick 5 recent interactions and compare two re-scores.
+2. Admin Center → Quality Management → Scoring → Rubrics:
+   - Identify active rubric version + last updated time.
+3. Check QM Jobs/Workers:
+   - Verify all scoring workers show the same configuration version.
+4. Clear QM scoring cache:
+   - Toggle “rubric strict mode” ON then OFF (forces refresh)
+   - Flush scoring cache for the impacted environment.
+5. Re-trigger scoring:
+   - Re-score impacted queues for last 24 hours (or impacted time window).
+6. Validate:
+   - Scoring variance should fall below ±3 points for repeated runs.
+   - Spot-check policy tags.
+7. Communicate status to supervisors; add an incident note if needed.

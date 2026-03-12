@@ -1,0 +1,134 @@
+================================================================================
+RUNBOOK — RB-VOICE-001
+Voice Channel Outage Recovery
+================================================================================
+
+Runbook ID        : RB-VOICE-001
+Category          : Incident Recovery
+Estimated Time    : 30 minutes
+Last Updated      : February 2026
+Owner             : CCaaS Voice Platform Team (Priya Sharma)
+Trigger           : Voice channel fully or partially unavailable
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Azure Portal access (Reader+ on ACS resource)
+- Dynamics 365 admin center access (Omnichannel Administrator role)
+- Application Insights access for CCaaS App Insights resource
+- PagerDuty access (if P1 escalation needed)
+
+================================================================================
+STEP-BY-STEP RECOVERY:
+================================================================================
+
+STEP 1: CHECK AZURE COMMUNICATION SERVICES HEALTH
+--------------------------------------------------
+1.1  Navigate to https://status.azure.com
+1.2  Check "Azure Communication Services" row
+1.3  Look at affected regions: US East, US West, EU West
+1.4  If Azure-side outage is confirmed:
+     → Skip to STEP 5 (geo-redundant failover)
+1.5  If Azure status is healthy → continue to Step 2
+
+STEP 2: CHECK ACS RESOURCE HEALTH
+----------------------------------
+2.1  Azure Portal > Navigate to ACS resource
+2.2  Click "Resource Health" in left nav
+2.3  Review health status and recent events
+2.4  Check "Diagnose and solve problems" for recommendations
+2.5  Review call logs:
+     Azure Portal > ACS resource > Logs (Log Analytics)
+     Query:
+       ACSCallSummary
+       | where TimeGenerated > ago(1h)
+       | where CallType == "Group" or CallType == "P2P"
+       | summarize total = count(), failed = countif(EndReason != "0")
+         by bin(TimeGenerated, 5m)
+       | extend failure_rate = failed * 100.0 / total
+
+STEP 3: CHECK CCAAS VOICE CHANNEL STATUS
+-----------------------------------------
+3.1  Dynamics 365 admin center > Customer Service > Channels > Voice
+3.2  Check provisioning status for each phone number
+3.3  If status shows "Error" or "Not Provisioned":
+     → Click "Reprovision" for affected numbers
+     → Wait 5 minutes for provisioning to complete
+3.4  Check voice workstream status:
+     Admin center > Workstreams > [Voice Workstream]
+     Verify status is "Active"
+
+STEP 4: REVIEW CALL FAILURE LOGS
+---------------------------------
+4.1  Open Application Insights for the CCaaS environment
+4.2  Run the following KQL query:
+     customEvents
+     | where name == "VoiceCallEvent"
+     | where timestamp > ago(1h)
+     | where customDimensions.status == "Failed"
+     | summarize count() by tostring(customDimensions.errorCode),
+       tostring(customDimensions.errorMessage)
+     | order by count_ desc
+
+4.3  Common error codes:
+     - 403: Authentication failure → Check ACS connection string
+     - 408: Timeout → Network/DNS issue → Check STEP 5
+     - 480: Temporarily Unavailable → ACS capacity → Check STEP 5
+     - 503: Service Unavailable → ACS outage → Check STEP 5
+
+STEP 5: ENABLE GEO-REDUNDANT FAILOVER
+--------------------------------------
+5.1  If primary ACS region is degraded:
+     Azure Portal > ACS resource > Properties
+5.2  Check if geo-redundancy is configured:
+     Settings > Geo-redundancy > Failover region
+5.3  If not configured:
+     a. Create secondary ACS resource in failover region
+     b. Assign same phone numbers (porting may take 24-48h)
+     c. Update CCaaS admin center to point to secondary ACS
+5.4  If configured:
+     a. Azure Portal > ACS resource > Geo-redundancy
+     b. Click "Initiate Failover"
+     c. Confirm failover to secondary region
+     d. Wait 5-10 minutes for DNS propagation
+5.5  Verify calls are now routing through secondary region
+
+STEP 6: RESTART OMNICHANNEL PROVISIONING
+-----------------------------------------
+6.1  Use ONLY if ACS is healthy but CCaaS voice is still down
+6.2  Dynamics 365 admin center > Customer Service > Manage
+6.3  Click "Omnichannel" > Check provisioning status
+6.4  If status shows issues:
+     a. Click "Reprovision Omnichannel"
+     b. This resets the connection between D365 and ACS
+     c. Takes approximately 10-15 minutes
+     d. DO NOT interrupt the provisioning process
+6.5  After provisioning completes, verify phone numbers are active
+
+STEP 7: TEST AND VALIDATE
+---------------------------
+7.1  Make an internal test call to a CCaaS phone number
+7.2  Verify: Call connects, IVR plays, routes to agent
+7.3  Verify: Call recording starts (if enabled)
+7.4  Verify: Real-time transcription appears in agent desktop
+7.5  Check supervisor dashboard: Calls appearing in real-time metrics
+
+STEP 8: NOTIFY AND CLOSE
+--------------------------
+8.1  Notify supervisors that voice channel is restored
+8.2  Update the incident ticket with:
+     - Root cause (Azure/ACS/CCaaS/Network)
+     - Steps taken
+     - Duration of outage
+     - Impact (calls dropped, customers affected)
+8.3  If P1: Schedule post-mortem within 48 hours
+8.4  Update monitoring alerts if gaps identified
+
+================================================================================
+ESCALATION:
+================================================================================
+If not resolved within 30 minutes:
+1. Escalate to Microsoft Premier Support (severity A)
+2. Engage Priya Sharma (CCaaS Voice Platform Team Lead)
+3. Open bridge call: #ccaas-voice-oncall (Teams)
+4. Follow SOP-ESC-P1 for P1 escalation process

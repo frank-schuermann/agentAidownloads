@@ -5,7 +5,6 @@
 agent_framework:
   # Use Microsoft Foundry (formerly Azure AI Foundry) or Azure OpenAI
   use_foundry: false  # Set to true to use Foundry instead of Azure OpenAI
-  use_azure_openai: false  # DISABLED - Not using Azure OpenAI
   
   # Microsoft Foundry settings (when use_foundry: true)
   project_endpoint: "${FOUNDRY_PROJECT_ENDPOINT}"  # e.g., https://my-project.eastus.inference.ai.azure.com

@@ -1,0 +1,20 @@
+SOP: P1 SSO Login Failures — Supervisor/Agent Communications
+
+SOP ID: SOP-015
+Category: Communications
+
+Goal:
+Reduce ticket spam, set expectations, and prevent repeated failed login attempts while remediation runs.
+
+Steps:
+1. Confirm scope:
+   - Which regions/tenants are impacted and when it started.
+2. Notify stakeholders:
+   - “We’re investigating SSO login failures causing login loops/session invalid.”
+3. Provide guidance:
+   - Avoid repeated rapid retries (rate limit risk).
+   - Retry after 10 minutes once mitigation is applied.
+4. Updates:
+   - Provide update every 15 minutes until stable.
+5. Closure:
+   - Confirm recovery and share impact window + mitigation applied.

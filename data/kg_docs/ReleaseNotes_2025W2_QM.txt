@@ -1,0 +1,11 @@
+Release Notes: 2025 Release Wave 2 (Quality Management)
+
+Release ID: RN-004
+Release Date: 2025-10-01
+Version: 2025 Release Wave 2 (QM)
+
+Highlights:
+- Updated rubric weighting engine (faster scoring pipeline)
+- New policy-tag taxonomy for compliance coaching
+- Improved re-score job observability in Admin Center
+- Supervisor dashboard: scoring distribution trends

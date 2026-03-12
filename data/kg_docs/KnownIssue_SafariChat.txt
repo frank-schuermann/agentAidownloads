@@ -1,0 +1,78 @@
+================================================================================
+KNOWN ISSUE — KI-2025-003
+Chat Widget Not Loading on Safari
+================================================================================
+
+Issue ID     : KI-2025-003
+Severity     : P2
+Status       : Workaround Available
+Reported     : October 30, 2025
+Affected     : 2025 Wave 2
+
+SYMPTOMS:
+---------
+1. Live chat widget fails to render on Safari 17+
+2. Browser console shows "SecurityError: Blocked a frame with origin..."
+3. Widget iframe loads but session cookie is rejected
+4. Affects both macOS Safari and iOS Safari
+5. Works correctly on Chrome, Edge, and Firefox
+
+ROOT CAUSE:
+-----------
+Safari's Intelligent Tracking Prevention (ITP) blocks third-party cookies
+by default. The CCaaS chat widget runs in an iframe from a Microsoft domain
+(*.omnichannelengagementhub.com), which Safari treats as a third-party
+context. The session authentication cookie is blocked, preventing the
+widget from establishing a chat session.
+
+IMPACT:
+-------
+- All customers using Safari (approx. 15% of web traffic) cannot use live chat
+- iOS users (Safari is default browser) are fully affected
+- Customers see an empty chat panel or "Chat unavailable" message
+
+WORKAROUND:
+-----------
+Recommended Fix: Enable First-Party Cookie Mode
+
+1. In admin center > Channels > Chat > Widget settings
+2. Find "Cookie configuration" section
+3. Set cookieDomain to the customer's own domain:
+   Example: If customer website is www.contoso.com
+   Set cookieDomain = "contoso.com"
+
+4. Update the chat widget JavaScript snippet:
+   Add the following attribute to the widget init script:
+
+   <script>
+     Microsoft.Omnichannel.LiveChatWidget.SDK.setContextProvider({
+       cookieDomain: "contoso.com",
+       usePrimaryDomainCookies: true
+     });
+   </script>
+
+5. Deploy updated snippet to customer website
+6. Test on Safari (macOS and iOS)
+
+This forces the widget to use first-party cookies under the customer's
+domain, which Safari trusts.
+
+Alternative: Request customer users to disable ITP in Safari:
+  Safari > Settings > Privacy > Uncheck "Prevent cross-site tracking"
+  (NOT recommended — requires end-user action)
+
+TESTING:
+--------
+After applying the workaround:
+1. Open customer website in Safari 17+ (macOS or iOS)
+2. Click the chat widget button
+3. Verify the chat widget loads and pre-chat survey appears
+4. Submit a test message
+5. Verify conversation appears in agent desktop
+6. Check: No SecurityError in browser console
+
+AFFECTED CUSTOMERS:
+-------------------
+- Any customer deploying the standard CCaaS chat widget
+- Northwind Traders reported this issue first (EU West region)
+- Contoso Corp confirmed same issue on their customer portal

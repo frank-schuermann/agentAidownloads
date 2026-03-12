@@ -1,0 +1,8 @@
+FAQ: Why did the same interaction score differently when re-scored?
+
+FAQ ID: FAQ-005
+Q: The same call was scored differently when re-evaluated. Why?
+A:
+This typically happens when scoring workers are using different rubric versions or cached rubric weights after a configuration rollout.
+First verify the active rubric version, then run the “QM Rubric Cache Reset + Re-score” recovery steps.
+If the issue persists, escalate to platform on-call because the rollout may be incomplete.

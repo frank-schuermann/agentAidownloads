@@ -1,0 +1,8 @@
+FAQ: Why am I redirected back to login after authenticating?
+
+FAQ ID: FAQ-015
+Q: I sign in via SSO successfully, but the platform sends me back to the login page. Why?
+A:
+This usually happens when the platform rejects the SAML assertion due to timestamp validation (clock skew).
+The authentication gateway may treat the assertion as expired or not yet valid.
+If this is impacting many users, apply the SSO clock drift recovery runbook and verify NTP sync.

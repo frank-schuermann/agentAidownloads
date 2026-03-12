@@ -1,0 +1,17 @@
+Incident: Mass SSO login failures during shift start
+
+Incident ID: INC-015
+Severity: P1
+Status: Resolved
+
+Summary:
+A large enterprise customer reported widespread SSO login loops for agents at shift start.
+
+Impact:
+- Agents unable to access the CCaaS portal for ~18 minutes.
+- Helpdesk ticket surge and delayed customer responses.
+
+Resolution:
+- Increased SAML skew tolerance temporarily.
+- Rolling restart of auth gateway cluster.
+- Verified NTP stability and reverted tolerance.

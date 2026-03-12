@@ -1,0 +1,19 @@
+SOP: P2 Copilot Summary Accuracy — Supervisor/Agent Communications
+
+SOP ID: SOP-016
+Category: Communications
+
+Goal:
+Prevent incorrect customer follow-ups caused by inaccurate AI summaries.
+
+Steps:
+1. Notify supervisors:
+   - “Copilot summaries may contain inaccurate or fabricated details.”
+2. Agent guidance:
+   - Manually verify summaries before saving notes or follow-up tasks.
+3. Interim control:
+   - Auto-summary may be temporarily disabled for impacted queues.
+4. Update cadence:
+   - Provide updates every 20 minutes until stable.
+5. Close out:
+   - Confirm transcript completeness checks are restored and summaries verified.

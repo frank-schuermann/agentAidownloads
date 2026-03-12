@@ -1,0 +1,77 @@
+================================================================================
+RELEASE NOTES — Microsoft Dynamics 365 Contact Center
+2025 Release Wave 2 (October 2025)
+================================================================================
+
+HIGHLIGHTS:
+-----------
+This release introduces Copilot autonomous actions, enhanced voice quality,
+real-time translation, Supervisor Copilot, and priority-based overflow queues.
+
+NEW FEATURES:
+-------------
+
+1. COPILOT AUTONOMOUS ACTIONS (Preview)
+   Copilot can now automatically execute common actions (create case, update
+   fields, send follow-up email) with agent approval. Reduces agent handle
+   time by ~20%.
+   - Requires: Azure OpenAI GPT-4o, Agent approval flow enabled
+   - Admin path: Productivity > Copilot > Autonomous Actions
+
+2. ENHANCED VOICE QUALITY (ACS v2)
+   Upgraded Azure Communication Services to v2 SDK, delivering:
+   - HD audio codec (Opus)
+   - Improved noise suppression (AI-powered)
+   - Better connectivity in low-bandwidth environments
+   - Reduced call setup time (< 1 second)
+
+3. REAL-TIME TRANSLATION (50+ Languages)
+   Messages in chat/SMS/WhatsApp are automatically translated between
+   customer and agent languages in real-time using Azure AI Translator.
+   - Supported channels: Chat, SMS, WhatsApp
+   - Languages: 50+
+   - Toggle per workstream in admin center
+
+4. SUPERVISOR COPILOT (Preview)
+   AI assistant for supervisors providing:
+   - Real-time anomaly detection in queue metrics
+   - Agent coaching suggestions
+   - Predicted wait time alerts
+   - Auto-generated shift summaries
+
+5. PRIORITY-BASED OVERFLOW QUEUES
+   When primary queue wait time exceeds threshold, work items overflow
+   to secondary queues with skill relaxation.
+   - Configurable thresholds per queue
+   - Skill matching relaxation levels (Exact > Closest > Any)
+
+6. SENTIMENT-BASED REROUTING ENHANCEMENT
+   Now supports mid-conversation rerouting: if customer sentiment drops
+   to "Very Negative" during a conversation, system can auto-reassign
+   to a retention specialist queue.
+
+BUG FIXES:
+----------
+- Fixed: Chat widget intermittent disconnect on mobile Chrome (#BUG-4521)
+- Fixed: Copilot suggestions not refreshing after agent switches session (#BUG-4602)
+- Fixed: Historical analytics incorrect timezone for APAC regions (#BUG-4587)
+- Fixed: SMS delivery receipt not updating in conversation panel (#BUG-4534)
+
+KNOWN ISSUES:
+-------------
+- KI-2025-001: Voice call drops during warm transfer (fix ETA: March 2026)
+- KI-2025-002: Copilot suggestions delayed > 10 seconds during peak load
+- KI-2025-003: Chat widget not loading on Safari 17+ (workaround available)
+
+DEPRECATIONS:
+-------------
+- Legacy web chat widget (v1) — End of support: April 2026
+- Classic real-time analytics dashboard — Replaced by new Power BI dashboards
+
+UPGRADE INSTRUCTIONS:
+---------------------
+1. Review admin center > Settings > Release channel
+2. Enable "2025 Wave 2" for your environment
+3. Test in sandbox environment first
+4. Run Copilot capability check before enabling autonomous actions
+5. Update chat widget JS snippet to v2 for real-time translation

@@ -18,6 +18,9 @@ from api.routes import agents, orchestration, websocket, simulation
 from api.middleware import setup_middleware
 from api.dependencies import initialize_dependencies
 from api.routes.resolve_issue import router as resolve_router
+from api.routes.feedback import router as feedback_router
+from api.routes.reload_graph import router as reload_graph_router
+from api.routes.issue_chat import router as issue_chat_router
 
 from core.config_manager import ConfigManager
 from core.logging_service import LoggingService
@@ -148,6 +151,10 @@ async def health_check():
             services={"error": str(e)}
         )
 
+@app.get("/api/health", response_model=HealthResponse, tags=["health"])
+async def api_health_check():
+    return await health_check()
+
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
@@ -184,7 +191,10 @@ app.include_router(agents.router)
 app.include_router(orchestration.router)
 app.include_router(websocket.router)
 app.include_router(simulation.router)
-app.include_router(resolve_router, prefix="/kg")
+app.include_router(resolve_router)
+app.include_router(feedback_router)
+app.include_router(reload_graph_router)
+app.include_router(issue_chat_router)
 
 
 if __name__ == "__main__":

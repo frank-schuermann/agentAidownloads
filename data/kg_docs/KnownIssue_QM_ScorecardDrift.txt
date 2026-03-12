@@ -1,0 +1,23 @@
+Known Issue: QM scorecards show inconsistent results across runs
+
+Issue ID: KI-005
+Severity: P2
+Status: Workaround Available
+Affected Versions: 2025 Wave 2
+
+Symptoms:
+- The same call is scored differently when re-evaluated (±15–25 points).
+- Coaching recommendations flip between “Needs Improvement” and “Meets Expectations”.
+- Supervisors report sudden spikes in “policy violation” tags with no process change.
+
+Root Cause (hypothesis):
+A scoring model version mismatch: some jobs still use the previous rubric weights after a background configuration rollout.
+Cached rubric weights are not invalidated for long-running evaluation workers.
+
+Workaround:
+- Force-refresh rubric configuration and clear QM scoring cache.
+- Re-run scoring in “strict rubric mode” for impacted queues until rollout completes.
+
+Operational Notes:
+- Check recent config deployments for QM rubric/weights changes.
+- Validate that all workers are on the same scoring configuration version.

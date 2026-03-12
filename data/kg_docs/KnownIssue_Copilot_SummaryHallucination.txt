@@ -1,0 +1,26 @@
+Known Issue: Copilot hallucination in conversation summaries
+
+Issue ID: KI-016
+Severity: P2
+Status: Investigation Ongoing
+Affected Versions: 2025 Wave 3
+
+Symptoms:
+- Copilot summaries include actions that were not discussed in the interaction.
+- Fabricated follow-up tasks appear in the “Next Steps” section.
+- Supervisors report inconsistent summaries for similar calls.
+- Hallucinations correlate with delayed transcript availability.
+
+Root Cause (hypothesis):
+Summarization triggers before the full transcript is ingested.
+When the model receives incomplete context (missing segments), it infers missing details and produces hallucinated content.
+
+Workaround:
+- Temporarily disable auto-summary generation for impacted queues.
+- Force manual summary generation only after transcript completeness is confirmed.
+- Restart transcript streaming/ingestion workers if latency crosses thresholds.
+
+Operational Notes:
+- Check transcript ingestion latency and completeness flags.
+- Ensure summarization job reads only “finalized transcript” events.
+- Monitor hallucination rate after mitigation.

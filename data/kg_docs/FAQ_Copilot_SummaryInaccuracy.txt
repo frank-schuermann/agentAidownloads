@@ -1,0 +1,8 @@
+FAQ: Why does Copilot sometimes generate incorrect summaries?
+
+FAQ ID: FAQ-016
+Q: Why does Copilot add follow-ups that weren’t discussed in the call?
+A:
+This can occur when the transcript provided to Copilot is incomplete or delayed.
+When context is missing, the model may infer details, which can appear as hallucinations.
+Wait for transcript finalization before generating a summary, or disable auto-summary until ingestion stabilizes.

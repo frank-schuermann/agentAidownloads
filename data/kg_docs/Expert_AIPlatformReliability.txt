@@ -1,0 +1,10 @@
+Expert: AI Platform Reliability Engineer
+
+Expert ID: EXP-016
+Team: AI Platform Reliability
+Primary Expertise:
+- LLM inference pipelines
+- Transcript ingestion and streaming
+- Guardrails for summarization accuracy
+Escalation Notes:
+- Escalate if hallucination reports continue after auto-summary disablement.

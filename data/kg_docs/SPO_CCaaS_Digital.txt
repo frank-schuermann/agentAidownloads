@@ -1,0 +1,60 @@
+================================================================================
+SERVICE PURCHASE ORDER — MS-CCaaS-DIG-2025
+Microsoft Dynamics 365 Contact Center — Digital Only License
+================================================================================
+
+Effective Date    : January 1, 2025
+Expiration Date   : December 31, 2025 (auto-renew)
+Pricing Model     : Per Agent / Per Month
+List Price        : $65.00 USD / agent / month
+Volume Discount   : 10% for 100+ agents
+
+INCLUDED COMPONENTS:
+--------------------
+1. Digital Messaging Channels
+   - Live Chat (embedded web widget)
+   - SMS (via Azure Communication Services)
+   - WhatsApp Business API
+   - Facebook Messenger
+   - Apple Messages for Business
+   - Email channel
+   - Custom channel SDK
+
+2. Unified Intelligent Routing (Digital Only)
+   - AI-based classification for digital work items
+   - Skills-based and capacity-based routing
+   - Queue overflow and fallback rules
+
+3. Copilot for Agents
+   - Real-time AI suggestions
+   - Case summarization
+   - Knowledge article recommendations
+   - Response drafting
+
+4. Agent Desktop (Unified Workspace)
+   - 360-degree customer view
+   - Multi-session handling (up to 4 concurrent)
+   - Case management
+
+5. Real-Time Analytics (Digital Metrics)
+   - Chat/SMS/Email queue metrics
+   - Agent performance (digital channels)
+   - CSAT tracking
+
+6. Knowledge Management
+   - Article authoring and versioning
+   - AI-powered search
+
+EXCLUDED:
+---------
+- Voice channel (inbound/outbound)
+- IVR
+- Call recording / transcription
+- Voice-specific analytics
+- Voice routing
+
+SUPPORT:
+--------
+- Support Tier      : Standard
+- Response Time SLA : P1 = 30 min, P2 = 2 hours, P3 = 8 hours
+- Designated CSM    : Shared

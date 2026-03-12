@@ -21,42 +21,6 @@ class IssueMatch:
 def _project_root_from_here() -> Path:
     return Path(__file__).resolve().parents[2]
 
-MIN_RAG_JUDGE_CONFIDENCE = 0.75
-MIN_KG_KEYWORD_SCORE = 2.0
-
-
-def _build_stage_log() -> Dict[str, Any]:
-    return {
-        "rag_started": False,
-        "rag_candidates_found": 0,
-        "rag_match_found": False,
-        "kg_started": False,
-        "kg_keywords": [],
-        "kg_candidates_found": 0,
-        "kg_match_found": False,
-        "match_source": "none",   # "rag" | "kg" | "none"
-        "messages": [],
-    }
-
-
-def _safe_no_match_response(query: str, stage_info: Dict[str, Any], keywords: List[str] | None = None) -> Dict[str, Any]:
-    return {
-        "ok": True,
-        "rag_query": query,
-        "fallback_used": stage_info.get("kg_started", False),
-        "keywords": keywords or [],
-        "stage_info": stage_info,
-        "candidates": [],
-        "selected_issue_id": None,
-        "selected_context": None,
-        "llm_answer": (
-            "I could not find a reliable matching known issue from the available RAG documents or "
-            "knowledge graph data for this query."
-        ),
-        "llm_context": None,
-        "no_match": True,
-    }
-
 
 def _build_local_retriever() -> HybridRetriever:
     base_dir = _project_root_from_here()
@@ -76,8 +40,6 @@ def _save_rag_result_json(payload: Dict[str, Any]) -> None:
 
     out_file = out_dir / "last_rag_result.json"
     out_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
-
 
 
 def _extract_service_ids_from_context(selected_context: Optional[Dict[str, Any]]) -> List[str]:
@@ -224,15 +186,12 @@ def _keyword_fallback_known_issue_search(kg: Any, message: str, limit: int = 3) 
     candidates.sort(key=lambda x: x.score, reverse=True)
     top = candidates[:limit]
 
-    selected_issue_id = None
-    if top and float(top[0].score) >= MIN_KG_KEYWORD_SCORE:
-        selected_issue_id = top[0].issue_id
-
     return {
         "keywords": keywords,
         "candidates": top,
-        "selected_issue_id": selected_issue_id,
+        "selected_issue_id": top[0].issue_id if top else None,
     }
+
 
 # ----------------------------------------------------------------------
 # MAIN ROUTER
@@ -240,15 +199,12 @@ def _keyword_fallback_known_issue_search(kg: Any, message: str, limit: int = 3) 
 
 def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict[str, Any]:
     query = (message or "").strip()
-    stage_info = _build_stage_log()
 
     if not query:
         return {
             "ok": False,
             "rag_query": query,
             "fallback_used": False,
-            "keywords": [],
-            "stage_info": stage_info,
             "candidates": [],
             "selected_issue_id": None,
             "selected_context": None,
@@ -258,9 +214,6 @@ def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict
         }
 
     retriever = _build_local_retriever()
-
-    stage_info["rag_started"] = True
-    stage_info["messages"].append("RAG search started")
 
     rag_results = retriever.hybrid_search(query, top_k=max(3, min(limit * 3, 10)))
 
@@ -294,21 +247,19 @@ def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict
         )
 
     rag_top = rag_candidates[:limit]
-    stage_info["rag_candidates_found"] = len(rag_top)
-    stage_info["messages"].append(f"RAG found {len(rag_top)} known issue candidate(s)")
 
     judge = CandidateJudge()
 
     selected_issue_id: Optional[str] = None
     selected_context: Optional[Dict[str, Any]] = None
     fallback_used = False
-    keywords: List[str] = []
 
     # -------------------------------
     # Candidate Judge on RAG results
     # -------------------------------
     for candidate in rag_top:
         ctx = kg.get_known_issue_full_context(candidate.issue_id)
+
         if not ctx:
             continue
 
@@ -317,14 +268,11 @@ def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict
         is_match = verdict.get("match") is True
         confidence = float(verdict.get("confidence", 0) or 0)
 
-        if is_match and confidence >= MIN_RAG_JUDGE_CONFIDENCE and _is_context_usable(ctx):
+        # Candidate must be semantically accepted by judge
+        # AND structurally usable for the downstream LLM/doc flow
+        if is_match and confidence > 0.6 and _is_context_usable(ctx):
             selected_issue_id = candidate.issue_id
             selected_context = ctx
-            stage_info["rag_match_found"] = True
-            stage_info["match_source"] = "rag"
-            stage_info["messages"].append(
-                f"RAG selected {candidate.issue_id} with judge confidence {confidence:.2f}"
-            )
             break
 
     # -------------------------------
@@ -332,40 +280,15 @@ def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict
     # -------------------------------
     if not selected_issue_id:
         fallback_used = True
-        stage_info["kg_started"] = True
-        stage_info["messages"].append("No reliable RAG match. KG keyword fallback started")
 
         fallback = _keyword_fallback_known_issue_search(kg, query, limit)
-        keywords = fallback.get("keywords", []) or []
-        stage_info["kg_keywords"] = keywords
-
-        kg_candidates = fallback.get("candidates", []) or []
-        stage_info["kg_candidates_found"] = len(kg_candidates)
-        stage_info["messages"].append(
-            f"KG extracted keywords: {', '.join(keywords) if keywords else 'none'}"
-        )
-        stage_info["messages"].append(f"KG found {len(kg_candidates)} keyword candidate(s)")
 
         selected_issue_id = fallback.get("selected_issue_id")
 
         if selected_issue_id:
-            ctx = kg.get_known_issue_full_context(selected_issue_id)
-            if ctx and _is_context_usable(ctx):
-                selected_context = ctx
-                stage_info["kg_match_found"] = True
-                stage_info["match_source"] = "kg"
-                stage_info["messages"].append(f"KG selected {selected_issue_id}")
-            else:
-                selected_issue_id = None
-                selected_context = None
+            selected_context = kg.get_known_issue_full_context(selected_issue_id)
 
-        rag_top = kg_candidates
-
-    # -------------------------------
-    # No safe match -> return no-match
-    # -------------------------------
-    if not selected_issue_id or not selected_context:
-        return _safe_no_match_response(query, stage_info, keywords)
+        rag_top = fallback["candidates"]
 
     # -------------------------------
     # Extract service ids
@@ -376,24 +299,24 @@ def resolve_known_issue_from_text(kg: Any, message: str, limit: int = 3) -> Dict
     # -------------------------------
     # LLM answer generation
     # -------------------------------
-    orchestrator = AzureLLMOrchestrator()
+    llm_result = None
 
-    llm_result = orchestrator.answer_from_known_issue(
-        user_query=query,
-        selected_issue_id=selected_issue_id,
-        selected_context=selected_context,
-    )
+    if selected_issue_id and selected_context:
+        orchestrator = AzureLLMOrchestrator()
+
+        llm_result = orchestrator.answer_from_known_issue(
+            user_query=query,
+            selected_issue_id=selected_issue_id,
+            selected_context=selected_context,
+        )
 
     return {
         "ok": True,
         "rag_query": query,
         "fallback_used": fallback_used,
-        "keywords": keywords,
-        "stage_info": stage_info,
         "candidates": [asdict(c) for c in rag_top],
         "selected_issue_id": selected_issue_id,
         "selected_context": selected_context,
         "llm_answer": llm_result["answer"] if llm_result else None,
         "llm_context": llm_result["assembled_context"] if llm_result else None,
-        "no_match": False,
     }

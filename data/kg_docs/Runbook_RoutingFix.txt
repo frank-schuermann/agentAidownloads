@@ -1,0 +1,142 @@
+================================================================================
+RUNBOOK — RB-ROUTE-001
+Routing Misconfiguration Fix
+================================================================================
+
+Runbook ID        : RB-ROUTE-001
+Category          : Configuration Fix
+Estimated Time    : 20 minutes
+Last Updated      : February 2026
+Owner             : CCaaS Digital & Routing Team (James Wilson)
+Trigger           : Work items stuck in queue, routing incorrectly, or not routing at all
+
+================================================================================
+STEP-BY-STEP FIX:
+================================================================================
+
+STEP 1: IDENTIFY AFFECTED WORKSTREAM
+--------------------------------------
+1.1  Admin center > Customer support > Workstreams
+1.2  Check status of each workstream (Active, Inactive, Error)
+1.3  Identify which workstream has routing issues:
+     - Check queue depths — abnormally high = items not being assigned
+     - Check "Items waiting" count vs "Available agents" count
+1.4  Note the workstream name and channel type for diagnosis
+
+STEP 2: CHECK CLASSIFICATION RULES
+------------------------------------
+2.1  Click affected workstream > Classification tab
+2.2  Review all classification rulesets
+2.3  Check:
+     a. Is the ruleset PUBLISHED? (Draft rulesets are NOT active)
+     b. Are there multiple rulesets? Check priority order.
+     c. Look for CIRCULAR DEPENDENCIES:
+        - Rule A sets attribute X based on attribute Y
+        - Rule B sets attribute Y based on attribute X
+        → This causes the routing engine to loop infinitely
+        → Fix: Remove the circular reference
+
+2.4  If ML-based classification:
+     - Check model training status (Admin > AI models)
+     - Verify training data is current
+     - If model accuracy < 70%, switch to rule-based temporarily
+
+2.5  TEST: Use Routing Diagnostics (Step 7) to verify rules fire correctly
+
+STEP 3: VERIFY ASSIGNMENT METHOD
+----------------------------------
+3.1  Go to the affected queue > Assignment method
+3.2  Verify the method is set correctly:
+     - Round Robin: Check that agents are not excluded
+     - Highest Capacity: Check capacity profiles are assigned
+     - Custom: Review custom assignment rules for errors
+
+3.3  Common issue: Assignment method set to "Custom" but custom rules
+     have a condition that never matches → items wait indefinitely
+     Fix: Simplify conditions or add a fallback rule
+
+STEP 4: CHECK AGENT QUEUE MEMBERSHIP & SKILLS
+-----------------------------------------------
+4.1  Go to the affected queue > Members
+4.2  Verify agents are assigned to this queue
+4.3  Check each agent has the required skills:
+     Admin > Agent experience > Skills > [Agent name]
+4.4  Common issue: Classification rule requires skill "Enterprise Voice"
+     but no agents in the queue have that skill
+     Fix: Assign missing skills or relax skill matching
+
+STEP 5: CHECK CAPACITY PROFILES
+---------------------------------
+5.1  Admin center > Agent experience > Capacity profiles
+5.2  Verify agents have capacity profiles assigned
+5.3  Common issue: Agent at full capacity → no items assigned even though
+     agent shows "Available"
+     Fix: Increase capacity or reduce max concurrent items
+5.4  Check blended capacity:
+     If agent has 1 voice + 3 chat capacity, and they're on BOTH
+     workstreams, 1 active call blocks 3 chat slots
+
+STEP 6: REVIEW OVERFLOW RULES
+-------------------------------
+6.1  Go to affected queue > Overflow tab
+6.2  If overflow is configured, check:
+     a. Overflow queue exists and has available agents
+     b. Threshold is set correctly (wait time or queue depth)
+     c. Skill relaxation level in overflow queue
+6.3  Common issue: Overflow queue is the SAME as primary queue
+     → Items overflow back to themselves (infinite loop)
+     Fix: Set overflow to a DIFFERENT queue
+
+STEP 7: RUN ROUTING DIAGNOSTICS
+---------------------------------
+7.1  Admin center > Routing diagnostics
+7.2  Enter a specific work item ID or conversation ID
+7.3  Review the diagnostic trace:
+     a. Classification: Which rules fired? What attributes were set?
+     b. Queue Selection: Which queue was matched? Why?
+     c. Assignment: Which agents were evaluated? Why was each rejected?
+7.4  Look for:
+     - "No matching queue" → Classification output doesn't match any queue rule
+     - "No available agents" → Agents offline, at capacity, or lacking skills
+     - "Assignment timeout" → Agent didn't accept in time, check timeout setting
+
+STEP 8: PUBLISH AND MONITOR
+-----------------------------
+8.1  After making fixes, PUBLISH all pending changes:
+     - Workstream > Classification > Publish
+     - Queue settings > Save
+8.2  Flush stuck work items (if any):
+     Option A: Wait for routing retry (automatic every 5 minutes)
+     Option B: Use OData API to force reassignment:
+       PATCH /api/data/v9.2/msdyn_ocliveworkitems(<id>)
+       { "msdyn_routingstatusid": null }
+8.3  Monitor for 15 minutes:
+     - Check queue depth is decreasing
+     - Check work items are being assigned to agents
+     - Verify routing diagnostics shows correct path
+
+================================================================================
+COMMON SCENARIOS:
+================================================================================
+
+Scenario: "All chats going to wrong queue"
+→ Check classification rules. Likely a rule condition is too broad.
+
+Scenario: "Voice calls not being assigned to any agent"
+→ Check capacity profiles. Voice requires dedicated capacity slot.
+
+Scenario: "Work items stuck in queue for hours"
+→ Check if agents have required skills. Check if assignment method
+   has conditions that exclude all available agents.
+
+Scenario: "Routing worked yesterday but broken today"
+→ Check if someone edited and did NOT publish classification rules.
+→ Check if agent queue memberships were changed.
+
+================================================================================
+ESCALATION:
+================================================================================
+If not resolved in 20 minutes:
+1. Contact James Wilson (CCaaS Platform Architect)
+2. Join #ccaas-digital-oncall (Teams)
+3. Open Microsoft support case if platform-side bug suspected

@@ -1,0 +1,26 @@
+Known Issue: SSO login failures (SAML session invalid / login loop)
+
+Issue ID: KI-015
+Severity: P1
+Status: Workaround Available
+Affected Versions: 2025 Wave 3
+
+Symptoms:
+- Agents are redirected back to the login page after authenticating with the identity provider.
+- IdP sign-in succeeds (Okta/Azure AD), but the platform returns “Session invalid”.
+- Login succeeds intermittently after multiple attempts.
+- Spike in auth errors during shift start.
+
+Root Cause (hypothesis):
+Clock skew / timestamp tolerance mismatch in SAML assertion validation.
+If auth gateway clock drift exceeds the allowed tolerance window, assertions are treated as expired.
+
+Workaround:
+- Temporarily increase SAML clock-skew tolerance in auth gateway config.
+- Ask affected users to sign out of all sessions and retry.
+- Restart the auth gateway if assertion validation errors continue.
+
+Operational Notes:
+- Verify NTP sync on auth gateway nodes.
+- Check for repeated “SAML_ASSERTION_EXPIRED” / “ASSERTION_NOT_YET_VALID” in logs.
+- Track login success rate after mitigation.

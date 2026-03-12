@@ -1,0 +1,1311 @@
+{
+  "ok": true,
+  "rag_query": "SSO login failures (SAML session invalid / login loop)",
+  "fallback_used": true,
+  "candidates": [
+    {
+      "issue_id": "KI-015",
+      "score": 4.0,
+      "service_ids": [
+        "SVC-015"
+      ],
+      "debug_hits": [
+        "failure",
+        "saml",
+        "failures",
+        "login"
+      ]
+    },
+    {
+      "issue_id": "KI-001",
+      "score": 2.0,
+      "service_ids": [
+        "SVC-001"
+      ],
+      "debug_hits": [
+        "failure",
+        "session"
+      ]
+    },
+    {
+      "issue_id": "KI-003",
+      "score": 1.0,
+      "service_ids": [
+        "SVC-003"
+      ],
+      "debug_hits": [
+        "session"
+      ]
+    }
+  ],
+  "selected_issue_id": "KI-015",
+  "selected_context": {
+    "ok": true,
+    "issue_id": "KI-015",
+    "issue": {
+      "tenant_id": "tenant_demo",
+      "severity": "P1",
+      "symptoms": [
+        "Agent redirected back to login after successful IdP authentication",
+        "SAML assertion rejected intermittently (expired / not-yet-valid)",
+        "Spike in sign-in failures during shift start"
+      ],
+      "eta_fix": "2026-04-05",
+      "issue_id": "KI-015",
+      "updated_at": "2026-03-05T16:13:09.265289+00:00",
+      "affected_versions": [
+        "2025 Wave 2"
+      ],
+      "document": "data/KnownIssue_SSO_LoginFailures.txt",
+      "created_at": "2026-03-05T16:13:09.265289+00:00",
+      "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+      "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+      "status": "Workaround Available"
+    },
+    "linked": {
+      "runbooks": [
+        {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        }
+      ],
+      "sops": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "tenant_id": "tenant_demo",
+          "question": "After authenticating with SSO, why am I redirected back to the login page?",
+          "answer": "This typically occurs when the auth gateway rejects the SAML assertion due to timestamp validation (clock skew) or strict validation settings. Verify NTP, increase skew tolerance temporarily, and follow the SSO login loop recovery runbook.",
+          "updated_at": "2026-03-05T16:13:09.316265+00:00",
+          "created_at": "2026-03-05T16:13:09.316265+00:00",
+          "faq_id": "FAQ-015"
+        }
+      ],
+      "documents": [],
+      "releases": []
+    },
+    "affected": {
+      "services": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        }
+      ],
+      "customers": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.369970+00:00",
+          "channels": [
+            "Voice",
+            "Chat",
+            "Email"
+          ],
+          "license_type": "Enterprise",
+          "sla_tier": "Premier",
+          "created_at": "2026-03-05T16:13:09.369970+00:00",
+          "industry": "Financial Services",
+          "region": "US East",
+          "customer_id": "CUST-015",
+          "csm": "Rebecca Torres",
+          "agents_licensed": 420
+        }
+      ],
+      "deployments": [
+        {
+          "tenant_id": "tenant_demo",
+          "regions": [
+            "US East",
+            "EU West"
+          ],
+          "updated_at": "2026-03-05T16:13:09.329681+00:00",
+          "resource_type": "Azure",
+          "description": "Gateway cluster validating SAML/OIDC tokens and issuing session tokens for Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.329681+00:00",
+          "deployment_id": "INFRA-015",
+          "monitoring": "Application Insights + Azure Monitor"
+        }
+      ],
+      "feature_flags": [
+        {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        }
+      ],
+      "features": [],
+      "products": [],
+      "incidents": [
+        {
+          "date": "2026-03-04",
+          "duration": "38 minutes",
+          "severity": "P1",
+          "tenant_id": "tenant_demo",
+          "incident_id": "INC-015",
+          "updated_at": "2026-03-05T16:13:09.343858+00:00",
+          "post_mortem": "Add drift alerting; adjust tolerance defaults for multi-region tenants; add canary login tests.",
+          "affected_service": "Identity & Authentication Gateway",
+          "affected_customers": [
+            "Enterprise Bank Support Operations"
+          ],
+          "created_at": "2026-03-05T16:13:09.343858+00:00",
+          "resolution": "Increased skew tolerance temporarily; ensured NTP sync; rolled auth gateway nodes.",
+          "root_cause": "SAML timestamp validation failures due to clock drift and low skew tolerance."
+        }
+      ],
+      "engineers": [
+        {
+          "tenant_id": "tenant_demo",
+          "engineer_id": "ENG-015",
+          "role": "SRE (Identity Platform)",
+          "updated_at": "2026-03-05T16:13:09.357725+00:00",
+          "employee_id": "ENG-015",
+          "created_at": "2026-03-05T16:13:09.357725+00:00",
+          "location": "Noida, India",
+          "expertise": [
+            "SSO",
+            "SAML",
+            "OAuth",
+            "Auth Gateway",
+            "NTP/Time Sync"
+          ],
+          "email": "platform-identity-oncall@tu.com",
+          "on_call": true
+        }
+      ],
+      "teams": [],
+      "channels": [],
+      "queues": [],
+      "routing_rules": [],
+      "agents": [],
+      "spos": [],
+      "infrastructure": [],
+      "configurations": [],
+      "release_notes": [],
+      "user_guides": []
+    },
+    "relationships": [
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "FeatureFlag",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.612025+00:00",
+          "created_at": "2026-03-05T16:13:09.612025+00:00"
+        },
+        "node": {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        }
+      },
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "SOP",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.599787+00:00",
+          "created_at": "2026-03-05T16:13:09.599787+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        }
+      },
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "Runbook",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.587798+00:00",
+          "created_at": "2026-03-05T16:13:09.587798+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        }
+      },
+      {
+        "direction": "in",
+        "rel": "HAS_KNOWN_ISSUE",
+        "from_label": "Service",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.512802+00:00",
+          "created_at": "2026-03-05T16:13:09.512802+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        }
+      },
+      {
+        "direction": "svc_out",
+        "rel": "SUPPORTED_BY",
+        "from_label": "Service",
+        "to_label": "Engineer",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.918461+00:00",
+          "created_at": "2026-03-05T16:13:09.918461+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "engineer_id": "ENG-015",
+          "role": "SRE (Identity Platform)",
+          "updated_at": "2026-03-05T16:13:09.357725+00:00",
+          "employee_id": "ENG-015",
+          "created_at": "2026-03-05T16:13:09.357725+00:00",
+          "location": "Noida, India",
+          "expertise": [
+            "SSO",
+            "SAML",
+            "OAuth",
+            "Auth Gateway",
+            "NTP/Time Sync"
+          ],
+          "email": "platform-identity-oncall@tu.com",
+          "on_call": true
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "AFFECTS_CUSTOMER",
+        "from_label": "Service",
+        "to_label": "Customer",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.899449+00:00",
+          "created_at": "2026-03-05T16:13:09.899449+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.369970+00:00",
+          "channels": [
+            "Voice",
+            "Chat",
+            "Email"
+          ],
+          "license_type": "Enterprise",
+          "sla_tier": "Premier",
+          "created_at": "2026-03-05T16:13:09.369970+00:00",
+          "industry": "Financial Services",
+          "region": "US East",
+          "customer_id": "CUST-015",
+          "csm": "Rebecca Torres",
+          "agents_licensed": 420
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_INCIDENT",
+        "from_label": "Service",
+        "to_label": "Incident",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.887999+00:00",
+          "created_at": "2026-03-05T16:13:09.887999+00:00"
+        },
+        "node": {
+          "date": "2026-03-04",
+          "duration": "38 minutes",
+          "severity": "P1",
+          "tenant_id": "tenant_demo",
+          "incident_id": "INC-015",
+          "updated_at": "2026-03-05T16:13:09.343858+00:00",
+          "post_mortem": "Add drift alerting; adjust tolerance defaults for multi-region tenants; add canary login tests.",
+          "affected_service": "Identity & Authentication Gateway",
+          "affected_customers": [
+            "Enterprise Bank Support Operations"
+          ],
+          "created_at": "2026-03-05T16:13:09.343858+00:00",
+          "resolution": "Increased skew tolerance temporarily; ensured NTP sync; rolled auth gateway nodes.",
+          "root_cause": "SAML timestamp validation failures due to clock drift and low skew tolerance."
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "RUNS_ON",
+        "from_label": "Service",
+        "to_label": "Deployment",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.575782+00:00",
+          "created_at": "2026-03-05T16:13:09.575782+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "regions": [
+            "US East",
+            "EU West"
+          ],
+          "updated_at": "2026-03-05T16:13:09.329681+00:00",
+          "resource_type": "Azure",
+          "description": "Gateway cluster validating SAML/OIDC tokens and issuing session tokens for Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.329681+00:00",
+          "deployment_id": "INFRA-015",
+          "monitoring": "Application Insights + Azure Monitor"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_FAQ",
+        "from_label": "Service",
+        "to_label": "FAQ",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.563763+00:00",
+          "created_at": "2026-03-05T16:13:09.563763+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "question": "After authenticating with SSO, why am I redirected back to the login page?",
+          "answer": "This typically occurs when the auth gateway rejects the SAML assertion due to timestamp validation (clock skew) or strict validation settings. Verify NTP, increase skew tolerance temporarily, and follow the SSO login loop recovery runbook.",
+          "updated_at": "2026-03-05T16:13:09.316265+00:00",
+          "created_at": "2026-03-05T16:13:09.316265+00:00",
+          "faq_id": "FAQ-015"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "CONFIGURED_BY",
+        "from_label": "Service",
+        "to_label": "FeatureFlag",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.547112+00:00",
+          "created_at": "2026-03-05T16:13:09.547112+00:00"
+        },
+        "node": {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_SOP",
+        "from_label": "Service",
+        "to_label": "SOP",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.535763+00:00",
+          "created_at": "2026-03-05T16:13:09.535763+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_RUNBOOK",
+        "from_label": "Service",
+        "to_label": "Runbook",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.524777+00:00",
+          "created_at": "2026-03-05T16:13:09.524777+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_KNOWN_ISSUE",
+        "from_label": "Service",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.512802+00:00",
+          "created_at": "2026-03-05T16:13:09.512802+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "severity": "P1",
+          "symptoms": [
+            "Agent redirected back to login after successful IdP authentication",
+            "SAML assertion rejected intermittently (expired / not-yet-valid)",
+            "Spike in sign-in failures during shift start"
+          ],
+          "eta_fix": "2026-04-05",
+          "updated_at": "2026-03-05T16:13:09.265289+00:00",
+          "issue_id": "KI-015",
+          "affected_versions": [
+            "2025 Wave 2"
+          ],
+          "document": "data/KnownIssue_SSO_LoginFailures.txt",
+          "created_at": "2026-03-05T16:13:09.265289+00:00",
+          "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+          "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+          "status": "Workaround Available"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "flag_any",
+        "rel": "WORKAROUND_IN",
+        "from_label": "FeatureFlag",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.612025+00:00",
+          "created_at": "2026-03-05T16:13:09.612025+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "severity": "P1",
+          "symptoms": [
+            "Agent redirected back to login after successful IdP authentication",
+            "SAML assertion rejected intermittently (expired / not-yet-valid)",
+            "Spike in sign-in failures during shift start"
+          ],
+          "eta_fix": "2026-04-05",
+          "updated_at": "2026-03-05T16:13:09.265289+00:00",
+          "issue_id": "KI-015",
+          "affected_versions": [
+            "2025 Wave 2"
+          ],
+          "document": "data/KnownIssue_SSO_LoginFailures.txt",
+          "created_at": "2026-03-05T16:13:09.265289+00:00",
+          "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+          "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+          "status": "Workaround Available"
+        },
+        "flag_id": "CFG-015"
+      },
+      {
+        "direction": "flag_any",
+        "rel": "CONFIGURED_BY",
+        "from_label": "FeatureFlag",
+        "to_label": "Service",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.547112+00:00",
+          "created_at": "2026-03-05T16:13:09.547112+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        },
+        "flag_id": "CFG-015"
+      }
+    ],
+    "service_blast_radius": null
+  },
+  "full_knowledge_graph": {
+    "ok": true,
+    "issue_id": "KI-015",
+    "issue": {
+      "tenant_id": "tenant_demo",
+      "severity": "P1",
+      "symptoms": [
+        "Agent redirected back to login after successful IdP authentication",
+        "SAML assertion rejected intermittently (expired / not-yet-valid)",
+        "Spike in sign-in failures during shift start"
+      ],
+      "eta_fix": "2026-04-05",
+      "issue_id": "KI-015",
+      "updated_at": "2026-03-05T16:13:09.265289+00:00",
+      "affected_versions": [
+        "2025 Wave 2"
+      ],
+      "document": "data/KnownIssue_SSO_LoginFailures.txt",
+      "created_at": "2026-03-05T16:13:09.265289+00:00",
+      "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+      "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+      "status": "Workaround Available"
+    },
+    "linked": {
+      "runbooks": [
+        {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        }
+      ],
+      "sops": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "tenant_id": "tenant_demo",
+          "question": "After authenticating with SSO, why am I redirected back to the login page?",
+          "answer": "This typically occurs when the auth gateway rejects the SAML assertion due to timestamp validation (clock skew) or strict validation settings. Verify NTP, increase skew tolerance temporarily, and follow the SSO login loop recovery runbook.",
+          "updated_at": "2026-03-05T16:13:09.316265+00:00",
+          "created_at": "2026-03-05T16:13:09.316265+00:00",
+          "faq_id": "FAQ-015"
+        }
+      ],
+      "documents": [],
+      "releases": []
+    },
+    "affected": {
+      "services": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        }
+      ],
+      "customers": [
+        {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.369970+00:00",
+          "channels": [
+            "Voice",
+            "Chat",
+            "Email"
+          ],
+          "license_type": "Enterprise",
+          "sla_tier": "Premier",
+          "created_at": "2026-03-05T16:13:09.369970+00:00",
+          "industry": "Financial Services",
+          "region": "US East",
+          "customer_id": "CUST-015",
+          "csm": "Rebecca Torres",
+          "agents_licensed": 420
+        }
+      ],
+      "deployments": [
+        {
+          "tenant_id": "tenant_demo",
+          "regions": [
+            "US East",
+            "EU West"
+          ],
+          "updated_at": "2026-03-05T16:13:09.329681+00:00",
+          "resource_type": "Azure",
+          "description": "Gateway cluster validating SAML/OIDC tokens and issuing session tokens for Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.329681+00:00",
+          "deployment_id": "INFRA-015",
+          "monitoring": "Application Insights + Azure Monitor"
+        }
+      ],
+      "feature_flags": [
+        {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        }
+      ],
+      "features": [],
+      "products": [],
+      "incidents": [
+        {
+          "date": "2026-03-04",
+          "duration": "38 minutes",
+          "severity": "P1",
+          "tenant_id": "tenant_demo",
+          "incident_id": "INC-015",
+          "updated_at": "2026-03-05T16:13:09.343858+00:00",
+          "post_mortem": "Add drift alerting; adjust tolerance defaults for multi-region tenants; add canary login tests.",
+          "affected_service": "Identity & Authentication Gateway",
+          "affected_customers": [
+            "Enterprise Bank Support Operations"
+          ],
+          "created_at": "2026-03-05T16:13:09.343858+00:00",
+          "resolution": "Increased skew tolerance temporarily; ensured NTP sync; rolled auth gateway nodes.",
+          "root_cause": "SAML timestamp validation failures due to clock drift and low skew tolerance."
+        }
+      ],
+      "engineers": [
+        {
+          "tenant_id": "tenant_demo",
+          "engineer_id": "ENG-015",
+          "role": "SRE (Identity Platform)",
+          "updated_at": "2026-03-05T16:13:09.357725+00:00",
+          "employee_id": "ENG-015",
+          "created_at": "2026-03-05T16:13:09.357725+00:00",
+          "location": "Noida, India",
+          "expertise": [
+            "SSO",
+            "SAML",
+            "OAuth",
+            "Auth Gateway",
+            "NTP/Time Sync"
+          ],
+          "email": "platform-identity-oncall@tu.com",
+          "on_call": true
+        }
+      ],
+      "teams": [],
+      "channels": [],
+      "queues": [],
+      "routing_rules": [],
+      "agents": [],
+      "spos": [],
+      "infrastructure": [],
+      "configurations": [],
+      "release_notes": [],
+      "user_guides": []
+    },
+    "relationships": [
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "FeatureFlag",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.612025+00:00",
+          "created_at": "2026-03-05T16:13:09.612025+00:00"
+        },
+        "node": {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        }
+      },
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "SOP",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.599787+00:00",
+          "created_at": "2026-03-05T16:13:09.599787+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        }
+      },
+      {
+        "direction": "out",
+        "rel": "WORKAROUND_IN",
+        "from_label": "KnownIssue",
+        "to_label": "Runbook",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.587798+00:00",
+          "created_at": "2026-03-05T16:13:09.587798+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        }
+      },
+      {
+        "direction": "in",
+        "rel": "HAS_KNOWN_ISSUE",
+        "from_label": "Service",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.512802+00:00",
+          "created_at": "2026-03-05T16:13:09.512802+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        }
+      },
+      {
+        "direction": "svc_out",
+        "rel": "SUPPORTED_BY",
+        "from_label": "Service",
+        "to_label": "Engineer",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.918461+00:00",
+          "created_at": "2026-03-05T16:13:09.918461+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "engineer_id": "ENG-015",
+          "role": "SRE (Identity Platform)",
+          "updated_at": "2026-03-05T16:13:09.357725+00:00",
+          "employee_id": "ENG-015",
+          "created_at": "2026-03-05T16:13:09.357725+00:00",
+          "location": "Noida, India",
+          "expertise": [
+            "SSO",
+            "SAML",
+            "OAuth",
+            "Auth Gateway",
+            "NTP/Time Sync"
+          ],
+          "email": "platform-identity-oncall@tu.com",
+          "on_call": true
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "AFFECTS_CUSTOMER",
+        "from_label": "Service",
+        "to_label": "Customer",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.899449+00:00",
+          "created_at": "2026-03-05T16:13:09.899449+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.369970+00:00",
+          "channels": [
+            "Voice",
+            "Chat",
+            "Email"
+          ],
+          "license_type": "Enterprise",
+          "sla_tier": "Premier",
+          "created_at": "2026-03-05T16:13:09.369970+00:00",
+          "industry": "Financial Services",
+          "region": "US East",
+          "customer_id": "CUST-015",
+          "csm": "Rebecca Torres",
+          "agents_licensed": 420
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_INCIDENT",
+        "from_label": "Service",
+        "to_label": "Incident",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.887999+00:00",
+          "created_at": "2026-03-05T16:13:09.887999+00:00"
+        },
+        "node": {
+          "date": "2026-03-04",
+          "duration": "38 minutes",
+          "severity": "P1",
+          "tenant_id": "tenant_demo",
+          "incident_id": "INC-015",
+          "updated_at": "2026-03-05T16:13:09.343858+00:00",
+          "post_mortem": "Add drift alerting; adjust tolerance defaults for multi-region tenants; add canary login tests.",
+          "affected_service": "Identity & Authentication Gateway",
+          "affected_customers": [
+            "Enterprise Bank Support Operations"
+          ],
+          "created_at": "2026-03-05T16:13:09.343858+00:00",
+          "resolution": "Increased skew tolerance temporarily; ensured NTP sync; rolled auth gateway nodes.",
+          "root_cause": "SAML timestamp validation failures due to clock drift and low skew tolerance."
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "RUNS_ON",
+        "from_label": "Service",
+        "to_label": "Deployment",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.575782+00:00",
+          "created_at": "2026-03-05T16:13:09.575782+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "regions": [
+            "US East",
+            "EU West"
+          ],
+          "updated_at": "2026-03-05T16:13:09.329681+00:00",
+          "resource_type": "Azure",
+          "description": "Gateway cluster validating SAML/OIDC tokens and issuing session tokens for Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.329681+00:00",
+          "deployment_id": "INFRA-015",
+          "monitoring": "Application Insights + Azure Monitor"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_FAQ",
+        "from_label": "Service",
+        "to_label": "FAQ",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.563763+00:00",
+          "created_at": "2026-03-05T16:13:09.563763+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "question": "After authenticating with SSO, why am I redirected back to the login page?",
+          "answer": "This typically occurs when the auth gateway rejects the SAML assertion due to timestamp validation (clock skew) or strict validation settings. Verify NTP, increase skew tolerance temporarily, and follow the SSO login loop recovery runbook.",
+          "updated_at": "2026-03-05T16:13:09.316265+00:00",
+          "created_at": "2026-03-05T16:13:09.316265+00:00",
+          "faq_id": "FAQ-015"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "CONFIGURED_BY",
+        "from_label": "Service",
+        "to_label": "FeatureFlag",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.547112+00:00",
+          "created_at": "2026-03-05T16:13:09.547112+00:00"
+        },
+        "node": {
+          "flag_id": "CFG-015",
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.302262+00:00",
+          "admin_path": "Dynamics 365 admin center > Security > Authentication (SSO)",
+          "config_area": "Authentication",
+          "created_at": "2026-03-05T16:13:09.302262+00:00",
+          "key_settings": [
+            "SAML clock-skew tolerance",
+            "Assertion audience validation",
+            "Token/session TTL",
+            "Regional failover policy"
+          ]
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_SOP",
+        "from_label": "Service",
+        "to_label": "SOP",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.535763+00:00",
+          "created_at": "2026-03-05T16:13:09.535763+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.290273+00:00",
+          "document": "data/SOP_SSO_P1_LoginFailure_Comms.txt",
+          "created_at": "2026-03-05T16:13:09.290273+00:00",
+          "sop_id": "SOP-015",
+          "category": "Escalation",
+          "steps": [
+            "1. Confirm scope (tenant/region/queues) and timestamp of onset",
+            "2. Notify supervisors: login issues; provide workaround ETA and workaround steps",
+            "3. Post updates every 15 minutes until stabilized",
+            "4. If >30 mins or >50 agents impacted: page Identity on-call; open vendor ticket if needed",
+            "5. After recovery: share summary + mitigation and prevention action"
+          ]
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_RUNBOOK",
+        "from_label": "Service",
+        "to_label": "Runbook",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.524777+00:00",
+          "created_at": "2026-03-05T16:13:09.524777+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "runbook_id": "RB-015",
+          "updated_at": "2026-03-05T16:13:09.277262+00:00",
+          "document": "data/Runbook_SSO_SAML_ClockSkew_Recovery.txt",
+          "created_at": "2026-03-05T16:13:09.277262+00:00",
+          "category": "Incident Recovery",
+          "steps": [
+            "1. Confirm impact: check sign-in failure rate + agent complaints",
+            "2. Auth gateway logs: look for SAML_ASSERTION_EXPIRED / ASSERTION_NOT_YET_VALID",
+            "3. Verify NTP: confirm clock drift on auth nodes < 30s",
+            "4. Temporarily increase SAML clock-skew tolerance (e.g., 2m → 5m)",
+            "5. Rolling restart auth gateway nodes (if failures persist)",
+            "6. Validate: 10 test logins across regions + monitor error rate 10 mins",
+            "7. Revert tolerance to baseline after stability confirmed; document change"
+          ],
+          "estimated_time": "25 minutes"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "svc_out",
+        "rel": "HAS_KNOWN_ISSUE",
+        "from_label": "Service",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.512802+00:00",
+          "created_at": "2026-03-05T16:13:09.512802+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "severity": "P1",
+          "symptoms": [
+            "Agent redirected back to login after successful IdP authentication",
+            "SAML assertion rejected intermittently (expired / not-yet-valid)",
+            "Spike in sign-in failures during shift start"
+          ],
+          "eta_fix": "2026-04-05",
+          "updated_at": "2026-03-05T16:13:09.265289+00:00",
+          "issue_id": "KI-015",
+          "affected_versions": [
+            "2025 Wave 2"
+          ],
+          "document": "data/KnownIssue_SSO_LoginFailures.txt",
+          "created_at": "2026-03-05T16:13:09.265289+00:00",
+          "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+          "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+          "status": "Workaround Available"
+        },
+        "service_id": "SVC-015"
+      },
+      {
+        "direction": "flag_any",
+        "rel": "WORKAROUND_IN",
+        "from_label": "FeatureFlag",
+        "to_label": "KnownIssue",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.612025+00:00",
+          "created_at": "2026-03-05T16:13:09.612025+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "severity": "P1",
+          "symptoms": [
+            "Agent redirected back to login after successful IdP authentication",
+            "SAML assertion rejected intermittently (expired / not-yet-valid)",
+            "Spike in sign-in failures during shift start"
+          ],
+          "eta_fix": "2026-04-05",
+          "updated_at": "2026-03-05T16:13:09.265289+00:00",
+          "issue_id": "KI-015",
+          "affected_versions": [
+            "2025 Wave 2"
+          ],
+          "document": "data/KnownIssue_SSO_LoginFailures.txt",
+          "created_at": "2026-03-05T16:13:09.265289+00:00",
+          "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+          "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+          "status": "Workaround Available"
+        },
+        "flag_id": "CFG-015"
+      },
+      {
+        "direction": "flag_any",
+        "rel": "CONFIGURED_BY",
+        "from_label": "FeatureFlag",
+        "to_label": "Service",
+        "rel_props": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.547112+00:00",
+          "created_at": "2026-03-05T16:13:09.547112+00:00"
+        },
+        "node": {
+          "tenant_id": "tenant_demo",
+          "updated_at": "2026-03-05T16:13:09.169058+00:00",
+          "technology_stack": [
+            "Azure AD (Entra ID)",
+            "SAML",
+            "OAuth2/OIDC",
+            "Dataverse",
+            "API Gateway"
+          ],
+          "service_id": "SVC-015",
+          "criticality": "P1",
+          "sla_uptime": "99.95%",
+          "description": "SSO entrypoint for agent/supervisor login. Validates SAML/OIDC tokens and issues session cookies/tokens used by Agent Desktop.",
+          "created_at": "2026-03-05T16:13:09.169058+00:00",
+          "status": "Active"
+        },
+        "flag_id": "CFG-015"
+      }
+    ],
+    "service_blast_radius": null
+  },
+  "llm_answer": "1. **Short issue identification**: SSO login failures resulting in invalid sessions and login loops.\n\n2. **Likely cause**: Clock drift and strict timestamp validation in the auth gateway, leading to SAML assertions being treated as expired or not yet valid due to low tolerance configuration.\n\n3. **Immediate next steps**:\n   - Temporarily increase the SAML clock-skew tolerance in the auth gateway configuration.\n   - Verify NTP synchronization on all auth gateway nodes.\n   - Ask affected users to sign out of all sessions and retry logging in.\n   - If assertion validation errors continue, perform a rolling restart of the auth gateway.\n\n4. **Communication / SOP guidance**:\n   - Confirm the scope of the issue, identifying which regions/tenants are impacted and when the issue started.\n   - Notify stakeholders with the message: “We’re investigating SSO login failures causing login loops/session invalid.”\n   - Advise users to avoid repeated rapid retries to mitigate rate limit risks and suggest retrying after 10 minutes once mitigation is applied.\n   - Provide updates every 15 minutes until the situation stabilizes.\n   - Confirm recovery and share the impact window along with the mitigation applied once resolved.\n\n5. **Anything missing or uncertain**: The runbook document is not available, which may contain additional operational details or steps.",
+  "llm_context": {
+    "user_query": "SSO login failures (SAML session invalid / login loop)",
+    "selected_issue_id": "KI-015",
+    "docs_base_dir": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs",
+    "issue_summary": {
+      "issue_id": "KI-015",
+      "severity": "P1",
+      "status": "Workaround Available",
+      "root_cause": "Clock drift and strict timestamp validation in the auth gateway when SAML assertions are issued near boundary; tolerance config too low for some regions.",
+      "workaround": "Temporarily increase SAML clock-skew tolerance and ensure NTP sync on auth nodes; rolling restart auth gateway if needed.",
+      "symptoms": [
+        "Agent redirected back to login after successful IdP authentication",
+        "SAML assertion rejected intermittently (expired / not-yet-valid)",
+        "Spike in sign-in failures during shift start"
+      ],
+      "affected_service_ids": [
+        "SVC-015"
+      ]
+    },
+    "required_docs": {
+      "known_issue_doc": {
+        "file_name": "KnownIssue_SSO_LoginFailures.txt",
+        "path": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\KnownIssue_SSO_LoginFailures.txt",
+        "content": "Known Issue: SSO login failures (SAML session invalid / login loop)\n\nIssue ID: KI-015\nSeverity: P1\nStatus: Workaround Available\nAffected Versions: 2025 Wave 3\n\nSymptoms:\n- Agents are redirected back to the login page after authenticating with the identity provider.\n- IdP sign-in succeeds (Okta/Azure AD), but the platform returns “Session invalid”.\n- Login succeeds intermittently after multiple attempts.\n- Spike in auth errors during shift start.\n\nRoot Cause (hypothesis):\nClock skew / timestamp tolerance mismatch in SAML assertion validation.\nIf auth gateway clock drift exceeds the allowed tolerance window, assertions are treated as expired.\n\nWorkaround:\n- Temporarily increase SAML clock-skew tolerance in auth gateway config.\n- Ask affected users to sign out of all sessions and retry.\n- Restart the auth gateway if assertion validation errors continue.\n\nOperational Notes:\n- Verify NTP sync on auth gateway nodes.\n- Check for repeated “SAML_ASSERTION_EXPIRED” / “ASSERTION_NOT_YET_VALID” in logs.\n- Track login success rate after mitigation."
+      },
+      "runbook_doc": null,
+      "sop_doc": {
+        "file_name": "SOP_SSO_P1_LoginFailure_Comms.txt",
+        "path": "C:\\Users\\saanidhya.khurana\\Downloads\\knowledge_graph\\kg\\data\\kg_docs\\SOP_SSO_P1_LoginFailure_Comms.txt",
+        "content": "SOP: P1 SSO Login Failures — Supervisor/Agent Communications\n\nSOP ID: SOP-015\nCategory: Communications\n\nGoal:\nReduce ticket spam, set expectations, and prevent repeated failed login attempts while remediation runs.\n\nSteps:\n1. Confirm scope:\n   - Which regions/tenants are impacted and when it started.\n2. Notify stakeholders:\n   - “We’re investigating SSO login failures causing login loops/session invalid.”\n3. Provide guidance:\n   - Avoid repeated rapid retries (rate limit risk).\n   - Retry after 10 minutes once mitigation is applied.\n4. Updates:\n   - Provide update every 15 minutes until stable.\n5. Closure:\n   - Confirm recovery and share impact window + mitigation applied."
+      }
+    },
+    "optional_docs": {
+      "faq_doc": null,
+      "guide_doc": null,
+      "release_doc": null
+    }
+  }
+}

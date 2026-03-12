@@ -1,0 +1,13 @@
+Service: Identity & Authentication Gateway
+
+Service ID: SVC-015
+Owner Team: Platform Identity
+Tier: Core Platform
+
+Description:
+Handles authentication for agents/supervisors including SSO (SAML/OAuth) and session token issuance.
+
+Dependencies:
+- Session Token Service
+- Policy/Access Validator
+- IdP Integrations (Okta / Azure AD)

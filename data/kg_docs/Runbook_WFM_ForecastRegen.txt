@@ -1,0 +1,21 @@
+Runbook: WFM Forecast → Schedule Regeneration Recovery (Lock / Queue Stuck)
+Runbook ID: RB-004
+Category: Incident Recovery
+Estimated time: 25 minutes
+Steps:
+
+Confirm WFM schedule regen backlog in Admin Center → WFM → Jobs
+
+Check Dataverse async jobs for “WFM Schedule Regen” status = Waiting / In Progress > 20 min
+
+Inspect orchestration lock entity for stuck lock owner / stale timestamp
+
+Clear lock (safe unlock) and re-trigger regen job
+
+Validate schedules updated timestamp in WFM schedule table
+
+Validate staffing gaps recalculated in intraday view
+
+If still stuck: restart WFM orchestration worker and re-run regen
+
+Communicate to supervisors + update incident notes

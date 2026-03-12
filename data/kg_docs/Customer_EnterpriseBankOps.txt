@@ -1,0 +1,11 @@
+Customer: Enterprise Bank Support Operations
+
+Customer ID: CUST-015
+Tier: Enterprise
+Region: NA
+Environment: Dedicated
+
+Notes:
+- 3,200 agents across voice and chat.
+- Uses Azure AD SSO with strict conditional access.
+- Shift start created a large login surge and escalations.

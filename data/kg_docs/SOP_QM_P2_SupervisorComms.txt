@@ -1,0 +1,19 @@
+SOP: P2 Quality Management Scoring Drift — Supervisor Communications
+
+SOP ID: SOP-003
+Category: Communications
+
+Goal:
+Keep supervisors informed while remediation is applied and prevent incorrect coaching actions.
+
+Steps:
+1. Confirm impacted queues/teams and time window (e.g., last 24–48 hours).
+2. Notify supervisors:
+   - Scores may be temporarily inconsistent due to a rubric sync issue.
+   - Coaching actions should be paused for impacted items until re-score completes.
+3. Apply the runbook and provide updates every 15 minutes until stable.
+4. If drift persists > 60 minutes:
+   - Escalate to platform on-call and open vendor/support ticket.
+5. After recovery:
+   - Confirm re-score completed.
+   - Share summary: impact window, fix applied, and prevention action.

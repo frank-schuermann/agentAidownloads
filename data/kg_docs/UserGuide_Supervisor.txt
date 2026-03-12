@@ -1,0 +1,129 @@
+================================================================================
+USER GUIDE — Microsoft Dynamics 365 Contact Center
+Supervisor Dashboard Guide
+================================================================================
+
+TABLE OF CONTENTS:
+------------------
+1. Accessing the Dashboard
+2. Real-Time Queue Monitoring
+3. Agent Performance View
+4. Sentiment Dashboard
+5. Whisper & Monitor
+6. Exporting Reports
+7. Troubleshooting
+
+--------------------------------------------------------------------------------
+1. ACCESSING THE DASHBOARD
+--------------------------------------------------------------------------------
+Navigate to: Dynamics 365 > Customer Service workspace > Omnichannel real-time analytics
+
+Required roles: Omnichannel Supervisor, System Administrator, or custom role
+with "Omnichannel real-time analytics" privilege.
+
+--------------------------------------------------------------------------------
+2. REAL-TIME QUEUE MONITORING
+--------------------------------------------------------------------------------
+The Queue Dashboard shows:
+- Active conversations per channel (Voice, Chat, SMS, etc.)
+- Customers waiting in queue with wait time
+- Average handle time (AHT) — current shift
+- Service Level % (answered within SLA threshold)
+
+Key metrics explained:
+- Queue Depth: Number of work items waiting for assignment
+- Avg Wait Time: Average time customer waits before agent accepts
+- Abandon Rate: % of customers who disconnect before agent pickup
+- Service Level: % of items answered within target (e.g., 80% in 30s)
+
+Filters: Channel, Queue, Time Period (Last 1h, 4h, 8h, 24h)
+
+Alert thresholds (configurable):
+- Yellow: Queue depth > 10 or wait > 2 min
+- Red: Queue depth > 25 or wait > 5 min or abandon rate > 15%
+
+--------------------------------------------------------------------------------
+3. AGENT PERFORMANCE VIEW
+--------------------------------------------------------------------------------
+Shows per-agent metrics:
+- Status (Available, Busy, Away, etc.)
+- Active conversations count
+- Conversations handled today
+- Average handle time
+- Average CSAT score
+- Current capacity utilization %
+
+Click an agent row to see:
+- Open conversations detail
+- Session timeline
+- Break history
+
+Actions:
+- Force sign out an agent
+- Reset presence (fixes stuck status)
+- Assign/unassign from queues
+
+--------------------------------------------------------------------------------
+4. SENTIMENT DASHBOARD
+--------------------------------------------------------------------------------
+Aggregated sentiment across all active conversations:
+- Pie chart: Very Positive / Positive / Neutral / Negative / Very Negative
+- Trend line: Sentiment over time (30-min intervals)
+- Drill down to individual conversations with negative sentiment
+
+Alert: If >30% negative sentiment across queue, consider:
+- Adding more agents
+- Reviewing knowledge articles for gaps
+- Checking for system issues causing customer frustration
+
+--------------------------------------------------------------------------------
+5. WHISPER & MONITOR
+--------------------------------------------------------------------------------
+MONITOR (silent listen):
+1. Click agent row > "Monitor"
+2. Voice: You hear both sides, neither party hears you
+3. Chat: You see message stream in real-time
+
+WHISPER (coach agent):
+1. During monitoring, click "Whisper"
+2. Voice: Agent hears you, customer does not
+3. Chat: Your messages visible only to agent
+
+BARGE-IN (join conversation):
+1. During monitoring, click "Barge In"
+2. You join as third party visible to customer and agent
+
+Best practices:
+- Use Monitor for quality assurance sampling
+- Use Whisper for coaching new agents
+- Use Barge-In only for escalation situations
+
+--------------------------------------------------------------------------------
+6. EXPORTING REPORTS
+--------------------------------------------------------------------------------
+Export options:
+- Excel: Click "Export" on any dashboard table
+- PDF: Use browser print > Save as PDF
+- Power BI: Connect to Dataverse with Power BI Desktop for custom reports
+- Scheduled Email: Configure in admin center > Reports > Email Subscriptions
+
+Standard reports available:
+- Daily Agent Performance Summary
+- Weekly Queue Metrics
+- Monthly CSAT & NPS Trends
+- SLA Adherence Report
+
+--------------------------------------------------------------------------------
+7. TROUBLESHOOTING
+--------------------------------------------------------------------------------
+Issue: Dashboard shows no data
+Fix: Verify you have Omnichannel Supervisor role. Check that real-time
+analytics is enabled in admin center.
+
+Issue: Agent status shows stale (not updating)
+Fix: Check agent's browser connectivity. Force refresh from admin view.
+
+Issue: Sentiment not displaying
+Fix: Verify sentiment analysis is enabled at workstream level.
+
+For help: Contact L2 support or CCaaS Digital & Routing Team.

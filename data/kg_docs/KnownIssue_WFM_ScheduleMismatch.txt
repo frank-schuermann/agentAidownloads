@@ -1,0 +1,19 @@
+Title: Workforce Management — Forecast/Schedule mismatch after Wave 2 update
+Issue ID: KI-004
+Severity: P2
+Symptoms:
+
+Forecast view shows updated demand, but schedules don’t regenerate
+
+Staffing gap warnings remain even after “Recalculate Forecast”
+
+Agents see outdated staffing requirements in intraday view
+Root cause: Background WFM forecast job completes, but schedule regeneration job remains queued due to stuck orchestration lock in Dataverse.
+Workaround:
+
+Release the orchestration lock and re-trigger regeneration
+
+Temporarily run manual “Generate schedules” for impacted queues
+Status: Workaround Available
+ETA Fix: 2026-03-25
+Affected versions: 2025 Wave 2

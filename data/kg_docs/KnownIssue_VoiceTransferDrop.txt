@@ -1,0 +1,78 @@
+================================================================================
+KNOWN ISSUE — KI-2025-001
+Voice Call Drops During Warm Transfer
+================================================================================
+
+Issue ID     : KI-2025-001
+Severity     : P1 (Critical)
+Status       : Fix in Progress
+ETA Fix      : March 15, 2026
+Reported     : November 10, 2025
+Affected     : 2025 Wave 1, 2025 Wave 2
+
+SYMPTOMS:
+---------
+1. Agent initiates a warm (consultive) transfer to another agent
+2. Customer hears dead air for 3-5 seconds
+3. Call disconnects — customer is dropped
+4. Transfer failure is logged in Azure Communication Services call logs
+5. Agent sees "Transfer Failed" notification in agent desktop
+6. Occurs intermittently — approximately 8% of warm transfers affected
+
+AFFECTED SCENARIOS:
+-------------------
+- Warm transfer between agents in DIFFERENT Azure regions (e.g., US East to US West)
+- Does NOT affect cold (blind) transfers
+- Does NOT affect transfers within the same Azure region
+- Both inbound and outbound calls affected
+
+ROOT CAUSE:
+-----------
+Race condition in Azure Communication Services session handoff protocol.
+When the source call leg and destination call leg are handled by ACS instances
+in different Azure regions, the SDP (Session Description Protocol) negotiation
+times out due to cross-region latency exceeding the 3-second handshake window.
+
+The ACS team has identified the fix: extend the handshake window to 10 seconds
+and implement a regional affinity hint in the transfer request.
+
+IMPACT:
+-------
+- Estimated 8% failure rate on cross-region warm transfers
+- Contoso Corp and Fabrikam Inc have reported customer complaints
+- Approximately 50-80 dropped calls/week across all tenants
+
+WORKAROUND:
+-----------
+Option 1 (Recommended): Use COLD TRANSFER instead of warm transfer
+  - Agent clicks Transfer > Select target agent/queue > Cold Transfer
+  - Customer is transferred immediately without consultation
+  - Pro: 100% reliable across regions
+  - Con: No warm introduction to receiving agent
+
+Option 2: Ensure both agents are in the SAME Azure region
+  - Check agent's ACS endpoint assignment in admin center
+  - Route same-region whenever possible via routing rules
+  - Pro: Warm transfer works reliably
+  - Con: May limit routing flexibility
+
+Option 3: Retry the warm transfer
+  - If transfer fails, recall the customer or attempt transfer again
+  - Some attempts succeed on retry (race condition is intermittent)
+
+RESOLUTION TIMELINE:
+--------------------
+- Nov 2025: Issue identified and root cause confirmed
+- Dec 2025: ACS team developed fix in internal preview
+- Jan 2026: Fix deployed to ACS staging environment
+- Feb 2026: Validation with select tenants
+- Mar 2026: GA rollout of ACS fix (no CCaaS update required)
+
+MONITORING:
+-----------
+Track call transfer success rate in Application Insights:
+  customEvents
+  | where name == "CallTransferAttempt"
+  | summarize success_rate = countif(customDimensions.result == "Success")
+      * 100.0 / count() by bin(timestamp, 1h)
+  | render timechart

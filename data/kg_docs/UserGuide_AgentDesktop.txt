@@ -1,0 +1,191 @@
+================================================================================
+USER GUIDE — Microsoft Dynamics 365 Contact Center
+Agent Desktop (Unified Workspace)
+================================================================================
+
+TABLE OF CONTENTS:
+------------------
+1. Getting Started
+2. Setting Your Presence
+3. Handling Incoming Conversations
+4. Customer Context Panel
+5. Knowledge Search
+6. Using Copilot
+7. Case Management
+8. Multi-Session Handling
+9. Transferring Conversations
+10. Wrapping Up Conversations
+11. Keyboard Shortcuts
+12. Troubleshooting
+
+--------------------------------------------------------------------------------
+1. GETTING STARTED
+--------------------------------------------------------------------------------
+Navigate to https://[your-org].crm.dynamics.com
+Sign in with your organizational (Microsoft Entra ID) credentials.
+You will land on the Customer Service workspace.
+
+First-time setup:
+- Ensure your notification settings allow browser notifications
+- Check audio device settings for voice calls
+- Verify your queue assignments with your supervisor
+
+--------------------------------------------------------------------------------
+2. SETTING YOUR PRESENCE
+--------------------------------------------------------------------------------
+Your presence determines if you receive work items:
+- Available     : Receive calls, chats, and other work items
+- Busy          : Only receive priority items
+- Do Not Disturb: No items assigned (use during training/meetings)
+- Away          : Auto-set after idle timeout
+- Offline       : Not receiving any work
+
+To change: Click your avatar (top right) > Select status
+
+IMPORTANT: If your presence gets stuck on "Busy" after a call:
+1. Sign out and close all browser tabs
+2. Wait 2 minutes for session cleanup
+3. Sign back in and set Available
+4. If still stuck, contact admin to reset via Omnichannel admin portal
+
+--------------------------------------------------------------------------------
+3. HANDLING INCOMING CONVERSATIONS
+--------------------------------------------------------------------------------
+When a work item is routed to you:
+1. A notification toast appears (with customer name if identified)
+2. Click "Accept" within 90 seconds (configurable)
+3. If declined or timed out, item returns to queue
+
+For VOICE calls:
+- Accept opens the call panel with mute, hold, transfer controls
+- Customer context panel loads automatically
+- Real-time transcription appears (if enabled)
+
+For CHAT/MESSAGING:
+- Accept opens conversation panel
+- Type in the message compose area
+- Use quick replies for common responses
+- Send attachments via paperclip icon
+
+--------------------------------------------------------------------------------
+4. CUSTOMER CONTEXT PANEL
+--------------------------------------------------------------------------------
+The right-side panel shows:
+- Customer name, email, phone
+- Recent cases (last 5)
+- Previous conversations (last 10)
+- Active entitlements and SLA
+- Custom fields configured by admin
+
+Click "View full record" to open in new tab.
+
+--------------------------------------------------------------------------------
+5. KNOWLEDGE SEARCH
+--------------------------------------------------------------------------------
+During any conversation:
+1. Click the Knowledge tab (book icon) in the side panel
+2. Type search keywords or let Copilot auto-suggest
+3. Click an article to expand inline
+4. Use "Send Link" to share article URL with customer
+5. Use "Copy Content" to paste into response
+
+Articles are ranked by relevance using AI search.
+
+--------------------------------------------------------------------------------
+6. USING COPILOT
+--------------------------------------------------------------------------------
+Copilot appears in the right panel during active conversations:
+
+FEATURES:
+- Auto-Suggestions: Copilot suggests responses based on conversation context
+- Case Summary: Click "Summarize" to auto-generate case notes
+- Knowledge Suggestions: AI recommends relevant articles
+- Draft Response: Click "Draft" for Copilot to compose a reply
+
+TIPS:
+- Copilot needs at least 2 customer messages to generate suggestions
+- Review and edit suggestions before sending
+- Use thumbs up/down to improve Copilot quality
+- If Copilot is slow, check Azure OpenAI quota with admin
+
+--------------------------------------------------------------------------------
+7. CASE MANAGEMENT
+--------------------------------------------------------------------------------
+To create a new case from conversation:
+1. Click "Create Case" in the command bar
+2. Fill in Title, Description, Priority
+3. Link to current conversation (auto-linked if enabled)
+4. Save
+
+To update existing case:
+1. Open customer context panel
+2. Click the linked case
+3. Update fields and save
+
+Case statuses: Active > In Progress > Waiting > Resolved > Closed
+
+--------------------------------------------------------------------------------
+8. MULTI-SESSION HANDLING
+--------------------------------------------------------------------------------
+Enterprise license: Up to 6 concurrent sessions
+Digital license: Up to 4 concurrent sessions
+
+Sessions appear as tabs at the top. Click a tab to switch.
+Active timers continue in background sessions.
+
+Color coding:
+- Green dot: Active conversation
+- Yellow dot: Customer waiting
+- Red dot: SLA breach approaching
+
+--------------------------------------------------------------------------------
+9. TRANSFERRING CONVERSATIONS
+--------------------------------------------------------------------------------
+CONSULT (keep ownership):
+1. Click "Consult" > Search agent/queue
+2. Internal chat opens with the consulted agent
+3. You remain the primary owner
+
+TRANSFER (hand off):
+1. Click "Transfer" > Search agent/queue
+2. Cold Transfer: Immediate handoff (no intro)
+3. Warm Transfer: Conference first, then hand off
+
+NOTE: Known Issue KI-2025-001 — Voice warm transfers may drop the call
+if agents are in different Azure regions. Use cold transfer as workaround.
+
+--------------------------------------------------------------------------------
+10. WRAPPING UP CONVERSATIONS
+--------------------------------------------------------------------------------
+After customer disconnects:
+1. Complete wrap-up activities (case notes, disposition code)
+2. The wrap-up timer starts (default: 5 minutes)
+3. Click "End" to close and become available for next item
+4. If timer expires, session auto-closes
+
+--------------------------------------------------------------------------------
+11. KEYBOARD SHORTCUTS
+--------------------------------------------------------------------------------
+Ctrl + Shift + A  : Accept incoming
+Ctrl + M          : Mute/unmute (voice)
+Ctrl + H          : Hold/resume (voice)
+Ctrl + Shift + T  : Transfer
+Ctrl + K          : Knowledge search
+Ctrl + /          : Copilot panel toggle
+
+--------------------------------------------------------------------------------
+12. TROUBLESHOOTING
+--------------------------------------------------------------------------------
+Issue: No notifications appearing
+Fix: Check browser notification permissions. Enable for *.crm.dynamics.com
+
+Issue: Audio not working on voice calls
+Fix: Check browser microphone permissions. Verify headset in system sound settings.
+
+Issue: Copilot panel empty
+Fix: Ensure feature is enabled by admin. Check you have the Copilot User role.
+
+Issue: Customer context not loading
+Fix: Clear browser cache. Check Dataverse connectivity status.
+
+For more help: Contact your supervisor or open an internal IT ticket.

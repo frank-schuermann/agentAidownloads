@@ -881,7 +881,7 @@
     {"source":"RB-002","target":"UG-003","type":"RELATED_TO"},
 
 
-    {"source":"SVC-009","target":"SPO-001","type":"BELONGS_TO_SPO"},
+    
 
     {"source":"SVC-009","target":"KI-004","type":"HAS_KNOWN_ISSUE"},
     {"source":"SVC-009","target":"CFG-003","type":"CONFIGURED_BY"},
@@ -895,7 +895,7 @@
     {"source":"KI-004","target":"CFG-003","type":"WORKAROUND_IN"},
     {"source":"KI-004","target":"RN-003","type":"FIXED_IN"},
 
-    { "source": "SVC-010", "target": "KI-005", "type": "HAS_KNOWN_ISSUE" },
+    { "source": "SVC-010", "target": "KI-005", "type": "HAS_KNOWN_ISSUE"},
     { "source": "SVC-010", "target": "CFG-004", "type": "CONFIGURED_BY" },
     { "source": "SVC-010", "target": "INFRA-005", "type": "RUNS_ON" },
     { "source": "SVC-010", "target": "FAQ-006", "type": "HAS_FAQ" },
@@ -906,10 +906,7 @@
     { "source": "KI-005", "target": "SOP-004", "type": "WORKAROUND_IN" },
     { "source": "KI-005", "target": "CFG-004", "type": "WORKAROUND_IN" },
     { "source": "KI-005", "target": "UG-005", "type": "DOCUMENTED_IN" },
-    { "source": "KI-005", "target": "RN-004", "type": "FIXED_IN" },
-
-    { "source": "CFG-004", "target": "SVC-010", "type": "CONFIGURED_BY" },
-    { "source": "CFG-004", "target": "KI-005", "type": "WORKAROUND_IN" }
+    { "source": "KI-005", "target": "RN-004", "type": "FIXED_IN" }
   ],
   "ai_agent_instructions": {
     "purpose": "When a support ticket arrives for Microsoft Dynamics 365 Contact Center (CCaaS), traverse this graph to find the best resolution path.",

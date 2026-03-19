@@ -1,0 +1,32 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-021580
+MCI Engagements: Why can I not find "Workshops" anywhere?
+================================================================================
+
+Article ID       : KISP-021580
+Language          : en-us
+Created           : 2024-09-17
+Last Modified     : 2024-10-15
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/mci-engagements-why-can-i-not-find-workshops-anywhere-839e5248-e13e-45b3-873d-cc4b9743d85c
+
+================================================================================
+CONTENT:
+================================================================================
+
+MCI Engagements: Why can I not find "Workshops" anywhere? Earnings Incentives
+More...Less Who should use this article? MCI Engagements Online LOB Partner
+Activities What is this article about? [Insert a description of what this
+article covers, and include when it should be followed] Table of contents 1.
+Prerequisites 2. Scenario/Problem statement 3. Investigation 4. Resolution 5.
+Resources 1. Prerequisites Return to top 2. Scenario/Problem statement Q. I
+cannot find "Workshops" anywhere. Response to partner: Starting in FY24, many
+programs have changed their names from "Workshops" to "Engagements". We now have
+an umbrella category of incentive called Build Intent Engagements, and inside
+that category you may have a workshop engagement, a migration, modernization
+engagement or a pilot engagement. Please utilize FY24 program guide for most up
+to date list of MCI Engagements: Return to top 3. Investigation Return to top 4.
+Resolution Return to top 5. Resources Return to top Change history Item ID
+Change description Date Original work item Migrate from ADO to DFM. 9/11/2024
+
+================================================================================

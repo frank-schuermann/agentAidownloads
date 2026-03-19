@@ -1,0 +1,49 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-039855
+Windows Server 2016: Bugcheck 0x9F due to CPU busy trimming the working set of RStudio process rsession-utf8.exe
+================================================================================
+
+Issue ID     : KI-KISP-039855
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-12-13
+Last Updated : 2025-06-09
+Source KB     : KISP-039855
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-server-2016-bugcheck-0x9f-due-to-cpu-busy-trimming-the-working-set-of-rstudio-process-rsession-utf8-exe-5dc96de0-707c-b670-6923-d87634690b7c
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom Reported on Windows Server 2016 Reported symptoms System crashes with
+bugcheck DRIVER_POWER_STATE_FAILURE, hexadecimal value 9F. But the issue can be
+manifested in other ways such as high CPU, system hang or slowness or other
+bugcheck codes
+
+ROOT CAUSE:
+-----------
+d one of the power requests (to power on COM2 serial port) to block hence
+triggering the power manager kernel component watchdog timeout mechanism (10min)
+to crash the system with bugcheck DRIVER_POWER_STATE_FAILURE (9F). This is just
+a symptom of the system lockup for long period of time.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-039855
+for full scope.
+
+WORKAROUND:
+-----------
+Follow up with the vendor for RStudio to investigate the high memory usage. More
+information Debug notes from similar issue below: // system info48: kd>
+!mex.diKernel Version : Windows 10 Kernel Version 14393 MP (64 procs) Free
+x64Product : Server, suite: TerminalServer DataCenterEdition build lab :
+14393.6981.amd64fre.rs1_release.240503-1859System Uptime : 4 days
+17:23:03.012System Manufacturer : Microsoft CorporationSystem Product Name :
+Virtual MachineProcessor : Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHzBugcheck
+Info : Bugcheck 9f (3, ffffa009e181dbf0, ffffcb006f67ecb0, ffffa00a163385a0
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-039855
+
+================================================================================

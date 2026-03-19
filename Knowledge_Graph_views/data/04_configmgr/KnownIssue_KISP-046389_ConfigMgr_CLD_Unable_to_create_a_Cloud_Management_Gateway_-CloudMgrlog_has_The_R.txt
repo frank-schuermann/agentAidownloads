@@ -1,0 +1,49 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-046389
+ConfigMgr: CLD: Unable to create a Cloud Management Gateway -CloudMgr.log has The Resource not found (404)
+================================================================================
+
+Issue ID     : KI-KISP-046389
+Severity     : P1
+Status       : Fix Available
+Reported     : 2025-01-16
+Last Updated : 2025-01-17
+Source KB     : KISP-046389
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-cld-unable-to-create-a-cloud-management-gateway-cloudmgr-log-has-the-resource-not-found-404-1300b595-c66b-6c67-2113-9e638e86b370
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+Symptom Issue: Unable to create a Cloud Management Gateway
+
+ROOT CAUSE:
+-----------
+Cause: CloudMgr.log has below error: ERROR: TaskManager: Task
+[AnalyticsCollectionTask: Service SCCMGateway] has failed. Exception
+Azure.RequestFailedException, The Resource
+'Microsoft.Storage/storageAccounts/LabCMG1' under resource group
+'ResourceGroupName' was not found. For more details please go to
+https://aka.ms/ARMResourceNotFound
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-046389
+for full scope.
+
+WORKAROUND:
+-----------
+~~Status: 404 (Not Found)~~ErrorCode:
+ResourceNotFound~~~~Content:~~{"error":{"code":"ResourceNotFound","message":"The
+Resource 'Microsoft.Storage/storageAccounts/LabCMG1' under resource group
+'ResourceGroupName' was not found. For more details please go to
+https://aka.ms/ARMResourceNotFoundFix"}}~~~~Headers:~~Pragma: no-cache~~x-ms-
+failure-cause: REDACTED~~x-ms-request-id: some-GUID-~~x-ms-correlation-request-
+id: REDACTED~~x-ms-routing-request-id: REDACTED~~Strict-Transport-Security:
+REDACTED~~X-Content-Type-Options: REDACTED~~X-Cache: REDACTED~~X-MSEdge-Ref:
+REDACTED~~Content-Length: 242~~Ca
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-046389
+
+================================================================================

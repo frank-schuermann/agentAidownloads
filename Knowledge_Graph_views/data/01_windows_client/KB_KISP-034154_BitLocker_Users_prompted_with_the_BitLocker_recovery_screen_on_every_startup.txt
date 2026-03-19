@@ -1,0 +1,108 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034154
+BitLocker: Users prompted with the BitLocker recovery screen on every startup.
+================================================================================
+
+Article ID       : KISP-034154
+Language          : en-us
+Created           : 2024-11-04
+Last Modified     : 2025-06-09
+Views             : 28
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/bitlocker-users-prompted-with-the-bitlocker-recovery-screen-on-every-startup-05002086-c962-fb76-ca48-413c63d57325
+
+================================================================================
+CONTENT:
+================================================================================
+
+BitLocker: Users prompted with the BitLocker recovery screen on every startup.
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 197034 link for any updates. Author: Aravindhan A Summary/Symptom User's
+getting BitLocker recovery screen every time they boot up the machine and hence
+used recovery password to unlock the OS Drive. Details:
+====================================== YYYYMMDD HH:MM:SS: manage-bde -status
+====================================== BitLocker Drive Encryption: Configuration
+Tool version 10.0.19041 Copyright (C) 2013 Microsoft Corporation. All rights
+reserved. Disk volumes that can be protected with BitLocker Drive Encryption:
+Volume C: [Windows] [OS Volume] Size: 235.48 GB BitLocker Version: 2.0
+Conversion Status: Used Space Only Encrypted Percentage Encrypted: 100.0%
+Encryption Method: XTS-AES 256 Protection Status: Protection On Lock Status:
+Unlocked Identification Field: Unknown Key Protectors: Numerical Password
+====================================== YYYYMMDD HH:MM:SS: manage-bde -protectors
+c: -get ====================================== BitLocker Drive Encryption:
+Configuration Tool version 10.0.19041 Copyright (C) 2013 Microsoft Corporation.
+All rights reserved. Volume C: [Windows] All Key Protectors Numerical Password:
+ID: {7FE7**78-**************************} We have only the recovery protector
+and TPM protector was missing. Cause The TPM protector was removed by a script
+executed through the SCCM Task sequence. //From BitLocker-API event: Information
+DD-MM-YYYY H:MM:SS PM BitLocker-API 776 None A BitLocker key protector was
+removed.--------->TPM protector was removed. Protector GUID:
+{6e8b**14*********************} Identification GUID:
+{f30**fc6-*********************} \\ The protector removal was done under system
+context Information DD:MM:YYYY H:MM:SS PM BitLocker-API 775 None A BitLocker key
+protector was created.---------->TPM protector was created. Protector GUID:
+{6e8**814-*****************} Identification GUID: {f30**fc6-*****************}
+Information DD:MM:YYYY H:MM:SS PM BitLocker-API 775 None A BitLocker key
+protector was created.---------->Recovery protector was created. Protector GUID:
+{7fe7**78-*****************} Identification GUID: {f30**fc6-*****************}
+//From TSS_HOSTNAME_YYMMDD-HHMMSS_Log-DND_SetupReport\SCCM\smsts.log: <![LOG[
+File: http:Servername:443/Folder/sccm?/RemoveTPM.ps1]LOG]!><time="HH:MM:SS"
+date="MM-DD-YYYY" component="InstallSoftware" context="" type="1" thread="1604"
+file="downloadcontent.cpp:526"> <![LOG[Downloading file
+Scriptpath/sccm?/RemoveTPM.ps1 range 0-293]LOG]!><time="HH-MM-SS" date="MM-DD-
+YYYY" component="InstallSoftware" context="" type="1" thread="1604"
+file="downloadcontent.cpp:1628"> <![LOG[Downloaded file from
+http:Folder/sccm?/RemoveTPM.ps1 to C:\_SMSTaskSequence\Folder\RemoveTPM.ps1
+]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY" component="InstallSoftware"
+context="" type="0" thread="1604" file="downloadcontent.cpp:1815"> \\ From above
+location, the script was copied into local directory. //From
+TSS_HOSTNAME_YYMMDD-HHMMSS_Log-DND_SetupReport\SCCM\Ccm32BitLauncher.log: Window
+mode: 0]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY" component="Ccm32BitLauncher"
+context="" type="1" thread="1672" file="ccm32bitlauncher.cpp:332"> <![LOG[Unable
+to load profiler: 0x800700c1]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY"
+component="Ccm32BitLauncher" context="" type="2" thread="1672"
+file="Logging.cpp:805"> <![LOG[Launched process 14120 for
+installation]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY"
+component="Ccm32BitLauncher" context="" type="1" thread="1672"
+file="ccm32bitlauncher.cpp:374"> <![LOG[SessionId = 1; SystemContext = 1;
+Interactive = 0; UseNAA = 0]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY"
+component="Ccm32BitLauncher" context="" type="1" thread="10396"
+file="Ccm32BitWrapper.cpp:122"> <![LOG[CcmCreateProcess: Running from CcmExec or
+CcmExec not treated as managed installer; calling CreateProcess
+directly.]LOG]!><time=" HH:MM:SS " date="MM-DD-YYYY"
+component="Ccm32BitLauncher" context="" type="0" thread="10396"
+file="util.cpp:4940"> <![LOG[Commandline:
+"C:\WINDOWS\sysnative\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy
+Bypass -Command .\RemoveTPM.ps1 \\ The Script was executed on above time. //From
+TSS_HOSTNAME_YYMMDD-HHMMSS_Log-DND_SetupReport\SCCM\execmgr-YYYYDDMM-HHMMSS.log:
+AdvertisementId = "IC***3C7"; ClientID = "GUID:******************************";
+DateTime = "YYYYMMDDHHMMSS+000"; MachineName = "HOSTNAME"; PackageName =
+"ICP***42"; ProcessID = 3416; ProgramName = "Remove TPM - silent"; SiteCode =
+"ICP"; ThreadID = 30784; UserContext = "NT AUTHORITY\\SYSTEM"; +++++++
+<![LOG[Executing program
+"%Windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy
+Bypass -Command .\RemoveTPM.ps1 in Admin context]LOG]!><time="HH:MM:SS"
+date="MM-DD-YYYY" component="execmgr" context="" type="1" thread="10396"
+file="executionrequest.cpp:3319"> <![LOG[Command line arguments when parsed
+.\RemoveTPM.ps1]LOG]!><time="HH:MM:SS" date="MM-DD-YYYY" component="execmgr"
+context="" type="1" thread="10396" file="cmdline.cpp:95"> <![LOG[Successfully
+prepared command line
+"C:\WINDOWS\sysnative\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy
+Bypass -Command .\RemoveTPM.ps1]LOG]!><time="HH:MM:SS" date="MM-DD-YYYY"
+component="execmgr" context="" type="1" thread="10396"
+file="scriptexecution.cpp:652"> <![LOG[Command line =
+"C:\WINDOWS\sysnative\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy
+Bypass -Command .\RemoveTPM.ps1, Working Directory =
+C:\_SMSTaskSequence\Packages\ICP***42\]LOG]!><time="HH:MM:SS" date="MM-DD-YYYY"
+component="execmgr" context="" type="1" thread="10396"
+file="scriptexecution.cpp:352"> <![LOG[Running
+"C:\WINDOWS\sysnative\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy
+Bypass -Command .\RemoveTPM.ps1 with 32bitLauncher]LOG]!><time="HH:MM:SS"
+date="MM-DD-YYYY" component="execmgr" context="" type="1" thread="10396"
+file="scriptexecution.cpp:370"> CommandLine =
+"\"C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe\"
+-ExecutionPolicy Bypass -Command . \\RemoveTPM.ps1"; \\ At the above time, that
+script was executed. Article resolution Since the TPM protector was removed by
+the SCCM Task sequence, I advised the customer to contact the SCCM team to
+determine who executed the script and the reason behind it.
+
+================================================================================

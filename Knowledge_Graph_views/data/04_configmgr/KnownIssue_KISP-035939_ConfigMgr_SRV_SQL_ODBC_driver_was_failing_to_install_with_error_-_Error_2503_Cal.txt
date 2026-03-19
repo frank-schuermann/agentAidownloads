@@ -1,0 +1,48 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-035939
+ConfigMgr: SRV: SQL ODBC driver was failing to install with error - "Error 2503 Called RunScript when not marked in progress" and "Error 2502 Called InstallFinalize when no install in progress."
+================================================================================
+
+Issue ID     : KI-KISP-035939
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-11-22
+Last Updated : 2024-11-22
+Source KB     : KISP-035939
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-sql-odbc-driver-was-failing-to-install-with-error-error-2503-called-runscript-when-not-marked-in-progress-and-error-2502-called-installfinalize-when-no-install-in-progress-b5b4df2b-0f19-94ba-170f-2532f9a47afb
+Tags         : ConfigMgr, SQL
+
+SYMPTOMS:
+---------
+Symptom CX was trying to upgrade their SCCM infrastructure to latest version but
+the pre-req check failed with ODBC driver install failure. we tried to install
+the ODBC driver manually but it failled with following errors- "Error 2503
+Called RunScript when not marked in progress" "Error 2502 Called InstallFinalize
+when no install in progress."
+
+ROOT CAUSE:
+-----------
+MSI installation was failing manually on the sever. no particular reason but
+access denied on temp folder.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-035939
+for full scope.
+
+WORKAROUND:
+-----------
+1/ We cleaned up the c:\windows\temp folder and made sure the file count in it
+is less than 64k files. 2/ we tried the following commands to check if there was
+a system level corruption- sfc /scannow DISM.exe /Online /Cleanup-Image
+/RestoreHealth /Source:C:\RepairSource\Windows /LimitAccess 3/ We gave the user
+running the install full access to temp folder - Go to Local Disc (C:) and open
+the Windows folder. Find the Temp folder and right-click on it. Go to Properties
+>>> Security tab >>> Advanced. Click on your Windows user and change the
+permission to Full control. Click Apply. If you receiv
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-035939
+
+================================================================================

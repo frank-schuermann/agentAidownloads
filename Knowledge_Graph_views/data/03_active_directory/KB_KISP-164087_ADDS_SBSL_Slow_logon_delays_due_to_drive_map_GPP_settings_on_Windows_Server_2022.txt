@@ -1,0 +1,164 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-164087
+ADDS: SBSL: Slow logon delays due to drive map GPP settings on Windows Server 2022 running Citrix application
+================================================================================
+
+Article ID       : KISP-164087
+Language          : en-us
+Created           : 2025-06-16
+Last Modified     : 2025-06-16
+Views             : 3
+Keywords          : QUIC,Webdav,slow logon
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-sbsl-slow-logon-delays-due-to-drive-map-gpp-settings-on-windows-server-2022-running-citrix-application-af5db52e-5157-95e9-e482-8cc5b9f86db7
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: SBSL: Slow logon delays due to drive map GPP settings on Windows Server
+2022 running Citrix application Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 201250 link for any
+updates. Author: Pruthviraju Dobaspet Summary/Symptom Our customer had Windows
+Server 2016 Terminal servers in their environment, and they are being now
+replaced by Windows Server 2022 Terminal servers (Citrix Servers). Our customer
+has observed a login delay in getting one of the GPO processing for mapping the
+Network Drives. The shares are hosted on NetApp Appliances and available via DFS
+Name spaces. Drive mapping works fine if the customer has rights to the share
+and network connectivity from the Remote Desktop host (Running Citrix
+Application) to the File share. However, the customer has noticed a considerable
+delay of 179328 milliseconds (2.9 minutes) to get on to the desktop. Cause After
+a long investigation with multiple sets of SBSL data, there were attempts made
+to use NetBIOS protocol on Port 443 and QUIC protocol on port 139. Initially, it
+was suggested to disable these protocols on Windows Server 2022, but this did
+not help. Further checking the new set of data, it was found that WebDAV
+communication is initiated on Windows Server 2022 RDS Server, which was not seen
+on Windows Server 2016 RDS Server. It was suggested to disable WebDAV components
+by disabling the “WebClient service” on the Windows Server 2022. Article
+resolution The delay-causing component was identified on this service request.
+Removing the WebDAV component on the RDS if not needed fixed the GPO processing
+delays on the server. The customer has seen a significant difference in the
+login time after disabling the “WebClient” Service on the server More
+information GPO operation log shows we take 160sec to apply GP Drive Maps CSE.
+Network trace shows below details, although we have disabled NETBIOS and QUIC,
+still trying to connect using WEBDAV. We try to connect to file server on port
+445 and it fails: 13:36:02.225893 0.000597 10.201.101.12 58938 7.7.7.7 53 DNS 90
+Standard query 0x62b1 A fileserver 13:36:02.226467 0.000574 7.7.7.7 53
+10.201.101.12 58938 DNS 104 Standard query response 0x62b1 A fileserver A
+10.172.85.6 13:36:02.227765 0.001298 10.201.101.12 64279 10.172.85.6 445 TCP 66
+64279 → 445 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:03.234374 0.269071 10.201.101.12 64279 10.172.85.6 445 TCP 66 [TCP
+Retransmission] 64279 → 445 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460
+WS=256 SACK_PERM 13:36:05.245197 0.012939 10.201.101.12 64279 10.172.85.6 445
+TCP 66 [TCP Retransmission] 64279 → 445 [SYN] Seq=0 Win=64240 Len=0 MSS=1460
+WS=256 SACK_PERM 13:36:09.251883 0.012002 10.201.101.12 64279 10.172.85.6 445
+TCP 66 [TCP Retransmission] 64279 → 445 [SYN] Seq=0 Win=64240 Len=0 MSS=1460
+WS=256 SACK_PERM 13:36:17.265167 0.013085 10.201.101.12 64279 10.172.85.6 445
+TCP 66 [TCP Retransmission] 64279 → 445 [SYN] Seq=0 Win=64240 Len=0 MSS=1460
+WS=256 SACK_PERM Then perform a DNS query for domain-name, which is the other
+domain name. 13:36:23.270465 0.003882 10.201.101.12 58938 7.7.7.7 53 DNS 82
+Standard query 0xb99e A domain-name 13:36:23.270974 0.000509 7.7.7.7 53
+10.201.101.12 58938 DNS 302 Standard query response 0xb99e A domain-name A
+10.166.35.106 A 10.166.35.108 A 10.166.35.122 A 10.166.64.176 A 10.166.64.173 A
+10.166.64.172 A 10.166.35.105 A 10.166.35.109 A 10.166.64.175 A 10.166.35.104 A
+10.166.64.170 A 10.166.64.171 A 10.166.64.174 A 10.166.35.107 We attempt to
+connect on port 445 and it fails: 13:36:23.341287 0.000322 10.201.101.12 64283
+10.166.35.106 445 SMB2 180 Tree Connect Request Tree: share-name 13:36:23.353030
+0.011743 10.166.35.106 445 10.201.101.12 64283 SMB2 130 Tree Connect Response,
+Error: STATUS_BAD_NETWORK_NAME 13:36:23.353242 0.000096 10.201.101.12 64283
+10.166.35.106 445 SMB2 180 Tree Connect Request Tree: share-name 13:36:23.365027
+0.008581 10.166.35.106 445 10.201.101.12 64283 SMB2 130 Tree Connect Response,
+Error: STATUS_BAD_NETWORK_NAME 13:36:23.423815 0.000329 10.201.101.12 64284
+10.166.35.107 445 SMB2 180 Tree Connect Request Tree: share-name 13:36:23.435585
+0.011770 10.166.35.107 445 10.201.101.12 64284 SMB2 130 Tree Connect Response,
+Error: STATUS_BAD_NETWORK_NAME Then we start to try and connect using WEBDAV:
+13:36:23.535821 0.006855 10.201.101.12 64286 10.166.35.106 80 TCP 66 64286 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:36:24.543131
+0.060673 10.201.101.12 64286 10.166.35.106 80 TCP 66 [TCP Retransmission] 64286
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:26.554663 0.028698 10.201.101.12 64286 10.166.35.106 80 TCP 66 [TCP
+Retransmission] 64286 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:30.561266 0.001005 10.201.101.12 64286 10.166.35.106 80 TCP 66 [TCP
+Retransmission] 64286 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:38.574556 0.015830 10.201.101.12 64286 10.166.35.106 80 TCP 66 [TCP
+Retransmission] 64286 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:44.576919 0.001508 10.201.101.12 64287 10.166.35.108 80 TCP 66 64287 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:36:45.581505
+0.001480 10.201.101.12 64287 10.166.35.108 80 TCP 66 [TCP Retransmission] 64287
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:47.592080 0.028834 10.201.101.12 64287 10.166.35.108 80 TCP 66 [TCP
+Retransmission] 64287 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:51.598432 0.000277 10.201.101.12 64287 10.166.35.108 80 TCP 66 [TCP
+Retransmission] 64287 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:36:59.612213 0.019512 10.201.101.12 64287 10.166.35.108 80 TCP 66 [TCP
+Retransmission] 64287 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:05.615085 0.016910 10.201.101.12 64290 10.166.35.122 80 TCP 66 64290 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:37:06.619200
+0.013451 10.201.101.12 64290 10.166.35.122 80 TCP 66 [TCP Retransmission] 64290
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:08.629786 0.010866 10.201.101.12 64290 10.166.35.122 80 TCP 66 [TCP
+Retransmission] 64290 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:12.635855 0.012182 10.201.101.12 64290 10.166.35.122 80 TCP 66 [TCP
+Retransmission] 64290 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:20.648285 0.195536 10.201.101.12 64290 10.166.35.122 80 TCP 66 [TCP
+Retransmission] 64290 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:26.653062 0.014138 10.201.101.12 64291 10.166.64.176 80 TCP 66 64291 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:37:27.657896
+0.027952 10.201.101.12 64291 10.166.64.176 80 TCP 66 [TCP Retransmission] 64291
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:29.668726 0.013652 10.201.101.12 64291 10.166.64.176 80 TCP 66 [TCP
+Retransmission] 64291 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:33.675495 0.031538 10.201.101.12 64291 10.166.64.176 80 TCP 66 [TCP
+Retransmission] 64291 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:41.675131 0.015891 10.201.101.12 64291 10.166.64.176 80 TCP 66 [TCP
+Retransmission] 64291 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:47.678210 0.000906 10.201.101.12 64292 10.166.64.173 80 TCP 66 64292 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:37:48.683076
+0.002953 10.201.101.12 64292 10.166.64.173 80 TCP 66 [TCP Retransmission] 64292
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:50.693876 0.003222 10.201.101.12 64292 10.166.64.173 80 TCP 66 [TCP
+Retransmission] 64292 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:37:54.700430 0.003536 10.201.101.12 64292 10.166.64.173 80 TCP 66 [TCP
+Retransmission] 64292 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:02.713571 0.002376 10.201.101.12 64292 10.166.64.173 80 TCP 66 [TCP
+Retransmission] 64292 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:08.718842 0.000378 10.201.101.12 64299 10.166.64.172 80 TCP 66 64299 → 80
+[SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:38:09.722521
+0.012144 10.201.101.12 64299 10.166.64.172 80 TCP 66 [TCP Retransmission] 64299
+→ 80 [SYN, ECE, CWR] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:11.733347 0.014731 10.201.101.12 64299 10.166.64.172 80 TCP 66 [TCP
+Retransmission] 64299 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:15.739897 0.016220 10.201.101.12 64299 10.166.64.172 80 TCP 66 [TCP
+Retransmission] 64299 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:23.753768 0.014616 10.201.101.12 64299 10.166.64.172 80 TCP 66 [TCP
+Retransmission] 64299 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+New DNS query for another domain: 13:38:29.772523 0.000254 10.201.101.12 58938
+7.7.7.7 53 DNS 82 Standard query 0x1540 A domain-name 13:38:29.772926 0.000360
+7.7.7.7 53 10.201.101.12 58938 DNS 302 Standard query response 0x1540 A domain-
+name A 10.126.23.29 A 10.126.128.106 A 10.126.128.102 A 10.126.0.131 A
+10.126.23.16 A 10.126.0.130 A 10.126.23.30 A 10.126.23.31 A 10.172.66.38 A
+10.172.66.37 A 10.126.151.46 A 10.126.128.103 A 10.126.128.76 A 10.126.128.104
+We try to connect using WEBDAV and it fails: 13:38:29.884132 0.008439
+10.201.101.12 64302 10.126.23.29 80 TCP 66 64302 → 80 [SYN, ECE, CWR] Seq=0
+Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:38:29.897389 0.005178 10.126.23.29
+80 10.201.101.12 64302 TCP 60 80 → 64302 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0
+13:38:30.401303 0.013483 10.201.101.12 64302 10.126.23.29 80 TCP 66 [TCP Port
+numbers reused] 64302 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:30.414595 0.012487 10.126.23.29 80 10.201.101.12 64302 TCP 60 80 → 64302
+[RST, ACK] Seq=1 Ack=1 Win=0 Len=0 13:38:30.926458 0.028896 10.201.101.12 64302
+10.126.23.29 80 TCP 66 [TCP Port numbers reused] 64302 → 80 [SYN] Seq=0
+Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:38:30.939780 0.012428 10.126.23.29
+80 10.201.101.12 64302 TCP 60 80 → 64302 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0
+13:38:31.453253 0.013872 10.201.101.12 64302 10.126.23.29 80 TCP 66 [TCP Port
+numbers reused] 64302 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM
+13:38:31.466483 0.013230 10.126.23.29 80 10.201.101.12 64302 TCP 60 80 → 64302
+[RST, ACK] Seq=1 Ack=1 Win=0 Len=0 13:38:31.978414 0.015313 10.201.101.12 64302
+10.126.23.29 80 TCP 66 [TCP Port numbers reused] 64302 → 80 [SYN] Seq=0
+Win=64240 Len=0 MSS=1460 WS=256 SACK_PERM 13:38:31.991679 0.012172 10.126.23.29
+80 10.201.101.12 64302 TCP 60 80 → 64302 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0 Why
+are we trying to use WEBDAV? We may need to check the SMB configuration and
+understand why are we trying to connect with WEBDAV also. As per customer in
+Windows 2016 Citrix environment WEBDAV was not used. Disabling WEBDAV components
+on Windows Server 2022 resolved slow login issue. Notes: First published: Jun
+16, 2025 Keywords: QUIC, Webdav, slow logon
+
+================================================================================

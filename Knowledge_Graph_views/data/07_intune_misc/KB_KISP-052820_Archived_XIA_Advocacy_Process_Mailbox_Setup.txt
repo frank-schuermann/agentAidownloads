@@ -1,0 +1,24 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-052820
+Archived: XIA: Advocacy: Process: Mailbox Setup
+================================================================================
+
+Article ID       : KISP-052820
+Language          : en-us
+Created           : 2025-03-13
+Last Modified     : 2025-03-13
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/archived-xia-advocacy-process-mailbox-setup-48fe9fb4-e9b7-c1a8-42c0-6fc166f1c9ec
+
+================================================================================
+CONTENT:
+================================================================================
+
+Archived: XIA: Advocacy: Process: Mailbox Setup This article has been archived.
+If this was a mistake, leave feedback in the survey at the bottom of the page.
+Change history Item Title Date CONTENT TRACKING 189659 Cross LOB: Project CT:
+Applying new archival standards to Archived folder in C3 - 2 3/24/2022 CONTENT
+TRACKING 184329 Advocacy Team: Archive 36 advocacy articles no longer used -
+(3rd set of 10KBs) 1/11/2022
+
+================================================================================

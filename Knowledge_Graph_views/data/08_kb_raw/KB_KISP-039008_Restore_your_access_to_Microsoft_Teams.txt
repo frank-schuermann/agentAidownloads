@@ -1,0 +1,46 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-039008
+Restore your access to Microsoft Teams - Microsoft Support
+================================================================================
+
+Article ID       : KISP-039008
+Language          : en-us
+Created           : 2024-12-11
+Last Modified     : 2026-03-16
+Views             : 1
+Source URL         : https://support.microsoft.com/en-us/office/restore-your-access-to-microsoft-teams-5a41856e-66cf-4442-ad30-1c1ea5569d4a
+Description       : Whenever your access is challenged, Teams will show you a sign-in banner and request that you Sign in to re-authenticate and regain access.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Whenever your access to Teams is challenged, you may see a sign-in banner
+requesting that you Sign in to re-authenticate and regain access. ​​​​​​​ If
+Teams asks you to sign in again, you won't be able to chat, call or join
+meetings until you do. Follow the steps below to restore access. Fix the problem
+Select the Sign in banner or button. In the window that opens, enter your sign-
+in info and complete any prompts, such as multi-factor authentication (MFA). If
+you don't see the sign in button, check the notification area on the taskbar
+(near the clock). Look for the Teams icon with a badge - for example, a dot or
+exclamation mark. Select the Teams icon to open the sign-in window. If the sign-
+in window still doesn't open, quit and reopen Teams. In the notification area,
+select the Teams icon, and then select Quit. Open teams again. After you sign
+in, the banner should disappear, and you should be able to use Teams normally.
+If you see the banner again, repeat the steps above or contact your IT
+administrator for assistance. Help prevent the issue Connect to the network your
+organization requires before you open Teams. For example, if your organization
+requires a VPN, connect to the VPN first. Try to avoid switching between
+different networks while Teams is open. For example, if you are using a laptop,
+don't disconnect from your office Wi-Fi and connect to a public Wi-Fi without
+signing out of Teams first. Keep Teams up to date. In Teams, select your profile
+picture, then select Check for updates (if available). Why this happens Teams
+may ask you to sign in again for security reasons. For example: Your
+organization requires a specific network (for example, a VPN), and you are not
+connected. Your organization detects a sign-in risk and asks you to verify your
+identity (for example, with your phone). A password breach has occurred, and
+your organization requires you to change your password right away. Your device
+does not meet your organization’s requirements, so you must verify your identity
+before you can continue. Related topics: I can't reconnect to Teams
+
+================================================================================

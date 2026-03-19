@@ -1,0 +1,117 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035510
+KB5034229: Compatibility update for installing and recovering Windows Server, version 23H2: January 9, 2024
+================================================================================
+
+Article ID       : KISP-035510
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/kb5034229-compatibility-update-for-installing-and-recovering-windows-server-version-23h2-january-9-2024-50d8ff48-f9c9-4610-b7fa-e052aa21ad8f
+
+================================================================================
+CONTENT:
+================================================================================
+
+KB5034229: Compatibility update for installing and recovering Windows Server,
+version 23H2: January 9, 2024 Summary This update makes improvements to the
+Windows recovery features for Windows Server, version 23H2. How to get this
+update Install this update Release Channel Available Next Step Windows Update
+and Microsoft Update Yes This update is available through Windows Update. It
+will be downloaded and installed automatically. Microsoft Update Catalog Yes To
+get the standalone package for this update, go to the Microsoft Update Catalog
+website. To download updates from the Update Catalog, see Steps to download
+updates from the Windows Update Catalog. Windows Server Update Services (WSUS)
+and Microsoft Endpoint Configuration Manager Yes This update will be installed
+as part of the associated Windows monthly security update. Additionally, this
+update will automatically sync with WSUS if you configure Products and
+Classifications as follows: Product: Windows 11​​​​​​​ Classification: Security
+Updates Prerequisites There are no prerequisites to apply this update. Restart
+information You do not have to restart your device after you apply this update.
+Removal information This update cannot be removed once it is applied to a
+Windows image. Update replacement information This update does not replace any
+previously released update. Verify the installation of this update After
+installing this update, the WinRE version installed on the device should be
+10.0.25398.640​​​​​​​. ​​​​​ Methods to verify the WinRE version
+installed​​​​​​​​​​​​​​ GetWinReVersion.ps1WinREAgent eventDISM command To get
+the version of WinRE installed, run the following PowerShell script
+"GetWinReVersion.ps1" with Administrator credentials. After you run the script,
+you should receive the installed WinRE version as in the following example:
+GetWinReVersion.ps1 PowerShell script ##########################################
+###################################################### # # Copyright (c)
+Microsoft Corporation. # Licensed under the MIT License. # # THE SOFTWARE IS
+PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR # IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, # FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE # AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER # LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, # OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE # SOFTWARE. # ############
+################################################################################
+#### # Function to get WinRE path function GetWinREPath { $WinRELocation =
+(reagentc /info | Select-String "Windows RE location") if ($WinRELocation) {
+return $WinRELocation.ToString().Split(':')[-1].Trim() } else { Write-Host
+"Failed to find WinRE path" -ForegroundColor Red exit 1 } } # Creates and needs
+to be return the mount directory function GetMountDir { # systemdirve\mnt
+$MountDir = "$env:SystemDrive\mnt" if (-not (Test-Path $MountDir)) { New-Item
+-ItemType Directory -Path $MountDir -Force | Out-Null } return $MountDir } #
+Function to get WinRE version function GetWinREVersion { $mountedPath =
+GetMountDir $filePath = "$mountedPath\Windows\System32\winpeshl.exe"
+$WinREVersion = (Get-Item $filePath).VersionInfo.FileVersionRaw.Revision return
+[int]$WinREVersion } # Main Execution $WinREPath = GetWinREPath # Make dir
+C:\mnt if not exists $TempDir = GetMountDir # Get the read write permission for
+this directory if (-not (Test-Path $TempDir)) { New-Item -ItemType Directory
+-Path $TempDir -Force | Out-Null } # Mount WinRE image dism /Mount-Image
+/ImageFile:"$WinREPath\winre.wim" /Index:1 /MountDir:"$TempDir" $WinREVersion =
+GetWinREVersion Write-Host "WinRE Version: $WinREVersion" -ForegroundColor Cyan
+dism /Unmount-Image /MountDir:"$TempDir" /Discard Remove-Item -Path $TempDir
+-Force -Recurse WinREAgent logs events related to the Windows Recovery
+Environment (WinRE), primarily recording details about the creation,
+modification, and usage of the recovery image. In this case, we are looking for
+Event ID: 4501 Servicing succeeded events. If you are unsuccessful in locating
+WinREAgent servicing events because of space limitations that might occur in
+your environment, we suggest you use the DISM command. Open the Windows Search
+bar. To do this, right-click Start and then click Search. In the Search bar,
+type Event Viewer and then click Event Viewer. Expand Windows Logs and then
+click System. In the right-side navigation pane, under Actions, click Find. In
+the Find what: box, type WinREAgent and then click Find Next. Click Cancel to
+close the Find dialog box. The WinREAgent servicing event should be shown in the
+bottom middle pane and you should see a message similar to the followng on the
+General tab: Servicing succeeded. The Windows Recovery Environment version is
+now: 10.0.22621.4742 The WinRE version in this example is 10.0.22621.4742.
+​​​​​​​To view the Event Properties pane for the WinREAgent servicing event,
+right-click the WinREAgent entry in the System pane (top middle pane) and then
+click Event Properties. ​​​​​​​ Open an elevated Windows command prompt. To do
+this, press the Windows key, type cmd, right-click Command Prompt, and then
+click Run as Administrator. At the command prompt, type reagentc /info and then
+press Enter. Note the path of the Windows RE location. For this example, the
+location is \\?\GLOBALROOT\device\harddisk0\partition5\Recovery\WindowsRE. This
+path may vary based on your Windows installation. At the command prompt, use the
+DISM command to retrieve the Windows Recovery Environment (WinRE) information.
+For this example, enter the following command and then press Enter: Dism /Get-
+ImageInfo /ImageFile:\\?\GLOBALROOT\device\harddisk0\partition5\Recovery\Windows
+RE\winre.wim /index:1 Note The default name for the WinRE image file is
+winre.wim. In your environment, the name of the WinRE image file might be
+different. Also, the Index number of the default winre.wim file is 1. In your
+environment, the Index number might be different. The WinRE image file
+information is returned as illustrated in the following example: The WinRE
+version in this example is 10.0.22621.4742. File information The English (United
+States) version of this software update installs files that have the attributes
+that are listed in the following tables. File version: v1.002 For all supported
+x64-based versions File name File version Date Time File size skci.dll
+10.0.25398.640 11-Dec-23 20:14 336,232 bootmgfw.efi 10.0.25398.640 11-Dec-23
+20:09 2,644,336 bootmgr.efi 10.0.25398.640 11-Dec-23 20:09 2,627,456 boot.stl
+Not versioned 29-Nov-23 18:01 10,895 winsipolicy.p7b Not versioned 11-Dec-23
+17:47 10,341 winload.exe 10.0.25398.640 11-Dec-23 20:08 1,704,600 winload.efi
+10.0.25398.640 11-Dec-23 20:08 2,967,456 driversipolicy.p7b Not versioned
+29-Nov-23 18:01 150,679 ci.dll 10.0.25398.640 11-Dec-23 20:09 1,051,056
+driver.stl Not versioned 29-Nov-23 18:02 25,628 winpeshl.exe 10.0.25398.640
+11-Dec-23 19:54 53,248 wpeutil.dll 10.0.25398.640 11-Dec-23 19:54 155,648
+wpeutil.exe 10.0.25398.640 11-Dec-23 20:02 36,864 wpeinit.exe 10.0.25398.640
+11-Dec-23 20:01 57,344 startnet.cmd Not versioned 29-Nov-23 18:02 9 References
+Learn about the standard terminology that is used to describe Microsoft software
+updates. Query words SafeOS DU Bug ID Title 46465203 [MSRC 78116]
+`systemdatadevice` element vulnerability in Secure Boot to obtain a SYSTEM shell
+by replacing SYSTEM hive with attacker's - Individual - Copy
+
+================================================================================

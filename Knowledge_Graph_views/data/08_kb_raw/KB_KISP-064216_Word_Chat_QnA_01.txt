@@ -1,0 +1,25 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-064216
+Word_Chat QnA_01 - Microsoft Support
+================================================================================
+
+Article ID       : KISP-064216
+Language          : en-us
+Created           : 2025-04-15
+Last Modified     : 2025-04-15
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/word-chat-qna-01-8e4913a4-d805-4e2b-8d64-7c73b9e6d398
+
+================================================================================
+CONTENT:
+================================================================================
+
+Feature type Improvement Title Listen to Copilot with Read Aloud in Word
+Platforms Available on: Mac Web Windows Description Enhance your workflow with
+the new Read Aloud feature for Copilot responses in Word. Dynamic
+interaction​​​​​​​: Hear Copilot’s responses read aloud directly from the chat
+pane. Multitask efficiently: Listen to responses while tackling routine tasks.
+Cross-platform access: Available now for Word and PowerPoint on web, desktop,
+and Mac. Links Try in Word
+
+================================================================================

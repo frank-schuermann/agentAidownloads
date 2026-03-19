@@ -1,0 +1,50 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-048693
+ConfigMgr: Machines are failing to scan using WSUS.
+================================================================================
+
+Issue ID     : KI-KISP-048693
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-03-05
+Last Updated : 2025-03-05
+Source KB     : KISP-048693
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-machines-are-failing-to-scan-using-wsus-4b4637d0-a2eb-1d0e-a61f-f642c1a778b3
+Tags         : ConfigMgr, WSUS
+
+SYMPTOMS:
+---------
+Symptom Machines are failing to scan using WSUS. Cause These settings are found
+in IIS Manager > Application Pools > choose WsusPool and then click the Advanced
+Settings link in the right-side pane of IIS manager. Queue Length was set to
+25000. Error Code: 0x80244022 (2149859362) Error Name:
+WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL Error Source: Windows Update Agent Error
+Message: Same as HTTP status 503 - the service is temporarily overloaded.
+Article
+
+ROOT CAUSE:
+-----------
+These settings are found in IIS Manager > Application Pools > choose WsusPool
+and then click the Advanced Settings link in the right-side pane of IIS manager.
+Queue Length was set to 25000. Error Code: 0x80244022 (2149859362) Error Name:
+WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL Error Source: Windows Update Agent Error
+Message: Same as HTTP status 503 - the service is temporarily overloaded.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-048693
+for full scope.
+
+WORKAROUND:
+-----------
+These settings are found in IIS Manager > Application Pools > choose WsusPool
+and then click the Advanced Settings link in the right-side pane of IIS manager.
+Queue Length was set to 25000. Modified the Queue Length to 2000. Did IISreset.
+Notes: First published: Mar 05, 2025 Keywords: "0x80244022", "temporarily
+overloaded", "503"
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-048693
+
+================================================================================

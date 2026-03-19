@@ -1,0 +1,92 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-042484
+Procedure: VISOps: Using the One Stop Onboarding Template to provision new users to multiple tools
+================================================================================
+
+Article ID       : KISP-042484
+Language          : en-us
+Created           : 2024-12-17
+Last Modified     : 2024-12-23
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/procedure-visops-using-the-one-stop-onboarding-template-to-provision-new-users-to-multiple-tools-8157814e-e26c-43c0-b0f4-080f399d0e4a
+
+================================================================================
+CONTENT:
+================================================================================
+
+Procedure: VISOps: Using the One Stop Onboarding Template to provision new users
+to multiple tools Have feedback about this article? – Please provide feedback in
+the survey link at the bottom of this article. Your feedback matters to us and
+helps improve article content and support experience for you and our customers.
+Share your suggestions by providing commentary in the survey box provided. The
+more you tell us the more we can help. This survey isn’t anonymous. If you leave
+a comment, you may be contacted by a member of the Process & Program Excellence
+team​​​​​​​ for more information. Who should use this article? Role: Delivery
+Partner Admins Organization: All Location: Delivery Partner Sites What is this
+article about? This article provides instructions for using the One Stop
+Onboarding Template to provision new users to multiple tools and applications
+with one ticket submission to VISOps. This helps streamline the onboarding
+process as multiple templates don’t need to be filled out and submitted as
+separate tickets. Table of contents 1. Overview 2. Requirements 3. Filling out
+the template 3.1 Start here: 1. User Info tab 3.2 Completing the other tabs in
+the template 3.3 Completing the 9. Profiler Tools tab 4. Submit a ticket to
+VISOps 1. Overview The article details the process of filling out the One Stop
+Onboarding Template which replaces the need to fill out various other templates
+and allows the Delivery Partner Admin to just file one ticket for users to be
+provisioned to several tools or applications by VISOps. The Delivery Partner
+Admin must fill out a One Stop Onboarding Template with specific details about
+the users and their provisioning needed to various tools. The template must be
+attached to the SNOW ticket. Return to top 2. Requirements To minimize delays in
+processing your request, ensure the following requirements are met. A completed
+One Stop Onboarding Template (excel file). Submission of a ticket to the VISOps
+team in SNOW. Return to top 3. Filling out the template The Delivery Partner
+Admins must download a copy of One Stop Onboarding Template, then fill out the
+first tab, 1. User Info. The information entered on this tab will carry over to
+all the other tabs within the template. Important: Delivery Partner Admins can
+only enter values into the cells which are green and white in color. The blue
+cells are locked from editing. The template is built to provision up to 10
+users. If the request is for greater than 10 users, the Delivery Partner Admins
+will need to submit a separate request to VISOps with a separate template filled
+in. The template tabs are numbered and it’s best for the Delivery Partner Admin
+to fill out each tab sequentially, starting with the first tab: 1. User Info.
+Return to top 3.1 Start here: 1. User Info tab The Delivery Partner Admins will
+fill out all columns on this tab. The information entered here will carry over
+to the other tabs in the file. This tab contains specific information about each
+user to be provisioned such as their name, background screen ID number, email
+address, line of business, and others. Return to top 3.2 Completing the other
+tabs in the template Starting with the second tab, 2. V- Account, the admin will
+enter the required information into the green and white cells. All blue cells
+are locked for editing. Key user information is populated into the blue cells on
+each tab. This is pulled from the first tab, 1. User Info. If there is a mistake
+on any information in a locked blue cell, the Delivery Partner Admin may correct
+it by returning to this first tab and making the correction there. The first
+editable column in every tab asks if the tool or application for that tab is
+needed or not. Delivery Partner Admins will need to select either Needed or Not
+Needed from the dropdown menu. This is important because these values are being
+used to build a working checklist on a hidden tab for VISOps to use to quickly
+complete the request. If Not Needed was selected, no other columns need to be
+filled out on that tab. The Delivery Partner Admin can then move on to the next
+tab. The last editable column is an optional free form Comments column where the
+Delivery Partner Admin may add any additional context or explanations that they
+feel VISOps may need to know when completing the request. Return to top 3.3
+Completing the 9. Profiler Tools tab On the tab, 9. Profiler Tools, the admin
+will enter values for all the many Profiler tools and other applications which
+VISOps also provisions. Like the other tabs, the first editable column asks if
+Profiler tool access is Needed or Not Needed. The Delivery Partner Admin will
+answer this question. For users where this access is Needed there are three
+columns: One column for tools needing access with the users V- Corp account
+alias. One column for tools needing access with the users MID account alias. One
+column for tools needing access with the users Delivery Partner specific company
+email alias. In each column, the Delivery Partner admin will choose the tools or
+applications needed from a dropdown menu. When more than one tool is needed for
+the same type of account, the Delivery Partner Admin will continue to select as
+many tools as needed from the dropdown menu. The template will add each tool
+selected to the cell in a string. If a tool was selected from the dropdown menu
+by mistake, the Delivery Partner Admin would need to delete the values entered
+into that cell and reselect them all again from the dropdown menu. Return to top
+4. Submit a ticket to VISOps Once the One Stop Onboarding Template is completed,
+submit a VISOps SNOW (aka.ms/visops) ticket. Ensure you attach the completed
+template to the ticket. Return to top Change history Item ID Change Description
+Date AECT Content Tracking Item 198284 Created new article. 12/17/2024
+
+================================================================================

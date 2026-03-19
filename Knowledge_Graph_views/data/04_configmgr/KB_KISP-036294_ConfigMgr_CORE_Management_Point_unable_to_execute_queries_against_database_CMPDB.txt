@@ -1,0 +1,81 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-036294
+ConfigMgr: CORE: Management Point unable to execute queries against database (CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09) 
+================================================================================
+
+Article ID       : KISP-036294
+Language          : en-us
+Created           : 2024-12-06
+Last Modified     : 2024-12-06
+Views             : 13
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-management-point-unable-to-execute-queries-against-database-cmpdbconnection-executesql-icommandtext-execute-failed-with-0x80040e09-95e0a324-e2b4-b6b0-1994-ffbfd35e39a6
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: CORE: Management Point unable to execute queries against database
+(CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09)
+Microsoft Configuration Manager (current branch) More...Less Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 197927 link
+for any updates. Author: Shivam Chhimwal Summary/Symptom There was only one
+proxy management point (located on Secondary Site Server) in customer`s
+environment with which the client machines were failing to communicate and was
+getting the error 0x8000000a We found that the client machine was getting 401 2
+(This HTTP status code indicates a problem in the authentication configuration
+settings on the server.) on the MP IIS logs We were getting error in
+MP_Framework.log which records the activities of the core management point and
+client framework components: +++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ MPDB
+ERROR - CONNECTION PARAMETERS SQL Server Name : XXXXXXX\XXXXXX SQL Database Name
+: CM_XXX Integrated Auth : True MPDB ERROR - EXTENDED INFORMATION MPDB Method :
+ExecuteSP() MPDB Method HRESULT : 0x80040E09 Error Description : The EXECUTE
+permission was denied on the object 'sp_GetPublicKeyForSMSID', database
+'CM_XXX', schema 'dbo'. OLEDB IID : {0C733A63-2A1C-11CE-ADE5-00AA0044773D}
+ProgID : Microsoft SQL Server Native Client 11.0 MPDB ERROR - INFORMATION FROM
+DRIVER SQL Server Name : XXXXXXXXXXXX Stored Procedure : sp_GetPublicKeyForSMSID
+Native Error no. : 229 Error State : 5 Class (Severity) : 14 Line number in SP :
+1 MpFramework 2/14/2023 2:15:06 PM 10280 (0x2828)
+======================================= MpFramework 2/14/2023 2:15:06 PM 10280
+(0x2828) CMpDatabase::GetClientPublicKeyEx(ClientID='GUID:9B2FBFB3-A2EB-4446-
+AE45-B79029F3CD09') failed (0x87d00242). MpFramework 2/14/2023 2:15:06 PM 10280
+(0x2828) Stored procedure failed Source: Microsoft Endpoint Configuration
+Manager ----- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Similar entries were
+present in MP_location.log: ++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09
+MP_LocationManager 2/14/2023 2:11:09 PM 12960 (0x32A0)
+======================================= MP_LocationManager 2/14/2023 2:11:09 PM
+12960 (0x32A0) MPDB ERROR - CONNECTION PARAMETERS SQL Server Name : XXX SQL
+Database Name : CM_XXX Integrated Auth : True MPDB ERROR - EXTENDED INFORMATION
+MPDB Method : ExecuteSP() MPDB Method HRESULT : 0x80040E09 Error Description :
+The EXECUTE permission was denied on the object 'MP_GetPortalCertificates',
+database 'CM_XXX', schema 'dbo'. OLEDB IID : {0C733A63-2A1C-11CE-
+ADE5-00AA0044773D} ProgID : Microsoft SQL Server Native Client 11.0 MPDB ERROR -
+INFORMATION FROM DRIVER SQL Server Name : XXX Stored Procedure :
+MP_GetPortalCertificates Native Error no. : 229 Error State : 5 Class (Severity)
+: 14 Line number in SP : 1 MP_LocationManager 2/14/2023 2:11:09 PM 12960
+(0x32A0) ======================================= MP_LocationManager 2/14/2023
+2:11:09 PM 12960 (0x32A0) CHandleLocationRequest::CreateReply failed with error
+(80040e09). MP_LocationManager 2/14/2023 2:11:09 PM 12960 (0x32A0) MP LM:
+Message discarded MP_LocationManager 2/14/2023 2:11:09 PM 12960 (0x32A0) +++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++ Cause Later customer informed that they have
+removed the MP from the domain and then re-joined it. We informed the customer
+that this is not supported and should not be performed. ++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ It's not
+supported to change the following configurations for a computer that hosts a
+site system role: Domain membership, including if you remove a site system from
+the domain, and then rejoin the same domain. Domain name Computer name
+Supporting article: Support for Active Directory domains - Configuration Manager
+| Microsoft Learn ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++ Article resolution We removed the computer
+account for the secondary site server (Proxy Management Point for which we are
+getting the error) from the Primary Site Server database: Then we readded it
+using the queries: CREATE LOGIN [XXXXXXXX\XXXXXXX$] FROM WINDOWS WITH
+DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english] GO CREATE USER
+[XXXXXXXX\XXXXXXX1$] FOR LOGIN [XXXXXXXX\XXXXXXX$] WITH DEFAULT_SCHEMA=[dbo] GO
+Issue was remediated post performing the above-mentioned operation.
+
+================================================================================

@@ -1,0 +1,70 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-030430
+SharePoint: Incorrect certificate applied to SharePoint Web Services
+================================================================================
+
+Article ID       : KISP-030430
+Language          : en-us
+Created           : 2024-11-04
+Last Modified     : 2024-11-04
+Views             : 5
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/sharepoint-incorrect-certificate-applied-to-sharepoint-web-services-a8f3e63c-82d3-6cc0-3198-50d3cf4a3ebe
+
+================================================================================
+CONTENT:
+================================================================================
+
+SharePoint: Incorrect certificate applied to SharePoint Web Services SharePoint
+Server More...Less Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 197091 link for any updates. Author: Revathi Krishnan
+Summary/Symptom On the Search Admin page, we see the error message "Underlying
+connection was closed - Unexpected Error occurred on Send" In the SharePoint ULS
+log, we see the below messages 10-24-2024 15:31:20.45 OWSTIMER.EXE (0x3E38)
+0x1DE8 SharePoint Server Search Administration acroo Unexpected failed to get
+default collection for application Search Service Application:
+System.Net.WebException: The underlying connection was closed: An unexpected
+error occurred on a send. ---> System.IO.IOException: Unable to read data from
+the transport connection: An existing connection was forcibly closed by the
+remote host. ---> System.Net.Sockets.SocketException: An existing connection was
+forcibly closed by the remote host at
+System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace --- at
+System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+at System.Net.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32
+count) at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer,
+AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken
+message, AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[]
+buffer, AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext
+executionContext, ContextCallback callback, Object state, Boolean
+preserveSyncCtx) at System.Threading.ExecutionContext.Run(ExecutionContext
+executionContext, ContextCallback callback, Object state, Boolean
+preserveSyncCtx) at System.Threading.ExecutionContext.Run(ExecutionContext
+executionContext, ContextCallback callback, Object state) at
+System.Net.TlsStream.ProcessAuthentication(LazyAsyncResult result) at
+System.Net.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size) at
+System.Net.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size) at
+System.Net.ConnectStream.WriteHeaders(Boolean async) --- End of inner exception
+stack trace --- at Microsoft.Office.Server.Search.Administration.SearchApi.RunOn
+Server[T](CodeToRun`1 remoteCode, CodeToRun`1 localCode, Boolean
+useCurrentSecurityContext, Int32 versionIn) at
+Microsoft.Office.Server.Search.Administration.SearchApi.GetVersion() at Microsof
+t.Office.Server.Search.Administration.SearchApi..ctor(SearchServiceApplication
+application) at Microsoft.Office.Server.Search.Administration.SearchApiFactory.C
+reateSearchApi(SearchServiceApplication application) at Microsoft.Office.Server.
+Search.Administration.SearchServiceApplication.get_SearchApi() at Microsoft.Offi
+ce.Server.Search.Administration.SearchServiceInstance.Synchronize()
+61025da1-9c2d-906c-349a-890ddd2b188f Cause Identified that Customer by mistake
+installed a custom certificate for " SharePoint Web services " Ran Netsh http
+show sslcert and confirmed the same Article resolution Confirmed App ID
+associated with "SharePoint Web Services" $cert = Get-ChildItem
+Cert:\LocalMachine\SharePoint |? {$_.Subject -like "CN=SharePoint Services*"}
+$ctp=$cert.Thumbprint netsh http show sslcert ipport=0.0.0.0:32844 $ctp netsh
+http delete sslcert 0.0.0.0:32844 $cmd = "netsh http add sslcert
+ipport=0.0.0.0:32844 certhash=$ctp appid={4dc3e181-e14b-4a21-b022-59fc669b0914}
+certstorename=SharePoint" start-process cmd.exe -ArgumentList "/k $cmd" iisreset
+
+================================================================================

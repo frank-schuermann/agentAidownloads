@@ -1,0 +1,72 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-039440
+Windows: App: Phone Link and Mobile Device UI is unavailable (greyed-out) due to policy on ALL Windows OS versions
+================================================================================
+
+Article ID       : KISP-039440
+Language          : en-us
+Created           : 2024-12-14
+Last Modified     : 2025-06-09
+Views             : 75
+Keywords          : Phone Linked,Policy,Mobile Devices,winx
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-app-phone-link-and-mobile-device-ui-is-unavailable-greyed-out-due-to-policy-on-all-windows-os-versions-01cf7341-626a-b9b2-b01b-660529917896
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows: App: Phone Link and Mobile Device UI is unavailable (greyed-out) due to
+policy on ALL Windows OS versions Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 197160 link for any
+updates. Author: Jonah Atkins Summary/Symptom Abstract No Phone Linked policies
+are being configured. Settings -> Bluetooth & devices -> Mobile Devices is
+greyed-out. The Phone Linked/Mobile Device UI is showing " Some of these
+settings are managed by your organization." Cause There are other policies that
+also cause the UI to be greyed out, here are two uncommon ones that have been
+causing customers issues. Since Phone Link app uses Microsoft accounts for
+signing in, certain policies that affect Microsoft accounts can cause the UI to
+grey out. #Computer Configuration > Windows Settings > Security Settings > Local
+Polices > Security Options "Accounts: Block Microsoft Accounts" RegKey:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+Dword: NoConnectedUser Value: (any value other than 0) #Computer Configuration
+-> Administrative Templates -> Windows Components -> Cloud Content "Turn off
+Microsoft consumer experiences."
+HKLM\Software\Policies\Microsoft\Windows\CloudContent Dword:
+DisableWindowsConsumerFeatures Value: 1 Note: Other policies that affect the
+ability to install app updates can also have impact on the UI being greyed-out.
+Article resolution Remove the policies/regkeys , perform a 'gpupdate /force' and
+the UI should no longer show it's controlled by policy after re-opening More
+information Here is a script you can run to check different locations in the
+registry where that UI would be affected. # Define the registry keys and values
+to check$regKeys = @( @{ Path =
+"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"; Name =
+"NoConnectedUser"; PolicyPath = "#Computer Configuration > Windows Settings >
+Security Settings > Local Polices > Security Options `nAccounts: Block Microsoft
+Accounts the value was set to Users can't add or log on with Microsoft Accounts"
+}, @{ Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System"; Name =
+"EnableMmx"; PolicyPath = "#Configuration > Administrative Templates > System >
+Group Policy Phone-PC linking on this device (disabled)" }, @{ Path =
+"HKLM:\Software\Policies\Microsoft\Windows\CloudContent"; Name =
+"DisableWindowsConsumerFeatures"; PolicyPath = "#Computer Configuration ->
+Administrative Templates -> Windows Components -> Cloud Content `nTurn off
+Microsoft consumer experiences." }, @{ Path =
+"HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore"; Name = "RemoveWindowsStore";
+PolicyPath = "#Computer Configuration -> Administrative Templates -> Windows
+Components -> Store `nTurn off the store application" }, @{ Path =
+"HKCU:\Software\Policies\Microsoft\WindowsStore"; Name = "RemoveWindowsStore";
+PolicyPath = "#User Configuration -> Administrative Templates -> Windows
+Components -> Store `nTurn off the store application" })# Initialize an array to
+hold output lines$outputLines = @()# Check each registry key and valueforeach
+($regKey in $regKeys) { $keyExists = Test-Path -Path $regKey.Path $valueExists =
+Get-ItemProperty -Path $regKey.Path -Name $regKey.Name -ErrorAction
+SilentlyContinue if ($keyExists -and $valueExists) { # Add the found key and its
+policy path to output lines $outputLines += "**$($regKey.Path)** Dword:
+$($regKey.Name)" $outputLines += "$($regKey.PolicyPath)" $outputLines += "" #
+Add an empty line for spacing }}# Write output lines to a text file in
+C:\$outputFilePath = "C:\RegistryCheckResults.txt"$outputLines | Out-File
+-FilePath $outputFilePathWrite-Output "`nResults written to:
+C:\RegistryCheckResults.txt" Notes: Support Topics: Windows\Windows 10,
+Windows\Windows 11 First published: Nov 13, 2024 Keywords: Phone Linked, Policy,
+Mobile Devices, winx
+
+================================================================================

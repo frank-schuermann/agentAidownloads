@@ -1,0 +1,178 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-111464
+Informational: VISOps: Profiler Tools access
+================================================================================
+
+Article ID       : KISP-111464
+Language          : en-us
+Created           : 2025-05-22
+Last Modified     : 2025-05-22
+Views             : 3
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/informational-visops-profiler-tools-access-4fe689f3-8b8e-4f46-8f9a-2e12f4194c8a
+
+================================================================================
+CONTENT:
+================================================================================
+
+Informational: VISOps: Profiler Tools access Have feedback about this article? –
+Please provide feedback in the survey link at the bottom of this article. Your
+feedback matters to us and helps improve article content and support experience
+for you and our customers. Share your suggestions by providing commentary in the
+survey box provided. The more you tell us the more we can help. This survey
+isn’t anonymous. If you leave a comment, you may be contacted by a member of the
+Process & Program Excellence team​​​​​​​ for more information. Who should use
+this article? Role: Delivery Partner Admins Organization: Delivery Partners
+Location: Delivery Partners What is this article about? This article provides
+details on the Profiler Tools, how to request access and the requirements that
+need for access to be approved. Table of contents 1. Overview 2. VISOps ticket
+requirements 3. VISOps Tool access request template 4. Individual Profiler Tool
+requirements 5. Create the VISOps ticket 1. Overview This article provides
+details on the Profiler Tools, how to request access and the requirements that
+need for access to be approved. Return to top 2. VISOps ticket requirements To
+minimize delays in processing your CSVT requests, ensure the following
+requirements are met. VISOps SNOW ticket with attached template. Download and
+fill out the appropriate template for whichever tools you are requesting. You
+can find the list of tool templates in KB 5050727 Informational: VISOps:
+Template links and Service NOW options when creating a ticket. Service Delivery
+Manager (SDM) approval email.* Note: *Not all Profiler Tools need SDM approval,
+review the individual Profiler Tool requirements in this article. Return to top
+3. VISOps Tool access request template Complete the below listed fields in the
+template. Username: v-xxxxxxx/Supplier UPN/MID with which access is needed.
+Display name: Users with inaccurate display names can be missed in reporting -
+Use correct First and Last names of the users. LOB: Line of Business. Region:
+Region from where user is located. Business Segment: Commercial or Consumer.
+Tool: Select the tool for which access is needed. Return to top 4. Individual
+Profiler Tool requirements The list below provides details for each heading in
+the table below it. Not all Profiler Tools requirements are the same. Tool: Name
+of the tool. Tool URL: URL of the tool. SDM approval required: Does the tool
+need SDM approval. Account type (MID (xxx@office365support.com,
+xxx@microsoftsupport.com), v-xx@microsoft.com, supplier email
+(xxx@company.com)): Account with which the tool needs to be accessed. Approved
+Supplier Sites: Authorized Supplier site that can access the tool. Approved LOB:
+Authorized Line of Business who can access the tool. Tool Tool URL SDM approval
+required Account type (MID, v-, supplier email) Approved supplier sites Approved
+LOB Bemis Repository https://microsoft.sharepoint.com/teams/LegacyUploaded_Bemis
+Repository/SitePages/Home.aspx No Commercial users - V-xxx@microsoft.com
+Consumer users - UPN/MID if they do not possess V- All All CSS SharePoint
+BingAds/MAST
+https://microsoft.sharepoint.com/teams/StandardSupport/l1resources/default.aspx
+No Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do
+not possess V- Majorel Angeles City Majorel Kuala Lumpur Majorel muenster
+Majorel Quezon BingAds CSS SharePoint BingAds/MAST Leads
+https://microsoft.sharepoint.com/teams/StandardSupport/l2resources/default.aspx
+No Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do
+not possess V- Majorel Angeles City Majorel Kuala Lumpur Majorel muenster
+Majorel Quezon BingAds CSS Surface Wiki https://supportability.visualstudio.com/
+Surface/_wiki/wikis/Surface/190869/Surface No Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- All
+Device/Surface CSS Wiki https://supportability.visualstudio.com/ No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+All including concierge All including concierge Invoice Billing
+https://microsofteur.sharepoint.com/teams/CommWDGExt/InvEsc/SitePages/Home.aspx
+Yes, from specific approvers. Commercial users - V-xxx@microsoft.com Consumer
+users - UPN/MID if they do not possess V- All Device/Surface MI Wiki
+https://supportability.visualstudio.com/ModernStack/ No Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- Concierge
+Concierge and O365 Commercial Modern Advocate Refund System (MARS)
+https://support-refunds.xbox.com/ Yes Commercial users - V-xxx@microsoft.com
+Consumer users - UPN/MID if they do not possess V- CNX Quezon, CNX managua,CNX
+Cebu and TP MAAX- are the only approved sites. Xbox Readiness Hub - Commercial
+CS Loyalty https://microsofteur.sharepoint.com/teams/su-cssloyalty/default.aspx​
+No Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do
+not possess V- All All Readiness Hub - Commercial PreSales (CPR)
+https://microsoft.sharepoint.com/teams/ReadinessHub No V-xx@microsoft.com
+Specific sites All Readiness Hub-Partner Enablement
+https://microsoft.sharepoint.com/teams/su-csspartner/default.aspx No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+All All Speak up https://microsoft.sharepoint.com/teams/SpeakUp No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+All including concierge All including concierge Store Promotion & Campaigns
+https://microsoft.sharepoint.com/teams/UATStorePromotionSite No Commercial users
+- V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- All
+Surface & Devices Communications Center [Consumer] (Surface Consumer blog)
+Surface & Devices Communications Center - Home Yes, from specific approvers.
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- No supplier/site/LOB restrictions as long as proper approval provided
+All with approval (SDM/TA) Surface Tech Lead Doc Store https://microsofteur.shar
+epoint.com/teams/SurfaceCSS/TestTech%20Lead%20doc%20store/Forms/AllItems.aspx
+Yes, from specific approvers. Commercial users - V-xxx@microsoft.com Consumer
+users - UPN/MID if they do not possess V- No supplier/site/LOB restrictions as
+long as proper approval provided All with approval (SDM/TA) SharePoint
+Commercial PostSales/System Down-Customer Response Portal SharePoint Commercial
+PostSales: https://microsoft.sharepoint.com/teams/global_TR/SitePages/Home.aspx
+No Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do
+not possess V- All All System Down (Volume Licensing, Developer, and Learning
+Programs) https://microsofteur.sharepoint.com/teams/MSSolveSystemDownCustomerRes
+ponse/SitePages/Home.aspx System Down-Customer Response Portal https://microsoft
+eur.sharepoint.com/teams/MSSolveSystemDownCustomerResponse/Lists/Customer%20Resp
+onse%20List%20CSS%20View/CTS%20View.aspx No Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- All All
+System Down: Tech Router MCAs SharePoint
+https://microsoft.sharepoint.com/teams/global_TR/TR_MCAs/default.aspx No
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- All all VAT
+https://microsofteur.sharepoint.com/teams/hcti/SitePages/Home.aspx Yes
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- All All Xbox Communication Center
+https://microsoft.sharepoint.com/teams/XboxCommunicationsCenter No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+All including concierge All including concierge Advocate Communication Center
+https://microsoft.sharepoint.com/teams/AdvocateCommunicationsCenter No
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- All including concierge All Consumer Business Segment Users only. But
+concierge consumer users can also be granted access. Surface & devices
+communications center [Commercial] (Surface Commercial blog) Surface & Devices
+Communications Center - Home Yes, from specific approvers. Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- No
+supplier/site/LOB restrictions if proper approval provided All with approval
+(SDM/TA) XBOX Token Management
+https://microsofteur.sharepoint.com/teams/Xbox%20SD%20Support/ Yes Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+Teleperformance Rabat Teleperformance Warsaw Teleperformance Athens
+Teleperformance Sao Paulo Teleperformance Edinburgh Teleperformance Maax
+Concentrix Sofia Concentrix Cairo Concentrix Managua Concentrix Quezon City
+Concentrix Cebu Concentrix Suzhou TCK Seoul Relia Yokohoma Tek Experts TEK HOI
+All Forecasting and Resource Planning https://microsoft.sharepoint.com/teams/CSS
+Forecast/ResourcePlanning/SitePages/Home.aspx No Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- All
+Western Europe Consumer (WE - Consumer) SharePoint
+https://microsofteur.sharepoint.com/teams/weconsumer/SitePages/Home.aspx No
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- Only Teleperformance All CMT
+https://cmt.microsoft.com/candidatemgr/candidatesearch.aspx? Yes, from specific
+approvers. Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if
+they do not possess V- All All SDP(DCODE)
+https://supportdiagnostics.partners.extranet.microsoft.com No Commercial users -
+V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V- All All
+Success Factors
+https://hcm41.sapsf.com/sf/home?company=microsofAP2&LoginMethod=SSO No
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- All All GROW SharePoint and Dashboard https://aka.ms/GROWDashboard No
+Commercial users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not
+possess V- All All Commercial Support Engineer Communications (formerly called
+as CSS Engage SharePoint)
+https://microsoft.sharepoint.com/teams/CommercialandPartnerComms No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+Allyis Concentrix Gigmos Mindtree NTT Relia Sonata Tek Experts Teleperformance
+Transcosmos Wicresoft All SOM Chat Bot User List/Device Bot/DIP/PIP https://apps
+.preview.powerapps.com/play/e/6f81103b-ed97-eb49-b8fc-17d08a6cc906/a/7d21293e-
+e4d1-4058-a670-134471010c3d?tenantId=72f988bf-86f1-41af-91ab-2d7cd011db47 Yes
+V-xx@microsoft.com Simon (Consumer) - Specifically Xbox Consumer/Connected
+Insights Portal https://apps.preview.powerapps.com/play/e/6b68bae4-76a1-e8fe-
+a1ea-45f697715b03/a/cafa373b-0d96-459e-ae45-b3f4150ff531?tenantId=72f988bf-86f1-
+41af-91ab-2d7cd011db47 Yes V-xx@microsoft.com All All MLGCS CS Commercial DP
+SharePoint (Lightweight) Advocate Communication Center - Home No Commercial
+users - V-xxx@microsoft.com Consumer users - UPN/MID if they do not possess V-
+All All Manual EFT refunds Tool (MERT) Yes, from specific approvers.
+V-xx@microsoft.com Mindtree (Redmond, Hyderabad), Apex (all UK) Consumer
+Business Segment only Knowledge Simulations Center Knowledge Simulations - Home
+No V-xx@microsoft.com All All Return to top 5. Create the VISOps ticket Admins
+should select the following options when creating the request in addition to the
+other standard fields. Action: Create Agent(s): New access requests. Modify
+Existing Account(s): Requests to change existing access. Tool Issue: For
+example, login issues. Tool: Select the tool for which access is needed. ​​​​​​​
+Figure One: VISOps SNOW Action and Tool Profiler Tools Return to top Change
+history Item Change Description Date AECT CONTENT TRACKING ITEM 202471 Publish
+new article. 5/15/2025
+
+================================================================================

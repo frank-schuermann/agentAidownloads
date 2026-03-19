@@ -1,0 +1,46 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-035195
+ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE
+================================================================================
+
+Issue ID     : KI-KISP-035195
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-01-06
+Last Updated : 2025-01-06
+Source KB     : KISP-035195
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-communication-failing-with-error-winhttp-invalid-server-response-0120c3e3-d7fc-d90a-c27a-7169891a33a3
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 197967 link for any updates. Author: Yukti Arora Summary/Symptom One
+complete subnet after client upgrade not able to communicate with MP
+
+ROOT CAUSE:
+-----------
+Specifically check and ask for all the proxy in between source and destination.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-035195
+for full scope.
+
+WORKAROUND:
+-----------
+Check in IIS logs with client logs in case of any hit (as client needs to
+connect to the windows_auth endpoint first, first hit will fail with 401 but
+subsequent request goes through since the client get the kerb token) If no hits
+are found in IIS, then: Collect netmon trace from source and destination while
+browsing URL http://ABC.XYZ.COM/ccm_system/request and
+http://ABC.XYZ.COM/ccm_system_windowsauth/request failed in system context.
+Filter with IP address with source and destination in respective netmon to check
+if you are able to find hit or misses. If you are not able to find respective
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-035195
+
+================================================================================

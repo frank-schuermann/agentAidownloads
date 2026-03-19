@@ -1,0 +1,43 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035952
+wsl.exe fails to launch with the error "Access is denied"
+================================================================================
+
+Article ID       : KISP-035952
+Language          : en-us
+Created           : 2024-11-26
+Last Modified     : 2025-06-09
+Views             : 6
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/wsl-exe-fails-to-launch-with-the-error-access-is-denied-f30228a6-12f5-2ed0-d8f8-545646129fcf
+
+================================================================================
+CONTENT:
+================================================================================
+
+wsl.exe fails to launch with the error "Access is denied" Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 197726 link
+for any updates. Author: Chanakya Manepalli Summary/Symptom WSL.exe throws an
+error "ACCESS IS DENIED" when tried to launch. Customer has also shared the
+following error message: EventID=1092 domain/username ran
+C:\Windows\System32\wsl.exe, which attempted to access the process
+LxssManagerProxyStub.dll, violating the rule "Executing Windows Subsystem for
+Linux", and was blocked. For information about how to respond to this event, see
+KB85494. Cause We observed that WSL.exe attempted to load
+LxssManagerProxyStub.dll and encountered an ACCESS DENIED error. It appears that
+the McAfee process initiated a scan and subsequently blocked the file from being
+loaded. During our research, we found a discussion on a third-party forum where
+a similar issue was resolved by disabling a McAfee-defined Access Protection
+rule. Additionally, the KB85494 document shared by the customer is a McAfee
+article that briefly discusses a process being blocked from accessing a specific
+file. NLS messaging syntax: " <domain>\<user> ran <process name>, which
+attempted to access <path>\<filename>. The <malware type> named <malware name>
+was detected and access to the file was denied." Article resolution McAfee End
+Point has a McAfee-defined Access Protection rule that blocks WSL execution.
+Once this rule was disabled, WSL started working without issue. More information
+References: linux - Trying to get WSL working on a Windows Server 2019 VM.
+Getting 'Access denied' error - Super User Complete list of event IDs for
+Endpoint Security wsl.exe fails with "Access is denied" · Issue #4920 ·
+microsoft/WSL Test attack surface reduction rules - Microsoft Defender for
+Endpoint | Microsoft Learn
+
+================================================================================

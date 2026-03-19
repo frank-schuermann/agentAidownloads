@@ -1,0 +1,44 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-036662
+Event ID 2017 is frequently logged on the server
+================================================================================
+
+Issue ID     : KI-KISP-036662
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-11-22
+Last Updated : 2025-06-09
+Source KB     : KISP-036662
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/event-id-2017-is-frequently-logged-on-the-server-c6f14284-f385-d8ff-402c-9c9ab26af761
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom Issue: Event ID 2017 is frequently logged on the server Log Name:
+Application Source: Microsoft-Windows-PerfOS Date: Event ID: 2017 Task Category:
+None Level: Warning Keywords: User: SYSTEM Computer: Description: Unable to
+collect NUMA physical memory utilization data. The first four bytes (DWORD) of
+the Data section contains the status code. This event is not causing any
+performance issues on the server at this point But it is logged multiple time
+every day
+
+ROOT CAUSE:
+-----------
+The event is logged indicating issue with the performance counters. The counters
+might be damaged or out of sync, hence flagging the event.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-036662
+for full scope.
+
+WORKAROUND:
+-----------
+Rebuild the performance counters: From elevated command prompt run the below
+command: Lodctr /r
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-036662
+
+================================================================================

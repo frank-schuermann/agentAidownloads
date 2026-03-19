@@ -1,0 +1,41 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-143000
+How to buy from the Microsoft Store - Microsoft Support
+================================================================================
+
+Article ID       : KISP-143000
+Language          : en-us
+Created           : 2025-05-31
+Last Modified     : 2025-06-09
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/account-billing/how-to-buy-from-the-microsoft-store-ef44e64b-d59c-40d7-94bb-1268c0d43504
+Description       : Learn how to purchase items from the Microsoft Digital Store.
+
+================================================================================
+CONTENT:
+================================================================================
+
+The Microsoft Store offers deals on new or refurbished Surface, Xbox, and
+accessories. You can also browse business deals and subscriptions and buy gift
+cards. If you want games and apps, head over to https://apps.microsoft.com How
+to complete a purchase from the Microsoft Store Visit the Microsoft Digital
+Store webpage. Open your web browser and go to www.microsoft.com/store. You will
+be redirected to the localized version of the site based on your location, but
+you can change your country select at the bottom of the page. Choose the item
+you want to purchase to view its details, including price, specifications, and
+customer reviews. Scroll through the sale items or use Search at the top of the
+page to find specific products on sale. Once you have added all the items you
+want to purchase, select Cart at the top right corner of the page or select
+Review and checkout to review your selections. Checkout. If you have a Microsoft
+account, sign in by selecting the Sign In button at the top right corner of the
+page. Tip: If you don't have a Microsoft account you can Create one, or check
+out as a guest. Enter Payment Information. Choose your payment method and enter
+the necessary details. You can use a credit card, debit card, PayPal, or other
+available payment options. Learn how to Add a new bank or credit card to your
+Microsoft account. Review and Confirm Purchase. Review your order details,
+including the items, shipping information, and payment method. Select Place
+order to complete your purchase.​​​​​​​ See also Add a new bank or credit card
+to your Microsoft account Guest checkout Need more help? Contact Support For
+pre-sales support, or issues with purchasing, contact Sales support.
+
+================================================================================

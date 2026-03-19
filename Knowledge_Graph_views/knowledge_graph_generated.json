@@ -3,11 +3,11 @@
     "graph_name": "Microsoft CCaaS — Support AI Knowledge Graph",
     "version": "2.0.0",
     "description": "Automatically generated Knowledge Graph for Support AI Agent. Based on text documents in the data/ directory.",
-    "created_date": "2026-03-09",
-    "last_updated": "2026-03-09",
+    "created_date": "2026-03-19",
+    "last_updated": "2026-03-19",
     "product": "Microsoft Dynamics 365 Contact Center (CCaaS)",
-    "total_nodes": 36,
-    "total_edges": 27,
+    "total_nodes": 98,
+    "total_edges": 94,
     "schema_version": "v2",
     "generated_by": "generate_knowledge_graph.py"
   },
@@ -595,6 +595,1366 @@
       ]
     },
     {
+      "id": "KI-KISP-029768",
+      "type": "KnownIssue",
+      "label": "Windows 11: Some Apps missing icon in search results, but retain icons in Start Menu after upgrade",
+      "properties": {
+        "issue_id": "KI-KISP-029768",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-10-30",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-029768",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-11-some-apps-missing-icon-in-search-results-but-retain-icons-in-start-menu-after-upgrade-62efd8e9-9c6d-200f-928c-4146474bd315",
+        "tags": "Windows",
+        "symptoms": "Icons of applications like Edge and other apps like Chrome browser tool lose its\nimage in Search results, but retain it Start Menu and taskbar. Icons are\nclickable No profile management in use. Issue ",
+        "impact": "-------",
+        "workaround": "Please start by making below policy as default on the test machine (after\nremoving it from the OU for the domain policy): Bypass Traverse Checking:\nExpected entries: Default Members : Administrators ,",
+        "expected_entries": "Default Members : Administrators , Backup Operators, Everyone",
+        "traverse_checking_entry_under": "Policy :Computer Configuration\\Windows",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-029768_Windows_11_Some_Apps_missing_icon_in_search_results_but_retain_icons_in_Start_Me.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-034154",
+      "type": "KnownIssue",
+      "label": "BitLocker: Users prompted with the BitLocker recovery screen on every startup.",
+      "properties": {
+        "bitlocker": "Users prompted with the BitLocker recovery screen on every startup.",
+        "issue_id": "KI-KISP-034154",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-11-04",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-034154",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/bitlocker-users-prompted-with-the-bitlocker-recovery-screen-on-every-startup-05002086-c962-fb76-ca48-413c63d57325",
+        "tags": "BitLocker",
+        "symptoms": "Symptom User's getting BitLocker recovery screen every time they boot up the\nmachine and hence used recovery password to unlock the OS Drive.",
+        "impact": "-------",
+        "workaround": "Since the TPM protector was removed by the SCCM Task sequence, I advised the\ncustomer to contact the SCCM team to determine who executed the script and the\nreason behind it.",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-034154_BitLocker_Users_prompted_with_the_BitLocker_recovery_screen_on_every_startup.txt"
+      },
+      "tags": [
+        "BitLocker",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-035952",
+      "type": "KnownIssue",
+      "label": "wsl.exe fails to launch with the error \"Access is denied\"",
+      "properties": {
+        "issue_id": "KI-KISP-035952",
+        "severity": "P1",
+        "status": "Fix Available",
+        "reported": "2024-11-26",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-035952",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/wsl-exe-fails-to-launch-with-the-error-access-is-denied-f30228a6-12f5-2ed0-d8f8-545646129fcf",
+        "tags": "WSL, Windows",
+        "symptoms": "Symptom WSL.exe throws an error \"ACCESS IS DENIED\" when tried to launch.\nCustomer has also shared the following error message: EventID=1092\ndomain/username ran C:\\Windows\\System32\\wsl.exe, which attem",
+        "impact": "-------",
+        "workaround": "McAfee End Point has a McAfee-defined Access Protection rule that blocks WSL\nexecution. Once this rule was disabled, WSL started working without issue. More\ninformation References: linux - Trying to g",
+        "information_references": "linux - Trying to get WSL working on a Windows Server",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-035952_wslexe_fails_to_launch_with_the_error_Access_is_denied.txt"
+      },
+      "tags": [
+        "P1",
+        "WSL",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-038696",
+      "type": "KnownIssue",
+      "label": "Windows: Pop-up message \"Unknown Hard Error\" after logon due to corrupt user profile",
+      "properties": {
+        "windows": "Pop-up message \"Unknown Hard Error\" after logon due to corrupt user profile",
+        "issue_id": "KI-KISP-038696",
+        "severity": "P2",
+        "status": "Fix Available",
+        "reported": "2025-01-06",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-038696",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-pop-up-message-unknown-hard-error-after-logon-due-to-corrupt-user-profile-5cc20f41-8def-6798-9dc2-7f3c8f4d7c64",
+        "tags": "Windows",
+        "symptoms": "Symptom UNKNOWN HARD ERROR pop up after logging in. We click on OK and nothing\nhappens. cx is completely unable to do anything on the machine.",
+        "root_cause": "-----------",
+        "user_profile_corruption_article\n\nimpact": "-------",
+        "workaround": "Modified below registry and it stopped the UNKNOWN HARD ERROR pop up. 1. Run\nRegistry Editor. 2. From the HKEY_LOCAL_MACHINE subtree, go to the following\nkey: \\SYSTEM\\CurrentControlSet\\Control\\Windows",
+        "key": "\\SYSTEM\\CurrentControlSet\\Control\\Windows Value: ErrorMode Type: REG_DWORD",
+        "default": "0 3. Change it to 2. 4. Reboot the machine. Additionally, found that",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-038696_Windows_Pop-up_message_Unknown_Hard_Error_after_logon_due_to_corrupt_user_profil.txt"
+      },
+      "tags": [
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-042455",
+      "type": "KnownIssue",
+      "label": "The 'Add device' button is greyed out when attempting to add a printer on Windows 11 version 23H2.",
+      "properties": {
+        "issue_id": "KI-KISP-042455",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-01-06",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-042455",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/the-add-device-button-is-greyed-out-when-attempting-to-add-a-printer-on-windows-11-version-23h2-4a32a8cb-9e97-6603-c886-72a7be1f98cc",
+        "tags": "Windows",
+        "symptoms": "Symptom The 'Add device' button is greyed out when attempting to add a printer\non Windows 11 version 23H2 via Settings > Bluetooth & Devices >Printers &\nScanner > ADD DEVICE.",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Fix to be released on January (2025.01 D ) More information Over 700\ndas!DasHostStartDevnodeManagement threads waiting on ALPC response. 0: kd> !di\nWindows 10 Kernel Version 22621 MP (12 procs) Free x",
+        "terminalserver_singleuserts_edition_build_lab": "22621.2506.amd64fre.ni_release_svc_prod3.231018-1809 Kernel base =",
+        "processor": "12th Gen Intel(R)",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-042455_The_Add_device_button_is_greyed_out_when_attempting_to_add_a_printer_on_Windows.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-045125",
+      "type": "KnownIssue",
+      "label": "Windows: DPS: Diagnostic Policy Service fails to start with error 4201",
+      "properties": {
+        "windows": "DPS: Diagnostic Policy Service fails to start with error 4201",
+        "issue_id": "KI-KISP-045125",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-01-13",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-045125",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-dps-diagnostic-policy-service-fails-to-start-with-error-4201-571af82d-585e-caab-9369-329c79a26b8f",
+        "tags": "Windows",
+        "symptoms": "Symptom The Diagnostic Policy Service (DPS) service fails to start.",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Check if ETW session DiagLog is running on your machine using tools like\nPerfmon. After starting the DiagLog ETW session, try starting the DPS service.\nMore information The DPS trace logs may show ent",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-045125_Windows_DPS_Diagnostic_Policy_Service_fails_to_start_with_error_4201.txt"
+      },
+      "tags": [
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-052887",
+      "type": "KnownIssue",
+      "label": "Windows Search Not Working in \"OneDriveSynced\" Folders on Windows 11 23H2 machines",
+      "properties": {
+        "issue_id": "KI-KISP-052887",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-03-13",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-052887",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-search-not-working-in-onedrivesynced-folders-on-windows-11-23h2-machines-c5f6a65f-ab9b-46dd-c69d-0f8e2c8c83e9",
+        "tags": "OneDrive, Windows",
+        "symptoms": "Symptom Reported on: Windows 11 23h2 Machines Reported Symptoms: When an end\nuser searches within File Explorer for a file or folder in a OneDrive-synced\nfolder, no results are displayed. Other inform",
+        "symptom_reported_on": "Windows 11 23h2 Machines Reported Symptoms: When an end",
+        "onedrive_sync_folder_problem_snippet": "IMPACT:",
+        "workaround": "Later, we collected TTD traces for the explorer.exe and SearchIndexer.exe\nprocesses. These traces revealed that the Local ID data was incorrect. 0:005> dv\nLocale = 0x7d0 0:005> ?0x7d0 Evaluate express",
+        "wrong_value": "which is 2000: which shows in process monitor too: We went to the",
+        "path": "- HKEY_CURRENT_USER\\Control Panel\\International\\User Profile\\en-BE Wrong",
+        "value": "0x7d0( 2000) The correct value for en-BE is 0x2000 (8192 in decimal) And",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-052887_Windows_Search_Not_Working_in_OneDriveSynced_Folders_on_Windows_11_23H2_machines.txt"
+      },
+      "tags": [
+        "OneDrive",
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-065986",
+      "type": "KnownIssue",
+      "label": "Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an error 0x800f0818",
+      "properties": {
+        "upgrade": "Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an",
+        "issue_id": "KI-KISP-065986",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-04-16",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-065986",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/upgrade-feature-update-from-windows-10-22h2-to-windows-11-23h2-failed-with-an-error-0x800f0818-1a41a708-6aa9-5531-14d9-07f57309a032",
+        "tags": "Windows",
+        "symptoms": "Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an\nerror 0x800f0818 Important: This was authored via https://aka.ms/contentidea.\nFollow Content Idea (CI) 201754 link for an",
+        "root_cause": "-----------",
+        "dynamicupdate_disable\n\nimpact": "-------",
+        "workaround": "Deleted the below reg key and then the upgrade went successful,\n%systemdrive%\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\WSUS\\SetupConfig.ini\nMore information If the update is delivered through Win",
+        "https": "//learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-065986_Upgrade_Feature_Update_from_Windows_10_22H2_to_Windows_11_23H2_failed_with_an_er.txt"
+      },
+      "tags": [
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-163138",
+      "type": "KnownIssue",
+      "label": "StoreWorker fails because of BaseViewOperatorDefinition - Microsoft Support",
+      "properties": {
+        "issue_id": "KI-KISP-163138",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-06-09",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-163138",
+        "reference": "https://support.microsoft.com/en-us/topic/storeworker-fails-because-of-baseviewoperatordefinition-14a80e65-a263-4f44-babe-a873146da590",
+        "symptoms": "Applies ToExchange Server 2019 Exchange Server 2016 Symptoms The StoreWorker\nprocess stops responding in Microsoft Exchange Server 2019 or 2016. When this\nissue occurs, the mailboxes get quarantined, ",
+        "logged": "ProviderName : MSExchangeIS Id : 1002 Message : Unhandled e",
+        "impact": "-------",
+        "workaround": "To fix this issue, install the following cumulative updates, as appropriate: For\nExchange Server 2019, install:Hotfix update for Exchange Server 2019 CU15 HU2:\nMay 29, 2025 (KB5057651) Hotfix update f",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-163138_StoreWorker_fails_because_of_BaseViewOperatorDefinition.txt"
+      },
+      "tags": [
+        "P2"
+      ]
+    },
+    {
+      "id": "RB-KISP-026023",
+      "type": "Runbook",
+      "label": "Windows: Host Activity Manager (HAM) overview",
+      "properties": {
+        "windows": "Host Activity Manager (HAM) overview Important: This was authored via",
+        "runbook_id": "RB-KISP-026023",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-026023",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-host-activity-manager-ham-overview-fe35a86d-6179-bedd-8dc6-966fbf293772",
+        "procedure": "================================================================================",
+        "https": "//aka.ms/contentidea. Follow Content Idea (CI) 195772 link for any",
+        "of_packaged_applications_include": "Universal Windows Platform (UWP) Centennial",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-026023_Windows_Host_Activity_Manager_HAM_overview.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "RB-KISP-056707",
+      "type": "Runbook",
+      "label": "Make Exceptions for certain fonts when using GPO to BLOCK UNTRUSTED FONTS",
+      "properties": {
+        "runbook_id": "RB-KISP-056707",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-056707",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/make-exceptions-for-certain-fonts-when-using-gpo-to-block-untrusted-fonts-4eb4f937-d5fc-aa1a-abd8-cbf14c46e407",
+        "procedure": "================================================================================",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-056707_Make_Exceptions_for_certain_fonts_when_using_GPO_to_BLOCK_UNTRUSTED_FONTS.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "KI-KISP-036662",
+      "type": "KnownIssue",
+      "label": "Event ID 2017 is frequently logged on the server",
+      "properties": {
+        "issue_id": "KI-KISP-036662",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-11-22",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-036662",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/event-id-2017-is-frequently-logged-on-the-server-c6f14284-f385-d8ff-402c-9c9ab26af761",
+        "tags": "Windows",
+        "symptoms": "Symptom Issue: Event ID 2017 is frequently logged on the server Log Name:\nApplication Source: Microsoft-Windows-PerfOS Date: Event ID: 2017 Task Category:\nNone Level: Warning Keywords: User: SYSTEM Co",
+        "symptom_issue": "Event ID 2017 is frequently logged on the server Log Name:",
+        "application_source": "Microsoft-Windows-PerfOS Date: Event ID: 2017 Task Category:",
+        "none_level": "Warning Keywords: User: SYSTEM Computer: Description: Unable to",
+        "impact": "-------",
+        "workaround": "Rebuild the performance counters: From elevated command prompt run the below\ncommand: Lodctr /r",
+        "rebuild_the_performance_counters": "From elevated command prompt run the below",
+        "command": "Lodctr /r",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-036662_Event_ID_2017_is_frequently_logged_on_the_server.txt"
+      },
+      "tags": [
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-039855",
+      "type": "KnownIssue",
+      "label": "Windows Server 2016: Bugcheck 0x9F due to CPU busy trimming the working set of RStudio process rsession-utf8.exe",
+      "properties": {
+        "issue_id": "KI-KISP-039855",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-12-13",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-039855",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-server-2016-bugcheck-0x9f-due-to-cpu-busy-trimming-the-working-set-of-rstudio-process-rsession-utf8-exe-5dc96de0-707c-b670-6923-d87634690b7c",
+        "tags": "Windows",
+        "symptoms": "Symptom Reported on Windows Server 2016 Reported symptoms System crashes with\nbugcheck DRIVER_POWER_STATE_FAILURE, hexadecimal value 9F. But the issue can be\nmanifested in other ways such as high CPU,",
+        "bugcheck_codes\n\nroot_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Follow up with the vendor for RStudio to investigate the high memory usage. More\ninformation Debug notes from similar issue below: // system info48: kd>\n!mex.diKernel Version : Windows 10 Kernel Versi",
+        "information_debug_notes_from_similar_issue_below": "// system info48: kd>",
+        "virtual_machineprocessor": "Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHzBugcheck",
+        "info": "Bugcheck 9f (3, ffffa009e181dbf0, ffffcb006f67ecb0, ffffa00a163385a0",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-039855_Windows_Server_2016_Bugcheck_0x9F_due_to_CPU_busy_trimming_the_working_set_of_RS.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-045141",
+      "type": "KnownIssue",
+      "label": "Windows Server: RDS connection fails with error \"Your credentials did not work\"",
+      "properties": {
+        "windows_server": "RDS connection fails with error \"Your credentials did not work\"",
+        "issue_id": "KI-KISP-045141",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-01-16",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-045141",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-server-rds-connection-fails-with-error-your-credentials-did-not-work-a8ac5470-cd06-0dde-a986-6090b1890bb5",
+        "tags": "RDS, Windows",
+        "symptoms": "Symptom RDP to destination, then popup below error message and RDP failed. Your\ncredentials did not work. Background: 1.workgroup environment. 2.local user for\nRDP. Test user: **DSH Source IP: ***.4 D",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "We can follow below link to make NTLM version on source and destination are\nmatched. Path: HKLM\\System\\CurrentControlSet\\Control\\Lsa\\lmcompatibilitylevel\nSetting Description Registry security level Se",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-045141_Windows_Server_RDS_connection_fails_with_error_Your_credentials_did_not_work.txt"
+      },
+      "tags": [
+        "P1",
+        "RDS",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-066859",
+      "type": "KnownIssue",
+      "label": "Unable to Set Cloud Witness. Error: The Client and Server Cannot Communicate, Because They do Not Possess a Common Algorithm",
+      "properties": {
+        "issue_id": "KI-KISP-066859",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-04-25",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-066859",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/unable-to-set-cloud-witness-error-the-client-and-server-cannot-communicate-because-they-do-not-possess-a-common-algorithm-1cce41bc-72a6-4bcc-4af9-1f5d3ea9b2cd",
+        "tags": "Cloud Witness, Cluster, Windows",
+        "symptoms": "Symptom cx needs to have windows cluster with cloud witness. “The client and\nserver cannot communicate, be",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Ensure that both the client and server are configured to use TLS 1.2. You can\nenable TLS 1.2 on the server using the following PowerShell commands:\n[Net.ServicePointManager]::SecurityProtocol = [Net.S",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-066859_Unable_to_Set_Cloud_Witness_Error_The_Client_and_Server_Cannot_Communicate_Becau.txt"
+      },
+      "tags": [
+        "Cloud Witness",
+        "Cluster",
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-167038",
+      "type": "KnownIssue",
+      "label": "Window Server 2025: Input lag when using virtualization based security (VBS) or Secure Boot",
+      "properties": {
+        "issue_id": "KI-KISP-167038",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-06-10",
+        "last_updated": "2025-06-10",
+        "source_kb": "KISP-167038",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/window-server-2025-input-lag-when-using-virtualization-based-security-vbs-or-secure-boot-b88e6f28-b80a-8a08-5298-fa7800c93f19",
+        "tags": "Windows",
+        "symptoms": "can be reproduced on this VM Cause In windows server 2025 we can see from traces\na lot of DPC calls - KiAbDeferredProcessingWorker This is due to code change in\n2025. Article",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Bug 57780645: JPMC Timer Interrupts - Microsoft and Broadcom Collaboration -\nBoards Temporary workaround for the customer - disable secure\nboot/VBS(virtualization based security) More information Trac",
+        "helpful_in_under_understanding_the_issue": "#xperf binary Download tss tool –",
+        "open_elevated_cmd_and_execute": "C:\\msdata\\xperf -? C:\\msdata\\xperf -on",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-167038_Window_Server_2025_Input_lag_when_using_virtualization_based_security_VBS_or_Sec.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-167166",
+      "type": "KnownIssue",
+      "label": "Upgrade | Windows Server 2016 to 2022 Upgrade Fails Due to Read-Only Machine.config File",
+      "properties": {
+        "issue_id": "KI-KISP-167166",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-05-31",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-167166",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/upgrade-windows-server-2016-to-2022-upgrade-fails-due-to-read-only-machine-config-file-71496290-3fa2-e5dd-4187-c4870a8c1a9a",
+        "tags": "Active Directory, Windows",
+        "symptoms": "occurs because the file\nC:\\WINDOWS\\Microsoft.NET\\Framework64\\v2.0.50727\\config\\machine.config has the\n\"Read-Only\" attribute enabled. This prevents the upgrade process from modifying\nthe file, causing ",
+        "occurs_because_the_file\nc": "\\WINDOWS\\Microsoft.NET\\Framework64\\v2.0.50727\\config\\machine.config has the",
+        "root_cause": "-----------",
+        "the_issue_occurs_because_the_file\nc": "\\WINDOWS\\Microsoft.NET\\Framework64\\v2.0.50727\\config\\machine.config has the",
+        "impact": "-------",
+        "workaround": "To resolve this issue, follow these steps: Navigate to the directory\nC:\\WINDOWS\\Microsoft.NET\\Framework64\\v2.0.50727\\config\\. Locate the file named\nmachine.config. Right-click the file and select Prop",
+        "keywords": "CreatedByRubik Tags: Rubik Article Id: 5993 Support Topics: Windows",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-167166_Upgrade_Windows_Server_2016_to_2022_Upgrade_Fails_Due_to_Read-Only_Machineconfig.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "RB-KISP-036746",
+      "type": "Runbook",
+      "label": "Procedure: Unsupported devices for hosting Windows Server 2022",
+      "properties": {
+        "procedure": "Unsupported devices for hosting Windows Server 2022 Important: This",
+        "runbook_id": "RB-KISP-036746",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-01-06",
+        "source_kb": "KISP-036746",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/procedure-unsupported-devices-for-hosting-windows-server-2022-8ab129be-0c4e-da16-a012-26d5269ff9e5",
+        "was_authored_via_https": "//aka.ms/Rubik. Follow Rubik 429 link for any updates.",
+        "author": "v-yinghuang@microsoft.com This article provides a list of devices that",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-036746_Procedure_Unsupported_devices_for_hosting_Windows_Server_2022.txt"
+      },
+      "tags": [
+        "ktest1"
+      ]
+    },
+    {
+      "id": "RB-KISP-037492",
+      "type": "Runbook",
+      "label": "How to download and Install language packs while you are using Windows Server Update Services (WSUS) as the update source",
+      "properties": {
+        "runbook_id": "RB-KISP-037492",
+        "category": "Configuration / Setup",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-037492",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/how-to-download-and-install-language-packs-while-you-are-using-windows-server-update-services-wsus-as-the-update-source-56a8e84b-4c31-2c3b-386f-1bce2f29d035",
+        "procedure": "================================================================================",
+        "https": "//aka.ms/contentidea. Follow Content Idea (CI) 198350 link for any",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-037492_How_to_download_and_Install_language_packs_while_you_are_using_Windows_Server_Up.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "RB-KISP-057863",
+      "type": "Runbook",
+      "label": "In-place upgrade (IPU) failing from Windows Server 2016 to 2022",
+      "properties": {
+        "runbook_id": "RB-KISP-057863",
+        "category": "Configuration / Setup",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-08-14",
+        "source_kb": "KISP-057863",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/in-place-upgrade-ipu-failing-from-windows-server-2016-to-2022-2807bf20-4803-6bc9-a228-57d8b8f6fe40",
+        "procedure": "================================================================================",
+        "was_authored_via_https": "//aka.ms/contentidea. Follow Content Idea (CI) 200690",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-057863_In-place_upgrade_IPU_failing_from_Windows_Server_2016_to_2022.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "RB-KISP-058929",
+      "type": "Runbook",
+      "label": "Windows Servicing: Understanding Windows Continuous Delivery (CD)",
+      "properties": {
+        "windows_servicing": "Understanding Windows Continuous Delivery (CD) Important:",
+        "runbook_id": "RB-KISP-058929",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-10-10",
+        "source_kb": "KISP-058929",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-servicing-understanding-windows-continuous-delivery-cd-df73d47c-8eda-d5c6-cc14-7424a85fbb7c",
+        "procedure": "================================================================================",
+        "this_was_authored_via_https": "//aka.ms/contentidea. Follow Content Idea (CI)",
+        "https": "//aka.ms/howto-cd Windows Continuous Delivery (CD) is a new servicing",
+        "to": "wiaftrin@microsoft.com; codoesch@microsoft.comSubject: Windows Servicing:",
+        "here_growing_pains": "It is important to acknowledge that CD is a very new process",
+        "fixes": "The CD process will be mostly irrelevant to enterprise customers other",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-058929_Windows_Servicing_Understanding_Windows_Continuous_Delivery_CD.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "KI-KISP-033676",
+      "type": "KnownIssue",
+      "label": "ADDS: PKI: Certificate Revocation Fails for LDAP locations for Standalone or Clustered CAs After Renewing CA with New Key",
+      "properties": {
+        "adds": "PKI: Certificate Revocation Fails for LDAP locations for Standalone or Clustered CAs After Renewing CA with New Key",
+        "issue_id": "KI-KISP-033676",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-11-18",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-033676",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-certificate-revocation-fails-for-ldap-locations-for-standalone-or-clustered-cas-after-renewing-ca-with-new-key-e5323ef8-c9f1-943b-839d-f66291a5dd1a",
+        "tags": "Active Directory, Cluster, PKI",
+        "symptoms": "s PKIView displays the error \"Unable to download\" Revocation failures in\nenvironment for new certificates post CA renewal. Running certutil -verify\n-urlfetch against a cert (If publish was done incorr",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Modify the certutil command to include the index. This index will be found in\nC:\\Windows\\System32\\CertSrv\\CertEnroll. It will be the number in parenthesis at\nthe end of the filename. Format: certutil ",
+        "computer_contoffroot": "certutil -f -dspublish",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-033676_ADDS_PKI_Certificate_Revocation_Fails_for_LDAP_locations_for_Standalone_or_Clust.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "Cluster",
+        "P2",
+        "PKI"
+      ]
+    },
+    {
+      "id": "KI-KISP-041663",
+      "type": "KnownIssue",
+      "label": "ADDS: W32time: Windows Time sync request from client fails due to WaitTimeout with error code “0x800705B4”",
+      "properties": {
+        "adds": "W32time: Windows Time sync request from client fails due to WaitTimeout with error code “0x800705B4”",
+        "issue_id": "KI-KISP-041663",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-12-30",
+        "last_updated": "2025-07-29",
+        "source_kb": "KISP-041663",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-w32time-windows-time-sync-request-from-client-fails-due-to-waittimeout-with-error-code-0x800705b4-c165cde0-f0b9-b086-1a49-399fa6091348",
+        "tags": "Active Directory, Windows",
+        "symptoms": "is the disabling of the Windows Time NTP Server provider on the domain\ncontroller via the system registry. This configuration prevents proper time\nsynchronization with the client. Article",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "To resolve this issue, follow these steps: Backup the Registry: Before making\nany changes to the registry, it's crucial to back up the current settings.\nNavigate to HKEY_LOCAL_MACHINE\\SOFTWARE\\Policie",
+        "document": "data/KnownIssue_KISP-041663_ADDS_W32time_Windows_Time_sync_request_from_client_fails_due_to_WaitTimeout_with.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "P2",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-043824",
+      "type": "KnownIssue",
+      "label": "ADDS: PKI: Unable to install CA certificate 0x8007000d ERROR_INVALID_DATA and reinstallation of ADCS role failed with 0x800700b7 ERROR_ALREADY_EXISTS",
+      "properties": {
+        "adds": "PKI: Unable to install CA certificate 0x8007000d ERROR_INVALID_DATA and reinstallation of ADCS role failed with 0x800700b7 ERROR_ALREADY_EXISTS",
+        "issue_id": "KI-KISP-043824",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-01-13",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-043824",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-unable-to-install-ca-certificate-0x8007000d-error-invalid-data-and-reinstallation-of-adcs-role-failed-with-0x800700b7-error-already-exists-8f04f92c-9478-5b57-6f33-ac6bd3f4d01d",
+        "tags": "Active Directory, PKI",
+        "symptoms": "s When running the command Certutil -f -v -installcert \"XXXXXXXXX-\nSUBCA-20240319.cer\", the following error message appears: “An error was detected\nwhile configuring Active Directory Certificate Servi",
+        "be\n\nimpact": "-------",
+        "workaround": "The problem was mitigated by the use of `-OverwriteExistingDatabase` switch,\nwhich proved successful in overwriting the previous ADCS configuration and\ncompleting the setup without further issues. Ins",
+        "number": "2403260030003053 First published: Jan 13, 2025 Keywords: p",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-043824_ADDS_PKI_Unable_to_install_CA_certificate_0x8007000d_ERROR_INVALID_DATA_and_rein.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "P1",
+        "PKI"
+      ]
+    },
+    {
+      "id": "KI-KISP-055437",
+      "type": "KnownIssue",
+      "label": "ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due to corrupt list on Windows 11 24H2 / Windows Server 2025",
+      "properties": {
+        "adds": "Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due",
+        "issue_id": "KI-KISP-055437",
+        "severity": "P1",
+        "status": "Fix Available",
+        "reported": "2025-02-28",
+        "last_updated": "2025-12-04",
+        "source_kb": "KISP-055437",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-security-lsass-crash-0xc0000409-when-kerberos-accesses-a-file-share-due-to-corrupt-list-on-windows-11-24h2-windows-server-2025-36ba23ef-7f19-6325-644e-26b0b9a46df0",
+        "tags": "Active Directory, Kerberos, LSASS, Windows",
+        "symptoms": "ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due\nto corrupt list on Windows 11 24H2 / Windows Server 2025 Important: This was\nauthored via https://aka.ms/contentidea. F",
+        "authored_via_https": "//aka.ms/contentidea. Follow Content Idea (CI) 200092 link",
+        "root_cause": "-----------",
+        "i_have_proposed_the_following_to\n\nimpact": "-------",
+        "workaround": ". A crash has been observed when accessing a cloud (AAD) file share, and also\ncrashing while accessing an onprem file share. Both scenarios appear to be\naffected. Exception details c0000409 STATUS_FAI",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-055437_ADDS_Security_LSASS_crash_0xc0000409_when_Kerberos_accesses_a_file_share_due_to.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "Kerberos",
+        "LSASS",
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-057720",
+      "type": "KnownIssue",
+      "label": "ADDS: Tools: Klist.exe fails to display ticket cache; “Credentials cache C:\\Users\\xxx\\krb5cc_xxx not found”",
+      "properties": {
+        "adds": "Tools: Klist.exe fails to display ticket cache; “Credentials cache C:\\Users\\xxx\\krb5cc_xxx not found”",
+        "issue_id": "KI-KISP-057720",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-03-31",
+        "last_updated": "2025-07-29",
+        "source_kb": "KISP-057720",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-tools-klist-exe-fails-to-display-ticket-cache-credentials-cache-c-users-xxx-krb5cc-xxx-not-found-677cc837-7c49-83f8-680b-007a1fa52062",
+        "tags": "Active Directory, Kerberos",
+        "symptoms": "Symptom You run “klist.exe” or “klist.exe tickets” in the user context, and\nexpect to see the user’s Kerberos tickets, however, you get this error:\n“Credentials cache C:\\Users\\xxx\\krb5cc_2280025 not f",
+        "impact": "-------",
+        "workaround": "Move the JDK path in the System variables below the default, Windows paths, so\nthat when you call “klist.exe” from the command line, it launches the built-in,\nMicrosoft version from the System32 folde",
+        "keywords": "Credentials cache C:\\Users\\xxx\\krb5cc_xxx not found, klist, JDK",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-057720_ADDS_Tools_Klistexe_fails_to_display_ticket_cache_Credentials_cache_CUsersxxxkrb.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "Kerberos",
+        "P1"
+      ]
+    },
+    {
+      "id": "RB-KISP-040904",
+      "type": "Runbook",
+      "label": "ADDS: GPHELP: Understanding Group Policy Object versionNumber Limits",
+      "properties": {
+        "adds": "GPHELP: Understanding Group Policy Object versionNumber Limits Important:",
+        "runbook_id": "RB-KISP-040904",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-12-04",
+        "source_kb": "KISP-040904",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/adds-gphelp-understanding-group-policy-object-versionnumber-limits-cd2d0948-5f4b-bea7-9cff-3c5480650102",
+        "procedure": "================================================================================",
+        "this_was_authored_via_https": "//aka.ms/contentidea. Follow Content Idea (CI)",
+        "read_key": "1 GPSVC(1890.f24) 05:17:51:872 ReadGPOList:-- (Result:TRUE)",
+        "setregistryvalue": "RedirectionGuardPolicy => 1 [OK] GPSVC(1890.f24) 05:17:51:889",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-040904_ADDS_GPHELP_Understanding_Group_Policy_Object_versionNumber_Limits.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "RB-KISP-165805",
+      "type": "Runbook",
+      "label": "HOW TO audit the SACL changes in AD - audit the auditing",
+      "properties": {
+        "runbook_id": "RB-KISP-165805",
+        "category": "Directory Service Changes Level: Information Keywords: Audit Success",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-06-21",
+        "source_kb": "KISP-165805",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/how-to-audit-the-sacl-changes-in-ad-audit-the-auditing-ea0d7c55-0cbb-390f-afba-c5dfb0249459",
+        "procedure": "================================================================================",
+        "authored_via_https": "//aka.ms/contentidea. Follow Content Idea (CI) 203304 link",
+        "user": "N/A Computer: CONDC2.contoso.com Description: A directory service object",
+        "account_domain": "CONTOSO Logon ID: 0xB71E1 Directory Service: Name: contoso.com",
+        "type": "Active Directory Domain Services Object: DN:",
+        "class": "configuration Attribute: LDAP Display Name: nTSecurityDescriptor Syntax",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-165805_HOW_TO_audit_the_SACL_changes_in_AD_-_audit_the_auditing.txt"
+      },
+      "tags": [
+        "Audit Success"
+      ]
+    },
+    {
+      "id": "KI-KISP-035195",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE",
+      "properties": {
+        "configmgr": "Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE",
+        "issue_id": "KI-KISP-035195",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-01-06",
+        "last_updated": "2025-01-06",
+        "source_kb": "KISP-035195",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-communication-failing-with-error-winhttp-invalid-server-response-0120c3e3-d7fc-d90a-c27a-7169891a33a3",
+        "tags": "ConfigMgr",
+        "symptoms": "ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE\nImportant: This was authored via https://aka.ms/contentidea. Follow Content Idea\n(CI) 197967 link for any updates. Author: Y",
+        "important": "This was authored via https://aka.ms/contentidea. Follow Content Idea",
+        "impact": "-------",
+        "workaround": "Check in IIS logs with client logs in case of any hit (as client needs to\nconnect to the windows_auth endpoint first, first hit will fail with 401 but\nsubsequent request goes through since the client ",
+        "browsing_url_http": "//ABC.XYZ.COM/ccm_system/request and",
+        "http": "//ABC.XYZ.COM/ccm_system_windowsauth/request failed in system context.",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-035195_ConfigMgr_Communication_failing_with_ERROR_WINHTTP_INVALID_SERVER_RESPONSE.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-035939",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: SRV: SQL ODBC driver was failing to install with error - \"Error 2503 Called RunScript when not marked in progress\" and \"Error 2502 Called InstallFinalize when no install in progress.\"",
+      "properties": {
+        "configmgr": "SRV: SQL ODBC driver was failing to install with error - \"Error 2503 Called RunScript when not marked in progress\" and \"Error 2502 Called InstallFinalize when no install in progress.\"",
+        "issue_id": "KI-KISP-035939",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-11-22",
+        "last_updated": "2024-11-22",
+        "source_kb": "KISP-035939",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-sql-odbc-driver-was-failing-to-install-with-error-error-2503-called-runscript-when-not-marked-in-progress-and-error-2502-called-installfinalize-when-no-install-in-progress-b5b4df2b-0f19-94ba-170f-2532f9a47afb",
+        "tags": "ConfigMgr, SQL",
+        "symptoms": "Symptom CX was trying to upgrade their SCCM infrastructure to latest version but\nthe pre-req check failed with ODBC driver install failure. we tried to install\nthe ODBC driver manually but it failled ",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "1/ We cleaned up the c:\\windows\\temp folder and made sure the file count in it\nis less than 64k files. 2/ we tried the following commands to check if there was\na system level corruption- sfc /scannow ",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-035939_ConfigMgr_SRV_SQL_ODBC_driver_was_failing_to_install_with_error_-_Error_2503_Cal.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P1",
+        "SQL"
+      ]
+    },
+    {
+      "id": "KI-KISP-035982",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: SRV: exporting the reports in excel fail with the error \"rrRendering Error\"",
+      "properties": {
+        "configmgr": "SRV: exporting the reports in excel fail with the error \"rrRendering Error\"",
+        "issue_id": "KI-KISP-035982",
+        "severity": "P2",
+        "status": "Fix Available",
+        "reported": "2024-11-22",
+        "last_updated": "2024-11-22",
+        "source_kb": "KISP-035982",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-exporting-the-reports-in-excel-fail-with-the-error-rrrendering-error-d5374142-2d4e-6598-30eb-479fe786c3bf",
+        "tags": "ConfigMgr",
+        "symptoms": "Symptom When the customer is exporting reports from SSRS web portal in excel\nformat, they were getting the following error message:",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "1/ we grabbed a procmon of the system when executing the export of the report.\n2/ we observed that we were getting access denied on the following registry key\n- Computer\\HKEY_USERS\\S-1-5-xxxxxxxxxxxxx",
+        "https": "//stackoverflow.com/questions/45864808/ssrs-reports-exporting-to-excel-",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-035982_ConfigMgr_SRV_exporting_the_reports_in_excel_fail_with_the_error_rrRendering_Err.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-036294",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: CORE: Management Point unable to execute queries against database (CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09)",
+      "properties": {
+        "configmgr": "CORE: Management Point unable to execute queries against database",
+        "issue_id": "KI-KISP-036294",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-12-06",
+        "last_updated": "2024-12-06",
+        "source_kb": "KISP-036294",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-management-point-unable-to-execute-queries-against-database-cmpdbconnection-executesql-icommandtext-execute-failed-with-0x80040e09-95e0a324-e2b4-b6b0-1994-ffbfd35e39a6",
+        "tags": "ConfigMgr",
+        "symptoms": "ConfigMgr: CORE: Management Point unable to execute queries against database\n(CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09)\nMicrosoft Configuration Manager (current br",
+        "authored_via_https": "//aka.ms/contentidea. Follow Content Idea (",
+        "impact": "-------",
+        "workaround": "We removed the computer account for the secondary site server (Proxy Management\nPoint for which we are getting the error) from the Primary Site Server database:\nThen we readded it using the queries: C",
+        "then_we_readded_it_using_the_queries": "CREATE LOGIN [XXXXXXXX\\XXXXXXX$] FROM",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-036294_ConfigMgr_CORE_Management_Point_unable_to_execute_queries_against_database_CMPDB.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-041643",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: Core: ConfigMgr Setup fails with \"SetCertRegistryRemote failed with error 0x80070057\"",
+      "properties": {
+        "configmgr": "Core: ConfigMgr Setup fails with \"SetCertRegistryRemote failed with",
+        "issue_id": "KI-KISP-041643",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-01-10",
+        "last_updated": "2025-01-10",
+        "source_kb": "KISP-041643",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-configmgr-setup-fails-with-setcertregistryremote-failed-with-error-0x80070057-9d2566c5-ec9c-ccaf-4d45-8f7a82c86fa9",
+        "tags": "ConfigMgr",
+        "symptoms": "ConfigMgr: Core: ConfigMgr Setup fails with \"SetCertRegistryRemote failed with\nerror 0x80070057\" Important: This was authored via https://aka.ms/contentidea.\nFollow Content Idea (CI) 198811 link for a",
+        "impact": "-------",
+        "workaround": "Reinstall the future Site Server OS from scratch (just recreate the VM). More\ninformation If the customer accepts the risks, find the affected Key File in the\nProcmon trace: filter by SetupWPF.exe pro",
+        "procmon_trace": "filter by SetupWPF.exe process and Path containing MachineKeys.",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-041643_ConfigMgr_Core_ConfigMgr_Setup_fails_with_SetCertRegistryRemote_failed_with_erro.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-046276",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: Client registration issue on servers.",
+      "properties": {
+        "configmgr": "Client registration issue on servers. Important: This was authored",
+        "issue_id": "KI-KISP-046276",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-03-01",
+        "last_updated": "2025-03-01",
+        "source_kb": "KISP-046276",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-registration-issue-on-servers-3056dca0-7706-3a67-c4d0-529bc08140d1",
+        "tags": "ConfigMgr",
+        "symptoms": "ConfigMgr: Client registration issue on servers. Important: This was authored\nvia https://aka.ms/contentidea. Follow Content Idea (CI) 200029 link for any\nupdates. Author: Vivekanandan Lingan Summary/",
+        "via_https": "//aka.ms/contentidea. Follow Content Idea (CI) 200029 link for any",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Open Registry --> Computer\\HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\S\necurityProviders\\SCHANNEL\\Protocols\\TLS 1.2\\Client Enabled to set to 0 Changed\nto 1. Initiated the client registration ",
+        "learn_notes": "Support Topics: Management Tools\\Configuration Manager\\Microsoft",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-046276_ConfigMgr_Client_registration_issue_on_servers.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P1"
+      ]
+    },
+    {
+      "id": "KI-KISP-046389",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: CLD: Unable to create a Cloud Management Gateway -CloudMgr.log has The Resource not found (404)",
+      "properties": {
+        "configmgr": "CLD: Unable to create a Cloud Management Gateway -CloudMgr.log has The Resource not found (404)",
+        "issue_id": "KI-KISP-046389",
+        "severity": "P1",
+        "status": "Fix Available",
+        "reported": "2025-01-16",
+        "last_updated": "2025-01-17",
+        "source_kb": "KISP-046389",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-cld-unable-to-create-a-cloud-management-gateway-cloudmgr-log-has-the-resource-not-found-404-1300b595-c66b-6c67-2113-9e638e86b370",
+        "tags": "ConfigMgr",
+        "symptoms": "Symptom Issue: Unable to create a Cloud Management Gateway",
+        "symptom_issue": "Unable to create a Cloud Management Gateway",
+        "root_cause": "-----------",
+        "cause": "CloudMgr.log has below error: ERROR: TaskManager: Task",
+        "https": "//aka.ms/ARMResourceNotFoundFix\"}}~~~~Headers:~~Pragma: no-cache~~x-ms-",
+        "impact": "-------",
+        "workaround": "~~Status: 404 (Not Found)~~ErrorCode:\nResourceNotFound~~~~Content:~~{\"error\":{\"code\":\"ResourceNotFound\",\"message\":\"The\nResource 'Microsoft.Storage/storageAccounts/LabCMG1' under resource group\n'Resour",
+        "id": "REDACTED~~x-ms-routing-request-id: REDACTED~~Strict-Transport-Security:",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-046389_ConfigMgr_CLD_Unable_to_create_a_Cloud_Management_Gateway_-CloudMgrlog_has_The_R.txt"
+      },
+      "tags": [
+        "Azure",
+        "ConfigMgr",
+        "P1",
+        "Routing"
+      ]
+    },
+    {
+      "id": "KI-KISP-048131",
+      "type": "KnownIssue",
+      "label": "ConfigMgr:Core -  Error Code : 80041313 - ConfigMgr Management Point -- Error 25006. Setup was unable to create the Internet virtual directory CCM_Incoming",
+      "properties": {
+        "configmgr": "Core - Error Code : 80041313 - ConfigMgr Management Point -- Error",
+        "issue_id": "KI-KISP-048131",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-04-23",
+        "last_updated": "2025-04-23",
+        "source_kb": "KISP-048131",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-error-code-80041313-configmgr-management-point-error-25006-setup-was-unable-to-create-the-internet-virtual-directory-ccm-incoming-81945650-5597-3fcd-bfee-42978faf8048",
+        "tags": "ConfigMgr",
+        "symptoms": "ConfigMgr:Core - Error Code : 80041313 - ConfigMgr Management Point -- Error\n25006. Setup was unable to create the Internet virtual directory CCM_Incoming\nImportant: This was authored via https://aka.",
+        "important": "This was authored via https://aka.ms/contentidea. Follow Content Idea",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Took backup and deleted the invalid Task Object job from the path\nC:\\Windows\\tasks. Reinitiated the MP installation and this time CCM_Incoming VD\ncreated successfully with enabling BITS and BITS_CCM_I",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-048131_ConfigMgrCore_-_Error_Code_80041313_-_ConfigMgr_Management_Point_--_Error_25006.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-048693",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: Machines are failing to scan using WSUS.",
+      "properties": {
+        "configmgr": "Machines are failing to scan using WSUS.",
+        "issue_id": "KI-KISP-048693",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-03-05",
+        "last_updated": "2025-03-05",
+        "source_kb": "KISP-048693",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-machines-are-failing-to-scan-using-wsus-4b4637d0-a2eb-1d0e-a61f-f642c1a778b3",
+        "tags": "ConfigMgr, WSUS",
+        "symptoms": "Symptom Machines are failing to scan using WSUS. Cause These settings are found\nin IIS Manager > Application Pools > choose WsusPool and then click the Advanced\nSettings link in the right-side pane of",
+        "message": "Same as HTTP status 503 - the service is temporarily overloaded.",
+        "article\n\nroot_cause": "-----------",
+        "impact": "-------",
+        "workaround": "These settings are found in IIS Manager > Application Pools > choose WsusPool\nand then click the Advanced Settings link in the right-side pane of IIS manager.\nQueue Length was set to 25000. Modified t",
+        "notes": "First published: Mar 05, 2025 Keywords: \"0x80244022\", \"temporarily",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-048693_ConfigMgr_Machines_are_failing_to_scan_using_WSUS.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2",
+        "WSUS"
+      ]
+    },
+    {
+      "id": "KI-KISP-062239",
+      "type": "KnownIssue",
+      "label": "ConfigMgr: Client Health Check Failed due to vcredist- Error code- 1638",
+      "properties": {
+        "configmgr": "Client Health Check Failed due to vcredist- Error code- 1638",
+        "issue_id": "KI-KISP-062239",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2025-04-01",
+        "last_updated": "2025-04-02",
+        "source_kb": "KISP-062239",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-health-check-failed-due-to-vcredist-error-code-1638-65dd5211-5799-f432-b3cc-df7eba8b8d0f",
+        "tags": "ConfigMgr",
+        "symptoms": "Symptom Client Check Failed due to Pre-requisite rule check",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Uninstall the existing version and let CCMEval install the VCRedist as part of\nRemediation.OR Uninstall and reinstall VCRedist and ensure the uninstaller\nregistries are present after reinstallation. M",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-062239_ConfigMgr_Client_Health_Check_Failed_due_to_vcredist-_Error_code-_1638.txt"
+      },
+      "tags": [
+        "ConfigMgr",
+        "P2"
+      ]
+    },
+    {
+      "id": "KI-KISP-030430",
+      "type": "KnownIssue",
+      "label": "SharePoint: Incorrect certificate applied to SharePoint Web Services",
+      "properties": {
+        "sharepoint": "Incorrect certificate applied to SharePoint Web Services SharePoint",
+        "issue_id": "KI-KISP-030430",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-11-04",
+        "last_updated": "2024-11-04",
+        "source_kb": "KISP-030430",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/sharepoint-incorrect-certificate-applied-to-sharepoint-web-services-a8f3e63c-82d3-6cc0-3198-50d3cf4a3ebe",
+        "tags": "PKI, SharePoint",
+        "symptoms": "SharePoint: Incorrect certificate applied to SharePoint Web Services SharePoint\nServer More...Less Important: This was authored via https://aka.ms/contentidea.\nFollow Content Idea (CI) 197091 link for",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "edSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count) at\nSystem.Net.Security.SslState.StartReceiveBlob(Byte[] buffer,\nAsyncProtocolRequest asyncRequest) at\nSystem.Net.Security.SslState.Che",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-030430_SharePoint_Incorrect_certificate_applied_to_SharePoint_Web_Services.txt"
+      },
+      "tags": [
+        "P1",
+        "PKI",
+        "SharePoint"
+      ]
+    },
+    {
+      "id": "KI-KISP-040997",
+      "type": "KnownIssue",
+      "label": "Cannot set role priority for SQL role SQL \"Failed to execute control code '54526046'",
+      "properties": {
+        "issue_id": "KI-KISP-040997",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-12-12",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-040997",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/cannot-set-role-priority-for-sql-role-sql-failed-to-execute-control-code-54526046-c44ad3d6-5d81-4992-04c8-97b585bb5184",
+        "tags": "Cluster, SQL",
+        "symptoms": "Symptom While trying to set role priority for SQL role in failover cluster\nmanager you are getting error. \"Failed to execute control code '54526046'",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "1, Check if witness resource is aligned in the Core Group or not. 2, If not, you\nmay use \"Move-ClusterResource -Name resource1 -Group \"group name\" \". It will\nallow you to move the Witness resource to ",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-040997_Cannot_set_role_priority_for_SQL_role_SQL_Failed_to_execute_control_code_5452604.txt"
+      },
+      "tags": [
+        "Cluster",
+        "P2",
+        "SQL"
+      ]
+    },
+    {
+      "id": "KI-KISP-042769",
+      "type": "KnownIssue",
+      "label": "Error while creating a Remote Perfmon dataset",
+      "properties": {
+        "issue_id": "KI-KISP-042769",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-12-18",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-042769",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/error-while-creating-a-remote-perfmon-dataset-9420e29a-7395-4dc5-6e9e-27adb26ce6f4",
+        "symptoms": "Symptom When a user tries to create a Remote Perfmon data set they get the\nfollowing error: \"Remote Perfmon gives the following error: \"\"when attempting to\ncreate the data collector set the following ",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Disable the following security policy: “Network access: Do not allow storage of\npasswords and credentials for network authentication”",
+        "disable_the_following_security_policy": "“Network access: Do not allow storage of",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-042769_Error_while_creating_a_Remote_Perfmon_dataset.txt"
+      },
+      "tags": [
+        "P1"
+      ]
+    },
+    {
+      "id": "KI-KISP-118668",
+      "type": "KnownIssue",
+      "label": "VAMT Setup with Remote SQL Connection reporting Error for Connection Closure",
+      "properties": {
+        "issue_id": "KI-KISP-118668",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-05-22",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-118668",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/vamt-setup-with-remote-sql-connection-reporting-error-for-connection-closure-1be9bb1c-015b-10e1-2908-7fa0bab30a52",
+        "tags": "SQL",
+        "symptoms": "VAMT Setup with Remote SQL Connection reporting Error for Connection Closure\nImportant: This was authored via https://aka.ms/contentidea. Follow Content Idea\n(CI) 164103 link for any updates. Author: ",
+        "workaround": "While comparing the logs and post enabling the TLS 1.0 on the affected server\nIssue got fixed. Additional Considerations: However, TLS 1.0 is not a secure\nprotocol , if you want to disable TLS 1.0 ple",
+        "client_by_following_this_article_https": "//docs.microsoft.com/en-",
+        "first_published\n\nrelated_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-118668_VAMT_Setup_with_Remote_SQL_Connection_reporting_Error_for_Connection_Closure.txt"
+      },
+      "tags": [
+        "P1",
+        "SQL"
+      ]
+    },
+    {
+      "id": "KI-KISP-027772",
+      "type": "KnownIssue",
+      "label": "Driver Verifier false positive for ECP leak",
+      "properties": {
+        "issue_id": "KI-KISP-027772",
+        "severity": "P1",
+        "status": "Fix Available",
+        "reported": "2024-11-04",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-027772",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/driver-verifier-false-positive-for-ecp-leak-909a72b6-9408-c156-3127-698af4dd65a8",
+        "symptoms": "Symptom With driver verified enabled, if a filter driver attempts to free an\nExtra Create Parameter (ECP) buffer, driver verifier incorrectly attributes this\nto the filter manager rather than the filt",
+        "impact": "-------",
+        "workaround": "Verifier bug has been fixed in Dilithium build Bug 49376855: Verifier doesn't\ntrack references acquired on behalf of a filter - Boards More information\nSYSTEM_SERVICE_EXCEPTION (3b) An exception happe",
+        "document": "data/KnownIssue_KISP-027772_Driver_Verifier_false_positive_for_ECP_leak.txt"
+      },
+      "tags": [
+        "P1"
+      ]
+    },
+    {
+      "id": "KI-KISP-029184",
+      "type": "KnownIssue",
+      "label": "Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching Services and Firewall Console in Windows Servers",
+      "properties": {
+        "errors": "1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching",
+        "issue_id": "KI-KISP-029184",
+        "severity": "P2",
+        "status": "Workaround Available",
+        "reported": "2024-10-28",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-029184",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/errors-1783-the-stub-received-bad-data-and-0x8007042c-when-launching-services-and-firewall-console-in-windows-servers-105ab785-99f2-2aef-b2c9-8e43d3d1d113",
+        "tags": "Active Directory, RDS, Windows",
+        "symptoms": "Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching\nServices and Firewall Console in Windows Servers Important: This was authored\nvia https://aka.ms/contentidea. Follow Content I",
+        "via_https": "//aka.ms/contentidea. Follow Content Idea (CI) 196935 link for any",
+        "impact": "-------",
+        "workaround": "suggested the customer remove the registry keys (PAExec*) under the path\n\"HKLM:\\SYSTEM\\CurrentControlSet\\Services\" after backing up the existing registry\nhives. The customer consulted the vendor, who ",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-029184_Errors1783_The_Stub_Received_Bad_Data_and_0x8007042c_When_Launching_Services_and.txt"
+      },
+      "tags": [
+        "Active Directory",
+        "P2",
+        "RDS",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-033157",
+      "type": "KnownIssue",
+      "label": "VBS: Microsoft Windows Secure Kernel Mode and Update Stack Elevation of Privilege Vulnerability (CVE-2024-21302) still being reported as vulnerable",
+      "properties": {
+        "vbs": "Microsoft Windows Secure Kernel Mode and Update Stack Elevation of Privilege Vulnerability (CVE-2024-21302) still being reported as vulnerable",
+        "issue_id": "KI-KISP-033157",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-11-01",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-033157",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/vbs-microsoft-windows-secure-kernel-mode-and-update-stack-elevation-of-privilege-vulnerability-cve-2024-21302-still-being-reported-as-vulnerable-35d9f531-274f-0e12-6225-82eac78695a8",
+        "tags": "Windows",
+        "symptoms": "Symptom Qualys vulnerability report showed that the servers were requiring\nremediation from CVE-2024-21302 Understanding the New Windows Secure Kernel Mode\nElevation of Privilege Vulnerability (CVE-20",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Removed the VBS Security policy from the servers by setting the policy to Not\nConfigured or Disabled Enable memory integrity | Microsoft Learn Notes: Support\nTopics: Windows Servers\\Windows Server 201",
+        "topics": "Windows Servers\\Windows Server 2016\\Windows Server 2016\\Microsoft Common",
+        "keywords": "Legacy BIOS, VBS, CVE-2024-21302",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-033157_VBS_Microsoft_Windows_Secure_Kernel_Mode_and_Update_Stack_Elevation_of_Privilege.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-035578",
+      "type": "KnownIssue",
+      "label": "WMI namespace equivalent to \"root\\SecurityCenter2\" on Windows Server 2019 and later.",
+      "properties": {
+        "issue_id": "KI-KISP-035578",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2024-12-06",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-035578",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/wmi-namespace-equivalent-to-root-securitycenter2-on-windows-server-2019-and-later-e32a3f5c-5b05-af98-6dfb-7e9618238d68",
+        "tags": "Windows",
+        "symptoms": "Symptom Issue/Inquiry: The existence of a WMI namespace equivalent to\n\"root\\SecurityCenter2\" on Windows Server 2019 and later, specifically to\nretrieve the \"productState\" property.",
+        "impact": "-------",
+        "workaround": "Unfortunately, there is no WMI class equivalent to \"root\\SecurityCenter2\" for\nthis purpose. The class was undocumented for a reason in older versions. The\nabove script uses the WscGetSecurityProviderH",
+        "document": "data/KnownIssue_KISP-035578_WMI_namespace_equivalent_to_rootSecurityCenter2_on_Windows_Server_2019_and_later.txt"
+      },
+      "tags": [
+        "P1",
+        "Windows"
+      ]
+    },
+    {
+      "id": "KI-KISP-038306",
+      "type": "KnownIssue",
+      "label": "Windows 11:NET: Wi-Fi fails to connect automatically after GP update when fMinimizeConnections and fBlockNonDomain transition from 3,1 to 0,0 respectively",
+      "properties": {
+        "issue_id": "KI-KISP-038306",
+        "severity": "P1",
+        "status": "Workaround Available",
+        "reported": "2025-01-15",
+        "last_updated": "2025-06-09",
+        "source_kb": "KISP-038306",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/windows-11-net-wi-fi-fails-to-connect-automatically-after-gp-update-when-fminimizeconnections-and-fblocknondomain-transition-from-3-1-to-0-0-respectively-e5c200b1-aa0c-21b7-07ec-601b8480cb7c",
+        "tags": "Group Policy, Wi-Fi, Windows",
+        "symptoms": ". Wi-Fi gets disconnected and it does not connect automatically. Even when\nEthernet is unplugged later, Wi-Fi does not auto-connect. Expected Behaviour:\nWi-Fi should reconnect automatically.",
+        "root_cause": "-----------",
+        "impact": "-------",
+        "workaround": "Verified workarounds: 1. Once disconnected, disable and re-enable the Wi-Fi\nadapter, to let Wi-Fi connect automatically. 2. Set “Process even if the Group\nPolicy objects have not changed” to disabled.",
+        "verified_workarounds": "1. Once disconnected, disable and re-enable the Wi-Fi",
+        "related_articles": "-----------------",
+        "document": "data/KnownIssue_KISP-038306_Windows_11NET_Wi-Fi_fails_to_connect_automatically_after_GP_update_when_fMinimiz.txt"
+      },
+      "tags": [
+        "Group Policy",
+        "P1",
+        "Wi-Fi",
+        "Windows"
+      ]
+    },
+    {
+      "id": "RB-KISP-133594",
+      "type": "Runbook",
+      "label": "Troubleshoot MSN WordPress and custom formatting issues - Microsoft Support",
+      "properties": {
+        "runbook_id": "RB-KISP-133594",
+        "category": "Troubleshooting",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-06-19",
+        "source_kb": "KISP-133594",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://support.microsoft.com/en-us/topic/troubleshoot-msn-wordpress-and-custom-formatting-issues-52482585-1150-4b25-888b-499ff21696a8",
+        "procedure": "================================================================================",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-133594_Troubleshoot_MSN_WordPress_and_custom_formatting_issues.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "RB-KISP-156334",
+      "type": "Runbook",
+      "label": "Intune : How to retrieve Intune managed app version through PowerShell",
+      "properties": {
+        "intune": "How to retrieve Intune managed app version through PowerShell",
+        "runbook_id": "RB-KISP-156334",
+        "category": "Operational Procedure",
+        "estimated_time": "30 minutes",
+        "last_updated": "2025-05-31",
+        "source_kb": "KISP-156334",
+        "trigger": "Follow this runbook when encountering the scenario described below.",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/intune-how-to-retrieve-intune-managed-app-version-through-powershell-4dd54b4b-24c3-9ace-a6d7-58dd7fbc9eec",
+        "procedure": "================================================================================",
+        "important": "This was authored via https://aka.ms/contentidea. Follow Content Idea",
+        "following_query": "Module --> Microsoft.Graph.Beta.Devices.CorporateManagement",
+        "validation": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/Runbook_KISP-156334_Intune_How_to_retrieve_Intune_managed_app_version_through_PowerShell.txt"
+      },
+      "tags": [
+        "API"
+      ]
+    },
+    {
+      "id": "SOP-KISP-036107",
+      "type": "SOP",
+      "label": "[Archived] Procedure: Skype: Partially blocked accounts",
+      "properties": {
+        "sop_id": "SOP-KISP-036107",
+        "category": "Operational Procedure",
+        "effective_date": "2024-12-30",
+        "last_reviewed": "2024-12-30",
+        "source_kb": "KISP-036107",
+        "applies_to": "Support Engineers, IT Administrators",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/-archived-procedure-skype-partially-blocked-accounts-de82e9c6-d5c2-4410-683e-ac68f4d34e18",
+        "purpose": "================================================================================",
+        "this_sop_documents_the_standard_procedure_for": "[Archived] Procedure: Skype: Partially blocked accounts",
+        "procedure": "================================================================================",
+        "completion_criteria": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/SOP_KISP-036107_Archived_Procedure_Skype_Partially_blocked_accounts.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "SOP-KISP-042484",
+      "type": "SOP",
+      "label": "Procedure: VISOps: Using the One Stop Onboarding Template to provision new users to multiple tools",
+      "properties": {
+        "procedure": "VISOps: Using the One Stop Onboarding Template to provision new users",
+        "sop_id": "SOP-KISP-042484",
+        "category": "Onboarding",
+        "effective_date": "2024-12-23",
+        "last_reviewed": "2024-12-23",
+        "source_kb": "KISP-042484",
+        "applies_to": "Support Engineers, IT Administrators",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/procedure-visops-using-the-one-stop-onboarding-template-to-provision-new-users-to-multiple-tools-8157814e-e26c-43c0-b0f4-080f399d0e4a",
+        "purpose": "================================================================================",
+        "this_sop_documents_the_standard_procedure_for": "Procedure: VISOps: Using the One Stop Onboarding Template to provision new users to multiple tools",
+        "partner_admins_organization": "All Location: Delivery Partner Sites What is this",
+        "completion_criteria": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/SOP_KISP-042484_Procedure_VISOps_Using_the_One_Stop_Onboarding_Template_to_provision_new_users_t.txt"
+      },
+      "tags": []
+    },
+    {
+      "id": "SOP-KISP-042558",
+      "type": "SOP",
+      "label": "Procedure: VISOps: Microsoft Teams card for Modern Identity (MID) Account Password Distribution",
+      "properties": {
+        "procedure": "VISOps: Microsoft Teams card for Modern Identity (MID) Account",
+        "sop_id": "SOP-KISP-042558",
+        "category": "Identity & Access Management",
+        "effective_date": "2025-05-08",
+        "last_reviewed": "2025-05-08",
+        "source_kb": "KISP-042558",
+        "applies_to": "Support Engineers, IT Administrators",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/procedure-visops-microsoft-teams-card-for-modern-identity-mid-account-password-distribution-9d9da70c-5176-4024-9e09-2e40f7700a08",
+        "purpose": "================================================================================",
+        "this_sop_documents_the_standard_procedure_for": "Procedure: VISOps: Microsoft Teams card for Modern Identity (MID) Account Password Distribution",
+        "completion_criteria": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/SOP_KISP-042558_Procedure_VISOps_Microsoft_Teams_card_for_Modern_Identity_MID_Account_Password_D.txt"
+      },
+      "tags": [
+        "Chat",
+        "Teams",
+        "Voice"
+      ]
+    },
+    {
+      "id": "SOP-KISP-052820",
+      "type": "SOP",
+      "label": "Archived: XIA: Advocacy: Process: Mailbox Setup",
+      "properties": {
+        "archived": "XIA: Advocacy: Process: Mailbox Setup This article has been archived.",
+        "sop_id": "SOP-KISP-052820",
+        "category": "Operational Procedure",
+        "effective_date": "2025-03-13",
+        "last_reviewed": "2025-03-13",
+        "source_kb": "KISP-052820",
+        "applies_to": "Support Engineers, IT Administrators",
+        "reference": "https://internal.evergreen.microsoft.com/en-us/topic/archived-xia-advocacy-process-mailbox-setup-48fe9fb4-e9b7-c1a8-42c0-6fc166f1c9ec",
+        "purpose": "================================================================================",
+        "this_sop_documents_the_standard_procedure_for": "Archived: XIA: Advocacy: Process: Mailbox Setup",
+        "procedure": "================================================================================",
+        "completion_criteria": "================================================================================",
+        "related_articles": "-----------------",
+        "document": "data/SOP_KISP-052820_Archived_XIA_Advocacy_Process_Mailbox_Setup.txt"
+      },
+      "tags": []
+    },
+    {
       "id": "PROD-001",
       "type": "Product",
       "label": "MS Dynamics 365 Contact Center",
@@ -831,6 +2191,142 @@
         "Routing",
         "AI"
       ]
+    },
+    {
+      "id": "SVC-WINDOWS",
+      "type": "Service",
+      "label": "Windows Client & Desktop",
+      "properties": {
+        "description": "Windows OS client services including desktop, shell, search, BitLocker, WSL, printing and device management.",
+        "platform": "Windows 10, Windows 11"
+      },
+      "tags": [
+        "Windows",
+        "Desktop",
+        "BitLocker",
+        "WSL",
+        "Shell"
+      ]
+    },
+    {
+      "id": "SVC-WINSERVER",
+      "type": "Service",
+      "label": "Windows Server",
+      "properties": {
+        "description": "Windows Server platform services including RDS, Hyper-V, clustering, failover, servicing and in-place upgrades.",
+        "platform": "Windows Server 2016, 2019, 2022, 2025"
+      },
+      "tags": [
+        "Windows Server",
+        "RDS",
+        "Hyper-V",
+        "Cluster",
+        "Upgrade"
+      ]
+    },
+    {
+      "id": "SVC-ADDS",
+      "type": "Service",
+      "label": "Active Directory & Identity",
+      "properties": {
+        "description": "Active Directory Domain Services, PKI, Kerberos, Group Policy, LSASS, W32time and related identity/security infrastructure.",
+        "platform": "Windows Server"
+      },
+      "tags": [
+        "Active Directory",
+        "ADDS",
+        "PKI",
+        "Kerberos",
+        "Group Policy",
+        "LSASS"
+      ]
+    },
+    {
+      "id": "SVC-CONFIGMGR",
+      "type": "Service",
+      "label": "Configuration Manager (SCCM/MECM)",
+      "properties": {
+        "description": "Microsoft Endpoint Configuration Manager — client management, software deployment, WSUS integration, cloud management gateway.",
+        "platform": "ConfigMgr"
+      },
+      "tags": [
+        "ConfigMgr",
+        "SCCM",
+        "MECM",
+        "WSUS"
+      ]
+    },
+    {
+      "id": "SVC-SHAREPOINT",
+      "type": "Service",
+      "label": "SharePoint Server",
+      "properties": {
+        "description": "SharePoint Server on-premises — web services, certificates, search and document management.",
+        "platform": "SharePoint Server 2019"
+      },
+      "tags": [
+        "SharePoint",
+        "Certificate"
+      ]
+    },
+    {
+      "id": "SVC-SQL",
+      "type": "Service",
+      "label": "SQL Server & Data Services",
+      "properties": {
+        "description": "SQL Server, ODBC drivers, VAMT, Remote Perfmon and database-related services.",
+        "platform": "SQL Server"
+      },
+      "tags": [
+        "SQL",
+        "ODBC",
+        "VAMT",
+        "Perfmon"
+      ]
+    },
+    {
+      "id": "SVC-NETWORKING",
+      "type": "Service",
+      "label": "Networking & Connectivity",
+      "properties": {
+        "description": "Windows networking stack — Wi-Fi, firewall, WMI, RPC, network services and connectivity.",
+        "platform": "Windows"
+      },
+      "tags": [
+        "Wi-Fi",
+        "Firewall",
+        "WMI",
+        "RPC",
+        "Networking"
+      ]
+    },
+    {
+      "id": "SVC-INTUNE",
+      "type": "Service",
+      "label": "Microsoft Intune",
+      "properties": {
+        "description": "Cloud-based endpoint management — device compliance, app management, policy deployment.",
+        "platform": "Microsoft Intune"
+      },
+      "tags": [
+        "Intune",
+        "Endpoint Management"
+      ]
+    },
+    {
+      "id": "SVC-SECURITY",
+      "type": "Service",
+      "label": "Windows Security & Compliance",
+      "properties": {
+        "description": "VBS, Secure Boot, driver verification, security updates and vulnerability management.",
+        "platform": "Windows"
+      },
+      "tags": [
+        "VBS",
+        "Security",
+        "Secure Boot",
+        "Driver Verifier"
+      ]
     }
   ],
   "edges": [
@@ -935,6 +2431,291 @@
       "type": "RELATED_TO"
     },
     {
+      "source": "PROD-001",
+      "target": "SVC-WINDOWS",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-WINSERVER",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-ADDS",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-CONFIGMGR",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-SHAREPOINT",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-SQL",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-NETWORKING",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-INTUNE",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "PROD-001",
+      "target": "SVC-SECURITY",
+      "type": "HAS_SERVICE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-034154",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-029768",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-038696",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-035952",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-042455",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-045125",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-052887",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-065986",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "KI-KISP-163138",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-039855",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-045141",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-036662",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-167038",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-167166",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "KI-KISP-066859",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "KI-KISP-033676",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "KI-KISP-043824",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "KI-KISP-041663",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "KI-KISP-055437",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "KI-KISP-057720",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-035195",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-035939",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-035982",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-036294",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-041643",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-046276",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-046389",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-048131",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-048693",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-CONFIGMGR",
+      "target": "KI-KISP-062239",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SHAREPOINT",
+      "target": "KI-KISP-030430",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SQL",
+      "target": "KI-KISP-040997",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SQL",
+      "target": "KI-KISP-042769",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SQL",
+      "target": "KI-KISP-118668",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-NETWORKING",
+      "target": "KI-KISP-029184",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-NETWORKING",
+      "target": "KI-KISP-038306",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-NETWORKING",
+      "target": "KI-KISP-035578",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SECURITY",
+      "target": "KI-KISP-033157",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-SECURITY",
+      "target": "KI-KISP-027772",
+      "type": "HAS_KNOWN_ISSUE"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "RB-KISP-165805",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-ADDS",
+      "target": "RB-KISP-040904",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "RB-KISP-036746",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "RB-KISP-037492",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "RB-KISP-057863",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINSERVER",
+      "target": "RB-KISP-058929",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "RB-KISP-026023",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-WINDOWS",
+      "target": "RB-KISP-056707",
+      "type": "HAS_RUNBOOK"
+    },
+    {
+      "source": "SVC-INTUNE",
+      "target": "RB-KISP-156334",
+      "type": "HAS_RUNBOOK"
+    },
+    {
       "source": "NODE-2025W2",
       "target": "KI-2025-001",
       "type": "FIXED_IN"
@@ -967,6 +2748,56 @@
     {
       "source": "UG-AGENTDESKTOP",
       "target": "KI-2025-001",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-026023",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-056707",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-036746",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-037492",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-057863",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-058929",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-040904",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-165805",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-133594",
+      "target": "SOP-ESC-P1",
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "RB-KISP-156334",
+      "target": "SOP-ESC-P1",
       "type": "RELATED_TO"
     }
   ],

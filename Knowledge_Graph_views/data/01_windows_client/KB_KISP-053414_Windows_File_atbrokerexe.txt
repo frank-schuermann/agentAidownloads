@@ -1,0 +1,31 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-053414
+Windows File: atbroker.exe
+================================================================================
+
+Article ID       : KISP-053414
+Language          : en-us
+Created           : 2025-03-07
+Last Modified     : 2025-06-09
+Views             : 5
+Keywords          : winfile
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-file-atbroker-exe-6d99acd2-ba08-b23a-08fe-e980c1c9bbca
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows File: atbroker.exe Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 200004 link for any
+updates. Author: Jason Epperly Summary File Details Name: atbroker.exe Default
+Location: c:\windows\system32\ File Description: Windows Assistive Technology
+Manager Information If the system's accessibility configuration values require
+it, the Windows Logon process (winlogon.exe) will run the atbroker.exe program
+to start other assistive technologies like Narrator. It can also be triggered to
+run using keyboard shortcuts: On a tablet device, it can be launched by pressing
+the Windows button and volume up. In can be launched by the Ctrl+Win+'Enter'
+keyboard shortcut. It is launched with the following command line: atbroker.exe
+/start narrator /hardwarebuttonlaunch Notes: Support Topics: Windows Servers,
+Windows First published: Mar 07, 2025 Keywords: winfile
+
+================================================================================

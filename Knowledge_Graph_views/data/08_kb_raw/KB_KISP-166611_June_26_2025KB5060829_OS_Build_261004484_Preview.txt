@@ -1,0 +1,1085 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-166611
+June 26, 2025—KB5060829 (OS Build 26100.4484) Preview
+================================================================================
+
+Article ID       : KISP-166611
+Language          : en-us
+Created           : 2025-06-26
+Last Modified     : 2026-03-14
+Views             : 97
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/june-26-2025-kb5060829-os-build-26100-4484-preview-e31ba7c2-ff65-4863-a462-a66e30840b1a
+
+================================================================================
+CONTENT:
+================================================================================
+
+June 26, 2025—KB5060829 (OS Build 26100.4484) Preview For information about
+Windows update terminology, see types of Windows updates and the monthly quality
+update types. To find an overview, see the update history page for Windows 11,
+version 24H2. Follow @WindowsUpdate to find out when new content is published to
+the Windows release health dashboard. Note: Experience seamless device migration
+with Windows Backup for Organizations, now available for a limited public
+preview. This feature ensures a smooth transition to Windows 11 for new or
+reimaged Microsoft Entra joined devices. To learn more, see Announcing Windows
+Backup for Organizations. Highlights ​​​​​​​Gradual rollout A gradual rollout
+distributes a release update over a period of time, rather than all at once.
+This means that users receive the updates at different times, and it might not
+be immediately available to all users. To see the status of this feature, go to
+Windows release health dashboard.​​​​​​​​​​​​ [App defaults] New! We are rolling
+out some small changes in the European Economic Area (EEA) region for default
+browsers through the Set default button in Settings > Apps > Default apps:
+Additional file and link types will be set for the new default browser, if it
+registers them. The new default browser will be pinned to the Taskbar and Start
+menu unless you choose not to pin it by clearing the checkboxes. There is now a
+separate one-click button for browsers to change your .pdf default, if the
+browser registers for the .pdf file type. [Click to Do (Preview)] New! ​​​​​​​
+Ask Microsoft 365 Copilot is a new action in Click to Do on Copilot+ PCs. Use it
+to send text or images to Microsoft 365 Copilot, which will respond to your
+questions. The Ask Microsoft 365 Copilot action requires a Microsoft 365 license
+and follows your organization’s privacy policies. [Narrator] New! The Screen
+Curtain feature in Narrator helps protect your privacy and improve focus by
+blacking out the screen while Narrator reads content aloud. This is especially
+helpful in public or shared spaces, where you can work with sensitive
+information without others seeing your screen. To turn on Narrator, press Ctrl +
+Windows + Enter. Then press Caps Lock + Ctrl + C to turn on Screen Curtain.
+While it’s on, you can use Narrator as usual with the screen hidden. Press Caps
+Lock + Ctrl + C again to turn it off. New! Narrator makes it easier to discover
+and learn about its features directly within the experience. Whether you're new
+or exploring advanced options, Narrator will guide you through the latest
+updates using a series of steps and prompts that explain each new feature and
+change. [PC Migration] New! ​​​​​​​ The PC-to-PC migration experience in Windows
+is starting to roll out. You’ll begin to see the landing and the pairing page in
+the Windows Backup app, giving you a first look at what’s coming. In the full
+experience, you’ll be able to transfer files and settings from an old PC to a
+new one during setup. Support for this feature during PC setup will arrive in a
+future update. The rollout is being introduced in phases to support a smooth
+experience. [Settings] ​​​​​​​New!​​​​​​​ We are starting to roll out the
+Settings homepage for commercial customers on PCs managed by an IT
+administrator. The feature will show some existing cards relevant to enterprise-
+managed PCs like “Recommended settings” and “Bluetooth devices” as well as two
+new enterprise-specific device info and accessibility preferences cards. For
+commercial customers who also use their Microsoft account on their managed PC,
+there will also be a new accounts card indicating the presence of both work and
+school and Microsoft account types. ​​​​​​​ New! The country or region selected
+during device setup now appears under Settings > Time & language > Language &
+region. Fixed: The storage card in Settings > System > About shows an incorrect
+or unreadable character instead of the proper disk size. [Taskbar & System Tray]
+New! ​​​​​​​ ​​​​​​​​​​​​​​The taskbar now resizes icons to fit more apps when
+space runs low, keeping everything visible and easy to access. You can adjust
+how icons appear in settings—reduce icon size only when the taskbar is full
+(default), keep icons at their original size at all times by selecting Never, or
+use smaller icons all the time by selecting Always. To change this setting,
+right-click an empty area on the taskbar, select Taskbar settings, expand the
+Taskbar behaviors section, and choose your preference under Show smaller taskbar
+buttons. New! In addition to the new grouping of the Accessibility menu in Quick
+settings, there are text descriptions for the assistive technologies like
+Narrator, Voice access, and more for easier identification and learning. New!
+Adjusted the indicator (pill) under taskbar apps to make it wider and more
+visible.​​​​​​​ Fixed: WIN + CTRL + Number doesn't work anymore for switching
+windows of an open app in the taskbar.​​​​​​​ Fixed: When using taskbar in
+Windows, the media controls that appear in the preview windows for apps might
+unexpectedly flicker. [Voice Access] New! You can now use Voice access to
+navigate, dictate, and interact with Windows using voice commands in Simplified
+Chinese and Traditional Chinese. New! You can add custom words to the dictionary
+in voice access. The feature will be available in all the currently supported
+voice access languages. [Windows Share] ​​​​​​​New! When you share links or web
+content using the Windows share window, you'll see a visual preview for that
+content. New! In the Windows share window, you can select a compression
+level—High, Medium, or Low Quality—when editing and sharing images, instead of
+selecting from a 0–100 scale. [Color] Improved: Adjusted the location of the
+intensity and color boost sliders under Settings > Accessibility > Color
+Filters, so the color previews at the top of the page remain visible while
+adjusting the sliders. [File Explorer] Improved: Performance has been enhanced
+when extracting archive files - this will particularly help in the case of copy
+pasting large numbers of files out of large 7z or .rar archives. [Graphics]
+Improved: Made underlying changes to enhance display related user experiences,
+including reducing screen flashing during certain display configuration
+transitions and eliminating unnecessary display resets that occurred in some
+cases​​​​​​​. Fixed: Some displays might be unexpectedly green. Fixed: If User
+Account Control (UAC) is set to Always Notify and the button under Settings >
+System > Display color calibration is selected for your display and canceled,
+Settings will stop responding. [Input] Fixed: Typing in Japanese with the touch
+keyboard might stop working after switching to typing with an English keyboard
+and then switching back. [MSFTEdit.dll] Fixed: Some apps like Sticky Notes and
+dxdiag might stop responding when the display language is set to Arabic or
+Hebrew display. [Quick Settings] Fixed: The top three buttons in the top row
+don’t respond when selecting to enable or disable them. [Printing] Fixed:
+Printed lines might be unexpectedly thicker than expected. [Scripting] Fixed:
+Running a script on a remote Server Message Block (SMB) share might take an
+unexpectedly long time if the share is hosted on an older Windows Server version
+like Windows Server 2019. [Windowing] ​​​​​​​Fixed: When you press ALT + Tab to
+switch out of a full screen game, other windows like Windows Terminal might stop
+responding. Fixed: An underlying issue might lead to unexpected changes to
+window size and position after sleep and resume on some devices. Fixed:
+Explorer.exe might stop working unexpectedly when a window is dragged, if window
+snapping is enabled. Improvements This non-security update includes quality
+improvements. The following summary outlines key issues addressed by the KB
+after you install it. Also, included are available new features. The bold text
+within the brackets indicates the item or area of the change. Normal rollout
+[Copilot] Fixed: Improved the Copilot key’s reliability and resolved an issue
+that prevented users from restarting Copilot after using the key. [Performance]
+Fixed: This update addresses an issue to maintain efficiency of Storage Spaces
+Direct (S2D). When running complex software defined data center (SDDC) related
+workflows, it’s possible the system might become unresponsive. [Storage
+optimization] Fixed: An issue that prevented unused language packs and Feature
+on Demand packages from being fully removed, which led to unnecessary storage
+use and longer Windows Update installation times. [Windows Hello] Fixed: This
+update addresses an issue that prevented the automatic renewal of expiring
+certificates in Windows Hello for Business. [Windows Search] ​​​​​​​This update
+addresses an issue that could cause Windows Search to successfully load very
+slowly, taking over 10 seconds to load before you can use it. Fixed: This update
+enhances the reliability of Windows Search and resolves an issue that prevented
+users from typing in Windows Search in some cases.Note: These fixes don't
+address an issue that might prevent Search from loading at all. ​​​​​​​If you
+installed earlier updates, your device downloads and installs only the new
+updates contained in this package. AI Components This release updates the
+following AI components. AI Component Version Image Search 1.2506.707.0 Content
+Extraction 1.2506.707.0 Semantic Analysis 1.2506.707.0 Windows 11 servicing
+stack update (KB5062862)- 26100.4484 This update makes quality improvements to
+the servicing stack, which is the component that installs Windows updates.
+Servicing stack updates (SSU) ensure that you have a robust and reliable
+servicing stack so that your devices can receive and install Microsoft updates.
+To learn more about SSUs, see Simplifying on-premises deployment of servicing
+stack updates. Known issues in this update Noto fonts issue Applies to: All
+users Symptoms There are reports of blurry or unclear CJK (Chinese, Japanese,
+Korean) text when displayed at 96 DPI (100% scaling) in Chromium-based browsers
+such as Microsoft Edge and Google Chrome. The March 2025 Preview Update
+introduced Noto fonts in collaboration with Google, for CJK languages as
+fallbacks to improve text rendering when websites or apps don’t specify
+appropriate fonts. The issue is due to limited pixel density at 96 DPI, which
+can reduce the clarity and alignment of CJK characters. Increasing the display
+scaling improves clarity by enhancing text rendering. Workaround Microsoft has
+shared its findings on the blurry text issue at 96 DPI, along with potential
+solutions with Google for further discussion. For additional support, users can
+report issues related to Noto CJK fonts through the official Google Noto Fonts
+GitHub repository. Error events are logged for Windows Firewall Symptoms After
+installing this update, security event logs might include an error event related
+to Windows Firewall with Advanced Security, which can be safely ignored. The
+error is found in Event Viewer as event 2042 for Windows Firewall with Advanced
+Security. The event appears as "Config Read Failed" with the message "More data
+is available". Although this event is logged in every time the device restarts,
+it does not indicate a problem with Windows Firewall and can be disregarded.
+Windows Firewall is expected to function normally, and you don't need to take
+any action to prevent or resolve this error event. This event is related to a
+feature that is currently under development and not fully implemented. There is
+no impact to Windows processes associated with this event. Workaround​​​​​​​
+This issue is addressed in KB5062660. How to get this update Before you install
+this update Microsoft combines the latest servicing stack update (SSU) for your
+operating system with the latest cumulative update (LCU). For general
+information about SSUs, see Servicing stack updates and Servicing Stack Updates
+(SSU): Frequently Asked Questions. Install this update To install this update,
+use one of the following Windows and Microsoft release channels. Windows
+UpdateBusinessCatalogServer Update Services Available Next Step Open Start >
+Settings Update & Security > Windows Update. In the Optional updates available
+area, you will find the link to download and install available updates. Check
+for optional updates Available Next Step The next security update to Windows
+Update for Business will include these changes. Available Next Step Yes 1 Before
+you install this update To get the standalone package(s) for this update, go to
+the Microsoft Update Catalog website. This KB contains one or more MSU files
+that require installation in a specific order. Install this update Method 1:
+Install all MSU files together Download all MSU files for KB5060829 from
+Microsoft Update Catalog and place them in the same folder (for example,
+C:/Packages). Use Deployment Image Servicing and Management (DISM.exe) to
+install the target update. DISM will use the folder specified in PackagePath to
+discover and install one or more prerequisite MSU files as needed. Updating
+Windows PC To apply this update to a running Windows PC, run the following
+command from an elevated Command Prompt: DISM /Online /Add-Package
+/PackagePath:c:\packages\Windows11.0-KB5060829-x64.msu Or, run the following
+command from an elevated Windows PowerShell prompt: Add-WindowsPackage -Online
+-PackagePath "c:\packages\Windows11.0-KB5060829​​​​​​​-x64.msu" Or use Windows
+Update Standalone Installer to install the target update. Updating Windows
+Installation media To apply this update to Windows Installation media, see
+Update Windows installation media with Dynamic Update. Note: When downloading
+other Dynamic Update packages, ensure they match the same month as this KB. If
+the SafeOS Dynamic Update or Setup Dynamic Update is not available for the same
+month as this KB, use the most recently published version of each. To add this
+update to a mounted image, run the following command from an elevated Command
+Prompt: DISM /Image:mountdir /Add-Package
+/PackagePath:Windows11.0-KB5060829-x64.msu Or, run the following command from an
+elevated Windows PowerShell prompt: Add-WindowsPackage -Path "c:\offline"
+-PackagePath "Windows11.0-KB5060829​​​​​​​-x64.msu" -PreventPending
+​​​​​​​Method 2: Install each MSU file individually in order Download and
+install each MSU file individually using DISM or Windows Update Standalone
+Installer in the following order:
+windows11.0-kb5043080-x64_953449672073f8fb99badb4cc6d5d7849b9c83e8.msu
+windows11.0-kb5060829-x64_3d5a5f9ef20fc35cc1bd2ccb08921ee8713ce622.msu 1 This
+latest cumulative update includes updates for AI components. Even though the AI
+component updates are included in the update, the AI components are only
+applicable to Windows Copilot+ PCs and will not install on Windows PC or Windows
+Server. Available Next Step You can import this update into Windows Server
+Update Services (WSUS) manually. See the Microsoft Update Catalog for
+instructions. If you want to remove the LCU To remove the LCU after installing
+the combined SSU and LCU package, use the DISM/Remove-Package command line
+option with the LCU package name as the argument. You can find the package name
+by using this command: DISM /online /get-packages. Running Windows Update
+Standalone Installer (wusa.exe) with the /uninstall switch on the combined
+package will not work because the combined package contains the SSU. You cannot
+remove the SSU from the system after installation. File information For a list
+of the files provided in this update, download the file information for
+cumulative update 5060829. For a list of the files provided in the servicing
+stack update, download the file information for the (KB5062862) - version 26100.
+4484. Microsoft Internal Support Information Bug information Released in 2025 6D
+(2025.6 D) Individual VSO bugs related to KB5060829 ID Title 49140793 [ENG] NXT
+Pilot is reliable, secure, and functional 57051198 [NXT] [Future] CD Scenario
+for Future Windows CPC work, not ready to ship 52446774 [Shell] Captive portal
+implement UI (M) 53268649 [NXT] Accessibility across boundaries for AT
+continuity 53427935 [Shell] Support additional enterprise networking scenario
+48962641 [WAM-I][Security][Sign-in] End-User can successfully auth for resources
+with Conditional Access: WAM Interactive flow support 47484215 [Shell][Quick
+Settings] End-User can check laptop's remaining battery via local Quick Settings
+57279317 [NXT] [2025.06] Telemetry Improvements for Windows CPC (shipping August
+2025 / 2025.08 B) 55551041 EO: 2506 - AddressSanitizer (ASan) 55757344 EO: 2506
+- OneFuzz 55757457 EO: 2506 - Binary Hardening -Checkcflags 55757508 EO: 2506 -
+Binary Hardening -BinSkim 55757546 EO: 2406 - CodeQL for C/C++ 55757667 EO: 2506
+- CodeSign 55757689 EO: 2506- Compiler errors/warnings 55757756 EO: 2506 -
+Compiler version 55757799 EO: 2506 - AzDev-Component Governance 55757972 EO:
+2506 - CredScan 55757993 EO: 2506 - Crypto 55759132 EO: 2506 - Doppel+SourcesCop
+-checked in OSS to Vcpkg 55759154 EO: 2506 - FCIBs 55759179 EO: 2506 - Vcpkg
+Static Analysis 55759196 EO: 2506 - Static Analysis - C++ (PREFast) 55759213 EO:
+2506 - PSScriptAnalyzer 55759252 EO: 2506 - Static Analysis/CodeQL - C# 55759280
+EO: 2506 - SBOM defects 55759333 EO: 2506 - Unsafe vcpkg 55759542 EO: 2506 -
+Vcpkg - Compiler flags 55759626 EO: 2506 - Sanitizer bugs (UMA, KCScan, SKCSAN,
+HCSAN, UASAN, etc) 55759644 EO: 2506 - MSRC Found bugs 55759752 EO: 2506 -
+Secure Kernel bugs 55759765 EO: 2506 - CastGuard 55759778 EO: 2506 - Other
+Uncategorized bugs 55759789 EO: 2506 - Active SDL Tasks 57296989 [OEM] [A11yEAA]
+- Narrator skips several languages with the Narrator TTS switching fix for bug
+56640037 57309504 [EE] [Ge][PPM Provisioning] PPM Initial Tuning for Intel
+Granite Rapids Workstation CPUs 57424609 [ARM64] Adobe Premiere Pro shim updates
+57433665 [EE] [Ge][PPM Provisioning] PPM Initial Tuning for Intel Panther Lake
+CPUs 55401112 INTERNAL - CD 2025 - Infrastructure / ES Improvements for 2025
+[Ge] 55550971 INTERNAL - [2025]- CD 2025 - Validation/Testing Improvements (non-
+shipping code) - [Ge] 52579861 [Task Manager][GE_2025.07][BugFix] Users have
+precise and uniform icons for both applications groups and processes 46436314
+[Task Manager] - Default Task Manager CPU calculation (Utility vs Time) is
+consistent 52581586 [Task Manager][CD][2025.05] Streamline Process views to
+improve process naming, grouping with accurate memory calculations 42941381
+[Ongoing][Delight] Cred UI Rejuvenation - Cred UI refresh with Win11
+Visualization and Hello Branding 57253203 'Enable NEw HEllo branding
+(animations) from lock and logon UX 57570342 [CIX - Auth/ID] [Business
+continuity] Fixes/Improvements to existing/InMarket Auth experiences on Windows-
+2507 43907524 [ongoing][Passkey adoption] [passkey sync] [Passkey management
+ph2] Allow users to complete One-time set up and also manage synced passkeys
+44553317 [ongoing][passkey adoption] [Passkey Sync] Enable users to save and
+sign-into websites/apps using sync-able passkeys 47125872 [ongoing][passkey
+adoption] [3P pluggable passkey Manager] Settings updates to Support 3P Passkey
+Provider 57429138 Fix EAA/Accessibility bugs for ACW in Windows 56487937
+[WinLogon][NXT][Boot] Ideal experience when CPC is locked for Boot/NXT users
+52550862 [Cloud NPU] Windows Search enables SFS on cloud Copilot+ PC (August)
+57190266 [W365][NXT] Preview v2 Release - Aspen client can download/install/load
+media optimization plugins 56259438 [Win365 Boot] [Blended Settings] Add support
+for WCX-built Display settings redirections 56418971 [Win365 Boot] [Blended
+Settings] Show both shortcuts & WCX-built Display settings redirections if
+applicable or if requested by client 57913272 Containment mistake is leaking bug
+that sometimes breaks connection to certain types of VPN (SSTP with EAP
+MSCHAPv2) 44922025 [Developer Productivity] Enable MSRC development in CD
+branches directly 56751663 [Developer Productivity][Velocity Proxies] CD Bundle
+key improvements using Velocity Proxies 55432147 [Developer
+Productivity]Implement Feature Toggles (Velocity v2 primitives) to simplify
+containment authoring for both feature development and servicing 56918999
+Containment quality improvements and GE monthly CD bundle enablement in LCU
+(2506) 55535716 [Containment][Agility] Keep customers productive by providing
+capability to apply velocity configurations rebootlessly 49486770 [Developer
+Productivity][CD Scenario] Velocity Proxies (CD Bundle key improvements)
+54405327 [GE Server CD] [Velocity Support] Edition Level Containment of CD
+bundle keys 51405320 [Rollbacks] [Rebootless] Reduce productivity downtime for
+enterprises by providing Rebootless GPs 57449049 Cumulative Non-Security
+(Update) for Windows (Ge) - KB5060829 - 2025.06 D 57104799 [BLD] Tracing
+infrastructure supports increased build validation and CyberEO compliance
+validation (Br) 48872786 [Undocked ES] Undocked Engineering System
+infrastructure successfully builds and releases undocked components in ADO
+55538939 [Continuous Delivery] Test Authoring and Execution Framework (TAEF)
+changes impacting shipping code 55739753 [Continuous Delivery] Test.NET changes
+impacting shipping code 50002641 [WSD-UP][CD] - Infra, test improvements and
+test bug fixes - [NO PRODUCT IMPACTING CHANGES] 54321751 [Br] Get WSD workflows
+working with BuildXL Official builds 56731429 [2025.11 D] Bug Fix Bundle for
+Compat mitigations 57103451 [Br] Core Build Livesite - Build.exe base builds
+57103456 [Br] Core Build Livesite - BuildXL based builds 57103480 [Br] Core
+Build S360 & CyberEO Compliance 57103574 [Br] BuildXL build errors are well
+surfaced to email, ADO, and telemetry 57107601 [Br] Core Build Partner Asks
+57108025 [Br] Core Build DRI toil reduction and invest in ourselves features
+44975630 Tailored download & install to improve adoption without regressing
+productivity 50222007 [Ge] Windows features have cloud driven configuration for
+rapid deployment and experimentation 54902048 Add the next version of UUS
+preview package(V15) as P3 into GE_CURRENT and NI_CURRENT, add v14 as stable
+55918011 EO: 2508 - [USE 57654842 Instead] Cyber EO fixes flowing through
+Milestone Branch 2 [1 of 3] 56040759 Velocity conditionals cleanup work for
+Continuous Delivery features (2508) 56731385 [2025.08 D] Bug Fix Bundle for
+Compat mitigations 57217324 EO: 2508 - Cyber EO fixes flowing through Milestone
+Branch 2 [2 of 3] 57654842 EO: 2508 - Cyber EO fixes flowing through Milestone
+Branch 2 [3 of 3] 45671644 Undocked Flighting: Enable out-of-band (OOB)
+flighting of Shell Undocked components to Feature team and Internal Audiences
+[MVP] 49134411 Quality Improvements and Fit&Finish for Rebootless Shell 53404460
+Quick Machine Recovery: Integrate WU (Windows Update) pipeline in WinRE 55084170
+[CD][ML Model Delivery] Q1 Model Caching Fit+Finish, Stabilization & Bug Fixing
+55330562 [Windows CD] Onboard VCPkg and Nuget support changes to ge_current
+56040752 Velocity conditionals cleanup work for Continuous Delivery features
+(2507) 56416878 Deployment team Windows Ge Continuous Delivery Bug Fixes for
+2025.07 D 56731362 [2025.07 D] Bug Fix Bundle for Compat mitigations 43585461
+NuGet Build Support to enable WDK scenarios 44206036 Intelligent detection &
+scalable mitigation - CD_Accepted 46432420 Autopatch IT Admins can trigger IPU
+for devices that are not up to date 47496427 [Se] Updates to .NET SDKs and
+runtimes in the OS build are synchronized to DevDiv's monthly release cadence
+48242077 [Se] Undocked component VPacks must meet EO Requirements by March 2024
+49137793 [Dt Razzle Reliability] Windows Build and Signing Tools is responsible
+for <= 0.25% normalized failures on Razzle startup 50221575 [Ni] Velocity
+Feature Tuning: Windows features have cloud driven configuration for rapid
+deployment and experimentation 50240238 [Se] Enable BuildXL full PR build policy
+to all high traffic branches 50272215 Continuous Delivery (CD) GE Engineering
+System Test Validation Platform and Test changes for all non-shipping/non-
+product changes 50549928 Deployment continuous delivery infrastructure scenario
+50867571 Onboard ES build branches for ge_current 51486811 [Dt] BuildXL Official
+- Ensure branches can be onboarded to Hybrid-Preview Builds 52576348 [AI/ML]
+Play B: Feature update model acquisition on supported hardware 52707993 [CD
+Servicing Readiness] Ge Servicing Infrastructure Gates validates infra and
+product change impact on servicing pipeline tools and services 53857879 [Se]
+[Build Tools] Windows Continuous Delivery is supported by ring-based tool
+deployments. 53857975 [Se] Undocked build tool VPacks must meet EO Requirements
+by October 2025 53858325 [Se] Complete scoped internal-focused SBOM work to
+conform with 2025 EO Audit 53884455 [WC-Docked] Ge is EO-compliant 53998507 [Se]
+Windows Kits are serviceable via an opt-in option. 54306795 [Se] Core Build
+Livesite - BuildXL based builds 54315357 [Canvas][Consumer only]Making Canvas an
+Inbox component and ability to run Canvas campaigns via Cloud (including
+integration with WaasAssessment/Medic) 54650395 Rust Compiler intakes for Se
+semester 54823263 [2025.06 D] Bug Fix Bundle for Compat mitigations 54854237
+INTERNAL - 2025.06 - Infrastructure work to support Internal, non-shipping code
+such as automation fixes, RI-TPs, Internal Tools, KPIs, Reports, etc - Use only
+for non-shipping code! 55759305 EO: 2506 - Cyber EO via GE_CURRENT 55795811
+Windows Undocked Components must be trusted in the 2025.06 GE release 56040749
+Velocity conditionals cleanup work for Continuous Delivery features (2506)
+56047883 Ensure that the mitigation infrastructure meets security and CyberEO
+compliance requirements 56047926 [2025.06 D] Windows (Ge) PCA updates for
+telemetry and logging improvements 56048053 [2025.06 D] Windows (Ge) PCA updates
+for reliability and monitoring improvements 56096625 [CD][ML Models] Play B Can
+Target 2nd Generation of NPU Hardware 56349656 Continuous Delivery TIP Platform
+Improvements (No feature specific related TIP changes) 56416865 Deployment team
+Windows Ge Continuous Delivery Bug Fixes for 2025.06 D 56982786 2506 CD -
+[Census, Inventory and Appraiser] Bundle of Reliability, Security and
+Functionality fixes for In-Market Components - 2506 57101683 [QMR] [6D] General
+Feature Quality Improvements + Bug Fixes 57102113 CD Scenario for Servicing
+Stack Reliability Fixes in June 51997565 [Local Rollback Exp] Automatic Local
+Rollback Experiment 55795809 Windows Undocked Components must be trusted in the
+2025.05 GE release 56040744 Velocity conditionals cleanup work for Continuous
+Delivery features (2505) 56486856 EO: 2505 - Cyber EO via GE_CURRENT 53393595 CD
+- AppFootprint and ApiSampling run independently of PCASVC. Both should be now
+hosted by InventorySVC. 55934048 Quick Machine Recovery for Windows - Bug fixes
+and Test Mode Functionality 52751949 Restart Computer Stalling at Startup -
+Failed Deployment_Restart-ComputerIfPendingReboot-* 56861090 [Ge] [PostRel]
+2024.12B: LPRemove does not clean up unused language packs. 57434030 Improve
+internal debug extension userkdx!dhe (dump handle table entry) to display
+discrepancies between handles, object addresses, etc, and to be resilient to
+those discrepancies 57546678 [Ge 6D Servicing] WinInet AppContainer root path is
+wrong for medium IL Centennial apps 57938633 [GE][DaVinci][OS.2020] Update CD
+Key to Feature_Standalone_25_06_NonSec for Retail CFR 51593804 Add Elevation
+Moniker support to Packaged COM 54720423 Win32k/NTUser platform security
+hardening 54318571 [Recall Commercial Ready] [SUP] Data Privacy & Governance -
+Platform side work for Microsoft Purview Integration 56004505 [CUA] User Consent
+for existing APIs via Capabilities (GraphicsCapture, InputInjection, Windowing,
+UIA) [Was API Hardening] 50464119 Mouse cursor supports modern features without
+performance degradation 45408584 [DST Acceleration Project] Updated DST changes
+to be delivered through one-settings configuration and GP 50926635 [Recall
+vNext] [AppCompat] Consolidate AppName/DisplayText logic into Screen
+Understanding at the time of capture 54264824 Enable TrustedLaunch for Windows
+Apps 54727408 Migration into Advanced settings 55049854 Auto generate identity
+for signed unpackaged apps 55427464 [Globalization] Region and Date & Time
+property sheet rejuv as part of EAA 55904201 [Adaptive indexing] Redesign to
+support Multi-pass indexing of files 57726334 [Narrator] [7D] In-market quality
+improvements for Narrator/ Magnifier to be reliable and compliant. 48433831
+[Developer Perf] Performance Improvements of File Explorer Archive operations
+48642628 [Composition SwapChain DX12] Save 30-60 minutes of battery life when
+playing AI-enhanced Video MEDIA/NVIDIA ask. 52735948 WNS complies with the
+latest CTA requirements to enable continued product sales in China (Support for
+unpackaged apps) 54645339 [Input] Platform support for Touchpad Haptics (was:
+Improve haptics API set) 54854816 Secure Foundation Bug Fixes for 2025.06 (6D)
+Ge 56134111 Fix a bulk of HANG_QUIESCE bugs by disabling the DirectComposition
+Offer/Reclaim mechanism 56399138 [SCC Servicing] Download & install perf and
+reliability improvements - backport changes in 6D release 56908166 Improve on-
+device & WSUS footprint and management of AI Fabric models 56937922
+[Fundamentals][Reliability][OS Release Vehicle] WinUI Reliability Improvement GE
+2506 56950841 [Project DaVinci][FY25Q4][💿CD][Windows 11][Ge] App list Backup &
+Restore 57058644 [Narrator] [6D] In-market quality improvements for Narrator/
+Magnifier to be reliable and compliant. 54702256 [WCR] Settings page - how users
+can turn on and off WCR capabilities for apps 54854813 Secure Foundation Bug
+Fixes for 2025.05 (5D) for Ni and Ge 56209474 [WCR] Updates to Phi needed to
+support STRX & LL 56399108 [SCC Servicing] Download & install perf and
+reliability improvements - backport changes in 5D release 56672696 [Narrator]
+[5D] In-market quality improvements for Narrator/ Magnifier to be reliable and
+compliant. 57043841 [SFS] Bug Fixes Post 3D/4D release 54854794 Secure
+Foundation Bug Fixes for 2025.04 (4D) for Ni and Ge 55642645 [Narrator] [3D] In-
+market quality improvements for Narrator to be reliable and compliant. 53277310
+Secure Foundation bug fixes for 2501 for Ni 57454176 [GE] NDIS stack hang due to
+SRVNET.sys not closing a connection socket 48140763 MSRC feature clean: [MSRC
+81441] LSASS - Arbitrary Write/Overwrite - Unknown 56383786 [KIR Cleanup Bug]
+55687350 : [MSRC 93888][Ge] vkrnlintvsp.sys - 1 buffer overflow and 2 UAFs due
+to unprivileged user access to function memory - Internal 52928765 [KIR Cleanup
+Bug] 51363633 : [DMA][Ge] Previous PRT didn't send in CertBasedAuth (CBA) flow
+55878556 [2506 D] DRTM flighting Backport 56051438 [2506 D*] PCPKsp Import
+NCRYPT_PKCS8_PRIVATE_KEY_BLOB for ECC fails 56298112 [MSRC 95128]
+applockerfltr.sys - OOBR in applockerfltr!SmpRegistryCallback - Google, Inc.
+56526528 [GE][KDC][PKI][Citrix] FBI and DOJ are unable to migrate to strong
+certificate mapping 57435859 [GE] [GarrulousEvent]
+Microsoft.Windows.Health.TestInProduction.TestResult51748470 has garrulous
+behavior in Gallium 54365772 [Pluton IPSE][FAR] Pluton Platform Support for Nova
+Lake (NVL) 39494783 Energy Usage Graph - Windows users can see their energy
+consumption in Settings on AC and DC power 40407800 [Pluton KSP][Qualcomm]
+Deliver Pluton KSP and Cred Guard v2 on QC Hamoa platforms 53283713 [Recall]
+Enable secure peripheral fingerprint readers for ESS 23923582 [NTLMless] Provide
+NTLM replacement support on Windows - IAKerb and LocalKDC - Phase 1 - MVP
+45470657 Design and Implementation of Platform agnostic Pluton Telemetry
+48799070 [Steelix][Intel] Complete Intel TSE support for PTL platform delivery
+55800676 Add public API for backing up recovery key to MSA via command line.
+55830893 [KVS][Windows Servicing] [2025.9 D] Windows (Ge) Non-Security Payload
+56131864 [Privacy] [CAM] CAM Computer User Agent (CUA) Support for Low Level
+Kernel APIs 33935488 [Windows] [Phase 1] Secure KMS to prevent KMS hacks causing
+one of the fastest growing piracy vectors for Microsoft - Phase 1 44468976
+[#Finish][IDNA][ENS][XBOX] XBOX WAM convergence to allow XBOX IDP to fetch app
+tokens 48910075 [Windows][Fundamentals][KMS] Improve KMS client expiration
+experience - Notification (instead of legacy blue banner prompt) 49519257 [Se]
+[Br] Implement power/thermal management interfaces for MPTF 53079867 [Adminless]
+Adminless support on Windows Clients (GA) 53147971 [AppSilo] Enabling apps with
+Win32 App Isolation 53426606 [Pluton D][FAR] PlutonOS Firmware & Crypto Drivers
+56192531 Windows Health Experiences service actively protects Fundamentals on
+the device 57172399 CD - Compatibility inventory traces like AppFootprint,
+APISampling, and InstallMon are seamlessly orchestrated by the Inventory
+Service. 33722644 [#OnGoing] [passkey] Users have a delightful experience using
+passkeys that can be synced, restored, and roamed across their Windows devices
+41459571 [#Fundamentals][IDNA] Update WAM Core to surface (MSA) user
+cancellation MATS telemetry 43163134 [#OnGoing] [passkey] Windows supports a 3rd
+party to be a plugin authenticator for managing passkeys 44673274 [#OnGoing]
+[passkey] Users are delighted by refreshed CredUX and modern Windows Hello
+visuals 45682905 Intra Cloud and SAML/WS-FED users should be able to login using
+RDP assertion credential to their guest devices joined to guest tenant. 53095338
+[Privacy] CAM Security Hardening & Rollout (Phase 1) 54646576 [Bluescreens][CD]
+Modernize UI for crash screen 55131333 [CD][NTLMless] Add NTLM Auditing and
+Blocking group policies to guide removal efforts 55710658 [Ge] [EE] General
+Power Tools and Diagnostics Improvements 25H1 55830878 [KVS][Windows Servicing]
+[2025.7 D] Windows (Ge) Non-Security Payload 55935913 [Pluton] Enable EntraId to
+leverage the Pluton KSP 56300739 [WS2025]Additional logging for script
+enforcement in audit mode for IDNA service to analyze their interpreter usage.
+56844971 [Ge] BPT Germanium Client Bugfix Bundle 2507 38111388
+[#finish][#Fans][PQC][Crypto] PQC (ML-KEM, ML-DSA and SLH-DSA) and hash-based
+(XMSS/LMS) algorithms are available on Windows and Az Linux 45159410 CD -
+InstallTracing MVP: Application Inventory produces accurate correlations between
+Files and parent Programs at a high success rate. 50868594 [ENS] Stand up ENS L2
+GE/NI_CURRENT_* tree & tests to facilitate ENS [Ge] [Ni] Continuous Delivery
+work 50998028 Bug fix: Collect full dumps from Retail users 52264343 CD Key
+Rollout OS support for HW based IOMMU nested translations 52264521 [Settings]
+Implement: Settings Rejuvenate Admin Flows 52712295 [Pluton IPSE][FAR] Panther
+Lake support for Pluton platform (LNL Parity) 53163191 [Adminless] Fix Bitlocker
+scenarios that do not work on an Adminless device 53496814 [Se] [Privacy][CAM]
+Slow Bug-Fix & Test bundle, CAM codebase is kept in sync between AB & CD
+branches as appropriate. 54067818 [#LockedDownWindows] [GA] NXT devices are
+locked down to run only authorized code and protected by Secure Boot and HVCI
+54375814 [Pluton D][FAR] Support for dTPM 55083504 [Pluton D][FAR] Dynamic
+Update 55830811 [KVS][Windows Servicing] [2025.6 D] Windows (Ge) Non-Security
+Payload 55914679 Quality improvements for Energy Saver / Energy Recommendations
+/ SRUM /PowerGridAPI - FY25-Q4 56298501 Smart App Control Guides User to Trusted
+App in MS Store 56411467 Support assigned devices for Windows VMs with > 512
+processors 56809997 [Pluton IPSE][FAR] Pluton Platform Support for Wild Cat Lake
+(WCL) 56949838 FUN-Power Quality Bug Fixes (Apr-Jun) 57433830 [MDE\MDI] [CD
+Scenario] [InMarketOS] WFP-RPC: Extended parameters logging & IP-based filtering
+fix 57636482 [CAM] [Hardening] Wave1 Hardening Stub Scenario 54730041 [DRTM
+Fundamentals] Support for DRTM key protection and Hope Chest in flight-signed
+Ge_* builds 55061615 Add unsampled (via code) KSPTransaction Telemetry events
+for NXT population 56008174 2504 CD - Removal of the NONARP component from
+InventorySvc 52708155 [CoreOS] Windows Hypervisor Platform: ARM64 Support
+[GE/SE] 55082305 [Ge] BPT Germanium Client Bugfix Bundle 2503 46948711 [DT]
+Windows Server 2025: value-add service for stand-alone AVMA on top of PayGo
+55815706 [Finish+WinClient+#Fundamentals][dis:2504D-en Ge:5D/Ni:6D][noCFR]
+PP->GA blocking attestation Fixes 53590241 Reduce SDN infrastructure overhead -
+L3 fastpath gateway footprint reduction (no more infra VMs) 49196012 [Cellular]
+ECMC (Enterprise Cellular Managed Connectivity) - Enhancing eSIM Profile
+Management Capabilities for Enterprise Customers - MVP 51484628 Monthly COSA
+updates for Mobile Operators 49200542 ZTDNS client goes to Public Preview,
+meeting a subset of OMB M-22-09 Zero Trust requirements for DNS traffic
+encryption and logging 53634739 Prototype NCM 1.1 features in USB class-driver
+55490688 (2506) Bug Fix Bundle for Windows TCPIP components - Wave 3 56101408
+Adding support for DUID-UUID for DHCPv6 56318957 L1VH Networking Robustness and
+Maintainability Improvements 57263574 [Br 2025.09] Improve Quality - Summer Core
+OS NDP area component bug fixes 42153314 [Print] IPP/PSA support for Enterprise
+49200582 WinCLAT meets OMB M-21-07 expectations for support IPv6 transition
+networks 51972079 Virtual Printer API enhancements (v2) to support Dynamic
+Installation 53713825 (2505) Socket Option Improvements for M365 55081143
+[Fundamentals] Network Security test automation and HLK tests improvement [non-
+product changes] 55114674 [NetUX] Enable eSIM downloads directly from a mobile
+operator's website 56657746 Fix NDP specific legacy framework Networking HLK
+tests to reduce problems that require errata 56658043 Develop new and improved
+NDIS Studio framework to support all future Networking HLK tests 51701136
+[Security] Fuzzing coverage for Wi-Fi 52536457 [Wi-Fi][Security] Productization
+for Wi-Fi Cx User Mode Driver Framework (UMDF) 53192840 Enable Windows Protected
+Print Mode Worker 53299205 [Wi-Fi] [Security] Addressing deployment delays with
+WPA3 Compatibility Mode (MRSNO) 54518588 [2025.06] Enlighten Pktmon to support
+scenario-based tracing 54902251 [2506] Windows DNS client bug fixes 56160516
+[Firewall] [USVA] Feature Request: Windows Firewall audit mode that tracks audit
+block events without blocking events. 56206996 [Br 2025.07] Improve Quality for
+Core OS - NDP area component bug fixes 56523872 Print platform stability fixes -
+July 2025 56914956 [2025.07] Improve Quality for Core OS - Network
+Virtualization bug fix bundle 57049486 SDN and ATC bug fixes for 2506 (Server
+and HCI only) 57478581 [2507] Windows DNS client bug fixes 57479439 Bug fixes
+for Windows DNS client kernel mode API 41755465 [Wi-Fi] Wi-Fi 7 for Enterprise
+Access points - OKC roaming 49171478 [Wi-Fi] Investigation: Improved Security
+and Reliability with WiFiCx UMDF Driver 50463981 [Quality]Wi-Fi Core
+Quality/Security Improvements and Refactoring 50465139 [Fundamentals] Conversion
+of Wlan codebase C components to C++ 51242885 HTTP Fast Request Forwarder
+supports HTTP/1.1 from client to front-end to broaden client app support
+53397500 Simplify the Software Load Balancing (SLB) user experience on Logical
+Networks (LNETs), AMB adoption by 3 customers within 3 months of release
+54330149 Windows IoT [Ge] Bug Fix Bundle #4 54330157 Windows IoT [Ge] Bug Fix
+Bundle #5 54373643 (2501) Bug Fix Bundle for Windows TCPIP components 56018875
+IPP+PSA Platform Stability to aid HP/Epson/Canon/Brother 56456865 [Print] HP
+2025 device line up requires IPP+PSA Perf Improvements 56627123 Expose TLS
+Negotiation Details to Userspace for SharePoint Online 56884026 Fix thin line
+issue for IPP LPF printers 55520881 [Print] Print powershell enhancements for
+enterprise 55677794 Print platform stability fixes - May 2025 55736040 [SDN] Add
+support for 4-byte ASN for SDN Software Load Balancer 55817814 SDN - Azure Local
+Execution Engine must be able to remove or reconfigure the SLB Self IP (also
+known as the SLBM VIP) 55878033 Print Accessibility Fixes - May 2025 56544316
+Update exception handling in Print components - Addressing RQV affecting
+Reliability - Crash Percentage During Network Print Install on the RQV rrall.
+56575309 SDN and ATC bug fixes for 2505 (Server and HCI only) 31413712
+[Location][Deprecate] Location history API and corresponding section in Location
+settings 57278518 [AppCompat] [Runtime Block] Avira Free Security latest
+versions fail to install [ARM64] [GE] 57883686 [Server]: [2025.06D - Package
+fails to install with an error message "Something didn't go as planned-Undoing
+changes"] 57896817 BlueScreen Rejuvenation - Reparent velocity 50070238 from 6D
+to Future to align with QMR feature 53796526 [AI/ML] Enable efficient file level
+servicing of AI models (Play C) 57808170 [GE][Server] Enable Server Enforcement
+for WS2025 55233212 [SPACE] Deliver Hotpatch Monitoring Service and build Data
+pipeline 55949064 SERVER::Enable Enforcement check for Windows (GE) Hotpatch
+Update Installation 57896799 Native NVMe bug fixes and diagnostic enhancement
+backport to Ge 2506 50291556 [Rb 2026.06] Infrastructure improvements for Core
+OS - Network Foundation team areas for all non-shipping/non-product changes
+48868814 NTS for NTP Client AMB self-hosting and product readiness 56336442
+[IPsec] [ZTN] [Auditing Improvement] Improve IPSec & Firewall Audit Events
+57623962 Feature_Netsec_BugFixes_2025D 57050364 Multi-Session ETW support for
+WPP 57623979 Feature_VPN_BugFixes_2025B 55263160 Network Security Bug Fix Bundle
+25C 56848077 Process Mitigation for WinHttpAutoProxySvc and PacJsWorker 55579323
+[WFP] [BFE] [ZTN] [Auditing Improvement] Improve BFE & WFP Audit Events 56510240
+HTTP Bug Fix Bundle 7D (2507) 57385915 Add netsh event to log who is calling
+netsh.exe 55876274 Enable QoS DSCP Tagging in the HTTP Stack 56092729 [2025.06]
+Bug Fix Bundle to improve quality for Container Networking area 56418565 HTTP
+Bug Fix Bundle 6D (2506) 57185596 Unify WinInet's Cache for Processes with
+Different Integrity Levels in Centennial Packages 49771360 Pre-GA Network
+Security Bug Fixes and CD Validation Work: [2404] - released in 2408 57117818
+[GE][Localization][Hungarian]NetSetup fails due to illegal character on Windows
+Server 57533484 [Windows (Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30285.250512-1700 57543269 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30285.250512-1700 57562690 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2507d build:26100.30286.250513-1700 57619080 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30290.250517-1700 57654794 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30292.250521-1700 57673047 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30292.250521-1700 57716419 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30292.250521-1700 57724938 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30298.250527-1607 57760133 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30300.250529-0943 57790262 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30301.250601-0600 57795136 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30302.250602-0135 57905695 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30309.250609-1729 57909416 [Windows
+(Ge)] [Localization] Localization for churn detected:
+branch:ge_release_svc_2506d build:26100.30309.250609-1729 51676633 [Kits-only]
+[Inbox Apps ISO] [Win11_Ge] Refresh the Inbox Apps ISO with latest versions of
+apps for OEM preinstallation + VLSC channel 57242575 [SCC Servicing] Download &
+install perf and reliability improvements - backport changes in 7D release
+57242621 [Win Smart Install][7D] Store & SAC Integration (Phase 1 - OS) 56661439
+Win+Shift+T hotkey support for text extractor (Ge) 55721252 [SCC Servicing]
+Download & install perf and reliability improvements - backport changes in 3D
+release 49098079 [Windows Smart Install] Phase 0 - Enable experience for S-mode
+devices for shortlisted apps on Store 54353623 [Wallet Service] Wallet Service
+API Telemetry for to get usage data for Wallet Service Removal 48815891 SCOOBE
+Recommended Browser Settings - Stamp PC Code when resetting Default Browser
+57245335 [KIR Enablement Bug][CSS][Needs Servicing][Ge] Shared PC does not
+delete profile when guest user logoff. 50177380 MSRC feature clean: [MSRC 83670]
+UserManager Service - bypass for CVE-2023-36047 - Unknown 55227973 [CSS][Win11
+24H2][Ge] [UNDO] SearchHost does not honor new environment variables when
+launching processes 56383763 [KIR Cleanup Bug] 55080054 : [MSRC 92706][Ge] NTLM
+Hash Disclosure through searchConnector-ms - Unknown 57803470 [GE] ESR
+Integration with commercial backup and restore 57812521 Windows 11 about page
+crashing on server skus 57881406 [DCR Check-in Bug - GE] [6D] DMA compliance for
+app defaults platform - Allow Pin to Taskbar and Pin to Start Menu when setting
+default browser 57899430 [GE 6D] Copilot Hardware Key is not opening app after
+it is manually closed or crashes 44533041 [Win11] Points of Flexibility for
+Added Experimentation Levers for Search Box gleam 46571039 [ARES] - Include OEM
+content with Spotlight default images 50277356 [Ask Recall] User can ask
+questions about their personal content (local RAG) 56456227 CP+ Light Up on FY26
+Silicon 48647559 Moments [Platform]: User can see related M365 entities &
+actions in Recall 52746235 [WDAD] Desktop 2.0 canvas platform and plumbing are
+built to support rich objects (i.e. dynamic containers and Widgets) 50205785
+Users can grab an image subject out of an image in C2D 54757164 Landing Page: A
+user can see grouped by [day/week/month] Timeline view with semantic sessions,
+summaries of activity, and productivity habits over that time period. 54792523 A
+user can see higher level 'objects' (file, web) in the Recall experience that
+are de-duped, which make it easier to find and understand. 54798046 [Recall in
+WSB] Users can see Recall results in Windows Search Box 55160044 [Action UX]
+Action Selection Surface: Click to Do and File Explorer can show a converged
+menu of actions 55317165 [Selection] Users can use lasso and rectangle selection
+modes in C2D 56650204 Drag Tray (V1) - Users can drop content to top targets as
+soon as they drag a file 56699055 [Click to Do] [Dynamic Actions] Empower C2D
+users to work faster and accomplish more with Dynamic Actions, seamlessly
+integrated with Copilot 56757992 [Selection] User can select a sub-image region
+in C2D 57277401 C2D Can be deployed as an app 57277997 M365 Action: [Email
+Entity] User can see LPC card on email address (Non-DMA) 57336045 [Internal]
+Enable environment to try proof-of-concept experiences in Click to Do 45425284
+[Coherence] Users can share One Drive cloud files via Windows Sharesheet
+50237327 [Purview] Recall commercial - User can clearly see the sensitivity
+label for a snapshot for which a label was received from Purview 51407555
+[Settings][AI Personalization] Wallpaper DJ backend - Dynamic Wallpaper images
+created with the assistance of AI 51721485 Local recommended content in File
+Explorer Home 54847969 M365 Action: User can select table entity and convert to
+excel 55090598 [Dynamic OOBE] Support OobeHostApp to launch in defaultuser0
+55090619 [Dynamic OOBE] Migrate post MSA sign-in flow pages to OobeHostApp
+55512263 [SWITCHER] Users can Share on Apps installed on their machine or that
+are available on Store 55699385 Creating Contacts provider in ShareTarget.dll
+which can be consumed by all Share surfaces. 56038648 [Studio effects] On by
+default 56314744 File Explorer Home supports a public cloud files extensibility
+point to provide 1P and 3P apps the ability to ingest and display content
+56439974 Users can Start a CUA environment for 1P MAI and M365 chats 56656635
+MAI Copilot is connected to Windows Memories 56845801 [Copilot] Taskbar composer
+integration for agents (Copilot, etc.) 56899594 [Recall] Demo mode 42903169
+[Craft] Replace Auto-Hide with Shy Taskbar for invocation and animation on
+Desktop Posture 45065136 [Auth/ID] Feature Implementation: Roam Passkeys to &
+from Windows to support sync between Windows devices and MSA account 47986793
+[Reco] [Phase 1] [MVP] Windows 11 users can access used app/site/XDR
+recommendations from their taskbar 48102892 [Customer ask] Bring back big clock
+with seconds in calendar flyout 48573346 Landing Page: User can see recent and
+recommended 1P and 3P content & insights and their recent collections, with a
+magical animation and UX 48961304 [Photon][CD] - Security, Compliance, Tooling,
+and Build Pipelines 50902667 [OOBE] [Gaming Handhelds] Create custom nav path in
+OOBE for Gaming Handhelds 51489079 [Win11] Users can experience Boards WW
+(Boards 2.1) with parity to EWB 51750184 [AI] Locally Curated AI Actions in File
+Explorer Context Menu 52145456 [Win11] Change OEM Policy to make Spotlight the
+default experience on all new devices 52580392 [Gaming Handhelds][WGP] Handheld
+gaming devices launch directly and seamlessly into Gaming Focused app experience
+on device reboot and resume (Full Gaming Posture Experience) 52730221 [Action
+UX] Action Response Canvas: File Explorer can show Action Response Canvas to
+display the Office summarize action 54159636 Copilot can leverage the Settings
+Agent to make changes to Windows Settings: Crawl 54707278 Semantic Search
+Ranking Pipeline Improvements (BM25) 54825031 [Hello] Have First Hello Prompt
+appear over OOBE Consent Page 55707948 [Win11] Users can put 1P & 3P widgets on
+Lock in RoW with dynamic canvas 55965734 Landing Page: Recall Navigation Bar
+(included in Scenario 48573346) 56014970 [Xbox retention] [T-SCCOBE] Introducing
+Game Pass pay now (fix dunning) experience in the Tailored SCOOBE 56263234
+[Win11] [Search w/ AI] Semantic search for hybrid content on WSB 56643477
+[Search Quality] Improve Recall search by adding RAG+ semantic graph into
+retrieval pipeline 56738429 [SFI] [Win11] Migrate Search from CX to WinRT and
+enable SDL fuzz testing for Search - Wave 2 56876844 [Gaming Handhelds][WGP]
+Adjusting Windows UX in Gaming Full Screen Experience 56969563 [2025.08] WinS&S
+experiences meets in-market compliance, reliability and performance goals
+57390407 Reindexing on Filter update for capability based changes & related
+PublicAPI changes 57594823 [Studio effects] Nudges for discovery and engagement
+38762814 Show system tray clock on all monitors 41783115 [Reco] [Phase 2] RecOS-
+powered app recommendations on taskbar 48103152 [Customer ask] Users can move
+volume and brightness popups 48343115 [DMA] Allow Consent Coordinator to call
+UCS directly 48822452 Display battery percentage and update battery icon in the
+system tray 48946259 [Start 5.0][CP2] Categorize All apps in the L2 of Start
+49452336 Full trust Start: Start menu should run as full trust UWP, on path to
+Win32 app model (required for CP3) 51862994 Users can find files shared with me
+by this person 52265180 [Recall] Export Recall Data for DMA (Recovery Key)
+53191263 [Start 5.0][CP3] Start is larger, scrollable, responsive AND All apps
+is brought to the L1 53427769 [Settings Agent] Customers can leverage an Agent
+to manage Settings on their PC. 54352695 [Win11] Lockscreen Spotlight: Light up
+short-term campaign promotion to support 2025 Fall Marketing Moment 54856767
+M365: Text Actions in C2D pull from the ARE 54973490 Provide ability to suppress
+error dialogue message OneDrive ARCHIVED files 55951322 M365 Action: [Email
+Entity] User can open Teams chat and schedule a meeting using email address
+55965740 XR: Teaching tips to address the UR feedback on users not knowing how
+to use Recall 56083069 Users can learn how to use C2D through a tutorial mode
+56347821 Users can have a clear and easy control of what results are displayed
+via Settings 56624753 Phase 1 - Campaign Efficiency for Soft Landing V2 56800614
+Windows Sharing bug fixes 7D 56940084 [Win11] ODB (AAD) cloud content lexical
+search in WSB 56942626 Expressive input |Experiment to retail scenario for
+intelligent discoverability of EI panel (Systray icon) 56969537 [2025.07] WinS&S
+experiences meets in-market compliance, reliability and performance goals
+57103505 UCPD v4.3: setwindowshook injection protection, Edge DHP protection
+57244831 [Nth Logon] M365 Copilot Campaign 57438092 Update Handwriting
+recognizer to port missing functionality 57530293 Recall Feedback and Bug Fixing
+for 2025.07 (Feature_Recall_2507_BugFixes) 57818412 Click to Do Feedback and Bug
+Fixing for 2025.07 57872394 Sharesheet bug fixes for improved stability and
+performance - 7D (Silverstone) 29785184 Taskbar scaling: Automatically select
+small icon mode when Taskbar is full 43273840 [Retail CFR] Personalized Sites in
+Start's Recommended Section 46237899 [Win11] Developers can create web widgets
+on Boards 2.0 47684064 [DMA] Convert DMA Velocity Keys
+(Feature_AccountAndRegionalPolicyEnforcement) to EnabledByDefault once CFR is
+completed. 48575717 [Settings][Consumer++][44K-265K][Win11][Implement] Enable
+Settings Home Page on Commercial Devices with "Your Accounts" Card 48641853
+[Quasar][Inline Paynow][SettingsIntegration] Windows Settings have inline PayNow
+Experience - Phase2 48655351 [Growth] User can easily discover snapshot
+commands, including relaunch, in Recall (Timeline/commands swap) 49451818
+Continuous Delivery (CD) Font Update Scenario for All Shipping/In-Product Font
+Files (*.ttf and *.ttc) 49911070 Improve Open With UX and app defaults telemetry
+51108401 [SFI] [Win11] Migrate Search from CX to WinRT and enable SDL fuzz
+testing for Search - Wave 1 51485882 [Dynamic OOBE] Consolidate all of Enduser
+OOBE experiences into a single OobeHostApp flow 53433975 [Custom
+Actions][Preprocess] Compress the size of images before sharing 53871483 Link
+preview in Windows ShareSheet 54004013 Commercial: IT admins can configure a
+Start layout that users can then change (without being reset) 54434644 XR: Users
+have search query history auto-complete in the Recall search box (protected and
+manageable) 54538314 [2025.06] WinS&S experiences meets in-market compliance,
+reliability and performance goals 54843926 Taskbar - Allow User Unpinning for
+Admin Pinned Apps 55405614 [Search Quality] Search relevance evaluation updates
+and pipeline improvements 55482892 [DaVinci] Enterprise compliant Assets v2
+55527452 Windows Sharing bug fixes 6D 55534401 [Settings][CELA][-15K PGAs
+impact; -4.5K M365 Retention impact] DMA requirement updates to M365
+acquisition/ USQ/ resubscribe / RB on logic 55739101 DMA compliance for app
+defaults platform (additional types and .pdf button) 55803027
+[Internal][Incubation] OSClient App for Local Finetune Model Explorer 56144844
+[Search Indexer] Scenario for core-indexer bug fixes 56332368 [In-Market QA]
+Windows Snapping and Switchers bugs 2025.06 56560374 [Ge OOBE NDUP] [Commercial]
+IT Admins can choose to deliver Quality Updates during OOBE thanks to NDUP
+56750487 Users can understand when search results are incomplete (indexing in
+progress UI affordance) 56921009 [FY2025Q4] Store App "Windows Web Experience
+Pack" meets in-market compliance, reliability and performance goals 57004263
+Recall Feedback and Bug Fixing for 2025.06 (Feature_Recall_2506_BugFixes)
+57077040 Fix watson crashes for share sheet - 6D (Silverstone) 57168840 [COW]
+Quick Composer - Copilot apps can identify the source of launch 57247651 Recall
+OC stack should check for Feature_PRL_AIX disabled and remove Recall bits so
+Recall is fully contained and we have a kill switch 57267816 Sharesheet bug
+fixes for improved stability and performance - 6D (Incredibles) 57281917 Click
+to Do Feedback and Bug Fixing for 2025.06 57285965 Bug fixes post 5D 57310959
+[Win11] [Win10] Notification banner on web provider install 57363641
+Accessibility bug fixes for Win11 SE features (Hailey) 57386001 [COW] Enable
+M365 Copilot to be target of Ask Copilot for commercial and MAI Copilot for
+Consumer 57464320 Live Translation Bug Fixes 57480076 DMA compliance for app
+defaults platform (pinning) 57525619 [2025.06] OOBE/SCOOBE meets in-market
+reliability, compliance and perf goals 33289874 [Customer ask] Voice Typing
+users can turn off profanity filtering 45624564 Drop Tray - Users can drop
+content to top targets as soon as they drag a file (previously Quick Action Bar)
+50688004 [Start 5.0][CP1] Undock All Apps in L2 of Start 50902630 [OOBE] [Gaming
+Handhelds] Handheld gaming devices launch directly into Gaming Focused app
+experience after OOBE (Minimum RTM Experience) 50981838 [COW] Ask Copilot in
+Click To Do 51534690 Make Persistent Share Sheet dynamically resizable CD Key
+Rollout 51856000 [Win11] Decouple Search Box from Taskbar using Xaml Extensions,
+enable agile product making (undock flighting) 53433910 Users can make quick
+edit/enhancements on images while sharing through share sheet 54436854 Migrate
+legacy mouse properties dialog to the settings app 54538311 [2025.05] WinSaS
+experiences meets in-market compliance, reliability and performance goals
+55120546 [COW] Copilot Key support for Press to Talk 55736788 [Win11] 1p==3p
+User can discover web contents from 1P and 3P providers in Search Home and All
+Scope 56071166 [Win11] [Search w/ AI] Cloud (Federated) Semantic Search on WSB
+for EEA [User can semantically search dehydrated images from MSA in EEA]
+56194240 Click to Do Feedback and Bug Fixing for 2025.05 56208851 [Click To Do]
+Release Text Actions for non-English languages that don't require model update
+(French and Spanish) 56381645 Recall Feedback and Bug Fixing for 2025.05
+(Feature_Recall_2505_BugFixes) 57515812 [CFR][ONLY FOR CFR
+EXCEPTION][Servicing][5B][DisabledByDefault] - Prevent full rebuild on first
+time encryption 52412047 [Commercial] C2D is separated out from the Recall
+optional component 45130483 [Content][Piccadilly][UI] M365-coherent pivot
+focused specifically on shared content in File Explorer Home (MVP) 46448595
+Address EAA Sev2 accessibility issues in File Explorer (for 2025.4D) 47146776
+[PRIMARY RECALL SCENARIO] Recall Experience in Windows 50179255 [Win11] Users
+can put 1P & 3P widgets on Lock in EEA 50292896 [Phase 2 & GA] AI Text Actions
+and CM 51538523 [Primary][Recall GA] Recall data is secure and only accessible
+via Hello authentication 52847441 [Win11] Enhance TIP test coverage and improve
+telemetry logging in critical modules to proactively identify and resolve issues
+54322664 Prevent WSB suspension in webview2 54538309 [2025.04] WinSAS
+experiences meets in-market compliance, reliability and performance goals
+55536872 [Invocation] C2D can be invoked with a right edge swipe via Touch
+56004866 Recall Feedback and Bug Fixing for 2025.04
+(Feature_Recall_2504_BugFixes) 56305928 [Search Indexer] Parent velocity for
+MatchTag computation check of all queries 56707490 Completely disentangle
+velocity, binary, and functional dependencies between C2D and Recall 45434311
+Federated Search via Cloud Files API 45527403 Find | User can semantically find
+their local document & image files on File Explorer 47114533 User is made aware
+of new semantic search features via branding UI, disclaimer UI, and education
+tip UI 48504539 Expressive input | Intelligent discoverability of EI panel
+(Systray icon) 48816295 [Phase 1] Screenray supports the action 'Search with
+your default browser with your default engine' on text 50205631 [Phase 2]
+Ambient screenray is a fullscreen lightweight experience that can be invoked
+through WIN+Shift+J or the Snipping Tool bar 50484718 [DCR][Reactive Find]
+Search Results Improvements in Settings app (using Semantic indexing) 51215370
+[Win11] [Search w/ AI] User can find local files without remembering file name
+(semantic search) 51742149 [Win11] [Search w/ AI] User can find cloud files
+without remembering file name (federated semantic search) 52750015 [Phase 2]
+Screenray can be invoked with Win+Click and Win+Q 53429097 [Phase 3] [C2D] Image
+actions are backed by the ARE 55152305 [Retail FRE] First time users (non-China)
+see user education about C2D without it requiring opt in 55822974 Windows
+Sharing bug fixes - 3D (Incredibles) 53844009 [Win11] Users can have a more
+discoverable Top Right Hotspot on Lock Spotlight 54538295 [2025.02] WinS&S
+experiences meets in-market compliance, reliability and performance goals
+41338047 [Win11] 1P Partners can move to public Boards platform (1P==3P - Boards
+2.0) 53536157 [2025.01] WinS&S experiences meets in-market compliance,
+reliability and performance goals 32222762 [11D] Bring back JumpLists in Win11
+Start pins grid (ex: recent files for Word) 49208286 UX Experimentation:
+Understand the best order for different sections in share sheet 51621709 Copilot
+hardware key should filter to only apps with extension and toggle visibility,
+not always launch 53075368 Add missing telemetries for share sheet 53536145
+[2024.11] WinS&S experiences meets in-market compliance, reliability and
+performance goals 51897312 [10D Exception] User can configure Copilot hardware
+key in Settings 45286411 Users can share content from start menu search results
+52551538 Windows Sharing bug fixes - 9D (NI & GE branch) 56859349 [Click To Do]
+Release Text Actions for non-English languages that don't require model update
+(Candidates: Spanish, French, German, Italian, Portuguese) 50562728 [2024.08]
+WinS&S experiences meets in-market compliance, reliability and performance goals
+51874363 Windows Sharing bug fixes - 8D 56750440 Users can efficiently determine
+if the right image result was returned through an image grid in Search results
+45286375 Users can see contact suggestions from most used apps on windows share
+sheet 50892596 Windows Sharing bug fixes - 7D (NI branch) 50074292 Windows
+Sharing bug fixes - 6D (NI branch) 45286373 Prevent users from accidentally
+closing Sharesheet 46754312 [CPW][Copilot Frame] Copilot v3.0 Frame 56387241
+[Shared Binary] [Windows][WGP] Xbox Mode / Gaming Posture provides Immersive and
+Optimized gaming experiences on Windows devices (Windows Performance) 55841373
+[MSRC 94198] [CHILD CASE of MSRC 93887][Ge] SystemSettings.exe - 0-day vuln(s)
+in Windows, potentially StorSvc, being abused in-the-wild - Internal 57253633
+[Project DaVinci][FY25Q4][Ge] Telemetry addition for backup and restore Failure
+Reasons 57880330 In-code Disablement-[GB18030-2022][Ge][Windows 11
+24H2][Component Services] The
+Ext-B/Ext-C/Ext-D/Ext-E/Ext-F/BX/CX/GX/HX/IX/GFZB-196 characters are cropped in
+the name display of Component Services. 56299314 [KIR Cleanup Bug] 55719655 :
+[Ge Servicing] Auto screen rotation is enabled by accelerometer that is set as
+NOT primary and NOT integrated(but attached). 56383675 [KIR Cleanup Bug]
+53974265 : [MSRC 91201][Ge] usbaudio.sys - USBParseCountOutputChannelsForUnit
+OOBR - Individual 56383676 [KIR Cleanup Bug] 53975322 : [MSRC 91203][Ge]
+usbaudio.sys - BusApiBuildMixerFunctionUnit Integer Underflow - Individual
+57371532 In-code Disablement-Winlogon regression caused by RPC bug fix [WIP]
+57800024 In-code Disablement-camera filters getting reset over b2b upgrades (os
+swaps) 36610768 [Bluetooth] [Bromine][Personal Audio Sharing] Share Audio to Two
+Paired Wireless Audio Devices at Once 49171446 [Wi-Fi][CrossDevice Connectivity]
+: Next Generation P2P with Wi-Fi Direct 2.0 44254746 [Camera] [SCCD] IHVs can
+build new MIPI ISPs with minimal or no 3p drivers 45903551 [UMDF DMA] User-mode
+Driver Framework supports Direct Memory Access (DMA) to support transition of
+Wifi/Eithernet/PCI Drivers to user-mode 39449421 [Camera] [QuickShell
+Dependency][WSSI Dependency] Support multi-partner asks for Windows Studio
+Effects on external cameras 44047142 [HLK][Security][HDC Dependency] Deprecation
+of Unsupported SQL CE to Meet Security Compliance 49494367 [Dependency] EAP TLS
+1.3 support for Server - FedRAMP requirement 53459148 API Sets support
+Continuous Delivery and API Containment 54237799 [Buses] More power-efficient
+and performant embedded USB devices (e.g. cameras) with USB eUSB2v1 standard
+[eUSB2 V1 Double Isoch BW] 56150814 [HLK][Kit-Only] Ge Continuous Delivery
+Content Fixes for 25H2 (Kit Release on 2509B) 56150848 [HLK][Kit Only] Ge
+Continuous Delivery Release Infra Work for 25H2 (Kit Release on 2509B) 56402246
+Achieve EO compliance for existing inbox drivers 24278368 [DK] Allow all Windows
+users to control brightness control directly on Windows (SDR and HDR external
+displays, and HDR laptops) 49137507 [Buses] [I3C HCI] OEMs can ship more
+reliable systems without 3P bus drivers for I2C or SPI, via a MIPI I3C Host
+Controller Interface compliant inbox driver 50395976 [CrossDevice Connectivity]
+Integrate P2P WFD1.0 connectivity into cross-device platform (CDEH, LTW)
+50458183 [RemoteApp] Release work: RemoteApp users see more like-local window
+behaviors and visuals with RAIL v2 50695024 [2025.08][Bluetooth][Internal] (non-
+product) test and tooling updates 50777580 Experiment: Remove all winlogon
+subscribers for CreateSession and expose WTS notifications through WNF 54937602
+[VOCA] Voice Clarity Effect Pack for Windows Inbox 55795972 [2025.08][Bluetooth]
+[Platform]&[UX] Improvements addressing fundamentals, ensuring quality, and
+reducing cost 56352438 [Buses] [Bug-fix 2025.08] [HID, Low Power Buses and USB]
+- Reliability and power efficiency improvements that improve product quality and
+keep rhythm of business costs under check 56952301 [Media][2025.08-Bug-Fixes]
+Improved quality and reliability for existing in-market media features 57295311
+Provide Group Policy to enable Audio render/capture over lock screen 37700932
+API changes for efficient hardware-based HEVC decode 43228725 [Sensors]
+[Onlooker Detection] Users experience improved Privacy and can dim screen when
+multiple people are looking at their screen 48818045 [Fundamentals] Long-haul
+Wi-Fi Roaming Tests with controlled RF environment 49249871 [Fundamentals] Fuzz
+testing for Mobile Connectivity components 54000107 [CD] IddCx 1.11 updates for
+2025 55519188 [HLK][25H2] HLK Enables a Successful WHCP 25H2 Launch + HDC
+Integration 56406322 [2025.07] [Bug bucket] Improvements for WCX in RDP and OS
+to increase user satisfaction 57245229 FAR scenario for Infverif fixes to
+support handoff to HDC by 07/01 57512306 [CD] Display team bug + diagnostics
+bundle 2025.07D 57512679 [DS][Server+Client] Backport RdpIdd changes back to Ge
+to support DS 45613171 [SFI][Auth][Direct PC] Add support for WebAuthn
+redirection in VMConnect 46424179 [DnD][Security][Driver Recovery][Client]
+Windows is updated to react to driver recovery signals 47091790 [Audio] [MIPI
+Class Driver] SoundWire Device Class for Audio (SDCA) - Class driver inboxing
+48932077 [Sensors] [Br] [HLK + WHCP] OEMs can independently validate Sensor-
+integrated PCs with an up-to-date and accurate Sensor HLK and WHCP 49249801
+[Fundamentals] Test automation 49366282 [HLK][Kits Only] Improve HLK Content
+Automation Pipeline to Support CD 51777180 [Scenario for Servicing] [Actium /
+Sebile] [USB-Auto-switching] USB devices can identify host platform on
+connect/power on (aka Auto-Switching) 53110771 [Selenium] [STRIKE] [MORSE] -
+onboard fuzzing tasks and follow up fixes for SiGMa media components 55449914
+[CD] Display team bug + diagnostics bundle 2025.06D 56406319 [2025.06] [Bug
+bucket] Improvements for WCX in RDP and OS to increase user satisfaction
+56882017 Bugfix changes from Graphics Kernel targeting 2506 CD 57242803 [FAR]
+WinVOS Partner requested features up to 2025.06 CD 57296043 [DnD][Bug
+Fixes]Platform Stabilization Fixes for W11_Ge - 2506 49793372 [DK] Display
+Settings UX Improvements for HDR/EDR/DolbyVision 55203471 [Media][2025.05-Bug-
+Fixes] Improved quality and reliability for existing in-market media features
+55772031 [GE CD]999E5 Render Target and Scanout 56383856 [2025.05] [Bug bucket]
+Improvements for WCX in RDP and OS to increase user satisfaction 56623362 [FAR]
+WinVOS Partner requested features for 2025.05 CD 50776618
+[LightSpeed/WarpSpeed/InstantSpeed] Part 1.1: RDS AAD Auth skips the temporary
+session 53375129 [Buses] [Bug-fix 2025.4D] [WDF] Windows Driver Frameworks meets
+the needs of Buses team, our hardware partners and the driver ecosystem 55435102
+[CD] Display team bug + diagnostics bundle 2025.04D 55435015 [CD] Display team
+bug + diagnostics bundle 2025.03D 49575624 [Accessible Camera][Reliable Camera]
+Centrally manage camera to allow sign language interpreters and HoH customers to
+have multiple concurrent calls 35269835 Core platform support for display
+multiplexing hybrid laptops (MDM) 54072972 [CD] Display team bug + diagnostics
+bundle 2025.01D 51791259 [Sensors] [Dt-Bug-Fixes] [Part 2] Users experience
+improved quality and reliability for Sensor-related in-market features 51972080
+[2024.11][Bluetooth] [Platform]&[UX] Improvements addressing fundamentals,
+ensuring quality, and reducing cost 53082192 [CD] Display team bug + diagnostics
+bundle 2024.11D 48086530 [Sensors] [Bucketed Brightness Curve Power Savings]
+Users experience longer battery life and need to change brightness less
+frequently in low light by adjusting the default Adaptive Brightness 'bucketed'
+ambient light response (ALR) below 40% 53082189 [CD] Display team bug +
+diagnostics bundle 2024.10D 52142404 [CD] Display team bug + diagnostics bundle
+2024.09D 57512308 [CD] Display team bug + diagnostics bundle 2025.09D 55401110
+[CD Golden Path][2025.11 D] Windows (Ge) Monthly CD Bugfix Scenario 55433794 [CD
+Exception Path] [2025.10 D] Windows (Ge) CD Monthly Bugfix Bundle Scenarios
+55401107 [CD Golden Path][2025.08 D] Windows (Ge) Monthly CD Bugfix Scenario
+55401106 [CD Golden Path][2025.07 D] Windows (Ge) Monthly CD Bugfix Scenario
+55433791 [CD Exception Path] [2025.07 D] Windows (Ge) CD Monthly Bugfix Bundle
+Scenarios 54357798 [CD Golden Path][2025.06 D] Windows (Ge) Monthly CD Bugfix
+Scenario 55433790 [CD Exception Path] [2025.06 D] Windows (Ge) CD Monthly Bugfix
+Bundle Scenarios 54357797 [CD Golden Path][2025.05 D] Windows (Ge) Monthly CD
+Bugfix Scenario 55433789 [CD Exception Path] [2025.05 D] Windows (Ge) CD Monthly
+Bugfix Bundle Scenarios 54357791 [CD Golden Path][2025.04 D] Windows (Ge)
+Monthly CD Bugfix Scenario 55433788 [CD Exception Path] [2025.04 D] Windows (Ge)
+CD Monthly Bugfix Bundle Scenarios 54357805 [CD Golden Path][2025.03 D] Windows
+(Ge) Monthly CD Bugfix Scenario 49770397 [CD Exception Path] [2024.07 D] Windows
+(Ge) CD Monthly Bugfix Bundle Scenarios 49717817 [CD Exception Path] [2024.05 D]
+Windows (Ge) CD Monthly Bugfix Bundle Scenarios 54581127 [Windows Server 2025]
+Update the WACSetup vPack package to clean up some user specific data
+exceptions, which are being sent to telemetry 55939313 [Security][WRI][Phase 2]
+Expose WDK version as an attribute for HLK to consume and persist as a part of
+the HLKX logs 57395763 [WacSetup] Optional Component Localization Issue and
+Package Upgrade 57787963 [Windows Client Backup]: Description text in some of
+the dialogs are not accessible by the screen reader users in both tab and item
+mode navigation 54921923 [Settings] Display device setup region in Settings >
+Language & region. 56506417 [Regional Policy] [DMA] Device Region registry key
+is not being set correctly on AVD VMs and Windows 365 Cloud PCs, losing signal
+for DMA applicability 57698347 [Build Fix] Fix build break due to bad merge on
+servicing branches 57704747 [6D][1,123 WIP hits][10k+ Users in Retail] Recall
+crashes when searching with non-supported input-language (ACCESS_VIOLATION_c0000
+005_Baker.dll!winrt::Recall::implementation::RecallControl::ShowInfoBarIfNeeded)
+57704845 [Build Fix] Fix build break due to bad merge on ge_release_svc_2506d
+57930305 Disable the velocity Key by default for Language Unicode Setting
+Migration For EAA 45901034 A user can manage their collections by customizing
+them further (manual favoriting, sharing, merging, etc). 46700451 C# for Windows
+engineers 57687238 [Watson Failure] caused by STOWED_EXCEPTION_80004005_WindowsB
+ackup.dll!_winrt::WindowsMigration::implementation::ItemBuilder::ComputeItemSize
+FromPath_::_1_::catch$23 50620351 Windows people component in File explorer -
+contact information card 52525627 [XDR] [Platform] Cross Device Resume Platform
+(CD Approved) 57330368 Intelligent dictation API for voice first apps on OS like
+voice access and voice typing 45245638 [Content][Piccadilly] People Card: Users
+can contextualize & contact collaborators effectively using the People Card
+experience in Windows File Explorer 48895801 [Content][Piccadilly] People Icons:
+Users can view profile icons of people they collaborate with in File Explorer
+53343270 [WsW] [Phase1] [Settings Home Card] Standalone Device and PC card in
+Settings Home Page 55285825 XDR - Bugs Fixing / Enhancement 56836329 [Click to
+do] Users can get "describe image" as an action when they select images with
+click to do on their copilot PCs 47375114 [Voice access][Global Wave 2] Chinese
+and Japanese language support 48179808 [Mercury] PC to PC Migration During
+Restore 55003644 [Voice access- Dragon Parity] Enabling users to add user
+defined vocabulary/dictionary - Corrections Experience 55228387 [Mercury][Backup
+App][Feature][Win10][Win11] Simplified backup experience (single CTA) for under-
+quota BW users 57147389 [Vision Segment] Discoverability - Feature Announcement
+for Windows Assistive Technologies 57302228 [Maintain Quality of In-Market
+Features 2506] Address In Market feedback, fix crucial bugs for Voice Access,
+Live caption & Voice typing. 57333088 Discoverability - Accessibility Flyout &
+Quick Action Flyout Improvements 57412405 Scripting platform improvements for 6d
+to support any fixes for Word scripts 49527529 [XDR] [Task Transfer] 1P -
+OneDrive based File Continuity from phone to PC - Upon PC Unlock, Time Based
+[Notification Alert] 53456632 Windows has a core capability to get rich
+descriptions of images 55123834 Discoverability - Accessibility Flyout & Quick
+Action Flyout Improvements 56517033 OneDrive based File Continuity from phone to
+PC - For release 56741815 [Maintain Quality of In-Market Features 2505] Address
+In Market feedback, fix crucial bugs for Voice Access, Live caption & Voice
+typing. 55017687 [Mobility Segment] Discoverability - Feature Announcement for
+Windows Assistive Technologies 39960174 [Voice Access][AI][Natural language
+commanding] Command language is more tolerant to user not speaking the exact
+command with natural language understanding [single intent single entity]
+55228146 [Mercury][Backup App][Feature][Win10][Win11] Reduce the turnaround time
+for copy changes in BW 57891492 [GE 6D] Migration Source APP Crashing: [Watson
+Failure] caused by STOWED_EXCEPTION_80004005_WindowsBackup.dll! 51482625 Get
+test passes to green in CD branches 56748615 [Xbox] 6D Bugfixes, Build
+Maintenance and Compliance 51347777 Color contrast of focus on the toolbar menu
+of "Device Manager" with its background is less 1.253:1 which is less than 3:1:
+A11y_ Device and Driver Installation_Device Manager_Toolbar_ColorContrast
+52704183 Keyboard focus is not visible on back button on "update driver" screen
+56396446 [Watson Failure] caused by FAIL_FAST_FATAL_APP_EXIT_c0000409_WorkloadsS
+essionManager.exe!DynamicDependencyManager::RegisterDynamicDependency 57626126
+[KIR Cleanup Bug] 49927659 : [BSP AI Test] [Selfhost] Parts of lock screen are
+black on resuming from ModS 57626183 [KIR Cleanup Bug] 54435379 : Users report
+lag and stutter on second monitor after upgrading to 24H2 (when window is full
+screen) 57705531 [Watson Failure]
+0x18_dxgkrnl!DxgkCompositionObject::CreateHandle 57852839 CD Key Rollout Disable
+55522082 Feature_AsyncKeyStateRecentDown_Removal from 2505 57883235 [GE 6D] -
+Re-enable Search Edit box typing fix. Cannot get the Public path of an
+appExtension in the CBS package 57915558 Phi 6D Retail package incorrectly
+(still) contains Mu MSIX packages, and will leak 400MB model to retail prior to
+consuming feature being available in retail 54490359 Implement TSF4 IME public
+API 50239137 Continuous Delivery (CD) Infrastructure Scenario for all non-
+shipping/non-product changes 56049574 [Agents] [CUA] WCL - UserActivity Search
+API 56858189 [MCP] WCR Actions can be accessed from MCP Clients through MCP
+protocol 56860460 [MCP] MCP Servers can be registered with, and enumerated from,
+a centralized Windows service 57065031 [MCP] MCP Servers can be managed in
+Windows Settings 57245824 [MCP] Filesystem MCP Server: Windows filesystem
+operations can be accessed by MCP Clients 57273724 [MCP] File semantic search
+MCP Server: file semantic search operations can be accessed by MCP Clients
+57395563 [MCP] WMCP manages the lifecycle of MCP servers 53103498
+[Actions][Augmentation][May] Additional Entities can be inferred from one or
+more entities 54579042 [Actions][Augmentation][May WIP] Augmenters v2: enable
+Click to Do to detect table 55325912 [Actions][Augmentation][May WIP] Augmenters
+V2: Enabling 1p/3p to create custom entities 55710206 [Actions] [ARE] Entity
+augmentation is integrated with Screen Understanding API 57085185 M365 sandbox
+environment setup for async sessions 57332004 [WinUI3] [Craft] 'Windows update’
+error dialog migrate from DUI to WinUI achieving craftsmanship goals 53794707
+Support Automatic Brightness for Keyboard Dynamic Lighting per Ambient Light
+Sensor Conditions 54441061 TSF4 - host 3rd party IMEs out of proc - LAF release
+55346930 Developers can build actions for Contact and Table core entities
+55830494 [Post Build][Actions] [FW] Improve ActionFXRuntime infrastructure and
+performance 57245814 [MCP] Windowing MCP Server: V0 windowing functionality
+(e.g. snapping) can be accessed by MCP Clients 57338706 Fix accessibility and
+EAA issues in ComCtl32 54631651 [Actions] [VSIX & Codegen] [Action Provider]
+[GA] 3P developers can easily and efficiently build and test Actions with VS
+tools and code gen solutions 56526787 [Actions] Build ActionFXRuntime
+infrastructure - Nickel release 52710966 [Actions] Build ActionFXRuntime
+infrastructure 53390506 [Actions][ARE] Users get experiences with AFX through
+system components consuming a private API 48421889 [App Streaming] RAIL
+Windowing Improvements Phase 4: Release Work 57483633 [UIB] TipFailure -
+errors_reported(16384) with hresult -2147023728 (ERROR_NOT_FOUND) in file
+\DefView.cpp caught in TestCase 30934572 in ni_current_directshell 57820043 [Ge
+6D] [WSB] Enable velocity key for logging of Bing server flight id's 57832549
+[WCD GE][6D][June Velocity Key][Watson Failure] caused by
+ACCESS_VIOLATION_c0000005_comdlg32.dll!Unloaded 57850986 The Widget on Lock
+migration process will disable the feature for users who currently have it
+enabled. 57882784 [Ge 6D] [WSB] Telemetry to detect WebView2 hangs that affect
+Search 57912789 6D GE servicing for LockScreenContentServer.exe: Lock Screen
+Slide Show memory leak needed for PricewaterhouseCooper 44466750
+[UC][DMA][Win11]: Support for Consent Coordination API for local cache consent
+management (For primary and secondary accounts). 55934956 [MSRC 94433][Ge]
+cldflt.sys - NULL pointer dereference leads to Permanent Denial of Service -
+Unknown 56383806 [KIR Cleanup Bug] 56129509 : [MSRC 94820][Ge] NTFS - Out of
+bounds read in NTFS!InitializeRestartState due to improper-length string -
+Internal 57201135 [KIR Cleanup Bug] 55555565: [Ge][Ebd] SMR 7.7 OS Double Equal
+Typo Fix 57102088 (2507) Storage and FileSystems Continuous Delivery Bug Fix
+Bundle Wave 7 47048763 Nested mirror across 2 rack-> node to support "Campus
+Clusters" (RLNM) 53279232 [Se][Br]Enable Native NVMe Stack on WS2025 55827927
+(2505) Storage and FileSystems Continuous Delivery Bug Fix Bundle Wave 6
+53393881 (2503) Storage and FileSystems Continuous Delivery Bug Fix Bundle Wave
+5 54919370 [KIR Cleanup Bug] 53033901 : [Ge] CFEReliability:UserMode:Crash64 in
+# Module=storsvc.dll #
+BucketId=svchostgroup_localsystemnetworkrestricted_invalid_pointer_read_c
+56383791 [KIR Cleanup Bug] 55732748 : [MSRC 93959] [CHILD CASE of MSRC
+93887][Ge] StorSvc- CloseFindStorageSearch 0-day vuln(s) in Windows, potentially
+StorSvc, being abused in-the-wild - Internal 32470466 Codeflow improvements
+(SAND, Velocity Key States, Approvals, Processes) for Windows Moments 47330740
+[Code flow][SingleSource] OSClient Undocked components have a single source that
+ships to multiple Windows releases 48872833 [Undocked ES] Enable developers to
+build and develop in the Undocked Engineering System 48872870 [Undocked ES]
+OS.2020 undocked ingestion improvements (non product impacting) 48872973
+[Undocked ES] Packages are localized for global release (loc infrastructure
+only) 48984942 [Undocked ES] Product impacting fixups to multiple OSClient
+components to ensure they are successfully building and compliant 56486871 EO:
+2508 - Cyber EO via GE_CURRENT 55757700 EO: 2507 - Cyber EO via GE_CURRENT
+54586656 Continuous Delivery TIP Platform Improvements (No feature specific
+related TIP changes) 54594097 Velocity conditionals cleanup work for Continuous
+Delivery features (2502) 50565875 Velocity Streamlined Quality Improvements and
+Telemetry Enhancements (2411) 53950665 Continuous Delivery TIP Platform
+Improvements (No feature specific related TIP changes) 50465175 Velocity
+Streamlined Quality Improvements and Telemetry Enhancements (2410) 50465167
+Velocity Streamlined Quality Improvements and Telemetry Enhancements (2407)
+49005097 Continuous Delivery TIP Platform Improvements (No feature specific
+related TIP changes)
+
+================================================================================

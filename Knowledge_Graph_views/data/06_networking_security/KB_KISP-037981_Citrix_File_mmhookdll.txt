@@ -1,0 +1,128 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-037981
+Citrix File: mmhook.dll
+================================================================================
+
+Article ID       : KISP-037981
+Language          : en-us
+Created           : 2024-12-12
+Last Modified     : 2025-06-09
+Views             : 2
+Keywords          : citrixfile
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/citrix-file-mmhook-dll-6583d3ed-4693-1210-3347-bda678aa28b3
+
+================================================================================
+CONTENT:
+================================================================================
+
+Citrix File: mmhook.dll Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 198305 link for any
+updates. Author: Jason Epperly Summary File Details Name: mmhook.dll Default
+Location: C:\Program Files\Citrix\HDX\bin\ File Description: Citrix Multi-
+Monitor Hook DLL Information Related to Citrix Muti-Monitor support. Detours
+user32 functions. Related 0: kd> lmvm mmhookBrowse full module liststart end
+module name00007fff`09930000 00007fff`0996a000 mmhook (no symbols) Loaded symbol
+image file: mmhook.dll Image path: C:\Program Files\Citrix\HDX\bin\mmhook.dll
+Image name: mmhook.dll Browse all global symbols functions data Symbol Reload
+Timestamp: Thu Mar 7 00:04:53 2024 (65E94AF5) CheckSum: 000491CD ImageSize:
+0003A000 File version: 7.41.20.169 Product version: 7.41.20.169 File flags: 8
+(Mask 3F) Private File OS: 40004 NT Win32 File type: 2.0 Dll File date:
+00000000.00000000 Translations: 0409.04b0 Information from resource tables:
+CompanyName: Citrix Systems, Inc. ProductName: Citrix XenApp & XenDesktop
+InternalName: mmhook.dll OriginalFilename: mmhook.dll ProductVersion: 7.41
+FileVersion: 7.41.20.169 FileDescription: Citrix Multi-Monitor Hook DLL
+LegalCopyright: (c) Citrix Systems, Inc. All rights reserved.Detours0: kd> !chk
+user32Module Address Range Size Function Detour/Hijack Company Description======
+========================= =======
+===============================================================
+============================================ ====================
+=============================user32 7fff1bff8e20-7fff1bff8e24 5 bytes
+user32!QueryDisplayConfig mmhook+0xdb60 (00007fff`0993db60) Citrix Systems, Inc.
+Citrix Multi-Monitor Hook DLLuser32 7fff1bff9360-7fff1bff9364 5 bytes
+user32!ChangeDisplaySettingsExW mmhook+0xc100 (00007fff`0993c100) Citrix
+Systems, Inc. Citrix Multi-Monitor Hook DLLuser32 7fff1c0023c0-7fff1c0023c1 2
+bytes user32!ChangeDisplaySettingsExA mmhook+0xbe10 (00007fff`0993be10) Citrix
+Systems, Inc. Citrix Multi-Monitor Hook DLLuser32 7fff1c058670-7fff1c058674 5
+bytes user32!ChangeDisplaySettingsA mmhook+0xbb30 (00007fff`0993bb30) Citrix
+Systems, Inc. Citrix Multi-Monitor Hook DLLuser32 7fff1c05f260-7fff1c05f264 5
+bytes user32!ChangeDisplaySettingsW mmhook+0xc410 (00007fff`0993c410) Citrix
+Systems, Inc. Citrix Multi-Monitor Hook DLLuser32 7fff1c0617b0-7fff1c0617b4 5
+bytes user32!SetDisplayConfig mmhook+0xdef0 (00007fff`0993def0) Citrix Systems,
+Inc. Citrix Multi-Monitor Hook DLLExports0: kd> !dh /e
+mmhook_IMAGE_EXPORT_DIRECTORY 00007fff099612c0 (size: 00000034)Name: mmhook.dll
+Characteristics: 00000000 Ordinal base: 1.Number of Functions: 0. Number of
+names: 0. EAT: 00007fff09930000.Imports0: kd> !dh /i mmhook
+_IMAGE_IMPORT_DESCRIPTOR 00007fff099612f4 ntdll.dll 00007FFF09955350 Import
+Address Table 00007FFF099616D0 Import Name Table 0 time date stamp 0 Index of
+first forwarder reference 00007FFF1DC7FB60 72C ZwClose 00007FFF1DC7FC60 82C
+ZwQueryValueKey 00007FFF1DC7FBC0 7D1 ZwOpenKey 00007FFF1DC52BC0 6CC
+VerSetConditionMask 00007FFF1DC83B60 2F3 RtlCaptureContext 00007FFF1DC0F620 628
+RtlVirtualUnwind 00007FFF1DC0EED0 60E RtlUnwindEx 00007FFF1DC0E9C0 510
+RtlPcToFileHeader 00007FFF1DC10300 4E9 RtlLookupFunctionEntry
+_IMAGE_IMPORT_DESCRIPTOR 00007fff09961308 api-ms-win-shcore-scaling-l1-1-1.dll
+00007FFF09955340 Import Address Table 00007FFF099616C0 Import Name Table 0 time
+date stamp 0 Index of first forwarder reference 00007FFF1BD29E70 0
+GetDpiForMonitor _IMAGE_IMPORT_DESCRIPTOR 00007fff0996131c MfApHook.dll
+00007FFF09955280 Import Address Table 00007FFF09961600 Import Name Table 0 time
+date stamp 0 Index of first forwarder reference 00007FFF1AFCE510 1 CtxHookApis
+00007FFF1AFCEC80 5 CtxRestoreApis 00007FFF1AFCE4B0 0 CtxGetOrigProcAddress
+_IMAGE_IMPORT_DESCRIPTOR 00007fff09961330 KERNEL32.dll 00007FFF09955030 Import
+Address Table 00007FFF099613B0 Import Name Table 0 time date stamp 0 Index of
+first forwarder reference 00007FFF1C826510 5B3 TlsSetValue 00007FFF1C825C60 5B2
+TlsGetValue 00007FFF1C82F010 1E0 GetCommandLineW 00007FFF1C833E10 CE CreateFileW
+00007FFF1C833B90 89 CloseHandle 00007FFF1C826550 26A GetLastError
+00007FFF1C827240 541 SetLastError 00007FFF1DBFBDB0 351 HeapAlloc
+00007FFF1C8261F0 2BE GetProcessHeap 00007FFF1C825A10 124 DeviceIoControl
+00007FFF1C833B10 220 GetCurrentProcess 00007FFF1C833B20 221 GetCurrentProcessId
+00007FFF1C82BEF0 434 ProcessIdToSessionId 00007FFF1C82FB50 125
+DisableThreadLibraryCalls 00007FFF1C82C080 1B4 FreeLibrary 00007FFF1C82D6B0 27D
+GetModuleFileNameW 00007FFF1C82AA50 2B8 GetProcAddress 00007FFF1C828B20 3D1
+LocalAlloc 00007FFF1C8289D0 3D6 LocalFree 00007FFF1C828990 64A lstrcmpiW
+00007FFF1C878E70 64D lstrcpyW 00007FFF1C828970 653 lstrlenW 00007FFF1C82AF10 5D8
+VerifyVersionInfoW 00007FFF1C825CA0 355 HeapFree 00007FFF1C8264D0 224
+GetCurrentThread 00007FFF1C82D1D0 5B0 TlsAlloc 00007FFF1C8345F0 205
+GetConsoleMode 00007FFF1C834600 209 GetConsoleOutputCP 00007FFF1C8342A0 625
+WriteFile 00007FFF1C833F70 1A8 FlushFileBuffers 00007FFF1DBF1D80 358 HeapReAlloc
+00007FFF1DBFA280 35A HeapSize 00007FFF1C82FFC0 55B SetStdHandle 00007FFF1C834250
+533 SetFilePointerEx 00007FFF1C8289F0 3B8 LCMapStringW 00007FFF1C82F980 1B3
+FreeEnvironmentStringsW 00007FFF1C82F960 241 GetEnvironmentStringsW
+00007FFF1C826240 611 WideCharToMultiByte 00007FFF1C8261D0 3F6
+MultiByteToWideChar 00007FFF1C82FA60 1DF GetCommandLineA 00007FFF1C82E070 1CA
+GetCPInfo 00007FFF1C830CC0 2A1 GetOEMCP 00007FFF1C82F2B0 1BB GetACP
+00007FFF1C82F9E0 392 IsValidCodePage 00007FFF1C8346C0 624 WriteConsoleW
+00007FFF1C833F40 195 FindNextFileW 00007FFF1C833ED0 184 FindFirstFileExW
+00007FFF1C833E70 17E FindClose 00007FFF1C82DCB0 2E1 GetStringTypeW
+00007FFF1C834060 258 GetFileType 00007FFF1C82D330 2DC GetStdHandle
+00007FFF1C833C90 36B InitializeCriticalSectionAndSpinCount 00007FFF1C82EEB0 280
+GetModuleHandleExW 00007FFF1C82DCD0 167 ExitProcess 00007FFF1C82AA70 3CA
+LoadLibraryExW 00007FFF1C84BC10 5C0 UnhandledExceptionFilter 00007FFF1C82FA40
+57F SetUnhandledExceptionFilter 00007FFF1C8307F0 59E TerminateProcess
+00007FFF1C82D0F0 38C IsProcessorFeaturePresent 00007FFF1C827690 452
+QueryPerformanceCounter 00007FFF1C815E90 225 GetCurrentThreadId 00007FFF1C828950
+2F3 GetSystemTimeAsFileTime 00007FFF1DC55070 36F InitializeSListHead
+00007FFF1C82FD50 385 IsDebuggerPresent 00007FFF1C82D3B0 2DA GetStartupInfoW
+00007FFF1C82D110 281 GetModuleHandleW 00007FFF1C82D670 468 RaiseException
+00007FFF1DC55900 373 InterlockedFlushSList 00007FFF1DC57E30 134 EncodePointer
+00007FFF1DBF7480 138 EnterCriticalSection 00007FFF1DC000A0 3C4
+LeaveCriticalSection 00007FFF1DBEAA80 114 DeleteCriticalSection 00007FFF1C82D850
+5B1 TlsFree _IMAGE_IMPORT_DESCRIPTOR 00007fff09961344 USER32.dll
+00007FFF099552A0 Import Address Table 00007FFF09961620 Import Name Table 0 time
+date stamp 0 Index of first forwarder reference 00007FFF1BFD7AC0 12A
+GetClassInfoExW 00007FFF1BFF35D0 1C7 GetSystemMetrics 00007FFF1BFDE690 1E9
+GetWindowLongW 00007FFF1BFE0DF0 379 SetWindowLongW 00007FFF1BFF7E90 113
+FindWindowExW 00007FFF1BFF1E80 190 GetParent 00007FFF1BFE5E70 1F0 GetWindowRect
+00007FFF1BFF78E0 36B SetTimer 00007FFF1BFF25E0 24D IsWindowVisible
+00007FFF1C0054D0 37B SetWindowPos 00007FFF1C004DA0 292 MoveWindow
+00007FFF1C005540 38D ShowWindow 00007FFF1BFF7C40 131 GetClassNameW
+00007FFF1BFFF260 BB DisableProcessWindowsGhosting 00007FFF1BFF50C0 18B
+GetMonitorInfoW 00007FFF1BFF5C70 291 MonitorFromWindow 00007FFF1BFE6DA0 290
+MonitorFromRect 00007FFF1BFE5550 28F MonitorFromPoint 00007FFF1BFDFC70 21
+CallWindowProcW _IMAGE_IMPORT_DESCRIPTOR 00007fff09961358 ADVAPI32.dll
+00007FFF09955000 Import Address Table 00007FFF09961380 Import Name Table 0 time
+date stamp 0 Index of first forwarder reference 00007FFF1BBE43B0 170
+GetTokenInformation 00007FFF1BBE4C50 21A OpenThreadToken 00007FFF1BBE4220 299
+RegQueryValueExW 00007FFF1BBE42D0 28C RegOpenKeyExW 00007FFF1BBE4620 25B
+RegCloseKey Notes: Support Topics: Windows Servers, Windows First published: Dec
+12, 2024 Keywords: citrixfile
+
+================================================================================

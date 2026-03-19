@@ -1,0 +1,38 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-040426
+Dynamic list filtering - Microsoft Support
+================================================================================
+
+Article ID       : KISP-040426
+Language          : en-us
+Created           : 2024-12-13
+Last Modified     : 2025-01-08
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/dynamic-list-filtering-eed5f92e-1716-45d5-9a94-59decb930e42
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToSharePoint in Microsoft 365 With dynamic filtering, you can filter one
+list based on a selection made in another list. In the following example, the
+Marketing Documents library is filtered by a selection in the Project
+Information list. The "Marketing" value in the Project Team column is selected,
+so only documents owned by the Marketing team are displayed in the Marketing
+Documents library. To do this: On your page, select Edit and add a List web part
+or a Document library web part then select the list or library with the values
+you want to filter by. Add another List web part or a Document library web part
+and select the list or library that contains the information you want to filter.
+Select the list or library web part you want to filter and select Edit
+properties in the upper-left of the web part. Under Dynamic filtering, slide the
+toggle to the On position. Select the column you want to filter in the field
+Column in [your list name] to filter. Under List or library containing filter
+value, select the list or library you added to your page in Step 1. Under Column
+containing the filter value's properties, select the column that has the values
+you want to filter by. Select Apply. Using the example image at the beginning of
+section, the Dynamic filtering options for the Marketing Documents library would
+look like the following: When you're done, click Save and close at the top of
+the page, or if you're ready for your audience to see the page, select Republish
+at the top right of the page.
+
+================================================================================

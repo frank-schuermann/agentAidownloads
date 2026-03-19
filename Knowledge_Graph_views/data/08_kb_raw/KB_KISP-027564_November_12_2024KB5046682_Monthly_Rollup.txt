@@ -1,0 +1,87 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-027564
+November 12, 2024—KB5046682 (Monthly Rollup) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-027564
+Language          : en-us
+Created           : 2024-11-12
+Last Modified     : 2024-11-12
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/november-12-2024-kb5046682-monthly-rollup-b39140cf-d406-48a8-8ca9-992ec2bb5d93
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWindows Server 2012 R2 ESU Important The installation of this Extended
+Security Update (ESU) might fail when you try to install it on an Azure Arc-
+enabled device that is running Windows Server 2012 R2. For a successful
+installation, please make sure all Subset of endpoints for ESU only are met as
+described in Connected Machine agent network requirements. End of support
+information Windows 8.1 reached the end of support (EOS) on January 10, 2023, at
+which point technical assistance and software updates are no longer provided. If
+you have devices running Windows 8.1, we recommend upgrading them to a more
+current, in-service, and supported Windows release. If devices do not meet the
+technical requirements to run a more current release of Windows, we recommend
+that you replace the device with one that supports Windows 11. Microsoft will
+not be offering an Extended Security Update (ESU) program for Windows 8.1.
+Continuing to use Windows 8.1 after January 10, 2023 may increase an
+organization’s exposure to security risks or impact its ability to meet
+compliance obligations. For more information, see Windows 8.1 support will end
+on January 10, 2023. We recommend upgrading to a later version of Windows. For
+more information, see Upgrade to a later version of Windows. Windows Server 2012
+R2 reached the end of support (EOS) on October 10, 2023. Extended Security
+Updates (ESUs) are available for purchase and will continue for three years,
+renewable on an annual basis, until the final date on October 13, 2026. For more
+information, see Windows Server End of Support: Key Dates. For information about
+the procedure to continue receiving security updates, see KB5031043. We
+recommend upgrading to a later version of Windows Server. For more information,
+see Overview of Windows Server upgrades. Windows Embedded 8.1 Industry
+Enterprise and Windows Embedded 8.1 Industry Pro reached the end of support
+(EOS) on July 11, 2023. Therefore, technical assistance and software updates are
+no longer provided. Summary Learn more about this cumulative security update,
+including improvements, any known issues, and how to get the update. Note For
+information about the various types of Windows updates, such as critical,
+security, driver, service packs, and so on, see Description of the standard
+terminology that is used to describe Microsoft software updates. To view other
+notes and messages, see the Windows 8.1 and Windows Server 2012 R2 update
+history home page. Improvements This cumulative security update includes
+improvements that are part of update KB5044343 (released October 8, 2024). The
+following is a summary of the key issues that this update addresses. The bold
+text within the brackets indicates the item or area of the change we are
+documenting. [Virtual Machine] Fixed: A virtual switch might trigger consistent
+crashes and you receive a stop error on a blue screen. This issue might occur
+when load balancing and failover (LBFO) teaming with two virtual switches in a
+virtual machine (VM) are used. In this case, one virtual switch contains a
+single root I/O virtualization (SR-IOV) interface. For more information about
+the resolved security vulnerabilities, please refer to the Deployments |
+Security Update Guide and the November 2024 Security Updates. Known issues in
+this update We are currently not aware of any issues with this update. For the
+most up-to-date information about known issues for Windows Server 2012 R2,
+please go to the Windows release health dashboard. How to get this update Before
+installing this update We strongly recommend that you install the latest
+servicing stack update (SSU) for your operating system before you install the
+latest Monthly Rollup. SSUs improve the reliability of the update process to
+mitigate potential issues while installing the Monthly Rollup and applying
+Microsoft security fixes. For general information about SSUs, see Servicing
+stack updates and Servicing Stack Updates (SSU): Frequently Asked Questions. If
+you use Windows Update, the latest SSU (KB5044411) will be offered to you
+automatically. To get the standalone package for the latest SSU, search for it
+in the Microsoft Update Catalog. Language packs If you install a language pack
+after you install this update, you must reinstall this update. Therefore, we
+recommend that you install any language packs that you need before you install
+this update. For more information, see Learn about adding a language pack to
+Windows. Install this update To install this update, use one of the following
+release channels. Windows UpdateUpdate CatalogServer Update Services Available
+Next step Yes This update will be downloaded and installed automatically from
+Windows Update. Available Next step Yes To get the standalone package for this
+update, go to the Microsoft Update Catalog website. To download updates from the
+Update Catalog, see Steps to download updates from the Windows Update Catalog.
+Available Next step Yes This update will automatically sync with Windows Server
+Update Services (WSUS) if you configure Products and Classifications as follows:
+Product: Windows Server 2012 R2 Classification: Security Updates File
+information For a list of the files that are provided in this update, download
+the file information for update KB5046682.
+
+================================================================================

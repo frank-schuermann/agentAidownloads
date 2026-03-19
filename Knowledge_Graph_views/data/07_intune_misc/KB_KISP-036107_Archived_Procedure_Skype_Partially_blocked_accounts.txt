@@ -1,0 +1,58 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-036107
+[Archived] Procedure: Skype: Partially blocked accounts
+================================================================================
+
+Article ID       : KISP-036107
+Language          : en-us
+Created           : 2024-12-30
+Last Modified     : 2024-12-30
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/-archived-procedure-skype-partially-blocked-accounts-de82e9c6-d5c2-4410-683e-ac68f4d34e18
+Description       : This article supports the automated process for customers to regain access to their account when partial blocked (status BLOCKED in BackOffice).
+
+================================================================================
+CONTENT:
+================================================================================
+
+[Archived] Procedure: Skype: Partially blocked accounts This article has been
+archived. If this was a mistake, leave feedback in the survey at the bottom of
+the page. Change history Item Change Description Date AECT Content Tracking Item
+197955 Archived the article and a copy of the article was attached to CT197955.
+12/30/2024 4425 The content has been modified by using Chiron. 2/27/2024 4615
+The content has been modified by using Chiron. 2/27/2024 4627 The content has
+been modified by using Chiron. 2/27/2024 4575 The content has been modified by
+using Chiron. 2/22/2024 4524 The content has been modified by using Chiron.
+2/22/2024 3993 The content has been modified by using Chiron. 12/4/2023
+COMMERCIAL CONTENT TRACKING 156173 Removed a bulletin point and replaced the
+image under Partner Center compliance page (Instructions here). 8/26/2021
+COMMERCIAL CONTENT TRACKING 124758 Scrub MPN KB Articles - Removed whitelist,
+-ed, -ing. 2/23/2021 COMMERCIAL CONTENT TRACKING 119713 Updated section 2.
+6/11/2020 COMMERCIAL CONTENT TRACKING 116748 Updated section 5. 4/20/2020
+COMMERCIAL CONTENT TRACKING 115165 Updated section 5. 3/12/2020 COMMERCIAL
+CONTENT TRACKING 114849 Added support scenarios and CRC codes. 3/3/2020
+COMMERCIAL CONTENT TRACKING 114251 Added support scenarios and CRC codes.
+3/3/2020 Commercial Content Tracking 114178 Added the newest yammer update link
+in section 2. 2/20/2020 COMMERCIAL CONTENT TRACKING 113057 Updated links to SP
+site. 1/19/2020 COMMERCIAL CONTENT TRACKING 112894 Updated section 2 and section
+4.1. 1/16/2020 COMMERCIAL CONTENT TRACKING 112461 Updated security defaults.
+12/30/2019 Commercial Content Tracking 111780 Added section "4.2 Message for
+Partners that want to offboard from the CSP program due to MFA enablement".
+12/5/2019 COMMERCIAL CONTENT TRACKING 111051 Updated the entire article.
+11/21/2019 COMMERCIAL CONTENT TRACKING 109986 Updated section 4. RSC Call to
+Action. 11/15/2019 Commercial Content Tracking 109876 Added support info in
+section 4. 11/14/2019 Commercial Content Tracking 110709 Updated Nov 12
+communication. 11/11/2019 COMMERCIAL CONTENT TRACKING 109769 Consolidated SDK
+article 4509392 into this article. 11/4/2019 Commercial Content Tracking 108501
+Updated section 3.2 and added section 3.3. 10/16/2019 COMMERCIAL CONTENT
+TRACKING 108308 Added additional support scenarios in Section3.1 and Section 5.
+10/10/2019 108216 Update to MFA Enforcement. 09/21/2019 96672 Updated the
+overall article. 7/4/2019 97156 Added the latest announcement - enforcement date
+is postponed. 1/25/2019 95800 Added a Viva Engage announcement and FAQs about
+CSP program security requirements. 12/29/2018 95454 Added Viva Engage
+communication to section 1. 12/19/2018 93258 (SPOT 7387) Updated sections 1, 2,
+3 and 4; and added FAQs. 11/8/2018 92059 (SPOT 7387) Updated with the Partner
+Center Security Guidance yammer group. 10/4/2018 91360(SPOT 7387) New article
+published. 9/19/2018
+
+================================================================================

@@ -1,0 +1,70 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-045493
+Get started with the Microsoft Teams calendar - Microsoft Support
+================================================================================
+
+Article ID       : KISP-045493
+Language          : en-us
+Created           : 2025-01-06
+Last Modified     : 2026-02-24
+Views             : 2
+Source URL         : https://support.microsoft.com/en-us/office/get-started-with-the-microsoft-teams-calendar-98f3b637-5da2-43e2-91b3-f312ab3e4dc5
+Description       : Use the calendar in Microsoft Teams to streamline meeting and event scheduling, customize your view, and more.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Streamline meeting and event scheduling, customize your calendar views, and much
+more in Microsoft Teams for desktop. In this article Open your calendar Find the
+right place to meet Change your calendar view Share your calendar View other
+calendars Print your calendar Schedule and start meetings and events Quickly
+access past meeting details Open your calendar To start using your Teams
+calendar, select Calendar ​​​​​​​ on the left side of Teams. Change your
+calendar view Your Teams calendar will display your work week by default. See
+other views, like the entire week or month, by selecting Work week at the top of
+your calendar and choosing one. You can also:​​​​​​​ Change the time scale to
+adjust space for meeting details. Save calendar views to access specific layouts
+later. Select Filter to customize the types of events that appear on your
+calendar. Select Show navigation pane to see the mini-month view, view other
+people’s calendars, create calendar groups, and more. Select More options >
+Calendar settings to change your calendar appearance, adjust event and meeting
+settings, and more. To learn more, see Customize your calendar in Microsoft
+Teams. View other calendars View multiple calendars at the same time for
+seamless coordination and event planning. Look at different people’s calendars,
+calendars that highlight birthdays or holidays, and more. In the top-left
+corner, select Show navigation pane . Under My calendars, create and select
+calendar groups to quickly bring up views of specific calendars later. Switch
+between split and combined views to see other calendars side-by-side or
+integrated into one. To learn more, see View other calendars in Microsoft Teams.
+Schedule and start meetings and events Easily schedule meetings and events of
+all types from your Teams calendar. To schedule a new meeting or event: Select
+Calendar in Teams. Select New or select a timeslot in your calendar. Select the
+dropdown arrow next to New to choose from different types of event templates.
+Select View all templates to see more. Select Scheduler to find a time that
+works best for everyone. Enter meeting or event details. Select Save .
+Important: When scheduling a virtual Teams meeting, turn on the Teams meeting
+toggle. To join a meeting or event: Select Calendar in Teams. Select a meeting
+or event. Select Join . To learn more about joining a Teams meeting, see Join a
+meeting in Microsoft Teams. Find the right place to meet When choosing a room or
+location for your meeting, you’ll see more details about available rooms, like
+capacity and technical specs. You’ll also see the option to Browse with Places
+Finder. To learn more, see Get started with Microsoft Places. Share your
+calendar Share your calendar with others to give them insight into your schedule
+and availability. To share your calendar with someone specific: Select Calendar
+in Teams. Select More options > Share . Enter the email address or contact you
+want to share with. Next to their name, select the dropdown menu to choose their
+permissions. Select Share. Depending on policies set by your IT admin, you can
+also manage permissions for other people in your organization in the dropdown
+menu below. To learn more, see Share your calendar in Microsoft Teams. Print
+your calendar Print out your calendar to distribute physical copies of it or
+keep it on hand for markups and easy access. To learn more, see Share your
+calendar in Microsoft Teams. Quickly access past meeting details Go right to a
+past meeting’s recap, chat, and other details in your Teams calendar. To access:
+Select Calendar in Teams. Select a past recorded meeting. Select Recap to view
+the meeting recap. Select Chat ​​​​​​​ to open the meeting chat. To learn more
+about recap in Teams, see Meeting recap in Microsoft Teams. Related topics
+Customize your calendar in Microsoft Teams View multiple calendars in Microsoft
+Teams
+
+================================================================================

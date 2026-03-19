@@ -1,0 +1,189 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-037276
+May 14, 2024—KB5037800 (Monthly Rollup)
+================================================================================
+
+Article ID       : KISP-037276
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 1
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/may-14-2024-kb5037800-monthly-rollup-1f414450-bd9f-4720-8038-fcebe4c9ee1d
+
+================================================================================
+CONTENT:
+================================================================================
+
+May 14, 2024—KB5037800 (Monthly Rollup) End of support information Windows
+Server 2008 SP2 Extended Security Updates (ESU) third and final year ended on
+January 10, 2023. Additionally, Extended Security Updates on Azure only support
+ended on January 9, 2024. For more information, see Extended Security Updates
+for Windows Server overview. We recommend that you upgrade to a later version of
+Windows Server. For more information, see Overview of Windows Server upgrades.
+Summary Learn more about this cumulative security update, including
+improvements, any known issues, and how to get the update. NOTE As of July 2020,
+optional non-security releases for this operating system are no longer offered.
+Operating systems in extended support have only cumulative monthly security
+updates. Verify that you have installed the required updates in the How to get
+this update section before installing this update. For information about the
+various types of Windows updates, such as critical, security, driver, service
+packs, and so on, see Description of the standard terminology that is used to
+describe Microsoft software updates. To view other notes and messages for
+Windows Server 2008 SP2, see Windows Server 2008 SP2 update history.
+Improvements This cumulative security update contains improvements that are part
+of update KB5036932 (released April 9, 2024). This update includes the following
+improvements: Croatia currency is changed from Krona to Euro. Resolves the
+following known issues after installing the update released April 9, 2024
+(KB5036932): A Domain Controller might experience an unexpectedly high NTLM
+authentication load. Your VPN connection might fail. For more information about
+the resolved security vulnerabilities, please refer to the Deployments |
+Security Update Guide and the May 2024 Security Updates. Known issues in this
+update Symptom Next step After installing this update and restarting your
+device, you might receive the error, “Failure to configure Windows updates.
+Reverting Changes. Do not turn off your computer”, and the update might show as
+Failed in Update History. This is expected in the following circumstances: If
+you are installing this update on a device that is running an edition that is
+not supported for ESU. For a complete list of which editions are supported, see
+KB4497181. If you do not have an ESU MAK add-on key installed and activated. If
+you have an ESU key and have encountered this issue, please verify you have
+applied all prerequisites and that your key is activated. For information on
+activation, see the Obtaining Extended Security Updates for eligible Windows
+devices blog post. For information on the prerequisites, see the "How to get
+this update" section of this article. How to get this update Before installing
+this update We strongly recommend that you install the latest servicing stack
+update (SSU) for your operating system before you install the latest Monthly
+Rollup. SSUs improve the reliability of the update process to mitigate potential
+issues while installing the Monthly Rollup and applying Microsoft security
+fixes. For general information about SSUs, see Servicing stack updates and
+Servicing Stack Updates (SSU): Frequently Asked Questions. If you use Windows
+Update, the latest SSU (KB5034867) will be offered to you automatically. To get
+the standalone package for the latest SSU, search for it in the Microsoft Update
+Catalog. Language packs If you install a language pack after you install this
+update, you must reinstall this update. Therefore, we recommend that you install
+any language packs that you need before you install this update. For more
+information, see Learn about adding a language pack to Windows. Install this
+update To install this update, use one of the following release channels.
+Windows UpdateUpdate CatalogServer Update Services Available Next Step Yes This
+update will be downloaded and installed automatically from Windows Update if you
+are an ESU customer. Available Next Step Yes To get the standalone package for
+this update, go to the Microsoft Update Catalog website. To download updates
+from the Update Catalog, see Steps to download updates from the Windows Update
+Catalog. Available Next Step Yes This update will automatically sync with WSUS
+if you configure Products and Classifications as follows: Product: Windows
+Server 2008 Service Pack 2 Classification: Security Updates For more
+information, see Configure classifications and products to synchronize. File
+information For a list of the files that are provided in this update, download
+the file information for update KB5037800. Microsoft Internal Support
+Information Bug information Released in 2024 5B (2024.5 B) Individual VSO bugs
+related to KB5037800 Bug ID Title 49615179 [MSRC 86665] Win32k -
+[SSIRP][ZDVT][Svr08SP2] tagQ structure xxxScrollWindowEx Race condition UAF EOP
+- Internal 48122643 [Windows Server 2008 SP2] Support Croatia transition from
+Krona to the Euro 48575350 [MSRC 85070][Svr08SP2] win32kfull.sys - UAF when
+_SetCursorContents frees cursors - Legendsec Information Technology (Beijing)
+Inc. 48130761 [MSRC 84239] Kerberos - exploit of legacy crypto - Unknown
+48308628 [MSRC 84587] X509 Timestamp Response RCE - Individual [vista] 48468257
+[MSRC 84869] ncryptprov.dll - CNG key isolation out of bound read vulnerability
+within function NCRYPTPROV!SPCryptSetKeyProperty - Beijing CyberKunlun
+Technology Co., Ltd 48568856 [MSRC 85054] keyiso.dll - use after free
+vulnerability during key delete - Internal 50063634 [PostRel] [75354/79610]
+2024.04 B Unicode string leak in PAC Validation RS1 and below 49364848 [MSRC
+86306][Svr08SP2] DHCP - dhcpssvc.dll ProcessMadcapDiscoverAndRequest function
+memory leak - Individual 48389830 [KIR Cleanup Bug] 47146241 : [MSRC
+83098][Svr08SP2] rmcast.sys - type confusion vulnerability within Pragmatic
+General Multicast (PGM) protocol - Individual 48432505 [MSRC 84792][Svr08SP2]
+RRAS - OOB write using MprAdminConnectionEnum - Unknown 48441232 [MSRC
+84809][Svr08SP2] mprapi.dll - RRAS remote heap-based buffer OOBW - Unknown
+48441834 [MSRC 84821][Svr08SP2] MPRAPI - RCE RRAS interface remote heap-based
+buffer OOBW - Unknown 48449890 [MSRC 84825][Svr08SP2] RRAS - OOB write using
+MprAdminConnectionEnum - Unknown 48449954 [MSRC 84826][Svr08SP2] RRAS - OOB
+write - Unknown 48519286 [MSRC 84935][Svr08SP2] RRAS - heap-based buffer OOB
+write vulnerability from client side via MprAdminPortEnum() API - Unknown
+48526218 [MSRC 84978][Svr08SP2] RemoteCodeExecution - RRAS programming interface
+remote heap-based buffer OOB write vulnerability ? - Unknown 48526240 [MSRC
+84979][Svr08SP2] RemoteCodeExecution - RRAS programming interface remote heap-
+based buffer OOB write vulnerability ? ##### - Unknown 49305726 [MSRC
+86217][Svr08SP2] InformationDisclosure - OOBr in rasmans!ServiceRequestInternal
+due to zero-sized allocation - Internal 49486785 [MSRC 86455] [CHILD CASE of
+MSRC 84792][Svr08SP2] RRAS - OOB write using MprAdminConnectionEnum - Unknown
+49486834 [MSRC 86456] [CHILD CASE of MSRC 84792][Svr08SP2] RRAS - OOB write
+using MprAdminConnectionEnum - Unknown 49204044 [KIR Cleanup Bug] 48139626 :
+[MSRC 84263] Kernel - registry quota exhaustion may lead to permanent corruption
+of the SAM database - Google, Inc. 48223901 [MSRC 84416] MoTW - Bypass via
+SLDF_HAS_DARWINID Flag - Unknown 48555305 [MSRC 85031][Svr08SP2] win32kfull.sys
+- In functions win32kfull!bRectangleMesh and win32kfull!bTriangleMesh, there is
+a null pointer dereference - Metabase Q Inc 48447410 [KIR Cleanup Bug] 46446497
+: [MSRC 82136][Svr08SP2] usbccgp.sys -
+USBD_ValidateConfigurationDescriptorInternal OOBR - Individual 49204028 [KIR
+Cleanup Bug] 46499059 : [MSRC 82219][Svr08SP2] Windows - RemoteCodeExecution -
+usbhub!UsbhBuildClassCompatibleID_OutOfBoundWrite_RemoteCodeExecution -
+Individual 48767041 [MSRC 85321] wdstftp.dll - ID - TptConstructFullPath -
+directory traversal and OOBR - Individual 48379261 [KIR Cleanup Bug] 47225036 :
+[MSRC 83188][Svr08SP2] msado15.dll - Row Size Truncating OOB Write vulnerability
+within function CParameters::GetParameterBuffer - Beijing CyberKunlun Technology
+Co., Ltd 48473214 [KIR Cleanup Bug] 47089840 : [MSRC 82976][Svr08SP2]
+sqloldb.sys - CRowMetadata::LayoutRowBuffer Column Loop Counter Overflow OOB
+vulnerability in SQL Server Client Driver - Beijing CyberKunlun Technology Co.,
+Ltd 48473232 [KIR Cleanup Bug] 47346570 : [MSRC 83357][Svr08SP2] msvcrt! OLEDB32
+- Windows - RCE - GetSizeHelperToStr Integer Overflow OOBW - Beijing CyberKunlun
+Technology Co., Ltd 49409292 [KIR Cleanup Bug] 47130584 : [MSRC 83084][Svr08SP2]
+MSMQ - Kernel Driver Admin Queue Type Race Condition OOBW in AcpBuildPacket. -
+Beijing CyberKunlun Technology Co., Ltd 49445715 [KIR Cleanup Bug] 47245005 :
+[MSRC 83245][Svr08SP2] mqoa! - RCE - ActiveX Client Protocol
+GetOptionalTransaction Type Confusion - Beijing CyberKunlun Technology Co., Ltd
+49445716 [KIR Cleanup Bug] 47130921 : [MSRC 83086][Svr08SP2] LDAP ::BatchRequest
+null dereference - Internal 49445720 [KIR Cleanup Bug] 47127146 : [MSRC
+83073][Svr08SP2] mqac.sys - EOP - Kernel Driver CPropertyHeader
+AllocationBodySize OOBW - Beijing CyberKunlun Technology Co., Ltd 49687923 [KIR
+Cleanup Bug] 47663828 : [MSRC 83654][Svr08SP2] ataport.sys -
+ntfs!NtfsSetSfioReservation UAF - Unknown 48073978 [KIR Cleanup Bug] 46251090 :
+[MSRC 81899][Svr08SP2] sqlsrv32.dll - column counter integer overflow
+vulnerability in SQL Server Driver - Beijing CyberKunlun Technology Co., Ltd
+48082120 [KIR Cleanup Bug] 44666292 : [MSRC 79680][Svr08SP2] MSMQ -
+mqqm!CQPrivate::QMSetPrivateQueueSecrity OOBW - Beijing CyberKunlun Technology
+Co., Ltd 48093129 [KIR Cleanup Bug] 46416447 : [MSRC 82040][Svr08SP2] CLFS.sys -
+OOBR in CClfsBaseFile::GetControlRecord - Individual 48347457 [MSRC
+84633][Svr08SP2] RemoteCodeExecution - Sql Server Client Driver sqlsrv32.dll
+SQLGetData Use After Free Remote Code Execution - Beijing CyberKunlun Technology
+Co., Ltd 48373660 [KIR Cleanup Bug] 47088137 : [MSRC 82963][Svr08SP2]
+sqloledb.dll - CStmt::GetData use after free vulnerability in Sql Server Client
+Driver - Beijing CyberKunlun Technology Co., Ltd 48377434 [MSRC 84705][Svr08SP2]
+ElevationOfPrivilege - CLFS OOB Read - Unknown 48410038 [KIR Cleanup Bug]
+47266826 : [MSRC 83283][Svr08SP2] sqloledb.dll - OOB Write - Beijing CyberKunlun
+Technology Co., Ltd 48410039 [KIR Cleanup Bug] 47261480 : [MSRC 83272][Svr08SP2]
+sqloledb.dll - OOB Write vulnerability within function CStmt:: SQLPrimaryKeys -
+Beijing CyberKunlun Technology Co., Ltd 48410044 [KIR Cleanup Bug] 47261211 :
+[MSRC 83269][Svr08SP2] Windows - RemoteCodeExecution - Sql Server Client Driver
+sqloledb.dll CStmt:: SQLStatistics OOB Write Remote Code Execution - Beijing
+CyberKunlun Technology Co., Ltd 48410045 [KIR Cleanup Bug] 47261798 : [MSRC
+83274][Svr08SP2] sqloledb.dll - OOB Write vulnerability within function CStmt::
+SQLTableStatistics - Beijing CyberKunlun Technology Co., Ltd 48410050 [KIR
+Cleanup Bug] 47261690 : [MSRC 83273][Svr08SP2] sqloledb.dll - OOB Write
+vulnerability within function CStmt:: SQLTablesInfo - Beijing CyberKunlun
+Technology Co., Ltd 48410051 [KIR Cleanup Bug] 47261410 : [MSRC 83271][Svr08SP2]
+sqloledb.dll - OOB Write vulnerability within function CStmt:: SQLForeignKeys -
+Beijing CyberKunlun Technology Co., Ltd 48466292 [MSRC 84854] clfs.sys - OOB
+access vulnerability due to improper validation of member
+ControlRecordHeader->RecordOffset[0][Svr08SP2] in function
+CClfsBaseFile::GetControlRecord - Individual 48563130 [KIR Cleanup Bug] 47271402
+: [MSRC 83293][Svr08SP2] sqloldb.dll - RCE - Sql Server Client Driver
+sqloledb.dll CStmt::SQLColumns OOBW - Beijing CyberKunlun Technology Co., Ltd
+48563137 [KIR Cleanup Bug] 47271337 : [MSRC 83292][Svr08SP2] sqloldb.dll - RCE -
+Sql Server Client Driver sqloledb.dll CStmt::SQLProcedureParameters OOBW -
+Beijing CyberKunlun Technology Co., Ltd 48563143 [KIR Cleanup Bug] 47267313 :
+[MSRC 83284][Svr08SP2] sqloledb.dll - CStmt:: SQLColumnPrivileges OOBW - Beijing
+CyberKunlun Technology Co., Ltd 48567294 [KIR Cleanup Bug] 47271457 : [MSRC
+83294][Svr08SP2] sqloldb.dll - RCE - Sql Server Client Driver sqloledb.dll
+CStmt:: SQLProviderTypes OOBW - Beijing CyberKunlun Technology Co., Ltd 48738067
+[MSRC 85249][Svr08SP2] DenialOfService - Clfs kernel denial of service
+vulnerability - Unknown 49301178 [KIR Cleanup Bug] 45929474 : [MSRC
+81525][Svr08SP2] SQLSRV32.dll - ODBC Driver Out-Of-Bounds Write at
+SQLSRV32!GetReturnValue+0x67d - Beijing CyberKunlun Technology Co., Ltd 49301184
+[KIR Cleanup Bug] 46045610 : [MSRC 81708][Svr08SP2] sqloledb.dll - Heap Out Of
+Bounds Write Vulnerability in SQL oledb driver - Beijing CyberKunlun Technology
+Co., Ltd 49357214 [KIR Cleanup Bug] 45885961 : [MSRC 81479][Svr08SP2] sqloledb!
+- OOBW vulnerability within OLE DB Provider for SQL Server - Unknown 49758673
+[KIR Cleanup Bug] 46939786 : [MSRC 82825][Svr08SP2] sqlsrv32.dll - GetColData
+FLTNTYPE OOB Write vulnerability within SQL server driver - Beijing CyberKunlun
+Technology Co., Ltd
+
+================================================================================

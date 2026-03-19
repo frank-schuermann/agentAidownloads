@@ -1,0 +1,38 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-041643
+ConfigMgr: Core: ConfigMgr Setup fails with "SetCertRegistryRemote failed with error 0x80070057"
+================================================================================
+
+Issue ID     : KI-KISP-041643
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-01-10
+Last Updated : 2025-01-10
+Source KB     : KISP-041643
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-configmgr-setup-fails-with-setcertregistryremote-failed-with-error-0x80070057-9d2566c5-ec9c-ccaf-4d45-8f7a82c86fa9
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+ConfigMgr: Core: ConfigMgr Setup fails with "SetCertRegistryRemote failed with
+error 0x80070057" Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 198811 link for any updates. Author: Pavel Yurenev
+Summary/Symptom Customer tries to set up a new ConfigMgr site. Aft
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-041643
+for full scope.
+
+WORKAROUND:
+-----------
+Reinstall the future Site Server OS from scratch (just recreate the VM). More
+information If the customer accepts the risks, find the affected Key File in the
+Procmon trace: filter by SetupWPF.exe process and Path containing MachineKeys.
+Then provide the user who runs the Setup the full control over the key file.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-041643
+
+================================================================================

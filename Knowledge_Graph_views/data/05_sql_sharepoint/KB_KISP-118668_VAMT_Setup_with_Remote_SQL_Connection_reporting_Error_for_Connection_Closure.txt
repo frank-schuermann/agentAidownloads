@@ -1,0 +1,58 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-118668
+VAMT Setup with Remote SQL Connection reporting Error for Connection Closure
+================================================================================
+
+Article ID       : KISP-118668
+Language          : en-us
+Created           : 2025-05-22
+Last Modified     : 2025-06-09
+Views             : 4
+Keywords          : repub-2025-05-29
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/vamt-setup-with-remote-sql-connection-reporting-error-for-connection-closure-1be9bb1c-015b-10e1-2908-7fa0bab30a52
+
+================================================================================
+CONTENT:
+================================================================================
+
+VAMT Setup with Remote SQL Connection reporting Error for Connection Closure
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 164103 link for any updates. Author: Aashish Kamavisdar Summary/Symptom
+Issue VAMT Setup with Remote SQL Connection reporting Error for Connection
+Closure VAMT Proxy Activation for the ESU Endpoint with Remote SQL Configured,
+which is supported. Error while trying to acquire confirmation ID from VAMT
+Proxy Activation for the ESU Endpoint. VAMT servers will try to contact
+"activation.sls.microsoft.com" location to fetch the Installation ID for
+servers/clients in the environment which need activation. This is failing on
+multiple VAMT servers with an error indicating that the remote host closed the
+connection. The VAMT server would be talking to this destination URL over TCP
+port 443 - we also have a server from where this connection is successful.
+Network traces have been collected from both working and non-working VAMT
+servers. Cause We captured Network Traces & Identified that there was an Error
+due to TLS Version Mismatch. TCP 3-way handshake to this destination IP Address
+completes successfully. Without any delay, we see the VAMT server initiating
+closure by sending an ACK-FIN, to which the destination server responds with
+ACK-RST and connection is closed: Reviewing the Success Trace we Identified that
+after TCP Three Way Handshake, TLS Handshake is getting initiated by VAMT server
+and completing successfully For TLS communication, the expected behavior is that
+there should be a TLS Handshake between client and server, after the connection
+is established in TCP 3-way handshake. In the working scenario, we see the
+expected behavior and TLS handshake is successfully completing, post which app
+data is transferred. However, in the non-working scenario, we dont see the VAMT
+server initiating TLS Handshake -- TLS Client Hello is not being sent, instead
+the server is closing the connection with an ACK-FIN. We need to find why is TLS
+Handshake not getting initiated. One possibility could be if there is a TLS
+Version which is not enabled on the server - can compare the TLS versions on
+working and non-working VAMT servers. Engaged DS team to understand why is TLS
+handshake not getting initiated. Article resolution While comparing the logs and
+post enabling the TLS 1.0 on the affected server Issue got fixed. Additional
+Considerations: However, TLS 1.0 is not a secure protocol , if you want to
+disable TLS 1.0 please follow the best practices from the below document.
+https://docs.microsoft.com/en-us/security/engineering/solving-tls1-problem And
+please enforce TLS 1.2 for the client by following this article
+https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/security/enable-
+tls-1-2-client Also, ensure affected client must initiate TLS 1.2 traffic before
+disabling TLS 1.0. Notes: First published: May 15, 2025 Keywords:
+repub-2025-05-29
+
+================================================================================

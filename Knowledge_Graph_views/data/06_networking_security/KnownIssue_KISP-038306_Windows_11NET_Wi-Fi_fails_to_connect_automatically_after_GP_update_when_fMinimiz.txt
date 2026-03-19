@@ -1,0 +1,48 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-038306
+Windows 11:NET: Wi-Fi fails to connect automatically after GP update when fMinimizeConnections and fBlockNonDomain transition from 3,1 to 0,0 respectively
+================================================================================
+
+Issue ID     : KI-KISP-038306
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-01-15
+Last Updated : 2025-06-09
+Source KB     : KISP-038306
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-11-net-wi-fi-fails-to-connect-automatically-after-gp-update-when-fminimizeconnections-and-fblocknondomain-transition-from-3-1-to-0-0-respectively-e5c200b1-aa0c-21b7-07ec-601b8480cb7c
+Tags         : Group Policy, Wi-Fi, Windows
+
+SYMPTOMS:
+---------
+. Wi-Fi gets disconnected and it does not connect automatically. Even when
+Ethernet is unplugged later, Wi-Fi does not auto-connect. Expected Behaviour:
+Wi-Fi should reconnect automatically.
+
+ROOT CAUSE:
+-----------
+This issue is identified as bug in Windows 11 ( 21H2 /22H2 /23H2 /24H2)
+Operating system Bug 55459382: Win11: Wi-Fi fails to connect automatically after
+GP update when fMinimizeConnections and fBlockNonDomain transition from 3,1
+to... - Boards
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-038306
+for full scope.
+
+WORKAROUND:
+-----------
+Verified workarounds: 1. Once disconnected, disable and re-enable the Wi-Fi
+adapter, to let Wi-Fi connect automatically. 2. Set “Process even if the Group
+Policy objects have not changed” to disabled. 3. Organize the GPOs linked in the
+Windows 11 OU such that, GPO 1 – “Applies baseline security settings (except WCM
+settings) to all computers” GPO 2 – “Applies the fMinimizeConnections=3,
+fBlockNonDomain=1 to all computers with exempted computers in the Deny List” GPO
+3 – “Applies the fMinimizeConnections=0, fBlockNonDomain=0 only to the exempted
+computers” 4. The other possibility is to restart
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-038306
+
+================================================================================

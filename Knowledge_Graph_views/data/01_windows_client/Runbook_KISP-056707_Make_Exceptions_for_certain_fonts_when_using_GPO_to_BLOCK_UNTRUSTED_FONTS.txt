@@ -1,0 +1,64 @@
+================================================================================
+RUNBOOK — RB-KISP-056707
+Make Exceptions for certain fonts when using GPO to BLOCK UNTRUSTED FONTS
+================================================================================
+
+Runbook ID        : RB-KISP-056707
+Category          : Operational Procedure
+Estimated Time    : 30 minutes
+Last Updated      : 2025-06-09
+Source KB          : KISP-056707
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/make-exceptions-for-certain-fonts-when-using-gpo-to-block-untrusted-fonts-4eb4f937-d5fc-aa1a-abd8-cbf14c46e407
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Make Exceptions for certain fonts when using GPO to BLOCK UNTRUSTED FONTS
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 200515 link for any updates. Author: Harshal Pardeshi Summary/Symptom
+Customer was using GPO Untrusted Font Blocking but Adobe uses Creative Cloud
+which does not download font files locally to known locations.Customer wanted
+help to exclude Adobe Creative Cloud so that he could use any fonts downloaded
+from the Adobe CC. Article resolution Microsoft Suggests having fonts placed in
+the %windir%\fonts folder rather than the exclusions. However, customer could
+not do this to multiple systems given he wouldn't which fonts would be
+downloaded by the user So, we suggested the customer to use exclusions for the
+given software for their fonts to be not blocked We found out using process
+explorer that Adobe CC uses the binary Coresync.exe when the font download
+process is initiated and the Adobe CC fonts are downloaded to the below folder
+C:\Users\<your user name>\AppData\Roaming\Adobe\CoreSync\plugins\livetype\r
+Adobe suggests removing the policy to block untrusted fonts completely which
+wasn't acceptable to the customer. With Further testing we suggested the
+customer to use the below exclusion steps We enrolled into a Adobe CC trial and
+added below active fonts in creative cloud Solitas Serif Tuna GPO to block
+untrusted fonts was enabled no newer events could be seen about the fonts being
+blocked as we already made the below exclusions in registry The blocking
+untrusted fonts feature - Windows Client | Microsoft Learn
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Image File
+Execution Options\Coresync.exe Add QWORD (64-bit) Value, naming it as
+MitigationOptions. Add the value for the setting desired for that process: To
+turn on this feature, type 1000000000000. To turn off this feature, type
+2000000000000 <= I used this option to allow the blocked fonts for this process
+To audit with this feature, t
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-056707
+
+================================================================================

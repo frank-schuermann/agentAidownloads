@@ -1,0 +1,67 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035578
+WMI namespace equivalent to "root\SecurityCenter2" on Windows Server 2019 and later.
+================================================================================
+
+Article ID       : KISP-035578
+Language          : en-us
+Created           : 2024-12-06
+Last Modified     : 2025-06-09
+Views             : 2
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/wmi-namespace-equivalent-to-root-securitycenter2-on-windows-server-2019-and-later-e32a3f5c-5b05-af98-6dfb-7e9618238d68
+
+================================================================================
+CONTENT:
+================================================================================
+
+WMI namespace equivalent to "root\SecurityCenter2" on Windows Server 2019 and
+later. Important: This was authored via https://aka.ms/contentidea. Follow
+Content Idea (CI) 197790 link for any updates. Author: Ahmed Omar
+Summary/Symptom Issue/Inquiry: The existence of a WMI namespace equivalent to
+"root\SecurityCenter2" on Windows Server 2019 and later, specifically to
+retrieve the "productState" property. Cause Article resolution Unfortunately,
+there is no WMI class equivalent to "root\SecurityCenter2" for this purpose. The
+class was undocumented for a reason in older versions. The above script uses the
+WscGetSecurityProviderHealth function to get the aggregate health state of the
+security provider categories. For more information, you can refer to
+WscGetSecurityProviderHealth function (wscapi.h) - Win32 apps | Microsoft Learn
+More information It may not work on a Windows Server as it is only supported on
+client systems. The below script uses the WscGetSecurityProviderHealth function
+to get the aggregate health state of the security provider categories. Please
+try the following PowerShell script: $CSharpCode = @" using System; using
+System.Runtime.InteropServices; public class SecurityProviderHealth { public
+enum WSC_SECURITY_PROVIDER_HEALTH { WSC_SECURITY_PROVIDER_HEALTH_GOOD,
+WSC_SECURITY_PROVIDER_HEALTH_NOTMONITORED, WSC_SECURITY_PROVIDER_HEALTH_POOR,
+WSC_SECURITY_PROVIDER_HEALTH_SNOOZE } [DllImport("wscapi.dll")] public static
+extern int WscGetSecurityProviderHealth(int providers, out
+WSC_SECURITY_PROVIDER_HEALTH health); public static string
+PrintStatus(WSC_SECURITY_PROVIDER_HEALTH status) { switch (status) { case
+WSC_SECURITY_PROVIDER_HEALTH.WSC_SECURITY_PROVIDER_HEALTH_GOOD:
+Console.ForegroundColor = ConsoleColor.Green; return "GOOD"; case
+WSC_SECURITY_PROVIDER_HEALTH.WSC_SECURITY_PROVIDER_HEALTH_NOTMONITORED:
+Console.ResetColor(); return "NOTMONITORED"; case
+WSC_SECURITY_PROVIDER_HEALTH.WSC_SECURITY_PROVIDER_HEALTH_POOR:
+Console.ResetColor(); return "POOR"; case
+WSC_SECURITY_PROVIDER_HEALTH.WSC_SECURITY_PROVIDER_HEALTH_SNOOZE:
+Console.ResetColor(); return "SNOOZE"; default: Console.ResetColor(); return
+"Status Error"; } } public static void GetHealth() {
+WSC_SECURITY_PROVIDER_HEALTH health; if (WscGetSecurityProviderHealth(0x1, out
+health) == 0) Console.WriteLine("FIREWALL: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x2, out health) == 0)
+Console.WriteLine("AUTOUPDATE: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x4, out health) == 0)
+Console.WriteLine("ANTIVIRUS: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x8, out health) == 0)
+Console.WriteLine("ANTISPYWARE: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x10, out health) == 0)
+Console.WriteLine("INTERNET SETTINGS: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x20, out health) == 0) Console.WriteLine("UAC: "
++ PrintStatus(health)); if (WscGetSecurityProviderHealth(0x40, out health) == 0)
+Console.WriteLine("SERVICE: " + PrintStatus(health)); if
+(WscGetSecurityProviderHealth(0x7FFFFFFF, out health) == 0)
+Console.WriteLine("ALL: " + PrintStatus(health)); Console.ResetColor(); } public
+static void Main() { GetHealth(); } } "@ Add-Type -TypeDefinition $CSharpCode
+[SecurityProviderHealth]::GetHealth() For more information, you can refer to
+WscGetSecurityProviderHealth function (wscapi.h) - Win32 apps | Microsoft Learn
+
+================================================================================

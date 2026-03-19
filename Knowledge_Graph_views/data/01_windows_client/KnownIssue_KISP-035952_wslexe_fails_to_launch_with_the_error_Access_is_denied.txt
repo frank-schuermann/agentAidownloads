@@ -1,0 +1,43 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-035952
+wsl.exe fails to launch with the error "Access is denied"
+================================================================================
+
+Issue ID     : KI-KISP-035952
+Severity     : P1
+Status       : Fix Available
+Reported     : 2024-11-26
+Last Updated : 2025-06-09
+Source KB     : KISP-035952
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/wsl-exe-fails-to-launch-with-the-error-access-is-denied-f30228a6-12f5-2ed0-d8f8-545646129fcf
+Tags         : WSL, Windows
+
+SYMPTOMS:
+---------
+Symptom WSL.exe throws an error "ACCESS IS DENIED" when tried to launch.
+Customer has also shared the following error message: EventID=1092
+domain/username ran C:\Windows\System32\wsl.exe, which attempted to access the
+process LxssManagerProxyStub.dll, violating the rule "Executing Windows
+Subsystem for Linux", and was blocked. For information about how to respond to
+this event, see KB85494.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-035952
+for full scope.
+
+WORKAROUND:
+-----------
+McAfee End Point has a McAfee-defined Access Protection rule that blocks WSL
+execution. Once this rule was disabled, WSL started working without issue. More
+information References: linux - Trying to get WSL working on a Windows Server
+2019 VM. Getting 'Access denied' error - Super User Complete list of event IDs
+for Endpoint Security wsl.exe fails with "Access is denied" · Issue #4920 ·
+microsoft/WSL Test attack surface reduction rules - Microsoft Defender for
+Endpoint | Microsoft Learn
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-035952
+
+================================================================================

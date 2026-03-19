@@ -1,0 +1,30 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-040997
+Cannot set role priority for SQL role SQL "Failed to execute control code '54526046'
+================================================================================
+
+Article ID       : KISP-040997
+Language          : en-us
+Created           : 2024-12-12
+Last Modified     : 2025-06-09
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/cannot-set-role-priority-for-sql-role-sql-failed-to-execute-control-code-54526046-c44ad3d6-5d81-4992-04c8-97b585bb5184
+
+================================================================================
+CONTENT:
+================================================================================
+
+Cannot set role priority for SQL role SQL "Failed to execute control code
+'54526046' Important: This was authored via https://aka.ms/contentidea. Follow
+Content Idea (CI) 198058 link for any updates. Author: Badal Pundir
+Summary/Symptom While trying to set role priority for SQL role in failover
+cluster manager you are getting error. "Failed to execute control code
+'54526046' Cause (Misconfiguration of witness disk.) It was that one of the core
+resources (Witness Disk) is part of the SQL Role, whereas it should be part of
+Core Group. Article resolution 1, Check if witness resource is aligned in the
+Core Group or not. 2, If not, you may use "Move-ClusterResource -Name resource1
+-Group "group name" ". It will allow you to move the Witness resource to cluster
+core group. 3, Afterwards we should be able to change the priority of the SQL
+role.
+
+================================================================================

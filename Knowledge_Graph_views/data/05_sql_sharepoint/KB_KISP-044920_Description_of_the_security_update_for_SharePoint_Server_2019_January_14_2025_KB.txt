@@ -1,0 +1,48 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-044920
+Description of the security update for SharePoint Server 2019: January 14, 2025 (KB5002666) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-044920
+Language          : en-us
+Created           : 2025-01-14
+Last Modified     : 2025-01-14
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/description-of-the-security-update-for-sharepoint-server-2019-january-14-2025-kb5002666-24cb2c0b-4956-4845-a755-0f7f04dce075
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToSharePoint Server 2019 Summary This security update resolves a
+Microsoft SharePoint Server remote code execution vulnerability and Microsoft
+SharePoint Server spoofing vulnerability. To learn more about the
+vulnerabilities, see the following security advisories: Microsoft Common
+Vulnerabilities and Exposures CVE-2025-21344 Microsoft Common Vulnerabilities
+and Exposures CVE-2025-21348 Microsoft Common Vulnerabilities and Exposures
+CVE-2025-21393 Notes: This is build 16.0.10416.20041 of the security update
+package. To apply this security update, you must have the release version of
+Microsoft SharePoint Server 2019 installed on the computer. Improvements and
+fixes This security update contains an improvement in SharePoint Server 2019:
+Adds a User-Agent header in the request to the Search Content Service (SCS) for
+hybrid search. How to get and install the update Method 1: Microsoft Update This
+update is available from Microsoft Update. When you turn on automatic updating,
+this update will be downloaded and installed automatically. For more information
+about how to get security updates automatically, see Windows Update: FAQ. Method
+2: Microsoft Update Catalog To get the standalone package for this update, go to
+the Microsoft Update Catalog website. Method 3: Microsoft Download Center You
+can get the standalone update package through the Microsoft Download Center.
+Follow the installation instructions on the download page to install the update.
+Download security update 5002666 for the 64-bit version of SharePoint Server
+2019 More information Security update deployment information For deployment
+information about this update, see Deployments - Security Update Guide. Security
+update replacement information This security update replaces previously released
+security update 5002657. File hash information File name SHA256 hash
+sts2019-kb5002666-fullfile-x64-glb.exe
+B29511EAB8AEB73A44EB3D7B696064B93AFDA5FB966275F2E34ED8F9B7B0D6FF File
+information Download the list of files that are included in security update
+5002666. Information about protection and security Protect yourself online:
+Windows Security support Learn how we guard against cyber threats: Microsoft
+Security
+
+================================================================================

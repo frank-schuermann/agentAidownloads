@@ -1,0 +1,42 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-029184
+Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching Services and Firewall Console in Windows Servers
+================================================================================
+
+Issue ID     : KI-KISP-029184
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-10-28
+Last Updated : 2025-06-09
+Source KB     : KISP-029184
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/errors-1783-the-stub-received-bad-data-and-0x8007042c-when-launching-services-and-firewall-console-in-windows-servers-105ab785-99f2-2aef-b2c9-8e43d3d1d113
+Tags         : Active Directory, RDS, Windows
+
+SYMPTOMS:
+---------
+Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching
+Services and Firewall Console in Windows Servers Important: This was authored
+via https://aka.ms/contentidea. Follow Content Idea (CI) 196935 link for any
+updates. Author: Saisrinivas Chikoti Summary/Symptom The customer follo
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-029184
+for full scope.
+
+WORKAROUND:
+-----------
+suggested the customer remove the registry keys (PAExec*) under the path
+"HKLM:\SYSTEM\CurrentControlSet\Services" after backing up the existing registry
+hives. The customer consulted the vendor, who confirmed that it was safe to
+delete these keys. The customer used the custom script below to delete the keys
+after backing up the existing hives. Following a reboot, the machine functioned
+as expected. It was recommended that the customer consult the vendor for further
+investigation. +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++ $registryPath = "HKLM:\SYSTEM\C
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-029184
+
+================================================================================

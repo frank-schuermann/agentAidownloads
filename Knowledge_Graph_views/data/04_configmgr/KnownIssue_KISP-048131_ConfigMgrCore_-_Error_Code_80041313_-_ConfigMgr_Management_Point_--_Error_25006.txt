@@ -1,0 +1,47 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-048131
+ConfigMgr:Core -  Error Code : 80041313 - ConfigMgr Management Point -- Error 25006. Setup was unable to create the Internet virtual directory CCM_Incoming
+================================================================================
+
+Issue ID     : KI-KISP-048131
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-04-23
+Last Updated : 2025-04-23
+Source KB     : KISP-048131
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-error-code-80041313-configmgr-management-point-error-25006-setup-was-unable-to-create-the-internet-virtual-directory-ccm-incoming-81945650-5597-3fcd-bfee-42978faf8048
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+ConfigMgr:Core - Error Code : 80041313 - ConfigMgr Management Point -- Error
+25006. Setup was unable to create the Internet virtual directory CCM_Incoming
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 201632 link for any updates. Author: Baraneetharan Manivann
+
+ROOT CAUSE:
+-----------
+Noticed that already some other Task Scheduler Task Object was existing in
+"C:\Windows\Tasks" which is invalid one and was not able to view in Task
+Scheduler as well. Due to the Invalid Task Object existing on the path, we are
+getting below error while configuring and enabling BITS in CCM_Incoming VD
+during MP installation.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-048131
+for full scope.
+
+WORKAROUND:
+-----------
+Took backup and deleted the invalid Task Object job from the path
+C:\Windows\tasks. Reinitiated the MP installation and this time CCM_Incoming VD
+created successfully with enabling BITS and BITS_CCM_Incoming task object job
+created successfully. MP installation was successful. Notes: First published:
+Apr 23, 2025 Keywords: "80041313", "25006"
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-048131
+
+================================================================================

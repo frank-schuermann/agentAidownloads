@@ -1,0 +1,61 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-135039
+May 16, 2025—Hotpatch KB5061258 (OS Build 26100.3983) Out-of-band - Microsoft Support
+================================================================================
+
+Article ID       : KISP-135039
+Language          : en-us
+Created           : 2025-05-22
+Last Modified     : 2026-03-14
+Views             : 6
+Source URL         : https://support.microsoft.com/en-us/topic/may-16-2025-hotpatch-kb5061258-os-build-26100-3983-out-of-band-6826d54b-8acd-4bc1-b8bf-c839ca8e77a0
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWindows 11 Enterprise LTSC 2024 For information about Windows update
+terminology, see types of Windows updates and the monthly quality update types.
+To find an overview, see the update history for Windows 11, version 24H2, and
+the release notes for hotpatch on Windows 11 version 24H2 Enterprise clients. Be
+sure to follow @WindowsUpdate to find out when new content published to the
+Windows Release health dashboard. Windows for x64Windows for Arm64 Improvements
+and fixes The security update includes quality improvements. The following
+summary outlines key issues addressed by the KB update after you install it.
+This update makes miscellaneous security improvements to internal OS
+functionality. There are no additional issues documented in this release. If you
+installed earlier updates, your device downloads and installs only the new
+updates contained in this package. How to get this update Before you install
+this update Microsoft combines the latest servicing stack update (SSU) for your
+operating system with the hotpatch update. For general information about SSUs,
+see Servicing stack updates and Servicing Stack Updates (SSU): Frequently Asked
+Questions. If you are using Windows Update, the latest SSU installs with this
+update. Install this update To install this update, use one of the following
+Windows and Microsoft release channels. Release Channels Available Next step
+Windows Update This update downloads and installs automatically from Windows
+update and Microsoft Update Catalog See the other options. Server Update
+Services See the other options. ​​​​​​​File information ​​​​​​​For a list of the
+files that are in this update, download the file information for cumulative
+update 5061258. For a list of the files that are in the servicing stack update,
+download the file information for the SSU (KB5058523) - version 26100.4060.
+Important: For Arm64 devices, hotpatch updates are still in public preview.
+Improvements and fixes The security update includes quality improvements. The
+following summary outlines key issues addressed by the KB update after you
+install it. This update makes miscellaneous security improvements to internal OS
+functionality. There are no additional issues documented in this release.​​​​​​​
+If you installed earlier updates, your device downloads and installs only the
+new updates contained in this package. How to get this update Before you install
+this update Microsoft combines the latest servicing stack update (SSU) for your
+operating system with the hotpatch update. For general information about SSUs,
+see Servicing stack updates and Servicing Stack Updates (SSU): Frequently Asked
+Questions. If you are using Windows Update, the latest SSU installs with this
+update. Install this update To install this update, use one of the following
+Windows and Microsoft release channels. Release Channels Available Next step
+Windows Update This update downloads and installs automatically from Windows
+update and Microsoft Update Catalog See the other options. Server Update
+Services See the other options. ​​​​​​​File information ​​​​​​​For a list of the
+files that are in this update, download the file information for cumulative
+update 5061258. For a list of the files that are in the servicing stack update,
+download the file information for the SSU (KB5058523) - version 26100.4060.
+
+================================================================================

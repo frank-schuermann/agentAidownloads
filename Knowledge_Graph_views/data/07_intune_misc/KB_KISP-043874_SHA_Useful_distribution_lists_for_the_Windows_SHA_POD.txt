@@ -1,0 +1,55 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-043874
+SHA: Useful distribution lists for the Windows SHA POD
+================================================================================
+
+Article ID       : KISP-043874
+Language          : en-us
+Created           : 2025-01-07
+Last Modified     : 2025-06-09
+Views             : 2
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/sha-useful-distribution-lists-for-the-windows-sha-pod-73b4ec69-ee7d-b963-6fd2-e3e33c63700b
+
+================================================================================
+CONTENT:
+================================================================================
+
+SHA: Useful distribution lists for the Windows SHA POD Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 198735 link
+for any updates. Author: Bernd Högen Summary This article contains a list of
+distribution lists and email aliases related to Windows SHA technologies.
+Storage related: NTFSTalk Alias to discuss the NTFS Filesystem. (join this DL)
+NewNtfs Alias to discuss the ReFS Filesystem (join this DL) S2DTalk Spaces
+S2DTalk Alias for S2D related queries and Spaces Alias for non-S2d related
+Storage Spaces queries (join this DL) MPIODisc Alias to discuss MPIO (Multi-Path
+IO) (join this DL) SRTalk Alias for SR (Storage Replica) related queries (join
+this DL) SANSupp Alias to discuss SAN related Queries (join this DL) FSRMTalk
+Alias for FSRM (File Server Resource Manager) related queries (join this DL)
+StorageSensediscuss Alias to discuss the Storage Sense Feature (join this DL)
+Clustering WPChamps Alias to discuss Cluster Service related Queries (join this
+DL) Azure Local HCITalk Alias to discuss Azure Local related queries (join this
+DL) Hyper-V Virttalk Alias to discuss Hyper-V related queries (join this DL)
+Azure Arc ArcenabledK8sDiscuss Alias to discuss Azure Arc queries (join this DL)
+More information SHA windows pod dl distibution list collaboration Notes:
+Support Topics: Windows Servers\Windows Server 2022\Windows Server
+2022\Virtualization and Hyper-V, Windows Servers\Windows Server 2022\Windows
+Server 2022\Clustering and High Availability, Windows Servers\Windows Server
+2022\Windows Server 2022\Containers, Windows Servers\Windows Server 2022\Windows
+Server 2022\Backup, Recovery, Disk, and Storage, Windows Servers\Windows Server
+2019\Windows Server 2019\Backup, Recovery, Disk, and Storage, Windows
+Servers\Windows Server 2019\Windows Server 2019\Clustering and High
+Availability, Windows Servers\Windows Server 2019\Windows Server
+2019\Containers, Windows Servers\Windows Server 2019\Windows Server
+2019\Virtualization and Hyper-V, Windows Servers\Windows Server 2016\Windows
+Server 2016\Backup, Recovery, Disk, and Storage, Windows Servers\Windows Server
+2016\Windows Server 2016\Clustering and High Availability, Windows
+Servers\Windows Server 2016\Windows Server 2016\Containers, Windows
+Servers\Windows Server 2016\Windows Server 2016\Virtualization and Hyper-V,
+Windows Servers\Windows Server 2025\Windows Server 2025 (Preview)\Backup,
+Recovery, Disk, and Storage (Preview), Windows Servers\Windows Server
+2025\Windows Server 2025 (Preview)\Clustering and High Availability (Preview),
+Windows Servers\Windows Server 2025\Windows Server 2025 (Preview)\Containers
+(Preview), Windows Servers\Windows Server 2025\Windows Server 2025
+(Preview)\Virtualization and Hyper-V (Preview) First published: Jan 07, 2025
+
+================================================================================

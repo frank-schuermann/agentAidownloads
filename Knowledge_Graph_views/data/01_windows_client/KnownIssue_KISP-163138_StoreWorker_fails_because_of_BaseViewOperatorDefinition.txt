@@ -1,0 +1,38 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-163138
+StoreWorker fails because of BaseViewOperatorDefinition - Microsoft Support
+================================================================================
+
+Issue ID     : KI-KISP-163138
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-06-09
+Last Updated : 2025-06-09
+Source KB     : KISP-163138
+Reference    : https://support.microsoft.com/en-us/topic/storeworker-fails-because-of-baseviewoperatordefinition-14a80e65-a263-4f44-babe-a873146da590
+
+SYMPTOMS:
+---------
+Applies ToExchange Server 2019 Exchange Server 2016 Symptoms The StoreWorker
+process stops responding in Microsoft Exchange Server 2019 or 2016. When this
+issue occurs, the mailboxes get quarantined, and the following error entry is
+logged: ProviderName : MSExchangeIS Id : 1002 Message : Unhandled e
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-163138
+for full scope.
+
+WORKAROUND:
+-----------
+To fix this issue, install the following cumulative updates, as appropriate: For
+Exchange Server 2019, install:Hotfix update for Exchange Server 2019 CU15 HU2:
+May 29, 2025 (KB5057651) Hotfix update for Exchange Server 2019 CU14 HU5: May
+29, 2025 (KB5057652) For Exchange Server 2016, install:Hotfix update for
+Exchange Server 2016 CU23 HU16: May 29, 2025 (KB5057653)
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-163138
+
+================================================================================

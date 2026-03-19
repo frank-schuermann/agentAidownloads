@@ -1,0 +1,108 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-040904
+ADDS: GPHELP: Understanding Group Policy Object versionNumber Limits
+================================================================================
+
+Article ID       : KISP-040904
+Language          : en-us
+Created           : 2024-12-27
+Last Modified     : 2025-12-04
+Views             : 9
+Keywords          : #Group Policy Object (GPO) #GPO version number limit #GPO max value 65535 #GPO changes detection #GPO version reset #GPO versionNumber attribute #adsiedit GPO version #Sysvol GPO version #GPMC GPO version #gpsvclog GPO processing #Group Policy changes #GP
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-gphelp-understanding-group-policy-object-versionnumber-limits-cd2d0948-5f4b-bea7-9cff-3c5480650102
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: GPHELP: Understanding Group Policy Object versionNumber Limits Important:
+This was authored via https://aka.ms/contentidea. Follow Content Idea (CI)
+198572 link for any updates. Author: Vivek Agarwal Summary When the Group Policy
+Object (GPO) version number for a computer reaches its maximum value of 65535
+(Decimal), any further changes made by the admin to the GPO will still be
+detected by the client machines. Lab Environment: Client Machine:
+Client3.contoso.com Domain Controller (DC): ContTokDCD.contoso.com GPO Name:
+MSTEST-GPO5 More information Steps to Reproduce: Create a GPO: Create a GPO
+named MSTEST-GPO5 and configure one computer group policy setting in it. It will
+show computer version 1 (AD) and 1 (Sysvol). Example GPO GUID:
+{AE143147-B206-469D-A074-0B908A12FCDC} Set Maximum Version Number: In adsiedit,
+edit the GPO GUID {AE143147-B206-469D-A074-0B908A12FCDC} and set the
+versionNumber attribute value to 2147483647. In the Sysvol folder for the GPO
+{AE143147-B206-469D-A074-0B908A12FCDC}, set the gpt.iniversionNumber value to
+2147483647. Link the GPO appropriately where the computer objects reside. It
+will show computer version 65535 (AD) and 65535 (Sysvol) in GPMC.
+GPSVC(1890.f24) 05:17:51:870 ProcessGPOs(Machine): Processing extension Registry
+GPSVC(1890.f24) 05:17:51:870 ReadStatus: Read Extension's Previous status
+successfully. GPSVC(1890.f24) 05:17:51:870 ReadGPOList:++ GPSVC(1890.f24)
+05:17:51:871 ReadGPOList: Read Key:0 GPSVC(1890.f24) 05:17:51:872 ReadGPOList:
+Read Key:1 GPSVC(1890.f24) 05:17:51:872 ReadGPOList:-- (Result:TRUE)
+GPSVC(1890.f24) 05:17:51:872 CheckGPOs: ReadGPOList count = 2 GPSVC(1890.f24)
+05:17:51:872 CompareGPOLists: Different version numbers found -------
+GPSVC(1890.f24) 05:17:51:873 ParseRegistryFile: Entering with \\contoso.com\SysV
+ol\contoso.com\Policies\{AE143147-B206-469D-A074-
+0B908A12FCDC}\Machine\registry.pol. GPSVC(1890.f24) 05:17:51:889
+SetRegistryValue: RedirectionGuardPolicy => 1 [OK] GPSVC(1890.f24) 05:17:51:889
+SetRegistryValue: DisableWebPrinting => 0 [OK] GPSVC(1890.f24) 05:17:51:889
+ParseRegistryFile: Leaving. Observations: When the GPO Version Number Reaches
+65535: There is no problem from the security filter check; the access check
+passes. The gpsvclog from the client shows the following: GPSVC(1890.f24)
+05:13:54:068 ProcessGPO(Machine): ============================== GPSVC(1890.f24)
+05:13:54:068 ProcessGPO(Machine): Searching <cn={AE143147-B206-469D-A074-
+0B908A12FCDC},cn=policies,cn=system,DC=contoso,DC=com> GPSVC(1890.f24)
+05:13:54:068 ProcessGPO(Machine): Machine has access to this GPO.
+GPSVC(1890.f24) 05:13:54:068 ProcessGPO(Machine): Found common name of:
+<{AE143147-B206-469D-A074-0B908A12FCDC}> GPSVC(1890.f24) 05:13:54:068
+ProcessGPO(Machine): GPO passes the filter check. GPSVC(1890.f24) 05:13:54:068
+ProcessGPO(Machine): Found functionality version of: 2 GPSVC(1890.f24)
+05:13:54:068 ProcessGPO(Machine): Found file system path of:
+\\contoso.com\SysVol\contoso.com\Policies\{AE143147-B206-469D-A074-0B908A12FCDC}
+GPSVC(1890.f24) 05:13:54:084 ProcessGPO(Machine): Found display name of:
+<MSTEST-GPO5> GPSVC(1890.f24) 05:13:54:084 ProcessGPO(Machine): Found machine
+version of: GPC is 65535, GPT is 65535 GPSVC(1890.f24) 05:13:54:084
+ProcessGPO(Machine): Found flags of: 0 GPSVC(1890.f24) 05:13:54:084
+ProcessGPO(Machine): Found extensions:
+[{35378EAC-683F-11D2-A89A-00C04FBBCFA2}{D02B1F72-3407-48AE-BA88-E8213C6761F1}]
+GPSVC(1890.f24) 05:13:54:084 ProcessGPO(Machine): ==============================
+When Configuring One More Setting in GPO: The counter value resets and starts
+from 1. The GPMC shows the GPO AD and Sysvol versions as 1. The gpsvclog from
+the client shows the following: GPSVC(1890.f24) 05:17:51:636
+ProcessGPO(Machine): ============================== GPSVC(1890.f24) 05:17:51:636
+ProcessGPO(Machine): Searching <cn={AE143147-B206-469D-A074-
+0B908A12FCDC},cn=policies,cn=system,DC=contoso,DC=com> GPSVC(1890.f24)
+05:17:51:636 ProcessGPO(Machine): Machine has access to this GPO.
+GPSVC(1890.f24) 05:17:51:636 ProcessGPO(Machine): Found common name of:
+<{AE143147-B206-469D-A074-0B908A12FCDC}> GPSVC(1890.f24) 05:17:51:636
+ProcessGPO(Machine): GPO passes the filter check. GPSVC(1890.f24) 05:17:51:636
+ProcessGPO(Machine): Found functionality version of: 2 GPSVC(1890.f24)
+05:17:51:636 ProcessGPO(Machine): Found file system path of:
+\\contoso.com\SysVol\contoso.com\Policies\{AE143147-B206-469D-A074-0B908A12FCDC}
+GPSVC(1890.f24) 05:17:51:651 ProcessGPO(Machine): Found display name of:
+<MSTEST-GPO5> GPSVC(1890.f24) 05:17:51:651 ProcessGPO(Machine): Found machine
+version of: GPC is 1, GPT is 1 GPSVC(1890.f24) 05:17:51:651 ProcessGPO(Machine):
+Found flags of: 0 GPSVC(1890.f24) 05:17:51:651 ProcessGPO(Machine): Found
+extensions: [{35378EAC-683F-11D2-A89A-00C04FBBCFA2}{D02B1F72-3407-48AE-
+BA88-E8213C6761F1}] GPSVC(1890.f24) 05:17:51:651 ProcessGPO(Machine):
+============================== ------- GPSVC(1890.f24) 05:17:51:870
+ProcessGPOs(Machine): Processing extension Registry GPSVC(1890.f24) 05:17:51:870
+ReadStatus: Read Extension's Previous status successfully. GPSVC(1890.f24)
+05:17:51:870 ReadGPOList:++ GPSVC(1890.f24) 05:17:51:871 ReadGPOList: Read Key:0
+GPSVC(1890.f24) 05:17:51:872 ReadGPOList: Read Key:1 GPSVC(1890.f24)
+05:17:51:872 ReadGPOList:-- (Result:TRUE) GPSVC(1890.f24) 05:17:51:872
+CheckGPOs: ReadGPOList count = 2 GPSVC(1890.f24) 05:17:51:872 CompareGPOLists:
+Different version numbers found ------- GPSVC(1890.f24) 05:17:51:873
+ParseRegistryFile: Entering with \\contoso.com\SysVol\contoso.com\Policies\{AE14
+3147-B206-469D-A074-0B908A12FCDC}\Machine\registry.pol. GPSVC(1890.f24)
+05:17:51:889 SetRegistryValue: RedirectionGuardPolicy => 1 [OK] GPSVC(1890.f24)
+05:17:51:889 SetRegistryValue: DisableWebPrinting => 0 [OK] GPSVC(1890.f24)
+05:17:51:889 ParseRegistryFile: Leaving. Conclusion: In this scenario, the
+client computer will process the group policy changes successfully even when the
+version number reaches its maximum value and resets. The gpsvclog confirms the
+successful processing of the GPO changes. Screenshots from lab: Notes: Support
+Topics: Windows Servers\Windows Server 2022\Windows Server 2022\Group
+Policy\Group Policy management (GPMC or GPedit) First published: Dec 27, 2024
+Keywords: #Group Policy Object (GPO) #GPO version number limit #GPO max value
+65535 #GPO changes detection #GPO version reset #GPO versionNumber attribute
+#adsiedit GPO version #Sysvol GPO version #GPMC GPO version #gpsvclog GPO
+processing #Group Policy changes #GP
+
+================================================================================

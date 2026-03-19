@@ -1,0 +1,242 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-033437
+KB5046911: Safe OS Dynamic Update for Windows 10, version 1607 and Windows Server 2016: November 12, 2024 - Microsoft Support
+================================================================================
+
+Article ID       : KISP-033437
+Language          : en-us
+Created           : 2024-11-12
+Last Modified     : 2025-02-22
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/kb5046911-safe-os-dynamic-update-for-windows-10-version-1607-and-windows-server-2016-november-12-2024-06fe0de3-2e9f-44d8-b473-3d0a9cbe0dbc
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWin 10 Ent LTSB 2016 Win 10 IoT Ent LTSB 2016 Windows Server 2016
+Support for Windows 10 will end in October 2025 After October 14, 2025,
+Microsoft will no longer provide free software updates from Windows Update,
+technical assistance, or security fixes for Windows 10. Your PC will still work,
+but we recommend moving to Windows 11. Learn more Summary This update makes
+improvements to the Windows recovery environment in Windows 10, version 1607 and
+Windows Server 2016. How to get this update Install this update To install this
+update, use one of the following release channels. Windows UpdateUpdate
+CatalogServer Update Services Available Next step Yes This update is available
+through Windows Update. It will be downloaded and installed automatically.
+Available Next step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. To download updates from the Update Catalog,
+see Steps to download updates from the Windows Update Catalog. Available Next
+step No See the other release channels. Prerequisites There are no prerequisites
+to apply this update. Restart information You do not have to restart your device
+after you apply this update. Removal information This update cannot be removed
+once it is applied to a Windows image. Update replacement information This
+update replaces the previously released update KB5044613. Verify the
+installation of this update After installing this update, the WinRE version
+installed on the device should be 10.0.14393.7513. Methods to verify the WinRE
+version installed​​​​​​​​​​​​​​ GetWinReVersion.ps1WinREAgent eventDISM command
+To get the version of WinRE installed, run the following PowerShell script
+"GetWinReVersion.ps1" with Administrator credentials. After you run the script,
+you should receive the installed WinRE version as in the following example:
+GetWinReVersion.ps1 PowerShell script ##########################################
+###################################################### # # Copyright (c)
+Microsoft Corporation. # Licensed under the MIT License. # # THE SOFTWARE IS
+PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR # IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, # FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE # AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER # LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, # OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE # SOFTWARE. # ############
+################################################################################
+#### # Function to get WinRE path function GetWinREPath { $WinRELocation =
+(reagentc /info | Select-String "Windows RE location") if ($WinRELocation) {
+return $WinRELocation.ToString().Split(':')[-1].Trim() } else { Write-Host
+"Failed to find WinRE path" -ForegroundColor Red exit 1 } } # Creates and needs
+to be return the mount directory function GetMountDir { # systemdirve\mnt
+$MountDir = "$env:SystemDrive\mnt" if (-not (Test-Path $MountDir)) { New-Item
+-ItemType Directory -Path $MountDir -Force | Out-Null } return $MountDir } #
+Function to get WinRE version function GetWinREVersion { $mountedPath =
+GetMountDir $filePath = "$mountedPath\Windows\System32\winpeshl.exe"
+$WinREVersion = (Get-Item $filePath).VersionInfo.FileVersionRaw.Revision return
+[int]$WinREVersion } # Main Execution $WinREPath = GetWinREPath # Make dir
+C:\mnt if not exists $TempDir = GetMountDir # Get the read write permission for
+this directory if (-not (Test-Path $TempDir)) { New-Item -ItemType Directory
+-Path $TempDir -Force | Out-Null } # Mount WinRE image dism /Mount-Image
+/ImageFile:"$WinREPath\winre.wim" /Index:1 /MountDir:"$TempDir" $WinREVersion =
+GetWinREVersion Write-Host "WinRE Version: $WinREVersion" -ForegroundColor Cyan
+dism /Unmount-Image /MountDir:"$TempDir" /Discard Remove-Item -Path $TempDir
+-Force -Recurse WinREAgent logs events related to the Windows Recovery
+Environment (WinRE), primarily recording details about the creation,
+modification, and usage of the recovery image. In this case, we are looking for
+Event ID: 4501 Servicing succeeded events. If you are unsuccessful in locating
+WinREAgent servicing events because of space limitations that might occur in
+your environment, we suggest you use the DISM command. Open the Windows Search
+bar. To do this, right-click Start and then click Search. In the Search bar,
+type Event Viewer and then click Event Viewer. Expand Windows Logs and then
+click System. In the right-side navigation pane, under Actions, click Find. In
+the Find what: box, type WinREAgent and then click Find Next. Click Cancel to
+close the Find dialog box. The WinREAgent servicing event should be shown in the
+bottom middle pane and you should see a message similar to the followng on the
+General tab: Servicing succeeded. The Windows Recovery Environment version is
+now: 10.0.22621.4742 The WinRE version in this example is 10.0.22621.4742.
+​​​​​​​To view the Event Properties pane for the WinREAgent servicing event,
+right-click the WinREAgent entry in the System pane (top middle pane) and then
+click Event Properties. ​​​​​​​ Open an elevated Windows command prompt. To do
+this, press the Windows key, type cmd, right-click Command Prompt, and then
+click Run as Administrator. At the command prompt, type reagentc /info and then
+press Enter. Note the path of the Windows RE location. For this example, the
+location is \\?\GLOBALROOT\device\harddisk0\partition5\Recovery\WindowsRE. This
+path may vary based on your Windows installation. At the command prompt, use the
+DISM command to retrieve the Windows Recovery Environment (WinRE) information.
+For this example, enter the following command and then press Enter: Dism /Get-
+ImageInfo /ImageFile:\\?\GLOBALROOT\device\harddisk0\partition5\Recovery\Windows
+RE\winre.wim /index:1 Note The default name for the WinRE image file is
+winre.wim. In your environment, the name of the WinRE image file might be
+different. Also, the Index number of the default winre.wim file is 1. In your
+environment, the Index number might be different. The WinRE image file
+information is returned as illustrated in the following example: The WinRE
+version in this example is 10.0.22621.4742. File information The English (United
+States) version of this software update installs files that have the following
+attributes. This update might contain files for additional languages. For all
+supported x86-based versions File name File version Date Time File size
+winload.exe 10.0.14393.6610 11-Dec-23 20:28 951,512 winload.efi 10.0.14393.6610
+11-Dec-23 20:28 1,079,040 bootmgfw.efi 10.0.14393.6610 11-Dec-23 20:27 1,009,472
+bootmgr.efi 10.0.14393.6610 11-Dec-23 20:28 995,632 boot.stl Not versioned
+3-Nov-23 17:55 10,689 bootux.dll 10.0.14393.206 15-Sep-16 9:57 3,716,096
+winresume.exe 10.0.14393.6610 11-Dec-23 20:29 785,576 winresume.efi
+10.0.14393.6610 11-Dec-23 20:29 893,008 BootMenuUX.dll 10.0.14393.7513 21-Oct-24
+20:32 497,152 bootim.exe 10.0.14393.0 15-Jul-16 18:44 20,992 ci.dll
+10.0.14393.6610 11-Dec-23 20:25 590,528 driver.stl Not versioned 3-Nov-23 17:57
+15,792 fltMgr.sys 10.0.14393.6610 11-Dec-23 20:27 293,296 hal.dll
+10.0.14393.6610 11-Dec-23 20:28 348,464 halmacpi.dll 10.0.14393.6610 11-Dec-23
+20:28 348,464 cmi2migxml.dll 10.0.14393.7420 9-Sep-24 20:36 142,776 csiagent.dll
+10.0.14393.7420 9-Sep-24 20:38 515,504 diagER.dll 10.0.14393.7420 9-Sep-24 20:38
+44,488 hwcompat.dll 10.0.14393.7420 9-Sep-24 20:30 168,512 hwcompat.txt Not
+versioned 9-Sep-24 22:10 2,740 hwexclude.txt Not versioned 9-Sep-24 22:10 2
+migapp.xml Not versioned 21-Aug-24 22:04 654,548 migcore.dll 10.0.14393.7420
+9-Sep-24 20:36 6,502,344 mighost.exe 10.0.14393.7420 9-Sep-24 20:30 264,256
+migres.dll 10.0.14393.7420 9-Sep-24 20:37 17,328 migisol.dll 10.0.14393.7420
+9-Sep-24 20:36 123,296 migstore.dll 10.0.14393.7420 9-Sep-24 20:36 942,384
+migsys.dll 10.0.14393.7420 9-Sep-24 20:37 305,976 MXEAgent.dll 10.0.14393.7420
+9-Sep-24 20:37 241,568 offline.xml Not versioned 9-Sep-24 19:20 33,714
+oscomps.xml Not versioned 9-Sep-24 19:20 435,175 oscomps.woa.xml Not versioned
+9-Sep-24 19:20 249,101 osfilter.inf Not versioned 9-Sep-24 19:20 21,299
+reagent.dll 10.0.14393.7420 9-Sep-24 20:49 967,584 setupplatform.cfg Not
+versioned 21-Aug-24 22:03 1,664 setupplatform.dll 1.42.14393.7420 9-Sep-24 20:30
+5,774,376 setupplatform.exe 1.42.14393.7420 9-Sep-24 20:30 154,160 SFCN.dat Not
+versioned 21-Aug-24 22:03 1,824 SFLCID.dat Not versioned 21-Aug-24 22:03 1,644
+SFLISTW7.dat Not versioned 21-Aug-24 22:04 1,703,322 SFLISTW8.dat Not versioned
+21-Aug-24 22:04 2,608,968 SFLISTWB.dat Not versioned 21-Aug-24 22:04 3,173,014
+SFLISTWT.dat Not versioned 21-Aug-24 22:04 4,935,856 sflistw8.woa.dat Not
+versioned 21-Aug-24 22:04 954,506 SFLISTRS1.dat Not versioned 21-Aug-24 22:04
+5,590,872 sflistwb.woa.dat Not versioned 21-Aug-24 22:04 1,150,204
+sflistwt.woa.dat Not versioned 21-Aug-24 22:04 2,637,298 SFPAT.inf Not versioned
+9-Sep-24 19:20 11,345 SFPATW7.inf Not versioned 9-Sep-24 19:20 17,117
+SFPATW8.inf Not versioned 9-Sep-24 19:20 79,539 SFPATWB.inf Not versioned
+9-Sep-24 19:20 91,356 SFPATWT.inf Not versioned 9-Sep-24 19:20 165,630
+SFPATRS1.inf Not versioned 9-Sep-24 19:20 169,643 unbcl.dll 10.0.14393.7420
+9-Sep-24 20:36 842,168 upgradeagent.dll 10.0.14393.7420 9-Sep-24 20:30 2,424,888
+upgradeagent.xml Not versioned 9-Sep-24 19:20 70,803 upgrade_bulk.xml Not
+versioned 9-Sep-24 19:20 190,757 upgrade_data.xml Not versioned 9-Sep-24 19:20
+31,023 upgrade_frmwrk.xml Not versioned 9-Sep-24 19:20 15,010 upgWow_bulk.xml
+Not versioned 9-Sep-24 19:20 97,470 uninstall.xml Not versioned 9-Sep-24 19:20
+3,187 uninstall_data.xml Not versioned 9-Sep-24 19:20 8,973 wdsutil.dll
+10.0.14393.7420 9-Sep-24 20:36 232,880 ClipSp.sys 10.0.14393.6610 11-Dec-23
+20:23 590,256 ntdll.dll 10.0.14393.6610 11-Dec-23 20:28 1,585,136 ntoskrnl.exe
+10.0.14393.6610 11-Dec-23 20:28 6,041,408 wof.sys 10.0.14393.82 5-Aug-16 21:22
+173,408 pdc.sys 10.0.14393.6610 11-Dec-23 20:29 92,976 diagtrack.dll
+10.0.10586.0 21-Aug-24 22:04 922,976 diagtrackrunner.exe 10.0.10586.0 21-Aug-24
+22:04 79,040 reagent.admx Not versioned 21-Aug-24 22:03 1,240 reagent.xml Not
+versioned 21-Aug-24 22:03 781 SetupPlatform.cfg Not versioned 21-Aug-24 22:04
+7,902 wdsclientapi.dll 10.0.14393.7420 9-Sep-24 20:30 237,608 wdscore.dll
+10.0.14393.7420 9-Sep-24 20:35 203,168 wdscsl.dll 10.0.14393.7420 9-Sep-24 20:36
+52,656 wdsimage.dll 10.0.14393.7420 9-Sep-24 20:30 773,672 wdstptc.dll
+10.0.14393.7420 9-Sep-24 20:30 560,168 ResetEngine.dll 10.0.14393.934 21-Feb-17
+20:18 1,438,720 ResetEngine.exe 10.0.14393.82 5-Aug-16 20:49 10,240 reseteng.dll
+10.0.14393.934 21-Feb-17 20:29 945,664 resetengmig.dll 10.0.14393.82 5-Aug-16
+20:28 64,512 ResetEngInterfaces.exe 10.0.14393.82 5-Aug-16 20:33 8,704 srms.dat
+Not versioned 29-Jun-16 12:02 56,119 srms62.dat Not versioned 29-Jun-16 12:02
+22,841 sysreset.exe 6.1.7782.0 21-Feb-17 20:32 594,944 systemreset.exe
+10.0.14393.934 21-Feb-17 21:41 320,152 SysResetErr.exe 10.0.14393.934 21-Feb-17
+21:35 36,704 winpeshl.exe 10.0.14393.7513 21-Oct-24 20:34 25,600 wpeutil.dll
+10.0.14393.7513 21-Oct-24 20:28 105,472 wpeutil.exe 10.0.14393.7513 21-Oct-24
+20:37 10,752 wpeinit.exe 10.0.14393.7513 21-Oct-24 20:35 28,672 startnet.cmd Not
+versioned 21-Oct-24 18:18 9 StartRep.exe 10.0.14393.7420 9-Sep-24 20:15 673,280
+RecEnv.exe 10.0.14393.7420 9-Sep-24 20:36 611,784 BootRec.exe 10.0.14393.7420
+9-Sep-24 20:16 289,280 For all supported x64-based versions File name File
+version Date Time File size skci.dll 10.0.14393.6610 11-Dec-23 20:39 173,656
+winload.exe 10.0.14393.6610 11-Dec-23 20:35 1,181,840 winload.efi
+10.0.14393.6610 11-Dec-23 20:35 1,364,672 bootmgfw.efi 10.0.14393.6610 11-Dec-23
+20:34 1,199,408 bootmgr.efi 10.0.14393.6610 11-Dec-23 20:35 1,188,672 boot.stl
+Not versioned 11-Dec-23 17:45 10,895 bootux.dll 10.0.14393.726 12-Jan-17 20:36
+3,753,984 winresume.exe 10.0.14393.6610 11-Dec-23 20:36 897,160 winresume.efi
+10.0.14393.6610 11-Dec-23 20:36 1,053,112 BootMenuUX.dll 10.0.14393.7513
+21-Oct-24 22:06 584,704 bootim.exe 10.0.14393.0 15-Jul-16 19:28 25,600 ci.dll
+10.0.14393.6610 11-Dec-23 20:33 646,240 driver.stl Not versioned 11-Dec-23 17:45
+25,628 fltMgr.sys 10.0.14393.6610 11-Dec-23 20:34 376,624 hal.dll
+10.0.14393.6610 11-Dec-23 20:35 453,024 cmi2migxml.dll 10.0.14393.7420 9-Sep-24
+20:39 177,056 csiagent.dll 10.0.14393.7420 9-Sep-24 20:41 663,480 diagER.dll
+10.0.14393.7420 9-Sep-24 20:41 52,664 hwcompat.dll 10.0.14393.7420 9-Sep-24
+20:36 206,392 hwcompat.txt Not versioned 9-Sep-24 22:53 2,838 hwexclude.txt Not
+versioned 9-Sep-24 22:53 2 migapp.xml Not versioned 21-Aug-24 22:04 654,548
+migcore.dll 10.0.14393.7420 9-Sep-24 20:40 8,291,760 mighost.exe 10.0.14393.7420
+9-Sep-24 20:35 271,912 migres.dll 10.0.14393.7420 9-Sep-24 20:41 17,312
+migisol.dll 10.0.14393.7420 9-Sep-24 20:40 143,288 migstore.dll 10.0.14393.7420
+9-Sep-24 20:40 1,189,168 migsys.dll 10.0.14393.7420 9-Sep-24 20:41 386,488
+MXEAgent.dll 10.0.14393.7420 9-Sep-24 20:40 313,648 offline.xml Not versioned
+9-Sep-24 19:19 33,714 oscomps.xml Not versioned 9-Sep-24 19:19 435,175
+oscomps.woa.xml Not versioned 9-Sep-24 19:19 249,101 osfilter.inf Not versioned
+9-Sep-24 19:19 21,299 reagent.dll 10.0.14393.7420 9-Sep-24 20:45 1,118,640
+setupplatform.cfg Not versioned 21-Aug-24 22:03 1,664 setupplatform.dll
+1.42.14393.7420 9-Sep-24 20:35 7,220,264 setupplatform.exe 1.42.14393.7420
+9-Sep-24 20:35 165,928 SFCN.dat Not versioned 21-Aug-24 22:03 1,824 SFLCID.dat
+Not versioned 21-Aug-24 22:03 1,644 SFLISTW7.dat Not versioned 21-Aug-24 22:04
+1,703,322 SFLISTW8.dat Not versioned 21-Aug-24 22:04 2,608,968 SFLISTWB.dat Not
+versioned 21-Aug-24 22:04 3,173,014 SFLISTWT.dat Not versioned 21-Aug-24 22:04
+4,935,856 sflistw8.woa.dat Not versioned 21-Aug-24 22:04 954,506 SFLISTRS1.dat
+Not versioned 21-Aug-24 22:04 5,590,872 sflistwb.woa.dat Not versioned 21-Aug-24
+22:04 1,150,204 sflistwt.woa.dat Not versioned 21-Aug-24 22:04 2,637,298
+SFPAT.inf Not versioned 9-Sep-24 19:19 11,345 SFPATW7.inf Not versioned 9-Sep-24
+19:19 17,117 SFPATW8.inf Not versioned 9-Sep-24 19:19 79,539 SFPATWB.inf Not
+versioned 9-Sep-24 19:19 91,356 SFPATWT.inf Not versioned 9-Sep-24 19:19 165,630
+SFPATRS1.inf Not versioned 9-Sep-24 19:19 169,643 unbcl.dll 10.0.14393.7420
+9-Sep-24 20:39 1,099,168 upgradeagent.dll 10.0.14393.7420 9-Sep-24 20:35
+3,051,064 upgradeagent.xml Not versioned 9-Sep-24 19:19 70,803 upgrade_bulk.xml
+Not versioned 9-Sep-24 19:19 190,757 upgrade_data.xml Not versioned 9-Sep-24
+19:19 31,023 upgrade_frmwrk.xml Not versioned 9-Sep-24 19:19 15,010
+upgWow_bulk.xml Not versioned 9-Sep-24 19:19 97,470 uninstall.xml Not versioned
+9-Sep-24 19:19 3,187 uninstall_data.xml Not versioned 9-Sep-24 19:19 8,973
+wdsutil.dll 10.0.14393.7420 9-Sep-24 20:40 291,272 ClipSp.sys 10.0.14393.6610
+11-Dec-23 20:31 682,816 ntdll.dll 10.0.14393.6610 11-Dec-23 20:35 1,883,776
+ntoskrnl.exe 10.0.14393.6610 11-Dec-23 20:35 7,793,056 wof.sys 10.0.14393.82
+5-Aug-16 21:29 199,008 pdc.sys 10.0.14393.6610 11-Dec-23 20:36 109,888
+diagtrack.dll 10.0.10586.0 21-Aug-24 22:04 1,365,856 diagtrackrunner.exe
+10.0.10586.0 21-Aug-24 22:04 88,256 reagent.admx Not versioned 21-Aug-24 22:03
+1,240 reagent.xml Not versioned 21-Aug-24 22:03 781 SetupPlatform.cfg Not
+versioned 21-Aug-24 22:04 7,902 wdsclientapi.dll 10.0.14393.7420 9-Sep-24 20:35
+276,032 wdscore.dll 10.0.14393.7420 9-Sep-24 20:39 250,784 wdscsl.dll
+10.0.14393.7420 9-Sep-24 20:40 61,384 wdsimage.dll 10.0.14393.7420 9-Sep-24
+20:36 909,768 wdstptc.dll 10.0.14393.7420 9-Sep-24 20:35 653,352 ResetEngine.dll
+10.0.14393.934 21-Feb-17 20:12 1,817,088 ResetEngine.exe 10.0.14393.82 5-Aug-16
+20:48 11,264 reseteng.dll 10.0.14393.934 21-Feb-17 20:27 1,082,368
+resetengmig.dll 10.0.14393.82 5-Aug-16 20:29 77,312 ResetEngInterfaces.exe
+10.0.14393.82 5-Aug-16 20:34 9,728 srms.dat Not versioned 29-Jun-16 11:53 56,119
+srms62.dat Not versioned 29-Jun-16 11:53 22,841 sysreset.exe 6.1.7782.0
+21-Feb-17 20:30 688,640 systemreset.exe 10.0.14393.934 21-Feb-17 21:53 354,264
+SysResetErr.exe 10.0.14393.82 5-Aug-16 21:31 41,824 winpeshl.exe 10.0.14393.7513
+21-Oct-24 22:03 30,208 wpeutil.dll 10.0.14393.7513 21-Oct-24 22:01 121,344
+wpeutil.exe 10.0.14393.7513 21-Oct-24 22:08 12,800 wpeinit.exe 10.0.14393.7513
+21-Oct-24 22:03 32,256 startnet.cmd Not versioned 7-Oct-24 23:21 9 StartRep.exe
+10.0.14393.7420 9-Sep-24 20:15 761,856 RecEnv.exe 10.0.14393.7420 9-Sep-24 20:40
+706,992 BootRec.exe 10.0.14393.7420 9-Sep-24 20:16 337,920 ntdll.dll
+10.0.14393.6610 11-Dec-23 20:28 1,571,784 wdsnbp.com Not versioned 3-Nov-23
+17:56 30,832 abortpxe.com Not versioned 3-Nov-23 17:56 79 bootmgr.exe
+10.0.14393.6610 11-Dec-23 20:27 631,104 pxeboot.com Not versioned 3-Nov-23 17:56
+25,358 pxeboot.n12 Not versioned 3-Nov-23 17:56 25,358 hdlscom1.com Not
+versioned 3-Nov-23 17:56 25,662 hdlscom2.com Not versioned 3-Nov-23 17:56 25,662
+hdlscom1.n12 Not versioned 3-Nov-23 17:56 25,646 hdlscom2.n12 Not versioned
+3-Nov-23 17:56 25,646 bootmgfw.efi 10.0.14393.6610 11-Dec-23 20:27 1,009,472
+References Description of the standard terminology that is used to describe
+Microsoft software updates Query words: safeos du
+
+================================================================================

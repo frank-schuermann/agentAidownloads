@@ -1,0 +1,32 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-070168
+testArticle - Microsoft Support
+================================================================================
+
+Article ID       : KISP-070168
+Language          : en-us
+Created           : 2025-05-06
+Last Modified     : 2025-05-06
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/testarticle-f27a35ff-67de-4ceb-a055-63efd70b52f6
+
+================================================================================
+CONTENT:
+================================================================================
+
+Start your article with a very short introduction (1 sentence). Put yourself in
+the reader's place - why are they here? What should they do? Get straight to a
+quick list of steps to accomplish If you need to explain a concept, or they have
+to do pre-requisite steps, add a quick summary below the step where they need
+it, and link to the concept or steps. Keep procedures short - preferably 5 or
+fewer steps Use Ui style for user interface elements or for text people need to
+enter. Use the verbs choose, select, or enter as actions, and format menus as
+Menu > Command. Optionally, add a screenshot for context (if UI is hard to
+locate, or it’s needed to complete the task). Maximum width: 520 pixels. Use a
+standard theme, do not show any personal information, and crop to show only
+what's relevant. If you want to add a video or screenshot, use a two-column grid
+and have the steps in the left and the video or screenshot in the right - see
+Steps and video grid example. Target no more than 500 words for an article.
+Example article Change my photo
+
+================================================================================

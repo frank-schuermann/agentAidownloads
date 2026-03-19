@@ -1,0 +1,44 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-061199
+File upload in Microsoft Copilot - Microsoft Support
+================================================================================
+
+Article ID       : KISP-061199
+Language          : en-us
+Created           : 2025-04-04
+Last Modified     : 2025-11-26
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/file-upload-in-microsoft-copilot-8b7bf432-9576-4b16-9dee-6c19a4169e62
+Description       : Find out supported file formats by Microsoft Copilot and how to upload files to use your AI assistant for everyday life.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Note: Information on this page applies to Microsoft Copilot. If you're using
+Microsoft 365 Copilot for work, please see File formats supported by Microsoft
+365 Copilot. File upload in Microsoft Copilot allows users to upload images or
+certain supported file types directly into their chat sessions. Once uploaded,
+Copilot can analyze and extract information from these files to provide relevant
+insights, answer questions, or assist with specific tasks. Files you share with
+Copilot will be stored securely for up to 18 months and then automatically
+deleted. Microsoft does not use the content of the files you upload to Copilot
+for model training. Supported file formats Microsoft Copilot supports the
+following file formats, including: Documents: PDF, DOCX, XLSX, PPTX Images: PNG,
+JPEG, PJP, JFIF Text & Markup: TXT, TEXT, JSON, CSV, MD You can upload up to 20
+files in a single Copilot conversation. Files that can be uploaded to are
+limited to 50MB. How to use file upload Upload a file to Copilot using the
+following steps: Press the Open icon (+) and select Add images or files. Use the
+file picker to navigate to and select the file you want to upload on your
+device. Once uploaded, the file will appear as an attachment in your chat
+session. Type and submit a prompt that asks a question about the file, e.g.
+“describe this image” or “what recommendations would you give based on this
+document?” You can also ask follow-up questions about the file within the same
+conversation. Example prompts with file upload Here are some prompt ideas to get
+you started with File Upload: After uploading a resume: Can you help me write a
+cover letter I can send to the hiring manager for this entry-level marketing
+role? Call out my relevant experiences. After uploading a report: Give me a
+summary of this report and its top three recommendations. Also, provide an APA-
+style citation for this report I can use in an article I am writing.
+
+================================================================================

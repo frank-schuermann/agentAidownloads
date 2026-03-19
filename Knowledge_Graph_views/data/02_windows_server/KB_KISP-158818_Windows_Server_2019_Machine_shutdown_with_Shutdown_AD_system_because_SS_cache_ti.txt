@@ -1,0 +1,28 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-158818
+Windows Server 2019: Machine shutdown with "Shutdown AD system because SS cache timer expired with no DSM connectivity"
+================================================================================
+
+Article ID       : KISP-158818
+Language          : en-us
+Created           : 2025-06-26
+Last Modified     : 2025-06-30
+Views             : 5
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-server-2019-machine-shutdown-with-shutdown-ad-system-because-ss-cache-timer-expired-with-no-dsm-connectivity-602a775f-ca7d-b06e-0c7d-26b705d7ac43
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows Server 2019: Machine shutdown with "Shutdown AD system because SS cache
+timer expired with no DSM connectivity" Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 203438 link for any
+updates. Author: Ankita Singh Basu Summary/Symptom Customer has Server 2019 and
+when he logs in to the machine it shuts down within 2 - 3 minutes with a message
+"Shutdown AD system because SS cache timer expired with no DSM connectivity"
+However machine was booting in safe mdoe. Cause Issue was caused due to Secfsd
+service from "Thales Group". Article resolution We disabled Secfsd service from
+"Thales Group" from msconfig and issue was mitigated. More information Note:
+First published: Jun 26, 2025
+
+================================================================================

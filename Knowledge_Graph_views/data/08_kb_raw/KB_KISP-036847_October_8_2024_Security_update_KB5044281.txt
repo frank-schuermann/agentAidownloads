@@ -1,0 +1,500 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-036847
+October 8, 2024 Security update (KB5044281)
+================================================================================
+
+Article ID       : KISP-036847
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 39
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/october-8-2024-security-update-kb5044281-62e2aade-ae55-4c4e-b898-c1a7ce57718b
+
+================================================================================
+CONTENT:
+================================================================================
+
+October 8, 2024 Security update (KB5044281) For information about Windows update
+terminology, see the article about the types of Windows updates and the monthly
+quality update types. For an overview of Azure Stack HCI, version 22H2, see its
+update history page. Improvements This security update includes quality
+improvements. Below is a summary of the key issues that this update addresses
+when you install this KB. If there are new features, it lists them as well. The
+bold text within the brackets indicates the item or area of the change we are
+documenting. [Software Defined Networking (SDN)] New! The SDN API now performs
+better for large-scale deployments. Watch for load balancer connectivity issues
+after you install this update. If you have any, move the SDNAPI microservice to
+another node. An SDN admin can move the service. To do that, use the Move-
+ServiceFabricPrimaryReplica PowerShell cmdlet. [MSIX applications] Fixed: When
+you install them from an HTTPS URI, they fail to open. This issue occurs when
+the download of the app is not complete. This damages the package. [Task
+Manager] Fixed: It stops responding when you select the “Performance” tab.
+[Direct Composition batched presentations] Fixed: A brief flash of triangles or
+boxes show on the screen. This issue affects browsers, like Microsoft Edge, and
+other apps. [Input Method Editor (IME)] Fixed: When a combo box has input focus,
+a memory leak might occur when you close that window. [AppLocker] Fixed: The
+rule collection enforcement mode is not overwritten when rules merge with a
+collection that has no rules. This occurs when the enforcement mode is set to
+“Not Configured.” [Remote Desktop Gateway Service] Fixed: The service stops
+responding. This occurs when a service uses remote procedure calls (RPC) over
+HTTP. Because of this, the clients that are using the service disconnect. For
+more information about security vulnerabilities, please refer to the Security
+Update Guide and the October 2024 Security Updates. To return to the Azure Stack
+HCI documentation site Azure Stack HCI, version 22H2 servicing stack update
+(KB5044414)- 20349.2750 This update makes quality improvements to the servicing
+stack, which is the component that installs Windows updates. Servicing stack
+updates (SSU) ensure that you have a robust and reliable servicing stack so that
+your devices can receive and install Microsoft updates. Known issues in this
+update Microsoft is not currently aware of any issues with this update. How to
+get this update Before you install this update Microsoft now combines the latest
+servicing stack update (SSU) for your operating system with the latest
+cumulative update (LCU). For general information about SSUs, see Servicing stack
+updates and Servicing Stack Updates (SSU): Frequently Asked Questions. To
+install the LCU on your Azure Stack HCI cluster, see Update Azure Stack HCI
+clusters. Install this update To install this update, use one of the following
+Windows and Microsoft release channels. Windows UpdateBusinessCatalogServer
+Update Services Available Next Step Yes None. This update will be downloaded
+and installed automatically from Windows Update and Microsoft Update. Available
+Next Step Yes None. This update will be downloaded and installed automatically
+from Windows Update for Business in accordance with configured policies.
+Available Next Step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. Available Next Step Yes This update will
+automatically sync with Windows Server Update Services (WSUS) if you configure
+Products and Classifications as follows: Product: Azure Stack HCI
+Classification: Security Updates If you want to remove the LCU To remove the LCU
+after installing the combined SSU and LCU package, use the DISM/Remove-Package
+command line option with the LCU package name as the argument. You can find the
+package name by using this command: DISM /online /get-packages. Running Windows
+Update Standalone Installer (wusa.exe) with the /uninstall switch on the
+combined package will not work because the combined package contains the SSU.
+You cannot remove the SSU from the system after installation. File Information
+For a list of the files that are provided in this update, download the file
+information for cumulative update 5044281. For a list of the files that are
+provided in the servicing stack update, download the file information for the
+SSU (KB5044414) - version 20349.2750. Released in 2024 10B (2024.10 B)
+Individual VSO bugs related to KB 5044281 ID Title 44773375 [FE]RPCSS does not
+evaluate the port + IP address combination for port availability with firewall
+rules and returns error 0x800706ba (RPC_E_SERVER_UNAVAILABLE) 45304809 [FE] TVS
+Warnings in file: minkernel\crts\fpw32\tran\amd64\ssefilter.c 48059518 [Fe] COM+
+application pooling can result in null AV bugcheck in rpcss!ResolveORInfo
+49428078 [KIR Cleanup Bug] 48045823 : [Fe][Server 2022] SnippingTool consuming 1
+CPU core receiving WM_PAINT messages indefinitely 50294689 [KIR Cleanup Bug]
+48642720 : [KIR Enablement Bug] 48553426 : [Backport][Fe]Test takers using
+Prometric software cannot use IMEs on Windows 10 2004+ 50573335 [KIR Cleanup
+Bug] 48931907 : [KIR Enablement Bug] 48900601 : [Fe] COM+ Application Freeze
+Shuts Down Nuclear Power Plant Health Monitoring System 50762945 [KIR Cleanup
+Bug] 48916491 : [KIR Enablement Bug] 47204501 : [Fe][CSS] Server 2022 Race
+Condition between UserManager QueryUserContext and notification
+SERVICE_CONTROL_SESSIONCHANGE on Windows Multi User (Backport 43108308) 51443173
+[KIR Enablement Bug] 49655064 : [FE] Task Scheduler hit deadlock if
+Accessibility application runs 51443210 [KIR Enablement Bug] 51189017 : [FE]
+Teams fail to launch on first logon - Bad image error message is displayed,
+can't dismiss 51609227 [KIR Enablement Bug] 49786894 : [Fe] Fix grid box
+flashing / tearing due to D3D batched PresentCompositionBuffers 51664630 [KIR
+Enablement Bug] 50689327 : [Fe] Work Folders fails to sync some files when
+Windows Defender is running 51795921 [KIR Cleanup Bug] 38853172 : [MSRC
+71131][Fe] EoP in InputService allows input injection from AppContainer to High
+IL CRM:0461305911 - Internal 52537596 [CSS][Fe] On Windows Server 2019 (RS5),
+Edge randomly hangs due to IE mode window attempting to set focus 52560772
+[RFH][Fe] : Memory leak occurs in msctf, when destroy EditBox contained ComboBox
+52733274 MSRC feature clean: MSRC 50851, 52101, 56125 [Fe] - Velocity Feature
+conditionals need to be removed from the code 52849252 [MSRC 89864]
+CVE-2024-6197 - Stack buffer free in utf8asn1str leads to RCE (curl.exe) -
+Internal 53689895 [MSRC 88985] (Reassess of 47932) Internet Explorer - From
+http:// domain to res:// domain xss by using IE Adobe's PDF ActiveX plugin -
+Internal 50742659 [KIR Cleanup Bug] 47065494 : [Fe] 🥪 [Backport] Stop captures
+in uDWM when the owning process disconnects 51603620 [KIR Enablement Bug]
+40099518 : [Server2022] NX access violation in sfc_os!SfcIsKeyProtected 51773342
+[KIR Cleanup Bug] 49667990 : [MSRC 86719][Fe] win32kbase.sys - DirectComposition
+UAF - Hillstone Networks, Inc 53178692 [MSRC 88798] AMSI scanning bypassed for
+JavaScript files - Internal 49178081 [KIR Cleanup Bug] 48874889 : [FE] Add
+instrumentation to AmsiUtil to allow bypass detection and address some long-term
+vulnerabilities. 49490274 [KIR Cleanup Bug] 45813936 : Audit.csv fails to apply
+and crashes gpsvc with invalid information [Fe] 49684071 [MSRC 86762] Lua -
+Doppel [VCPKG Vulnerability] CVE-2021-45985 - Internal 49918610 [KIR Cleanup
+Bug] 48568868 : [MSRC 85054] keyiso.dll - use after free vulnerability during
+key delete - Internal 49918625 [KIR Cleanup Bug] 48468266 : [MSRC 84869]
+ncryptprov.dll - CNG key isolation out of bound read vulnerability within
+function NCRYPTPROV!SPCryptSetKeyProperty - Beijing CyberKunlun Technology Co.,
+Ltd 50163296 [KIR Cleanup Bug] 49680074 : [MDE] [UTC] Tellib fix start of day
+bandwidth monitor tracker if points to future time [Fe] 50206432 [KIR Cleanup
+Bug] 49772855 : [DCR Post-Rel] Only 1 PRT sent when Edge profile configured with
+multiple Entra IDs on 10D+ patched Windows 10 (ICM 482528617) 50346650 [KIR
+Cleanup Bug] 48927215 : [KIR Enablement Bug] 44931722 : [DisabledByDefault]
+BitLocker: Recalculated FVE metadata offsets do not get updated in memory on
+DevExt, results in data loss when previous ranges are written to 50460982 [KIR
+Cleanup Bug] 48878364 : [KIR Enablement Bug] 46634931 : [Fe]LSASS Access
+violation crash in ntdll!RtlEqualSid 50460985 [KIR Cleanup Bug] 48931898 : [KIR
+Enablement Bug] 46272980 : [Fe]Bug fix backport request: service protection bug
+fix and related MATS telemetry code changes 50613703 [Server2022][DCR] [MDE\MDI]
+[InMarketOS] WFP RPC-level opnum filtering support 50688339 [KIR Cleanup Bug]
+48859694 : [KIR Enablement Bug] 48542135 : [Desktop] WebAuthn via WAM does not
+allow Windows Hello to be used 50736127 [KIR Cleanup Bug] 48430516 : [KIR
+Enablement Bug] 45128535 : [DisabledByDefault] [Dell][Escalate] System occur
+unexpected shutdown when enter hibernate with eMMC storage SKU 50893537 [MSRC
+87992] CxUIUSvc64.exe & CxUIUSvc32.ex - distribution of service binaries allows
+clients to load a DLL without proper validation - [FE] 50992386 [MSRC 88064]
+OpenSSH - Backslash in remote filenames is treated as a directory separator -
+Unknown 51163468 [KIR Cleanup Bug] 49123640 : [KIR Enablement Bug] 47921025 :
+[DCR Check-in] [DCR] Implement ephemeral key re-use in TLS 1.3 to close
+performance gap [FE] 51618852 [KIR Enablement Bug] 48361445 :
+[Strategic_Customer][Fe] WS22 Pku2uRemoveTicketCacheEntry doesn't acquire lock
+before clearing TicketCacheEntry->Linked flag and causing timing issue 51627548
+[KIR Cleanup Bug] 49308178 : [MSRC 86147] Microsoft.PowerShell.Diagnostics -
+vulnerability allows execution of code in elevated context of running PowerShell
+process - Unknown 51664517 [KIR Enablement Bug] 49345169 : [FE][DCR-
+Checkin][WSD][WS]Request to make available some new and existing binaries of OS
+Configuration stack to address security & compliance needs on Server 2022 (was:
+"and 2019") 51665516 [KIR Cleanup Bug] 50159364 : [MSRC 87301] MDM - Incorrect
+certificate validation during device enrollment [MSRC 75983 Fix Bypass] -
+Internal 51838433 [MSRC 88777] WinInet-based TLS clients attempt TLS session
+resumption - Spoof arbitrary TLS servers - Internal 51856810 [KIR Cleanup Bug]
+49648627 : [MSRC 86700] Bitlocker vulnerable to rollback attacks - Internal
+51860847 [KIR Cleanup Bug] 49293312 : [MSRC 86192] Luafv.sys - integer overflow
+(Lua File Virtualization Filter Driver) - Unknown (Fe) 51938421 [Task Manager]
+[RFH] [Fe] Address an issue that Task Manager crashes when “Performance” tab is
+selected. 51954395 [MSRC 88964][Fe] ElevationOfPrivilege - Speech API(sapi.dll)
+Use-After-Free Sandbox Escape Vulnerability - Unknown 52295857 [SSIRP Kickback]
+Give customers a reliable way to query a device registry for presence of PCA2023
+cert and PCA2023 signed boot manager 52528339 [FE] [Audit Event] [Server 2022] -
+Add two new enriched KDC ETW events for AS and TGS flows 52708926 [MSRC 89683]
+OpenSSH - due to unpatched CVE-2018-20685 - Unknown 52751220 [MSRC 89801] UEFI -
+VU#529659 from Cert CC Regarding app signed by ?Microsoft Corporation UEFI CA
+2011? certificate - Individual 52999145 [MSRC 90046] CNG API
+(BCryptPrimitives.dll and CNG.sys) - RSA PKCS1decryption side-channel
+vulnerability - Internal [Fe] 53096085 [CNG] [Fe] Unable to Read Private Keys
+when Running under AppContainer Context 53112881 EventID 4770 malformed when
+encryption type information is added to EventID 4768 and 4769 53117120 [Fe][DLP]
+AzRMS Certificate Migration: Implement Resource Checking to Replace winMSIPC
+Certificate Pinning 53625101 [FE] [Audit Event] [Server 2022] - Add two new
+enriched KDC ETW events for AS and TGS flows - Remove Dependency on policy for
+TGS 53689854 [KIR Cleanup Bug] 48874889 : [FE] Add instrumentation to AmsiUtil
+to allow bypass detection and address some long-term vulnerabilities. -
+buildbreakfix 48872404 [KIR Enablement Bug] 48413724 : [Fe] When merging
+AppLocker rules, the enforcement mode is not overwritten when existing
+RuleCollection is set to "Not Configured" and no rules are defined 49486511
+[MSRC 86453] Kerberos [Encrypt Message API] - AES-SHA1 ciphers fail to encrypt
+the entire message - Internal 51355325 [KIR Cleanup Bug] 49305524 : [MSRC 86216]
+appid.sys Driver - leaking kernel addresses - Individual 51504519 [KIR Cleanup
+Bug] 48858989 : [MSRC 85468] WPM - Windows Performance Monitor (Windows
+Performance Data Helper Library) - Unknown 51627598 [KIR Cleanup Bug] 50097280 :
+[MSRC 87125] CLIPSP.SYS - License Update Field Type 0xC9 out-of-bounds read
+vulnerability triggered by NtQuerySystemInformation function call - Cisco
+Systems Inc (Talos) 51631011 [KIR Cleanup Bug] 50096547 : [MSRC 87123][Fe] ADCS
+& DCOM - attackers able to exploit remote activation permission in COM System-
+wide ACL and the SPPUIObjectInteractive COM class - Tencent 51664668 [KIR
+Cleanup Bug] 49130585 : [MSRC 85956] pdh.dll - OOBW vulnerability within
+function PdhiPrepareCounterList - Unknown 51878469 [MSRC 88869]
+nt!RtlSidHashInitialize - Race condition in RtlSidHashInitialize (r - Unknown
+51953143 [MSRC 88958] RemoteCodeExecution - Microsoft Management Console
+arbitrary code execution - Internal 52700511 [MSRC 87437] Netlogon - Name
+squatting attack against Netlogon protocol - Internal 49431293 [Fe] ICMP traffic
+(response) should not be blocked by outbound ACL 49663541 [MSRC 86709][Fe]
+Hyper-V - vfpext.sys vfpext!VfpUnprocessNetBufferList OOBR - 360 Software
+(Beijing) Company Limited 49793729 [KIR Enablement Bug] 46254891 : HNS
+Loadbalancer policies not rehydrated after service restart [Fe] 50393197 [KIR
+Cleanup Bug] 48931894 : [KIR Enablement Bug] 48048697 : [WS2022] SDN - SdnSlbm
+continued using the old certificate after rotation and caused outage 50482018
+[MSRC 87691][Fe] RRAS - heap-based buffer out-of-bounds write in
+IPPROMON!UpdateGlobalBOOTPV6Block - Unknown 50485775 [MSRC 87697][Fe] IPPROMON
+(IP Protocols Monitor) - OOBW !UpdateRipGlobalConfig - Unknown 50553952 [MSRC
+87728][Fe] IPPROMON - OOBW in function IPPROMON!UpdateGlobalBOOTPBlock - Unknown
+50730959 [KIR Cleanup Bug] 43323410 : [KIR Enablement Bug] 42427328 : [DCR
+Check-in] [WinHTTP] [Evergreen] [Fe] WinHttp Automatic Chunking 50730960 [KIR
+Cleanup Bug] 43323414 : [KIR Enablement Bug] 42562735 : [Fe] [Evergreen] http:
+Objects initialization 50730962 [KIR Cleanup Bug] 43323415 : [KIR Enablement
+Bug] 42562757 : [Fe] [Evergreen] http: Increase SSL handshake buffer to match
+lookaside list size 50761871 [Windows Server 2022] 2024.10 B - NC Service
+Version Bump-ups 51383768 [KIR Cleanup Bug] 49009644 : [MSRC 85682][Fe] Windows
+Image Acquisition mishandling of symbolic links (Previous CVE 2020-0635) -
+Unknown 51512792 [KIR Cleanup Bug] 43323408 : [KIR Enablement Bug] 42427314 :
+[DCR Check-in] [WinHTTP] [Evergreen] [Fe] Add support for a session-wide
+schannel cred handle 51512793 [KIR Cleanup Bug] 43323411 : [KIR Enablement Bug]
+42074692 : [Fe] [Evergreen] http parser doesn't handle zerolengthframe and drain
+logic fails if ReceiveEvents are stalled 51512794 [KIR Cleanup Bug] 43323413 :
+[KIR Enablement Bug] 42562698 : [Fe] [Evergreen] http: SSL delay disconnect
+processing until all indications are processed 51512795 [KIR Cleanup Bug]
+43323416 : [KIR Enablement Bug] 42562764 : [Fe] [Evergreen] http: Correctly
+determine TLS session resumption 51512796 [KIR Cleanup Bug] 43323418 : [KIR
+Enablement Bug] 42562818 : [Fe] [Evergreen] winhttp: Weak binding to an in-
+progress connection crash 51512799 [KIR Cleanup Bug] 43323417 : [KIR Enablement
+Bug] 42562807 : [Fe] [Evergreen] winhttp: Handling invalid HTTP/2 response
+trailers 51530996 [KIR Cleanup Bug] 49473718 : [MSRC 86431][Fe] DHCP server
+management RPC interface RCE vulnerability ? - Unknown 51550085 [KIR Cleanup
+Bug] 49699189 : [MSRC 86773][Fe][Fe] DenialOfService - (Unauthenticated DoS
+Attack Scenario) Windows WS-Discovery XmlTextNodeReader::ReadAttributes Denial
+of Service Vulnerability - Individual 51613727 [KIR Cleanup Bug] 43323409 : [KIR
+Enablement Bug] 42035043 : [Fe] [Evergreen] Incorrect Chaining Mode Index causes
+incorrect initialization of TLS parameters 51624468 [KIR Cleanup Bug] 50182060 :
+[MSRC 87346][Fe] FXSAPI dll - FAX_OpenConnection Arbitrary Address Dereference
+Vulnerability - Individual 51664618 [KIR Enablement Bug] 50672728 : [WS2022] SDN
+- SDNAPI client certificate authentication does not work (client cert is
+ignored) 51685923 [KIR Enablement Bug] 51595023 : [DCR check-in] [Fe] TCPIP
+enhancement to improve performance when implementing WFP call out with heavy
+traffic 51686334 [KIR Cleanup Bug] 49609860 : [MSRC 86647][Fe] bridge.sys - use-
+after-free vulnerability with function sub_800C - Individual 51686441 [KIR
+Cleanup Bug] 49645606 : [MSRC 86691][Fe] bridge.sys - vulnerability wthin
+Function sub_8FB4 - Individual 51686545 [KIR Cleanup Bug] 49700280 : [MSRC
+86776][Fe] bridge.sys - Missed call to NdisRetreatNetBufferDataStart in sub_ADE4
+- Individual 51686595 [KIR Cleanup Bug] 49725989 : [MSRC 86817][Fe] bridge.sys -
+Incorrect check of IPV6Header.PayloadLen in sub_8DFC - Individual 51686750 [KIR
+Cleanup Bug] 50103177 : [MSRC 87143][Fe] tcpip! - tcpip!Ipv6pValidateNetBuffer -
+Individual 51745550 [MSRC 88668][Fe] spoolsv.exe - Arbitrary 0-byte write in
+spoolsv over unprivileged MS-RPRN RPC call - Unknown 51864878 [MSRC 88849][Fe]
+RemoteSP - Windows Telephony Service RemoteSP!TSPI_providerEnumDevice - OOBW -
+Unknown 51865135 [MSRC 88850][Fe] RemoteSP! - Windows Telephony Service
+RemoteSP!TSPI_lineGetAddressCaps() - OOBW - Unknown 51956018 [DCR Check-in]
+[WS2022] [DCR] [SDN] [InMarketOS] SDNAPI Performance and Scale Improvement
+53102056 [MSRC 90193] [Fe] Afd!AfdRioGetAndCacheBuffer UAF - 89001 Variant -
+Internal 53232523 SDN API Perf DCR: Adding OSS binary
+(System.Threading.Tasks.Dataflow.dll) via OSDependencies.Manifest 53262923 [KIR
+Enablement Bug] 47965746 : [Fe] [Strategic_Customer] Critical Network Failure in
+DeltaV S2D Implementation Disrupts Production 53311202 [DCR Check-in] [HTTP.sys]
+[WS2022 (Fe)] Expose TLS Client Hello data to Exchange callers for JA4
+fingerprinting 53388191 [MSRC 90496] IPPROMON (IP Protocols Monitor) - OOBW in
+MPRAPI!MprInfoBlockSet - Internal 53390602 [MSRC 90508] MPRAPI!MprInfoBlockSet -
+OOBW in MPRAPI!MprInfoBlockSet due to UpdateGlobalBOOTPBlock - Internal 53392282
+[MSRC 90514] UpdateGlobalBOOTPV6Block- OOBW in MPRAPI!MprInfoBlockSet - Internal
+49343555 [UNDO][KIR Cleanup Bug] 48213621 : [Fe][Calico-NPM] Active TCP
+connections are breaking during Pod Scale UP when using Calico NPM 50486049
+[MSRC 87699][Fe] RemoteCodeExecution - IP Protocols Monitor RCE vulnerability ?
+- Unknown 50492510 [MSRC 87703][Fe] PeerDistSvc.dll - unauthenticated remote DOS
+via the branchcache service - Beijing CyberKunlun Technology Co., Ltd 50550458
+[MSRC 87711][Fe] DenialOfService - Report a branchcache service get segment list
+out of memory unauthenticated remote denial of service vulnerability - Beijing
+CyberKunlun Technology Co., Ltd 50554144 [MSRC 87729][Fe] RRAS - OOWB in
+function IPPROMON!UpdateRipIfConfigVariable - Unknown 51159817 [MSRC 88176][Fe]
+RRAS - MprInfoBlockSet OOBW - Internal 51217694 [MSRC 88219][Fe]
+RemoteCodeExecution - RRAS - Multiple out of bound writes within MprInfoBlockAdd
+- Internal 51596553 [MSRC 88512][Fe] tapisnap.dll - Windows Telephony API vul -
+Unknown 51627560 [KIR Cleanup Bug] 49493792 : [MSRC 86477][Fe] ndis! -
+ndisSortNetBufferLists - OOBR - Individual 51627631 [KIR Cleanup Bug] 51409643 :
+[MSRC 86204 - 7B][Fe] rasman.dll - OOBr vulnerability in function
+GetAutoTriggerData due to zero-sized allocation - Internal 51828472 [MSRC
+88764][Fe] RRAS - MPRAPI!MprInfoBlockRemove - IP Router Monitor - OOBW - Unknown
+51914936 [MSRC 88922][Fe] DenialOfService - Report a branchcache service invalid
+unauthenticated remote denial of service vulnerability - Beijing CyberKunlun
+Technology Co., Ltd 53079686 [MSRC 90159] winnat.sys -
+WinNatStatelessTranslateIcmpError -OOBR in ICMP error - Internal 53310273 [MSRC
+90387] IPPROMON!UpdateIgmpInterfaceConfig - IP Protocols Monitor RCE
+vulnerability X-? - Unknown 53311133 [MSRC 90391] [CHILD CASE of MSRC 90159]
+winnat.sys - WinNatTranslateIcmpError -OOBR in ICMP error - Internal 53404750
+[MSRC 90528] [CHILD CASE of MSRC 87729] RRAS - validation check inside
+IpmontrGetInfoBlockFromInterfaceInfo - Unknown 53404814 [MSRC 90529] [CHILD CASE
+of MSRC 87729] RRAS - FILTER_DESCRIPTOR - Unknown 53404877 [MSRC 90530] [CHILD
+CASE of MSRC 87729] RRAS - IP_NAT_INTERFACE_INFO - Unknown 47297597 [KIR Cleanup
+Bug] 46448693 : [KIR Enablement Bug] 45797458 : [Fe] Working Set limits are not
+respected when using SetProcessWorkingSetSizeEx 48100719 [KIR Cleanup Bug]
+46417640 : [Fe] Windows Job Object cpu telemetry wraps after Sql has been
+running active for a while - Revenue loss for Sql DB Serverless customers.
+48130435 [KIR Cleanup Bug] 46619228 : [Fe] Improve ReadFileScatter over SSD
+performance by 20% for AI CoPilots in M365 48160097 [KIR Cleanup Bug] 47270461 :
+[Fe][Gen9 Blocker] Backport kernel AMX/KeSaveExtendedProcessorState performance
+fixes to WS22 49240431 [KIR Cleanup Bug] 48186877 : [KIR Enablement Bug]
+46417640 : [Fe] Windows Job Object cpu telemetry wraps after Sql has been
+running active for a while - Revenue loss for Sql DB Serverless customers.
+49259660 [KIR Cleanup Bug] 48186857 : [KIR Enablement Bug] 47270461 : [Fe][Gen9
+Blocker] Backport kernel AMX/KeSaveExtendedProcessorState performance fixes to
+WS22 49259661 [KIR Cleanup Bug] 48186902 : [KIR Enablement Bug] 46619228 : [Fe]
+Improve ReadFileScatter over SSD performance by 20% for AI CoPilots in M365
+49803241 [KIR Cleanup Bug] 48765490 : [DCR Check-in][Fe] Implement Boot Manager
+Undocking Flow for resolving Black Lotus/Kickback SSIRP 50224105 [Fe][Lenovo]
+High Proto PTE Contention With Many CPUs Leads to BugCheck 133 50730952 [KIR
+Enablement Bug] 50337784 : [Fe] [BMW] PERF: Security descriptor cache not spread
+evenly between hash buckets 50873073 [Fe][AMD/OEMs] When a Turin-Dense 192c OPN
+is running under HV/VBS/HVCI only 128c/256Lps are started 51186828 [MSRC 88215]
+[CHILD CASE of MSRC 83477] Windows - Intel - Spectre-BHB Side channel
+vulnerability [Child of MSRC 67996][Fe] - Internal 51399523 [MSRC 88344][Fe]
+SecureKernel: vulnerability in SkpMarshalCryptoParamsOut() - Internal 51582045
+[KIR Enablement Bug] 50238944 : [Fe][M365] Linux on Windows - High crash rate
+from UNIX sockets for IPC via GRPC 51597041 [KIR Enablement Bug] 48034284 : [FE]
+Backport request of bug 36449878: VMMS memory leak in 'Vmsifmemfree' call
+51728813 [MSRC 88640][Fe] SecureKernel: privilege escalation via
+NtQueryInformationThread() - Internal 51753798 [KIR Cleanup Bug] 51549937 :
+[MSRC 88454] ElevationOfPrivilege - Hyper-V vulnerabilities being exploited in-
+the-wild - Internal 51983019 [WS2022] - Dell - Live/Quick migration fails on
+Intel based Server CPUs (Skylake/Cascade Lake/Sapphire Rapids) 52265607 [MSRC
+89217] ElevationOfPrivilege - SecureKernel: buffer overflow in
+NtQuerySystemInformation() - Internal 52712366 [Fe][M365 Dynamics] Debuggability
+fix for Memory dump and procdump when process has many loaded modules 53160922
+[DCR][Checkin] [Kickback][Fe] Add Telemetry in Boot Manager Undocking Flow
+(BFSVC) if 2023 Boot Manager deployed 53369908 [Fe][Crowdstrike] Re-enable IMC
+for Azure Confidential VM with whitelisted ingestion 53460328 [Fe] SSIRP
+Kickback - 20348 build missing DVD_EX (efisys*.bin) after applying: KB 5036909
+(2024 - 4B) 53690761 [MSRC 85218] [CHILD CASE of MSRC 81620] TCP/IP stack in
+TianoCore EDK2 contains multiple vulnerable conditions - Bucket #2 - Individual
+53691987 Update secure boot templates for kickback vulnerability 47473025 [MSRC
+83497] [FE] winresume .efi - SFB - (NT hibernate) resume boot loader - Internal
+51839936 [MSRC 88787][Fe] advapi32.dll - Relay vulnerability on Remote Registry
+RPC client - Akamai Technologies 51914353 [MSRC 88918][Fe] DenialOfService -
+Report a replica server unauthenticated remote denial of service vulnerability -
+Beijing CyberKunlun Technology Co., Ltd 51954344 [MSRC 88963][Fe]
+DenialOfService - Report a replication server out of connections unauthenticated
+remote denial of service vulnerability - Beijing CyberKunlun Technology Co., Ltd
+51991804 [MSRC 89003][Fe] ntdll.dll - Windows Explorer IconExtraction of long
+name exe file NPD - Individual 52044634 [MSRC 89030] DenialOfService - Report a
+replication server end session unauthenticated remote denial of service
+vulnerability - Beijing CyberKunlun Technology Co., Ltd 52494814 [MSRC
+83200][Fe] MSRC Portal - SFB - Copy hibernate header to beginning of any
+physical page in winresume.efi - Internal 52523003 [MSRC 83282][Fe]
+winresume.efi - Copy a struct to beginning of any physical page - Internal
+52523075 [MSRC 83529][Fe] winresume.efi - Copy logs to beginning of any physical
+page - Internal 52523176 [MSRC 83540][Fe] Windows - ElevationOfPrivilege -
+winresume.efi out-of-bound write - Internal 51402071 [MSRC 88348][Fe]
+concrete.dll - HTTPListener infinite 'while' loop - Beijing CyberKunlun
+Technology Co., Ltd 50105150 [CSS][Fe] [DisabledByDefault] Pharmacy systems
+randomly hang when assisting customers causing poor customer experience and loss
+of revenue. 53444687 [FE] Copying files from untrusted locations updates the
+last modified timestamp as the Mark of the Web is added 50762962 [KIR Cleanup
+Bug] 49598256 : [MSRC 86615][Fe] Pwn2Own2024 - ZDI-CAN-23774 - EOP via lack of
+resolution validation gdi32.dll!GdiPrinterThunk - Zero Day Initiative 51665801
+[KIR Cleanup Bug] 51404705 : [MSRC 88354][Fe] win32kfull.sys -
+win32kfull!CreateHalftoneBrushPat causes bsod0x50 - Internal 50479862 [KIR
+Cleanup Bug] 49580423 : [Fe] [Regression]Enhanced Fast Reconnect fails in 3rd
+Party stacks (VMWare/Citrix) after installing 2024.01D 51140753 [MSRC 88169][Fe]
+lserver - UAT in `TLSRpcTriggerReGenKey` - Unknown 51368622 [MSRC 88305][Fe] GDI
+- use after free vulnerability due to lack of reference count within XFER
+functionality - Internal 51378726 [MSRC 88334][Fe] TSPubService - Remote Desktop
+Broker does not enforce RPC_C_AUTHN_LEVEL_INTEGRITY or RPC_C_AUTHN_LEVEL_PRIVACY
+- Internal 51444467 [KIR Cleanup Bug] 49611176 : [MSRC 86656][Fe]
+ElevationOfPrivilege - Windows Kernel Streaming WOW Thunk Service Driver
+Elevation of Privilege Vulnerability - Unknown 51624425 [KIR Cleanup Bug]
+49609386 : [MSRC 86644][Fe] ksthunk.sys - type confusion vulnerability within
+function ksthunk!CKSThunkPin::LocateFormatHandler - Unknown 51753726 [KIR
+Cleanup Bug] 49618588 : [MSRC 86668][Fe] ks.sys - Windows Kernel Streaming
+Driver Elevation of Privilege Vulnerability - Unknown 51840977 [MSRC 88794][Fe]
+mstscax.dll - clipClient object will be freed inside
+CClipboardDynClientChannel::TerminateInstance leading to UAF - Unknown 52324716
+[MSRC 89323] ZDI-CAN-24370: Use after Free - UMPD callback thread termination
+can impact GDI object lifetime leading to EoP 52408979 [MSRC 89348]
+TextShaping.dll -Microsoft True Type Font Parsing OOBR - Individual 52728209
+[MSRC 89746][Server 2022]WebSocketServer::CleanupConnInfo - Reading from freed
+memory causing UAF - Unknown 53262924 [KIR Enablement Bug] 49012963 : [Fe]
+[RAIL] RemoteApp window does not become active when the foreground window is
+closed 53412349 [Fe] TSGateway service access violation on aaedge!CloseTunnel
+(pRpcConn->Release()) after 7b.24 53477290 [MSRC 90652][VARIANT CASE of MSRC
+88794][Fe] srdrvc.cpp - MSRC 88794 - variant - Internal 50700081 [KIR Cleanup
+Bug] 48903440 : [KIR Enablement Bug] 47495959 : [WS2022] Users cannot
+logon/logoff to RDSH due to dxgkrnl does not response. 51126080 [MSRC 88157][Fe]
+ks.sys - Windows Kernel Streaming Driver Information Disclosure - Unknown
+51460721 [RFH] [Fe] When using GDIPlus to shrink an image, the colors are wrong
+51609278 [UNDO][KIR Cleanup Bug] 50464144 : [MSRC 87669][Fe] lserver! - TLS -
+Preauth OOBW - Unknown 51630995 [KIR Cleanup Bug] 49618319 : [MSRC 86667][Fe]
+Portcls.sys - Windows Port Class Driver - OOBR - Unknown 51631000 [KIR Cleanup
+Bug] 49645266 : [MSRC 86687][Fe] Portcls.sys - out of bounds read vulnerability
+when port class driver sets date format of connection - Unknown 49649836 [MSRC
+86704] Windows Update Stack Elevation of Privilege - SafeBreach 45205030
+[Fe][ReFS]SMB server has logic to refresh share root open when create fails with
+STATUS_VOLUME_DISMOUNTED or STATUS_NO_SUCH_DEVICE or STATUS_WRONG_VOLUME, but it
+is not getting triggered since REFS and NTFS return STATUS_ACCESS_DENIED.
+45997277 [Fe][NTFS]SMB server has logic to refresh share root open when create
+fails with STATUS_VOLUME_DISMOUNTED or STATUS_NO_SUCH_DEVICE or
+STATUS_WRONG_VOLUME, but it is not getting triggered since REFS and NTFS return
+STATUS_ACCESS_DENIED. 48223350 [KIR Cleanup Bug] 47096704 : [👀][Fe][ADFS]
+UserInfo-Endpoint authentication failing when ClientID equals RPIdentifier
+48234754 [KIR Cleanup Bug] 47265805 : [HCI 22H2][FE][DBD] Cluster Health Service
+- Firmware update verification does not trim firmware version whitespace
+48447408 [KIR Enablement Bug] 44354424 : [FE][DCR Check-in][CimFS UnionFS]
+Support UnionFS and CimFS in Windows Containers 49026924 [Fe] [Watson Failure]
+caused by AV_rdbss!RxNameCacheFinalize 49036276 [Fe] Directory enumeration can
+fail on directories with symlinks that have long target paths 49077186 [MSRC
+85805] [DCR Check-in] [CIG Bypass][Fe] cldflt.sys - cloud filter API can be
+weaponized to duplicate file handles from user-mode to kernel - Unknown 49203353
+[KIR Cleanup Bug] 46887589 : [KIR Enablement Bug] 45633568 : 📝[Fe][NTFS] Do not
+noop small writes of zeroes beyond VDL for copy operations 49928552 [KIR
+Enablement Bug] 48228968 : 📝[MSDTC][Fe] trace sessions cannot be started when
+custom hostname is used on non-domain joined machines 49966520 [KIR Enablement
+Bug] 42188879 : [Fe][Backport][SMR]ReFS MsKmeGetSMRBandSize should have space
+for multiple DEVICE_DSM_REPORT_ZONES_DATA in the out buffer 50001224 [KIR
+Enablement Bug] 42188871 : [Fe][Backport][SMR]ReFS - unaligned write-zero in GC
+band 50005518 [KIR Cleanup Bug] 46437529 : [KIR Enablement Bug] 41137827 :
+[Fe][Watson Failure] caused by
+0x1C8_KHA_DeadLockDetected_cldflt!HsmpAcquireReparseUpdateLock 50177284 🐔[KIR
+Cleanup Bug] 48896624 : [KIR Enablement Bug] 48817642 : 📝[Fe] PostRel 2024.1B
+regression - memory leak in LSASS and advapi32.dll for MSRC81278 50219749 [KIR
+Cleanup Bug] 48379244 : [KIR Enablement Bug] 45925469 : Bugcheck 0x7F (Kernel
+Stack exhaustion) during ReFS status handling 50692054 [MSRC 87883][Fe] ADFS -
+Cross-Site Request Forgery Vulnerability in ADFS Device Code Flow - Unknown
+50721555 [KIR Cleanup Bug] 49123629 : [KIR Enablement Bug] 47283524 : 📝[WS2022]
+ADLDS: DSAMAIN.EXE crashes during KCC topology evaluation 50721563 [KIR Cleanup
+Bug] 48964921 : [KIR Enablement Bug] 48454323 : [DCR CheckIn][Fe][DCR] [SMB]
+[AE] SMB over QUIC vNext - Mutual Authentication and Client Access Control
+50721580 [KIR Cleanup Bug] 48745718 : [KIR Enablement Bug] 47612025 :
+[DCR][MDI][InMarketOS][Fe] MDI Enhancements - Add visibility for LDAP, domain
+replication and GPO changes 50736154 [KIR Cleanup Bug] 49311573 : [KIR
+Enablement Bug] 48690359 : 📝[Fe] Backport Request for Bug 36616754: [Minimum
+password length audit] does not work for all users in a domain if PSO exists
+51006043 [KIR Cleanup Bug] : [Fe] DTC Memory leaks in MtxCluGetMappingNameRegKey
+51374027 [KIR Cleanup Bug] 49398254 : [KIR Enablement Bug] 49328147 : [Fe][DBD]
+Regression 3B.23: Domain Join fails to re-use existing computer account where
+owning user belongs to a trusted domain in one-way trust scenarios 51491846 [KIR
+Enablement Bug] 47501663 : 📝[Fe] PKI CEPCES KBR (Key Based Renewal) fails for
+OCSP signing certificates 51539876 [MSRC 88439][Fe] NtWriteFile - Double Free
+Vulnerability In RefsGetSfioReservation - Unknown 51543132 [KIR Enablement Bug]
+49111075 : 📝[Fe] OEM: HPE Server: WS2022: Cc Telemetry Crash on HPE [Server
+2022] with 1792 LPs Hawks2V2.5 (BSOD seen during Install with HT ON) 51571008
+[KIR Cleanup Bug] 49369197 : [KIR Enablement Bug] 49106418 : [Fe]Win32 API call
+WNetGetResourceInformation() takes a long time to complete if UNC path ends with
+a “\” 51571093 [KIR Cleanup Bug] 50155505 : 👀[MSRC 87263][Fe] DenialOfService -
+Report a ocsp service http error out of memory unauthenticated remote denial of
+service vulnerability - Beijing CyberKunlun Technology Co., Ltd 51582054 [KIR
+Cleanup Bug] 49240309 : 👀[MSRC 86117][Fe] ocspisapi.dll - OCSP service out of
+memory unauth DOS "ocspisapi!OcspSvc::COcspIsapiExtension::DispatchStencilCall"
+- Beijing CyberKunlun Technology Co., Ltd 51582066 [KIR Cleanup Bug] 49534675 :
+[MSRC 86490][Fe] wkssvc.dll - Heap overflow memory write vulnerability within
+RPC interface DfsDsGetDcName - Unknown 51613735 [KIR Enablement Bug] 51404903 :
+[DCR Check-in][Fe] Backport new LSA Performance counters & AD Data Collector Set
+Updates 51618853 [KIR Enablement Bug] 49509526 : [Fe]
+UnionFS!UnionFs::UnionFsFilter::~UnionFsFilter+50
+[onecore\base\fs\unionfs\sys\unionfsfilter.cpp @ 1889] (m_TombstoneManager
+appears to be invalid) 51624409 [KIR Cleanup Bug] 49494595 : 📝[MSRC 86483][Fe]
+MSDTC - DLL planting vulnerability through modification of
+OLETransactionManagers registry path and API calls - Unknown 51624480 [KIR
+Cleanup Bug] 50553144 : 👀[MSRC 87723][Fe] ADFS encoding and a parsing vuln leads
+to oAuth token exfiltration - Unknown 51627527 [KIR Cleanup Bug] 48780388 :
+[MSRC 85342][Fe] mqsvc.exe - Heap pointer leak due to incorrect API structure -
+Unknown 51718282 [Fe] Netlogon GMSA support issues query on start that gets and
+chases referrals into child domains - finds account with same name in child
+51776240 [WS2022] CertStore::ReadCertificates should exclude certificates with
+NotBefore times in the future (and log ERROR if detected) 52710522 [KIR
+Enablement Bug] 49405499 : [Fe] Security event IDs 4728 & 4732 logs incorrect
+timestamp for group membership expiration 52924237 [MSRC 89933][Fe] storport.sys
+- OOBW in function RaUnitStorageGetIdlePowerUpReason - Individual 52967262 [MSRC
+90005] mscep.dll - memory leakage within function GetContentFromPKCS7 -
+Individual 52968966 [MSRC 90016] mscep.dll - GetContentFromPKCS7 Memory Leak -
+Individual 52998176 [MSRC 90045] ocspisapi.dll - memory resource exhaustion in
+function `OcspSvc::COcspIsapiExtension::GetConditionalVariables` - Individual
+53000939 [MSRC 89503] Azure Stack HCI - EoP- in the Azure Stack HCISvc Component
+- Internal 53342181 [Windows Server 2022] ADCA - Certutil -deleterow runs in
+infinite loop 53430180 [Windows Server 2022] [Localization] Localization for
+churn detected: branch:fe_release_svc_2410b build:20348.30000.240822-1700
+53488615 [Fe] Change “feature update“ to “upgrade” in SConfig text in WS 2022
+and WS 2025 in response to CELA feedback 53794270 [Windows Server 2022]
+[Localization] Localization for churn detected: branch:fe_release_svc_2410b
+build:20348.30000.240907-2323 53847598 [DCR Check-in][Fe]Remove validating the
+SID Pin when querying TCG capabilities 53886699 [Windows Server 2022]
+[Localization] Localization for churn detected: branch:fe_release_svc_2410b
+build:20348.30000.240912-1700 51630954 [KIR Cleanup Bug] 48347594 : [MSRC
+84634][Fe] ElevationOfPrivilege - Windows Server Backup Arbitrary File Deletion
+Vulnerability - Unknown 47912217 [MSRC 83793][Fe] MpSigStub.exe- Windows
+Defender arbitrary file deletion in context of NT AUTHORITY\SYSTEM account -
+Unknown 48459730 [LB][Fe] Bugcheck 0x139 due to SharedSecurity reference count
+leak 50206402 [KIR Enablement Bug] 49341870 : [AsZ Backport] CAU Orchestrator
+must handle multiple reboots when there is no WaitForOOBE 50344458 [MSRC
+87583][Fe] CLFS - Windows Arbitrary File/Directory Creation - Internal 51539912
+[MSRC 88440][Fe] iscsiexe.dll - iSNSParseQueryResponse invalid process of
+ISNS_ATTR_TAG_PORTAL_IP_ADDRESS - Individual 51568958 [MSRC 88479][Fe]
+sqlsrv32.dll - AutoFillIPD Integer Overflow OOBW - Individual 51570945 [MSRC
+88482][Fe] msado15.dll - ActiveX Data Objects CParameters GetParameterBuffer
+OOBW - Individual 51617967 [MSRC 88537][Fe] sqlsrv32.dll - heap out-of-bounds
+write vulnerability - Individual 51665269 [KIR Cleanup Bug] 49714641 : [MSRC
+86792][Fe] Windows iSCSI Service DiscpCreateTarget memory exhausted Denial of
+Service Vulnerability - Individual 51947002 [MSRC 88939][Fe] tm.sys - KTM TOCTOU
+issue in TmpDispatchPropagateRequest thread leads to use-after-free condition -
+Unknown 52412374 [MSRC 89363] tm.sys - Windows Kernel KTM TmpMigrateEnlistments
+UAF - Unknown 52524999 [Backport Service] [Fe] SUT will show BSOD (stop code:
+driver PNP WATCHDOG) when update OS to SV2 (SWDEV-375795) 53105475 [Fe]
+CFEReliability:UserMode:Crash64 in # Module=storsvc.dll #
+BucketId=svchostgroup_localsystemnetworkrestricted_invalid_pointer_read_c
+
+================================================================================

@@ -1,0 +1,46 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-027723
+MCI Engagements: Support: OEM Software Ops Adjustment: Loading Funds Due to the MPN & TP ID Mapping Issue (Draft)
+================================================================================
+
+Article ID       : KISP-027723
+Language          : en-us
+Created           : 2024-10-31
+Last Modified     : 2024-10-31
+Views             : 13
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/mci-engagements-support-oem-software-ops-adjustment-loading-funds-due-to-the-mpn-tp-id-mapping-issue-draft-f1d01464-f4b4-4727-be91-a321e6b43ac5
+
+================================================================================
+CONTENT:
+================================================================================
+
+MCI Engagements: Support: OEM Software Ops Adjustment: Loading Funds Due to the
+MPN & TP ID Mapping Issue (Draft) Who should use this article? OEM LOB Ops Adj
+Software What is this article about? [Insert a description of what this article
+covers, and include when it should be followed] Table of contents 1.
+Prerequisites 2. Scenario/Problem statement 3. Investigation 4. Resolution 5.
+Resources 1. Prerequisites Return to top 2. Scenario/Problem statement Problem
+Statement: Partner did not received their Incentive amount even they were
+enrolled completely in partner center but due to mapping of MPN and TPID issues
+the Incentives were not loaded and in this specific scenario Incentives were
+loaded to another partner. Return to top 3. Investigation Key Evidence required:
+Scenario: Partner wants to Receive their Incentive funds. When did the partner
+originally enroll in the OEM Reseller Software incentive program? What was the
+total amount of Incentives to be calculated? Pull out the sales data mapped with
+TPID? How much sales that they have reported. What is the major reason that
+partner was not received their incentives? Need to check why the and how the
+Incentives were loaded to another partner. What is the specific ask from
+Partner/PSE? Incentive Amount $. Explanation on why and how the funds have been
+loaded to different partner. Did the partner mapped the TPID from which they are
+performing their sales? What was the enrollment date? Return to top 4.
+Resolution If GPM approves, then we need to work with internal Payments team for
+creating the adjustment file of calculation of Incentives. By providing all the
+required details like Partner MPN, program name. . Then we need to create PIXE
+ticket for ICM for review and getting the approval for the adjustment file. Once
+ICM approved, need to inform to partner that the funds will be loaded with in 7
+Business days. Return to top 5. Resources Adjustments and Exceptions 40658:
+5-0000007179330_CHIP Issues - Boards (azure.com) Return to top Change history
+Item ID Change description Date Original work item Migrate from ADO to DFM.
+10/31/2024
+
+================================================================================

@@ -1,0 +1,50 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-029768
+Windows 11: Some Apps missing icon in search results, but retain icons in Start Menu after upgrade
+================================================================================
+
+Article ID       : KISP-029768
+Language          : en-us
+Created           : 2024-10-30
+Last Modified     : 2025-06-09
+Views             : 49
+Keywords          : winx,upgrade,ipu,badupgrade,
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-11-some-apps-missing-icon-in-search-results-but-retain-icons-in-start-menu-after-upgrade-62efd8e9-9c6d-200f-928c-4146474bd315
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows 11: Some Apps missing icon in search results, but retain icons in Start
+Menu after upgrade Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 197019 link for any updates. Author: Mansi Sharma
+Summary/Symptom Icons of applications like Edge and other apps like Chrome
+browser tool lose its image in Search results, but retain it Start Menu and
+taskbar. Icons are clickable No profile management in use. Issue observed only
+with User accounts and not with admin accounts so far. Issue happened after in-
+place upgrade from Windows 10 to Windows 11 The issue was only temporary, and
+would appear after first logon post reboot, and then would disappear eventually
+only to come back after few reboots. Article resolution Please start by making
+below policy as default on the test machine (after removing it from the OU for
+the domain policy): Bypass Traverse Checking: Expected entries: Default Members
+: Administrators , Backup Operators, Everyone , Local Service, Network Service,
+Users impacted device: Administrators, Local Service, Network Service, Users
+Please add- Backup Operators, Everyone to Bypass Traverse Checking entry under:
+Policy :Computer Configuration\Windows Settings\Security Settings\Local
+Policies\User Rights Assignments\ Gpupdate /force Try to repro the issue by
+uninstalling and installing back
+Microsoft.MicrosoftEdge.Stable_124.0.2478.51_neutral__8wekyb3d8bbwe If this
+works, then this will be fix. If it wont, please proceed with next step: In the
+same path, below policy is also not set as default: Logon as a Batch Job:
+Expected entries: Default Members : Administrators , Backup Operators,
+Performance Log Users impacted device only as Administrators Please add- Backup
+Operators, Performance Log Users Gpupdate /force Try to repro the issue by
+uninstalling and installing back
+Microsoft.MicrosoftEdge.Stable_124.0.2478.51_neutral__8wekyb3d8bbwe If this
+works, then this will be fix. If it wont, please proceed with next step: In the
+same path, please disable this and remove all users from the list: Notes:
+Support Topics: Windows\Windows 11\Windows 11 Home and Pro, version 24H2\Windows
+Desktop and Shell Experience\Windows Search First published: Oct 30, 2024
+Keywords: winx, upgrade, ipu, badupgrade,
+
+================================================================================

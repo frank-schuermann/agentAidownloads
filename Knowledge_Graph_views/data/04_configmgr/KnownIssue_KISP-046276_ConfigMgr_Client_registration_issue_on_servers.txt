@@ -1,0 +1,47 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-046276
+ConfigMgr: Client registration issue on servers.
+================================================================================
+
+Issue ID     : KI-KISP-046276
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-03-01
+Last Updated : 2025-03-01
+Source KB     : KISP-046276
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-registration-issue-on-servers-3056dca0-7706-3a67-c4d0-529bc08140d1
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+ConfigMgr: Client registration issue on servers. Important: This was authored
+via https://aka.ms/contentidea. Follow Content Idea (CI) 200029 link for any
+updates. Author: Vivekanandan Lingan Summary/Symptom 01-28-2025 14:04:18.969
+ClientIDManagerStartup 2732 (0xaac) RegTask: Failed to send registra
+
+ROOT CAUSE:
+-----------
+ERROR_WINHTTP_SECURE_FAILURE: 12175 One or more errors were found in the Secure
+Sockets Layer (SSL) certificate sent by the server.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-046276
+for full scope.
+
+WORKAROUND:
+-----------
+Open Registry --> Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\S
+ecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client Enabled to set to 0 Changed
+to 1. Initiated the client registration and the registration was successful.
+More information Enable TLS 1.2 on servers - Configuration Manager | Microsoft
+Learn Notes: Support Topics: Management Tools\Configuration Manager\Microsoft
+Configuration Manager (current branch - version 2309) (Preview), Management
+Tools\Configuration Manager\Microsoft Configuration Manager (current branch -
+version 2403) (Retired) First published: Mar 01, 2025
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-046276
+
+================================================================================

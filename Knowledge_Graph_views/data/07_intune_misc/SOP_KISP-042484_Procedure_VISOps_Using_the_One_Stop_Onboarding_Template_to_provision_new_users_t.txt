@@ -1,0 +1,61 @@
+================================================================================
+STANDARD OPERATING PROCEDURE — SOP-KISP-042484
+Procedure: VISOps: Using the One Stop Onboarding Template to provision new users to multiple tools
+================================================================================
+
+SOP ID            : SOP-KISP-042484
+Category          : Onboarding
+Effective Date    : 2024-12-23
+Last Reviewed     : 2024-12-23
+Source KB          : KISP-042484
+Applies To        : Support Engineers, IT Administrators
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/procedure-visops-using-the-one-stop-onboarding-template-to-provision-new-users-to-multiple-tools-8157814e-e26c-43c0-b0f4-080f399d0e4a
+
+================================================================================
+PURPOSE:
+================================================================================
+This SOP documents the standard procedure for: Procedure: VISOps: Using the One Stop Onboarding Template to provision new users to multiple tools
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Procedure: VISOps: Using the One Stop Onboarding Template to provision new users
+to multiple tools Have feedback about this article? – Please provide feedback in
+the survey link at the bottom of this article. Your feedback matters to us and
+helps improve article content and support experience for you and our customers.
+Share your suggestions by providing commentary in the survey box provided. The
+more you tell us the more we can help. This survey isn’t anonymous. If you leave
+a comment, you may be contacted by a member of the Process & Program Excellence
+team​​​​​​​ for more information. Who should use this article? Role: Delivery
+Partner Admins Organization: All Location: Delivery Partner Sites What is this
+article about? This article provides instructions for using the One Stop
+Onboarding Template to provision new users to multiple tools and applications
+with one ticket submission to VISOps. This helps streamline the onboarding
+process as multiple templates don’t need to be filled out and submitted as
+separate tickets. Table of contents 1. Overview 2. Requirements 3. Filling out
+the template 3.1 Start here: 1. User Info tab 3.2 Completing the other tabs in
+the template 3.3 Completing the 9. Profiler Tools tab 4. Submit a ticket to
+VISOps 1. Overview The article details the process of filling out the One Stop
+Onboarding Template which replaces the need to fill out various other templates
+and allows the Delivery Partner Admin to just file one ticket for users to be
+provisioned to several tools or applications by VISOps. The Delivery Partner
+Admin must fill out a One Stop Onboarding Template with specific details about
+the users and their provisioning needed to various tools. The template must be
+attached to the SNOW ticket. Return to top 2. Requirements To minimize delays in
+processing your request, ensure the following requirements are met. A completed
+One Stop Onboarding Template (excel file). Submission of a ticket to the VISOps
+team in SNOW. Return to top 3. Fil
+
+================================================================================
+COMPLETION CRITERIA:
+================================================================================
+- All steps executed successfully
+- Changes documented in the ticket/change record
+- Stakeholders notified of completion
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-042484
+
+================================================================================

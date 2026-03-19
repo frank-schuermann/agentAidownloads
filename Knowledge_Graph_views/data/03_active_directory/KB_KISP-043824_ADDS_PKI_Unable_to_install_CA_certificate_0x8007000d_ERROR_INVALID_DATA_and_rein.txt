@@ -1,0 +1,85 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-043824
+ADDS: PKI: Unable to install CA certificate 0x8007000d ERROR_INVALID_DATA and reinstallation of ADCS role failed with 0x800700b7 ERROR_ALREADY_EXISTS
+================================================================================
+
+Article ID       : KISP-043824
+Language          : en-us
+Created           : 2025-01-13
+Last Modified     : 2025-06-09
+Views             : 89
+Keywords          : pki,0x8007000d,ERROR_INVALID_DATA,0x800700b7,ERROR_ALREADY_EXISTS,OverwriteExistingDatabase,fegude
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-unable-to-install-ca-certificate-0x8007000d-error-invalid-data-and-reinstallation-of-adcs-role-failed-with-0x800700b7-error-already-exists-8f04f92c-9478-5b57-6f33-ac6bd3f4d01d
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: PKI: Unable to install CA certificate 0x8007000d ERROR_INVALID_DATA and
+reinstallation of ADCS role failed with 0x800700b7 ERROR_ALREADY_EXISTS
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 198839 link for any updates. Author: Fernando Gude Summary/Symptom Abstract
+A customer is upgrading their existing two-tier PKI infrastructure to the latest
+OS. The Root Offline CA was restored using a backup, and two issuing CAs were
+installed from scratch using enterprise admin account. There is no HSM (Hardware
+Security Module) involved in the environment. The first issuing CA is healthy
+and successfully issuing certificates. This article discusses the 0x8007000d
+ERROR_INVALID_DATA error encountered on the second issuing CA during the
+installation of a certificate generated from the Root CA, as well as the
+0x800700b7 ERROR_ALREADY_EXISTS error that occurred after attempting to
+uninstall and reinstall the ADCS role on the issuing CA. Symptoms When running
+the command Certutil -f -v -installcert "XXXXXXXXX-SUBCA-20240319.cer", the
+following error message appears: “An error was detected while configuring Active
+Directory Certificate Services. The Active Directory Certificate Services Setup
+Wizard will need to be run to complete the configuration. The new Certification
+Authority certificate cannot be installed because the CA Version extension is
+incorrect. The most recently generated request file should be used to obtain the
+new certificate: C:\Temp\XXXXXXXXX-SUBCA-20240319(1).csr. The data is invalid.
+0x8007000d (WIN32: 13 ERROR_INVALID_DATA)”. The system event log shows that the
+Service Control Manager starts and immediately terminates the certsvc service
+with error “Installation suspended, incomplete.” The following entries are
+recorded: Information 3/26/2024 3:29:15 PM Service Control Manager 7036 The
+Active Directory Certificate Services service entered the running
+state.Information 3/26/2024 3:29:15 PM Service Control Manager 7036 The Active
+Directory Certificate Services service entered the stopped state.Error 3/26/2024
+3:29:15 PM Service Control Manager 7023 The Active Directory Certificate
+Services service terminated with the following error: Installation suspended,
+incomplete. The application event log shows Event ID 27: Active Directory
+Certificate Services did not start: Hierarchical setup is incomplete. Use the
+request file in %1.req to obtain a certificate for this certification authority
+and use the Certification Authority snap-in to install the new certificate and
+complete the installation. The request file was not found and attempting to
+renew the certificate with `certutil -renewCert` did not generate a new request
+file. This led to the decision to uninstall and reinstall the ADCS role on the
+second issuing CA using PowerShell (code below). However, the setup encountered
+a CertificationAuthoritySetupException due to the pre-existence of the private
+key. $params = @{ CACommonName = "Contoso Issuing CA2" CAType =
+"EnterpriseSubordinateCA" CryptoProviderName = "RSA#Microsoft Software Key
+Storage Provider" HashAlgorithmName = "SHA256" DatabaseDirectory = "C:\CertDB"
+LogDirectory = "C:\CertLog" OutputCertRequestFile = "C:\newsetup.csr" } Install-
+AdcsCertificationAuthority @params The setup continued to fail even when using
+the parameters below to overwrite the key and existing CA: Install-
+AdcsCertificationAuthority -OverwriteExistingKey -OverwriteExistingCAInDS
+@params -Force Exception : Microsoft.CertificateServices.Deployment.Common.CA.Ce
+rtificationAuthoritySetupException: Setup needs to overwrite existing database
+files in the "C:\CertDB" folder. It is recommended that you shutdown the
+applications that are using files in this folder.
+System.Runtime.InteropServices.COMException:
+CCertSrvSetup::SetDatabaseInformation: Cannot create a file when that file
+already exists. 0x800700b7 (WIN32/HTTP: 183 ERROR_ALREADY_EXISTS) Procmon
+reveals `NAME COLLISION` and the Certificate Services Setup log
+(%SystemRoot%\certocm.log) shows `ERROR_ALREADY_EXISTS`, both for the C:\CertLog
+folder. Renaming C:\CertDB to C:\CertDB_old or deleting its content did not
+resolve the issue. The -Force switch also made no difference. Cause N/A Article
+resolution The problem was mitigated by the use of `-OverwriteExistingDatabase`
+switch, which proved successful in overwriting the previous ADCS configuration
+and completing the setup without further issues. Install-
+AdcsCertificationAuthority -OverwriteExistingKey -OverwriteExistingCAInDS
+-OverwriteExistingDatabase @params Notes: Support Topics: Windows
+Servers\Windows Server 2016\Windows Server 2016, all editions
+(Preview)\Certificates and Public Key Infrastructure (PKI) (Preview)\Active
+Directory Certificate Services (ADCS) (Preview) SR Number: 2403260030003053
+First published: Jan 13, 2025 Keywords: pki, 0x8007000d, ERROR_INVALID_DATA,
+0x800700b7, ERROR_ALREADY_EXISTS, OverwriteExistingDatabase, fegude
+
+================================================================================

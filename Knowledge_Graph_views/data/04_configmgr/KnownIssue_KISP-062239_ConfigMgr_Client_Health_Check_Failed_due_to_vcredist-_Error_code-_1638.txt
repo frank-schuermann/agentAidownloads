@@ -1,0 +1,45 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-062239
+ConfigMgr: Client Health Check Failed due to vcredist- Error code- 1638
+================================================================================
+
+Issue ID     : KI-KISP-062239
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-04-01
+Last Updated : 2025-04-02
+Source KB     : KISP-062239
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-health-check-failed-due-to-vcredist-error-code-1638-65dd5211-5799-f432-b3cc-df7eba8b8d0f
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+Symptom Client Check Failed due to Pre-requisite rule check
+
+ROOT CAUSE:
+-----------
+the version ConfigMgr is using the lower version of VCRedist. However the
+version which is installed is somehow corrupted or not properly installed since
+the registry itself is missing. As a result ConfigMgr is unable to detect
+VCRedist is installed. HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVers
+ion\Uninstall\{D7A66DA5-B103-45C1-A0A7-736C08E2F464} HKEY_LOCAL_MACHINE\SOFTWARE
+\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{D7A66DA5-B103-45C1-
+A0A7-736C08E2F464}
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-062239
+for full scope.
+
+WORKAROUND:
+-----------
+Uninstall the existing version and let CCMEval install the VCRedist as part of
+Remediation.OR Uninstall and reinstall VCRedist and ensure the uninstaller
+registries are present after reinstallation. More information Contact RADASH for
+comments/feedback
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-062239
+
+================================================================================

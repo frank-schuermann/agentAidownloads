@@ -1,0 +1,44 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-036336
+Customize your calendar in Microsoft Teams - Microsoft Support
+================================================================================
+
+Article ID       : KISP-036336
+Language          : en-us
+Created           : 2025-01-06
+Last Modified     : 2026-02-24
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/customize-your-calendar-in-microsoft-teams-b0a6db4c-aec7-4c90-9f5e-b7f69a1cbf06
+Description       : Customize your calendar view in Microsoft Teams for a tailored approach to managing your schedule.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Customize your calendar view in Microsoft Teams for a tailored approach to
+managing your schedule. In this article Change your calendar view Save a
+calendar view Apply calendar filters Delete a calendar view View different time
+scales Change your calendar view Your Teams calendar will display your work week
+schedule by default, but you can choose to view your schedule for the entire
+week or specific days only. Select your current view at the top of your calendar
+to choose a different view. Apply calendar filters At the top of your calendar
+or in More options , select Filter . Deselect specific types of events to remove
+them from view. View different time scales Change your time scale in the new
+calendar to adjust the amount of space for meeting details. To change your
+calendar’s time scale: Select your calendar view (e.g., Work week, Week, etc.).
+Select Time scale. Choose the time scale you want to view your calendar in. When
+you choose a time scale, the change will be applied immediately. Tips: Increase
+the time scale to see more of your schedule at once, but with fewer details.
+Decrease the time scale to see your schedule close-up, with more details. Save a
+calendar view When you’ve set the specific filters, calendar groups, and other
+presets you want to see in your calendar, save the view to return to it later.
+To save a calendar view: Select your calendar view. From the dropdown menu,
+select Saved views > Save current view. Name the view and select Save. To apply
+a saved view: Select your calendar view. From the dropdown menu, select Saved
+views . Select the view you want to apply. Delete a calendar view To delete a
+saved calendar view: Select your calendar view. From the dropdown menu, select
+Saved views . Next to the view you want to delete, select > Delete . Related
+topics Get started with the new calendar in Microsoft Teams View multiple
+calendars in Microsoft Teams
+
+================================================================================

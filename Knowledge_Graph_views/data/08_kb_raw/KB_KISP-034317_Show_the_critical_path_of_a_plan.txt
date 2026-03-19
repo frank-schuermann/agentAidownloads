@@ -1,0 +1,37 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034317
+Show the critical path of a plan - Microsoft Support
+================================================================================
+
+Article ID       : KISP-034317
+Language          : en-us
+Created           : 2024-11-07
+Last Modified     : 2024-11-07
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/show-the-critical-path-of-a-plan-6f369be9-3f55-486a-8398-aea8b490d30b
+Description       : In Microsoft Planner, the critical path is a chain of linked tasks that directly affects the plan finish date. If any task on the critical path is late, th
+
+================================================================================
+CONTENT:
+================================================================================
+
+Note: The new Microsoft Planner is currently rolling out to customers. If your
+experience looks different than the steps listed in this article, or you're
+working from a Government Cloud Communities (GCC), GCC High, or Department of
+Defense (DoD) environment, refer to the instructions toward the bottom of this
+page. ​​​​​​​Learn more about the new Planner in Frequently asked questions
+about Planner. Every task is important, but only some of them are critical. The
+critical path is a chain of linked tasks that directly affects the plan finish
+date. If any task on the critical path is late, the whole plan is late. The
+critical path is a series of tasks (or sometimes only a single task) that
+controls the calculated start or finish date of the plan. The tasks that make up
+the critical path are typically interrelated by task dependencies. There are
+likely to be many such networks of tasks throughout your plan. When the last
+task in the critical path is complete, the plan is also complete. Learn more
+about critical path analysis. In Microsoft Planner, you can view the critical
+path by using a filter. In your plan, select Timeline Select Filters.
+​​​​​​​​​​​​​​ Turn on the toggle Show Critical Path. When Show Critical Path is
+on, you'll see the critical path for your plan highlighted red in the timeline.
+​​​​​​​
+
+================================================================================

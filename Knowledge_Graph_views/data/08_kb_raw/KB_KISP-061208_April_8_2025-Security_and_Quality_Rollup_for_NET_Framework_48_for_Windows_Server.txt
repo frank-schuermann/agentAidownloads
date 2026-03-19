@@ -1,0 +1,247 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-061208
+April 8, 2025-Security and Quality Rollup for .NET Framework 4.8 for Windows Server 2008 R2 SP1 (KB5055171) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-061208
+Language          : en-us
+Created           : 2025-04-08
+Last Modified     : 2025-04-08
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/april-8-2025-security-and-quality-rollup-for-net-framework-4-8-for-windows-server-2008-r2-sp1-kb5055171-e9d77437-8093-4f86-a5d4-815c8a30aa4c
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies To.NET Applies to: Microsoft .NET Framework 4.8 End of support
+information Windows Server 2008 R2 SP1 Extended Security Updates (ESU) third and
+final year ended on January 10, 2023. Additionally, Extended Security Updates on
+Azure only support ended on January 9, 2024. For more information, see Extended
+Security Updates for Windows Server overview. We recommend that you upgrade to a
+later version of Windows Server. For more information, see Overview of Windows
+Server upgrades. Summary The April 8, 2025 update for Windows Server 2008 R2 SP1
+includes cumulative security and reliability improvements in .NET Framework 4.8.
+Note Starting in July 2020, there will no longer be optional, non-security
+releases (known as "C" releases) for this operating system. Operating systems in
+extended support have only cumulative monthly security updates (known as the "B"
+or Update Tuesday release). Verify that you have installed the required updates
+listed in the How to get this update section before installing this update.
+Customers who have purchased the Extended Security Update (ESU) for on-premises
+versions of these operating systems must follow the procedures in KB4522133 to
+continue receiving security updates after extended support ends on January 14,
+2020. For more information on ESU and which editions are supported, see
+KB4497181. For more information, see the ESU blog. Security Improvements There
+are no new security improvements in this release. This update is cumulative and
+contains all previously released security improvements. Quality and Reliability
+Improvements WPF1 - Addresses an issue with printing large number of pages due
+to an OutOfMemory exception. .NET Fundamentals - Addresses an issue where
+System.IO APIs are used to operate on files and directories on UNC shares.
+1Windows Presentation Foundation (WPF) Additional information about this update
+The following articles contain additional information about this update as it
+relates to individual product versions. 5055684 Description of the Security and
+Quality Rollup for .NET Framework 3.5.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8 for
+Windows Server 2008 R2 SP1 (KB5055684) Known issues in this update Microsoft is
+not currently aware of any issues in this update. How to get this update Before
+installing this update To apply this update, you must have .NET Framework 4.8
+installed. You must install the updates listed below and restart your device
+before installing the latest Rollup. Installing these updates improves the
+reliability of the update process and mitigates potential issues while
+installing the Rollup and applying Microsoft security fixes. We strongly
+recommend that you install the latest servicing stack update (SSU) for your
+operating system before installing the latest Rollup. SSUs improve the
+reliability of the update process to mitigate potential issues while installing
+the Rollup and applying Microsoft security fixes. For general information about
+SSUs, see Servicing stack updates and Servicing Stack Updates (SSU): Frequently
+Asked Questions. If you use Windows Update, the latest SSU (KB5039339) will be
+offered to you automatically. To get the standalone package for the latest SSU,
+search for it in the Microsoft Update Catalog. Language packs If you install a
+language pack after you install this update, you must reinstall this update.
+Therefore, we recommend that you install any language packs that you need before
+you install this update. For more information, see Add language packs to
+Windows. Install this update Release Channel Available Next Step Windows Update
+and Microsoft Update Yes None. This update will be downloaded and installed
+automatically from Windows Update if you are an ESU customer. Microsoft Update
+Catalog Yes To get the standalone package for this update, go to the Microsoft
+Update Catalog website. Windows Server Update Services (WSUS) Yes This
+individual .NET Framework product update will be installed, as applicable, by
+applying the operating system update. For more information about operating
+system updates see additional information about this update section. Update
+replacement information This update replaces previously released updates
+KB5046543. File Information The English (United States) version of this software
+update installs files that have the attributes that are listed in the following
+tables. x86 File name File version File size Date Time vbc.exe 14.8.4739.0
+2,619,472 07-Mar-2025 00:43 Aspnet_perf.dll 4.8.4770.0 37,304 07-Mar-2025 00:43
+aspnet_regbrowsers.exe 4.8.4739.0 39,496 07-Mar-2025 00:43 aspnet_regiis.exe
+4.8.4739.0 36,288 07-Mar-2025 00:43 aspnet_regsql.exe 4.8.4739.0 121,280
+07-Mar-2025 00:43 aspnet_wp.exe 4.8.4770.0 41,040 07-Mar-2025 00:43 clr.dll
+4.8.4785.0 8,660,552 07-Mar-2025 00:55 clrcompression.dll 4.8.4749.0 123,832
+07-Mar-2025 00:43 clrjit.dll 4.8.4785.0 556,104 07-Mar-2025 00:55 dfdll.dll
+4.8.4654.0 179,080 07-Mar-2025 00:43 diasymreader.dll 14.8.4775.0 1,082,424
+07-Mar-2025 00:43 mscordacwks.dll 4.8.4785.0 1,308,728 07-Mar-2025 00:55
+mscordbi.dll 4.8.4785.0 1,189,432 07-Mar-2025 00:55 mscoreei.dll 4.8.4180.0
+581,920 07-Mar-2025 00:43 mscorlib.dll 4.8.4785.0 5,731,400 07-Mar-2025 00:55
+mscorpehost.dll 4.8.4739.0 152,496 07-Mar-2025 00:43 mscorsvc.dll 4.8.4331.0
+454,032 07-Mar-2025 00:43 mscorsvw.exe 4.8.4331.0 125,880 07-Mar-2025 00:43
+ngen.exe 4.8.4331.0 144,360 07-Mar-2025 00:43 Placeholder.dll 4.8.4785.0 19,528
+07-Mar-2025 00:49 VsVersion.dll 14.8.4785.0 12,872 07-Mar-2025 00:49
+PenIMC2_v0400.dll 4.8.4785.0 100,936 07-Mar-2025 00:49 peverify.dll 4.8.4785.0
+183,880 07-Mar-2025 00:55 PresentationCore.dll 4.8.4785.0 3,678,280 07-Mar-2025
+00:49 PresentationFramework.dll 4.8.4785.0 6,295,112 07-Mar-2025 00:43
+PresentationFramework-SystemData.dll 4.8.4785.0 19,016 07-Mar-2025 00:43
+PresentationHost_v0400.dll 4.8.4785.0 235,080 07-Mar-2025 00:49
+PresentationHost_v0400.dll.mui 4.8.4785.0 78,920 07-Mar-2025 00:49
+PresentationNative_v0400.dll 4.8.4785.0 924,232 07-Mar-2025 00:49
+ReachFramework.dll 4.8.4785.0 674,888 07-Mar-2025 00:43
+ServiceMonikerSupport.dll 4.8.4729.0 25,520 07-Mar-2025 00:43 SMDiagnostics.dll
+4.8.4729.0 68,680 07-Mar-2025 00:43 SOS.dll 4.8.4785.0 769,080 07-Mar-2025 00:55
+System.Speech.dll 4.8.4210.0 676,736 07-Mar-2025 00:43 System.Activities.dll
+4.8.4729.0 1,528,904 07-Mar-2025 00:43 System.Activities.Presentation.dll
+4.8.4526.0 2,121,104 07-Mar-2025 00:43 System.Core.dll 4.8.4785.0 1,550,488
+07-Mar-2025 00:43 System.DirectoryServices.AccountManagement.dll 4.8.4770.0
+293,912 07-Mar-2025 00:43 System.IdentityModel.dll 4.8.4729.0 1,090,416
+07-Mar-2025 00:43 System.IdentityModel.Services.dll 4.8.4729.0 192,536
+07-Mar-2025 00:43 System.Printing.dll 4.8.4785.0 393,288 07-Mar-2025 00:49
+System.Runtime.Serialization.dll 4.8.4729.0 1,049,704 07-Mar-2025 00:43
+System.ServiceModel.Activities.dll 4.8.4261.0 555,384 07-Mar-2025 00:43
+System.ServiceModel.Channels.dll 4.8.4729.0 152,096 07-Mar-2025 00:43
+System.ServiceModel.Discovery.dll 4.8.4729.0 302,640 07-Mar-2025 00:43
+System.ServiceModel.dll 4.8.4729.0 6,387,680 07-Mar-2025 00:43
+System.ServiceModel.Internals.dll 4.8.4729.0 248,904 07-Mar-2025 00:43
+System.ServiceModel.WasHosting.dll 4.8.4729.0 34,224 07-Mar-2025 00:43
+System.ServiceModel.Web.dll 4.8.4261.0 321,792 07-Mar-2025 00:43
+System.Web.ApplicationServices.dll 4.8.4770.0 66,200 07-Mar-2025 00:43
+System.Web.Extensions.dll 4.8.4770.0 1,845,272 07-Mar-2025 00:43
+System.Windows.Forms.DataVisualization.dll 4.8.4210.0 1,712,512 07-Mar-2025
+00:43 System.Workflow.Activities.dll 4.8.4110.0 1,051,112 07-Mar-2025 00:43
+System.Workflow.ComponentModel.dll 4.8.4110.0 1,557,272 07-Mar-2025 00:43
+System.Workflow.Runtime.dll 4.8.4110.0 503,064 07-Mar-2025 00:43
+System.Runtime.Caching.dll 4.8.4762.0 105,392 07-Mar-2025 00:43
+System.Configuration.dll 4.8.4190.0 421,536 07-Mar-2025 00:43 System.Data.dll
+4.8.4690.0 3,480,608 07-Mar-2025 00:43 System.Deployment.dll 4.8.4654.0
+1,596,304 07-Mar-2025 00:43 System.DirectoryServices.dll 4.8.4770.0 421,448
+07-Mar-2025 00:43 System.dll 4.8.4770.0 3,565,160 07-Mar-2025 00:43
+System.Drawing.Design.dll 4.8.4210.0 125,192 07-Mar-2025 00:43
+System.Drawing.dll 4.8.4395.0 595,728 07-Mar-2025 00:43
+System.IO.Compression.dll 4.8.4762.0 67,552 07-Mar-2025 00:43
+System.Management.dll 4.8.4450.0 408,856 07-Mar-2025 00:43
+System.Runtime.Remoting.dll 4.8.4690.0 343,008 07-Mar-2025 00:43
+System.Security.dll 4.8.4261.0 320,280 07-Mar-2025 00:43 System.Web.dll
+4.8.4770.0 5,414,432 07-Mar-2025 00:43 System.Windows.Controls.Ribbon.dll
+4.8.4785.0 745,032 07-Mar-2025 00:43 System.Windows.Forms.dll 4.8.4739.0
+5,931,624 07-Mar-2025 00:43 System.Xaml.dll 4.8.4785.0 634,520 07-Mar-2025 00:43
+UIAutomationClient.dll 4.8.4785.0 172,616 07-Mar-2025 00:43
+UIAutomationClientsideProviders.dll 4.8.4785.0 358,984 07-Mar-2025 00:43
+UIAutomationProvider.dll 4.8.4785.0 43,080 07-Mar-2025 00:43
+UIAutomationTypes.dll 4.8.4785.0 217,160 07-Mar-2025 00:43 webengine.dll
+4.8.4770.0 20,512 07-Mar-2025 00:43 webengine4.dll 4.8.4770.0 566,304
+07-Mar-2025 00:43 WindowsBase.dll 4.8.4785.0 1,302,088 07-Mar-2025 00:43
+WindowsFormsIntegration.dll 4.8.4614.0 102,336 07-Mar-2025 00:43
+WorkflowServiceHostPerformanceCounters.dll 4.8.4110.0 89,368 07-Mar-2025 00:43
+WPFFontCache_v0400.exe.mui 4.8.4785.0 13,384 07-Mar-2025 00:49
+WPFFontCache_v0400.exe 4.8.4785.0 21,088 07-Mar-2025 00:49 wpfgfx_v0400.dll
+4.8.4785.0 1,620,552 07-Mar-2025 00:49 x64 File name File version File size Date
+Time vbc.exe 14.8.4739.0 3,228,640 07-Mar-2025 00:43 vbc.exe 14.8.4739.0
+2,619,472 07-Mar-2025 00:43 Aspnet_perf.dll 4.8.4770.0 43,080 07-Mar-2025 00:43
+Aspnet_perf.dll 4.8.4770.0 37,304 07-Mar-2025 00:43 aspnet_regbrowsers.exe
+4.8.4739.0 38,856 07-Mar-2025 00:43 aspnet_regbrowsers.exe 4.8.4739.0 39,496
+07-Mar-2025 00:43 aspnet_regiis.exe 4.8.4739.0 41,920 07-Mar-2025 00:43
+aspnet_regiis.exe 4.8.4739.0 36,288 07-Mar-2025 00:43 aspnet_regsql.exe
+4.8.4739.0 120,880 07-Mar-2025 00:43 aspnet_regsql.exe 4.8.4739.0 121,280
+07-Mar-2025 00:43 aspnet_wp.exe 4.8.4770.0 46,640 07-Mar-2025 00:43
+aspnet_wp.exe 4.8.4770.0 41,040 07-Mar-2025 00:43 clr.dll 4.8.4785.0 11,713,088
+07-Mar-2025 00:43 clr.dll 4.8.4785.0 8,660,552 07-Mar-2025 00:55
+clrcompression.dll 4.8.4749.0 141,864 07-Mar-2025 00:43 clrcompression.dll
+4.8.4749.0 123,832 07-Mar-2025 00:43 clrjit.dll 4.8.4785.0 1,359,432 07-Mar-2025
+00:43 clrjit.dll 4.8.4785.0 556,104 07-Mar-2025 00:55 compatjit.dll 4.8.4785.0
+1,274,440 07-Mar-2025 00:43 dfdll.dll 4.8.4654.0 215,944 07-Mar-2025 00:43
+dfdll.dll 4.8.4654.0 179,080 07-Mar-2025 00:43 diasymreader.dll 14.8.4775.0
+1,498,656 07-Mar-2025 00:43 diasymreader.dll 14.8.4775.0 1,082,424 07-Mar-2025
+00:43 mscordacwks.dll 4.8.4785.0 1,803,832 07-Mar-2025 00:43 mscordacwks.dll
+4.8.4785.0 1,308,728 07-Mar-2025 00:55 mscordbi.dll 4.8.4785.0 1,655,864
+07-Mar-2025 00:43 mscordbi.dll 4.8.4785.0 1,189,432 07-Mar-2025 00:55
+mscoreei.dll 4.8.4180.0 689,952 07-Mar-2025 00:43 mscoreei.dll 4.8.4180.0
+581,920 07-Mar-2025 00:43 mscorlib.dll 4.8.4785.0 5,493,832 07-Mar-2025 00:43
+mscorlib.dll 4.8.4785.0 5,731,400 07-Mar-2025 00:55 mscorpehost.dll 4.8.4739.0
+188,848 07-Mar-2025 00:43 mscorpehost.dll 4.8.4739.0 152,496 07-Mar-2025 00:43
+mscorsvc.dll 4.8.4331.0 557,944 07-Mar-2025 00:43 mscorsvc.dll 4.8.4331.0
+454,032 07-Mar-2025 00:43 mscorsvw.exe 4.8.4331.0 152,000 07-Mar-2025 00:43
+mscorsvw.exe 4.8.4331.0 125,880 07-Mar-2025 00:43 ngen.exe 4.8.4331.0 174,568
+07-Mar-2025 00:43 ngen.exe 4.8.4331.0 144,360 07-Mar-2025 00:43 VsVersion.dll
+14.8.4785.0 12,872 07-Mar-2025 00:43 Placeholder.dll 4.8.4785.0 21,576
+07-Mar-2025 00:43 Placeholder.dll 4.8.4785.0 19,528 07-Mar-2025 00:49
+VsVersion.dll 14.8.4785.0 12,872 07-Mar-2025 00:49 PenIMC2_v0400.dll 4.8.4785.0
+121,928 07-Mar-2025 00:43 PenIMC2_v0400.dll 4.8.4785.0 100,936 07-Mar-2025 00:49
+peverify.dll 4.8.4785.0 266,824 07-Mar-2025 00:43 peverify.dll 4.8.4785.0
+183,880 07-Mar-2025 00:55 PresentationCore.dll 4.8.4785.0 3,654,728 07-Mar-2025
+00:43 PresentationCore.dll 4.8.4785.0 3,678,280 07-Mar-2025 00:49
+PresentationFramework.dll 4.8.4785.0 6,295,112 07-Mar-2025 00:43
+PresentationFramework-SystemData.dll 4.8.4785.0 19,016 07-Mar-2025 00:43
+PresentationHost_v0400.dll 4.8.4785.0 304,200 07-Mar-2025 00:43
+PresentationHost_v0400.dll.mui 4.8.4785.0 78,920 07-Mar-2025 00:43
+PresentationHost_v0400.dll 4.8.4785.0 235,080 07-Mar-2025 00:49
+PresentationHost_v0400.dll.mui 4.8.4785.0 78,920 07-Mar-2025 00:49
+PresentationNative_v0400.dll 4.8.4785.0 1,165,384 07-Mar-2025 00:43
+PresentationNative_v0400.dll 4.8.4785.0 924,232 07-Mar-2025 00:49
+ReachFramework.dll 4.8.4785.0 674,888 07-Mar-2025 00:43
+ServiceMonikerSupport.dll 4.8.4729.0 28,592 07-Mar-2025 00:43
+ServiceMonikerSupport.dll 4.8.4729.0 25,520 07-Mar-2025 00:43 SMDiagnostics.dll
+4.8.4729.0 68,680 07-Mar-2025 00:43 SOS.dll 4.8.4785.0 923,192 07-Mar-2025 00:43
+SOS.dll 4.8.4785.0 769,080 07-Mar-2025 00:55 System.Speech.dll 4.8.4210.0
+676,736 07-Mar-2025 00:43 System.Activities.dll 4.8.4729.0 1,528,904 07-Mar-2025
+00:43 System.Activities.Presentation.dll 4.8.4526.0 2,121,104 07-Mar-2025 00:43
+System.Core.dll 4.8.4785.0 1,550,488 07-Mar-2025 00:43
+System.DirectoryServices.AccountManagement.dll 4.8.4770.0 293,912 07-Mar-2025
+00:43 System.IdentityModel.dll 4.8.4729.0 1,090,416 07-Mar-2025 00:43
+System.IdentityModel.Services.dll 4.8.4729.0 192,536 07-Mar-2025 00:43
+System.Printing.dll 4.8.4785.0 393,800 07-Mar-2025 00:43 System.Printing.dll
+4.8.4785.0 393,288 07-Mar-2025 00:49 System.Runtime.Serialization.dll 4.8.4729.0
+1,049,704 07-Mar-2025 00:43 System.ServiceModel.Activities.dll 4.8.4261.0
+555,384 07-Mar-2025 00:43 System.ServiceModel.Channels.dll 4.8.4729.0 152,096
+07-Mar-2025 00:43 System.ServiceModel.Discovery.dll 4.8.4729.0 302,640
+07-Mar-2025 00:43 System.ServiceModel.dll 4.8.4729.0 6,387,680 07-Mar-2025 00:43
+System.ServiceModel.Internals.dll 4.8.4729.0 248,904 07-Mar-2025 00:43
+System.ServiceModel.WasHosting.dll 4.8.4729.0 34,224 07-Mar-2025 00:43
+System.ServiceModel.Web.dll 4.8.4261.0 321,792 07-Mar-2025 00:43
+System.Web.ApplicationServices.dll 4.8.4770.0 66,200 07-Mar-2025 00:43
+System.Web.Extensions.dll 4.8.4770.0 1,845,272 07-Mar-2025 00:43
+System.Windows.Forms.DataVisualization.dll 4.8.4210.0 1,712,512 07-Mar-2025
+00:43 System.Workflow.Activities.dll 4.8.4110.0 1,051,112 07-Mar-2025 00:43
+System.Workflow.ComponentModel.dll 4.8.4110.0 1,557,272 07-Mar-2025 00:43
+System.Workflow.Runtime.dll 4.8.4110.0 503,064 07-Mar-2025 00:43
+System.Runtime.Caching.dll 4.8.4762.0 105,392 07-Mar-2025 00:43
+System.configuration.dll 4.8.4190.0 421,536 07-Mar-2025 00:43 System.Data.dll
+4.8.4690.0 3,547,168 07-Mar-2025 00:43 System.Data.dll 4.8.4690.0 3,480,608
+07-Mar-2025 00:43 System.Deployment.dll 4.8.4654.0 1,596,304 07-Mar-2025 00:43
+System.DirectoryServices.dll 4.8.4770.0 421,448 07-Mar-2025 00:43 System.dll
+4.8.4770.0 3,565,160 07-Mar-2025 00:43 System.Drawing.Design.dll 4.8.4210.0
+125,192 07-Mar-2025 00:43 System.Drawing.dll 4.8.4395.0 595,728 07-Mar-2025
+00:43 System.IO.Compression.dll 4.8.4762.0 67,552 07-Mar-2025 00:43
+System.Management.dll 4.8.4450.0 408,856 07-Mar-2025 00:43
+System.Runtime.Remoting.dll 4.8.4690.0 343,008 07-Mar-2025 00:43
+System.Security.dll 4.8.4261.0 320,280 07-Mar-2025 00:43 System.Web.dll
+4.8.4770.0 5,402,144 07-Mar-2025 00:43 System.Web.dll 4.8.4770.0 5,414,432
+07-Mar-2025 00:43 System.Windows.Controls.Ribbon.dll 4.8.4785.0 745,032
+07-Mar-2025 00:43 System.Windows.Forms.dll 4.8.4739.0 5,931,624 07-Mar-2025
+00:43 System.Xaml.dll 4.8.4785.0 634,520 07-Mar-2025 00:43
+UIAutomationClient.dll 4.8.4785.0 172,616 07-Mar-2025 00:43
+UIAutomationClientsideProviders.dll 4.8.4785.0 358,984 07-Mar-2025 00:43
+UIAutomationProvider.dll 4.8.4785.0 43,080 07-Mar-2025 00:43
+UIAutomationTypes.dll 4.8.4785.0 217,160 07-Mar-2025 00:43 webengine.dll
+4.8.4770.0 22,456 07-Mar-2025 00:43 webengine.dll 4.8.4770.0 20,512 07-Mar-2025
+00:43 webengine4.dll 4.8.4770.0 677,416 07-Mar-2025 00:43 webengine4.dll
+4.8.4770.0 566,304 07-Mar-2025 00:43 WindowsBase.dll 4.8.4785.0 1,302,088
+07-Mar-2025 00:43 WindowsFormsIntegration.dll 4.8.4614.0 102,336 07-Mar-2025
+00:43 WorkflowServiceHostPerformanceCounters.dll 4.8.4110.0 102,672 07-Mar-2025
+00:43 WorkflowServiceHostPerformanceCounters.dll 4.8.4110.0 89,368 07-Mar-2025
+00:43 WPFFontCache_v0400.exe.mui 4.8.4785.0 13,384 07-Mar-2025 01:07
+WPFFontCache_v0400.exe.mui 4.8.4785.0 13,384 07-Mar-2025 00:49
+WPFFontCache_v0400.exe 4.8.4785.0 23,136 07-Mar-2025 01:07
+WPFFontCache_v0400.exe 4.8.4785.0 21,088 07-Mar-2025 00:49 wpfgfx_v0400.dll
+4.8.4785.0 2,052,168 07-Mar-2025 00:43 wpfgfx_v0400.dll 4.8.4785.0 1,620,552
+07-Mar-2025 00:49 How to obtain help and support for this update Help for
+installing updates: Windows Update FAQ Protect yourself online and at home:
+Windows Security support Local support according to your country: International
+Support
+
+================================================================================

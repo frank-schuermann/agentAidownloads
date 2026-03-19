@@ -1,0 +1,63 @@
+================================================================================
+RUNBOOK — RB-KISP-058929
+Windows Servicing: Understanding Windows Continuous Delivery (CD)
+================================================================================
+
+Runbook ID        : RB-KISP-058929
+Category          : Operational Procedure
+Estimated Time    : 30 minutes
+Last Updated      : 2025-10-10
+Source KB          : KISP-058929
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/windows-servicing-understanding-windows-continuous-delivery-cd-df73d47c-8eda-d5c6-cc14-7424a85fbb7c
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Windows Servicing: Understanding Windows Continuous Delivery (CD) Important:
+This was authored via https://aka.ms/contentidea. Follow Content Idea (CI)
+201140 link for any updates. Author: Will Aftring Summary Short URL for this KB:
+https://aka.ms/howto-cd Windows Continuous Delivery (CD) is a new servicing
+delivery mechanism for Windows. As it is a new process, these items are subject
+to change. This document is to serve as an introduction to the process and
+OSGWiki should serve as the authoritative resource. If you have questions or
+concerns that are not covered in this KB, please reach out to the following
+folks so that they may update the KB accordingly. Email method 1 Email method 2
+To: wiaftrin@microsoft.com; codoesch@microsoft.comSubject: Windows Servicing:
+Understanding Windows Continuous Delivery (CD) Questions Use the Mailto link
+HERE Growing Pains: It is important to acknowledge that CD is a very new process
+as a result there is lots of learning that will need to take place both within
+engineering and within CSS. Communicating to enterprise customers about CD
+fixes: The CD process will be mostly irrelevant to enterprise customers other
+than when a CD fixes' parent bundle is enabled by default. The internal process
+about requiring telemetry and internal branch testing is not relevant to
+customers and should not be shared. The enabled by default release date for the
+feature bundle that contains the fix in question is what should be communicated
+with enterprise customers. For example: If a bug is disabled by default in 3D,
+this information is not relevant to the customer as the timing may change
+without notice. If a bug is enabled by default in 3D, then it can be
+communicated that the change is likely to be available for them to leverage in
+the 4D / 5B Additionally, if a customer wants to enable the change early, see
+"How do I enable a CD fix early" Please note that the client and server SKU
+differences should be communicated clearly. If they have heard abou
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-058929
+
+================================================================================

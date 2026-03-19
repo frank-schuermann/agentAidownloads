@@ -1,0 +1,81 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-054472
+Update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release Wave 2 (Application Build 23.17.30827, Platform Build 23.0.30792) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-054472
+Language          : en-us
+Created           : 2025-03-07
+Last Modified     : 2025-03-07
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/update-23-17-for-microsoft-dynamics-365-business-central-2023-release-wave-2-application-build-23-17-30827-platform-build-23-0-30792-5f98eed0-ea2d-46f9-8e08-f4a7558f29d6
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToDynamics 365 Business Central on-premises 2023 release wave 2, version
+23 Overview This update replaces previously released updates. You should always
+install the latest update. After you install this hotfix, you might have to
+update your license to gain access to new objects that are included in this or a
+previous update. (This applies only to customer licenses.) For a list of updates
+that were released for Microsoft Dynamics 365 Business Central 2023 Release Wave
+2, see released updates for Microsoft Dynamics 365 Business Central 2023 Release
+Wave 2. Updates are intended for new and existing customers who are running
+Microsoft Dynamics Released Updates for Microsoft Dynamics 365 Business Central
+2023 Release Wave 2. Important We recommend that you contact your Microsoft
+Dynamics Partner before you install hotfixes or updates. It is important to
+verify that your environment is compatible with the hotfixes or updates that
+will be installed. A hotfix or update may cause interoperability issues with
+customizations and third-party products that work together with your Microsoft
+Dynamics 365 Business Central solution. Problems that are resolved in this
+update The following problems are resolved in this update. Application hotfixes
+ID Title Functional Area 502419 If the reservation line of a sales order is
+linked to a direct transfer order before posting, it will not be linked back to
+the line in the item ledger, even if the transfer order is posted. Inventory
+Resolution Which hotfix package to download This update has multiple hotfix
+packages. Select and download one of the following packages depending on the
+country version of your Microsoft Dynamics 365 Business Central 2023 database.
+Country Hotfix package AT - Austria Download update 23.17 for Microsoft Dynamics
+365 Business Central 2023 Release Wave 2 AT package AU - Australia Download
+update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release Wave 2 AU
+package BE - Belgium Download update 23.17 for Microsoft Dynamics 365 Business
+Central 2023 Release Wave 2 BE package CA - Canada Download update 23.17 for
+Microsoft Dynamics 365 Business Central 2023 Release Wave 2 CA package CH -
+Switzerland Download update 23.17 for Microsoft Dynamics 365 Business Central
+2023 Release Wave 2 CH package CZ- Czechia Download update 23.17 for Microsoft
+Dynamics 365 Business Central 2023 Release Wave 2 CZ package DE - Germany
+Download update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release
+Wave 2 DE package DK - Denmark Download update 23.17 for Microsoft Dynamics 365
+Business Central 2023 Release Wave 2 DK package ES - Spain Download update 23.17
+for Microsoft Dynamics 365 Business Central 2023 Release Wave 2 ES package FI -
+Finland Download update 23.17 for Microsoft Dynamics 365 Business Central 2023
+Release Wave 2 FI package FR - France Download update 23.17 for Microsoft
+Dynamics 365 Business Central 2023 Release Wave 2 FR package GB - United Kingdom
+Download update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release
+Wave 2 UK package IN - India Download update 23.17 for Microsoft Dynamics 365
+Business Central 2023 Release Wave 2 IN package IS - Iceland Download update
+23.17 for Microsoft Dynamics 365 Business Central 2023 Release Wave 2 IS package
+IT - Italy Download update 23.17 for Microsoft Dynamics 365 Business Central
+2023 Release Wave 2 IT package MX - Mexico Download update 23.17 for Microsoft
+Dynamics 365 Business Central 2023 Release Wave 2 MX package NL - Netherlands
+Download update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release
+Wave 2 NL package NO - Norway Download update 23.17 for Microsoft Dynamics 365
+Business Central 2023 Release Wave 2 NO package NZ - New Zealand Download update
+23.17 for Microsoft Dynamics 365 Business Central 2023 Release Wave 2 NZ package
+RU - Russia Download update 23.17 for Microsoft Dynamics 365 Business Central
+2023 Release Wave 2 RU package SE - Sweden Download update 23.17 for Microsoft
+Dynamics 365 Business Central 2023 Release Wave 2 SE package US - United States
+Download update 23.17 for Microsoft Dynamics 365 Business Central 2023 Release
+Wave 2 US package All other countries Download update 23.17 for Microsoft
+Dynamics 365 Business Central 2023 Release Wave 2 W1 package How to install a
+Microsoft Dynamics 365 Business Central on-premises 2023 Release Wave 2 update
+See How to install a Microsoft Dynamics 365 Business Central 2023 Release Wave 2
+update. Prerequisites You must have Microsoft Dynamics 365 Business Central 2023
+Release Wave 2 installed to apply this hotfix. More information See more
+information about software update terminology and Microsoft Dynamics 365
+Business Central 2023 Release Wave 2. Status Microsoft has confirmed that this
+is a problem in the Microsoft products that are listed in the "Applies to"
+section.
+
+================================================================================

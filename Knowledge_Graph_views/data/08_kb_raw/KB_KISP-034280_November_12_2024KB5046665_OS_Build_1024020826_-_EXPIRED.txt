@@ -1,0 +1,44 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034280
+November 12, 2024—KB5046665 (OS Build 10240.20826) - EXPIRED - Microsoft Support
+================================================================================
+
+Article ID       : KISP-034280
+Language          : en-us
+Created           : 2024-11-12
+Last Modified     : 2026-01-27
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/november-12-2024-kb5046665-os-build-10240-20826-expired-66910759-abfe-4eac-af2f-8a70fa87a9dd
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWindows 10 EXPIRATION NOTICE IMPORTANT As of January 27, 2026, this
+update is no longer available from the Microsoft Update Catalog or other release
+channels. We recommend that you update your devices to the latest version of
+Windows. 12/8/20 For information about Windows update terminology, see the
+article about the types of Windows updates and the monthly quality update types.
+For an overview of Windows 10, version 1507, see its update history page.
+Important: Windows updates do not install Microsoft Store application updates.
+If you are an enterprise user, see Microsoft Store apps - Configuration Manager.
+If you are a consumer user, see Get updates for apps and games in Microsoft
+Store. Highlights This update addresses security issues for your Windows
+operating system. Improvements This security update includes quality
+improvements. Below is a summary of the key issues that this update addresses
+when you install this KB. If there are new features, it lists them as well. The
+bold text within the brackets indicates the item or area of the change we are
+documenting. [vmswitch] Fixed: A vmswitch triggers a stop error. This occurs
+when you use Load Balancing and Failover (LBFO) teaming with two virtual
+switches on a virtual machine (VM). In this case, one virtual switch uses single
+root Input/Output virtualization (SR-IOV). ​​​​​​​ If you installed earlier
+updates, only the new updates contained in this package will be downloaded and
+installed on your device. For more information about security vulnerabilities,
+please refer to the new Security Update Guide website and the November 2024
+Security Updates. Known issues in this update Microsoft is not currently aware
+of any issues with this update.​​​​​​​ How to get this update EXPIRATION NOTICE
+IMPORTANT As of January 27, 2026, this update is no longer available from the
+Microsoft Update Catalog or other release channels. We recommend that you update
+your devices to the latest version of Windows.
+
+================================================================================

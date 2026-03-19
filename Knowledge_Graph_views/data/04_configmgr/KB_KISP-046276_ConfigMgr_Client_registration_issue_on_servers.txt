@@ -1,0 +1,43 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-046276
+ConfigMgr: Client registration issue on servers.
+================================================================================
+
+Article ID       : KISP-046276
+Language          : en-us
+Created           : 2025-03-01
+Last Modified     : 2025-03-01
+Views             : 107
+Keywords          : "12175","0x2f8f"
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-registration-issue-on-servers-3056dca0-7706-3a67-c4d0-529bc08140d1
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: Client registration issue on servers. Important: This was authored
+via https://aka.ms/contentidea. Follow Content Idea (CI) 200029 link for any
+updates. Author: Vivekanandan Lingan Summary/Symptom 01-28-2025 14:04:18.969
+ClientIDManagerStartup 2732 (0xaac) RegTask: Failed to send registration request
+message. Error: 0x87d0023101-28-2025 14:04:18.969 CcmMessaging 2732 (0xaac)
+Failed in WinHttpReceiveResponse API, ErrorCode = 0x2f8f01-28-2025 14:04:18.969
+CcmMessaging 2732 (0xaac) [CCMHTTP] ERROR:
+URL=https://abc.com/ccm_system_windowsauth/request, Port=443, Options=448,
+Code=12175, Text=ERROR_WINHTTP_SECURE_FAILURE01-28-2025 14:04:18.969
+CcmMessaging 2732 (0xaac) [CCMHTTP] ERROR INFO: StatusCode=<unknown>
+StatusText=01-28-2025 14:04:18.969 CcmMessaging 2732 (0xaac) Successfully queued
+event on HTTP/HTTPS failure for server 'abc.com'.01-28-2025 14:04:18.969
+CcmMessaging 2732 (0xaac) Post to https://abc.com/ccm_system_windowsauth/request
+failed with 0x87d00231. Cause ERROR_WINHTTP_SECURE_FAILURE: 12175 One or more
+errors were found in the Secure Sockets Layer (SSL) certificate sent by the
+server. Article resolution Open Registry --> Computer\HKEY_LOCAL_MACHINE\SYSTEM\
+CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client
+Enabled to set to 0 Changed to 1. Initiated the client registration and the
+registration was successful. More information Enable TLS 1.2 on servers -
+Configuration Manager | Microsoft Learn Notes: Support Topics: Management
+Tools\Configuration Manager\Microsoft Configuration Manager (current branch -
+version 2309) (Preview), Management Tools\Configuration Manager\Microsoft
+Configuration Manager (current branch - version 2403) (Retired) First published:
+Mar 01, 2025 Keywords: "12175", "0x2f8f"
+
+================================================================================

@@ -1,0 +1,36 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-167411
+Manage channel notifications in Microsoft Teams  - Microsoft Support
+================================================================================
+
+Article ID       : KISP-167411
+Language          : en-us
+Created           : 2025-06-19
+Last Modified     : 2025-08-18
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/manage-channel-notifications-in-microsoft-teams-a182d915-7bdb-4855-b8ac-ab8487e418d7
+Description       : Learn how to customize your settings and notifications for channels in Microsoft Teams to stay informed and organized, whether for all channels or specific
+
+================================================================================
+CONTENT:
+================================================================================
+
+There are two ways to adjust your settings and notifications for channels.
+Change Activity feed notifications for all channels Use these instructions to
+change Activity feed notifications for all your Posts and Threads layout
+channels across Teams. From the top of Teams, select Settings and more . Select
+Settings > Notifications and activity . From here, you can turn on or off
+notifications for replies to followed threads and posts or show them in the
+Activity feed and banner, or only the Activity feed. Change notifications for a
+specific channel ​​​​​​​​​​​​​​To the right of the channel name, select More
+options . Select Channel notifications . From here, you can turn on or off
+notifications for all new messages or posts (depending on layout). You can also
+choose to show notifications in the Activity feed and banner, or only the
+Activity feed. For channels in the Threads layout: Choose to Include thread
+replies if you want to be notified when other people reply to a post or message.
+Choose to Follow all new threads if you want to see new replies in Followed
+threads ​​​​​​​ at the top of your list of chats and channels. This setting
+won't notify you in the Activity feed. Related topics: Check a channel for
+notifications in Microsoft Teams Manage notifications in Microsoft Teams ​​​​​​​
+
+================================================================================

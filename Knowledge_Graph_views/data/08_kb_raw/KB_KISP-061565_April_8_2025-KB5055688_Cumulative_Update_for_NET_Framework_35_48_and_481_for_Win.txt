@@ -1,0 +1,45 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-061565
+April 8, 2025-KB5055688 Cumulative Update for .NET Framework 3.5, 4.8 and 4.8.1 for Windows Server 2022 - Microsoft Support
+================================================================================
+
+Article ID       : KISP-061565
+Language          : en-us
+Created           : 2025-04-08
+Last Modified     : 2025-04-08
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/april-8-2025-kb5055688-cumulative-update-for-net-framework-3-5-4-8-and-4-8-1-for-windows-server-2022-b959f161-79cf-4fc3-8e31-9f7cda818d33
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies To.NET Release Date:April 8, 2025 Version: .NET Framework 3.5, 4.8 and
+4.8.1 Summary This article describes the security and cumulative update for 3.5,
+4.8 and 4.8.1 for Windows Server 2022. Security Improvements There are no new
+security improvements in this release. This update is cumulative and contains
+all previously released security improvements. Quality and Reliability
+Improvements For a list of improvements that were released with this update,
+please see the article links in the Additional Information section of this
+article. Known issues in this update Microsoft is not currently aware of any
+issues in this update. Additional information about this update The following
+articles contain additional information about this update as it relates to
+individual product versions. 5055169 Description of the Cumulative Update for
+.NET Framework 3.5 and 4.8 for Windows Server 2022 (KB5055169) 5054693
+Description of the Cumulative Update for .NET Framework 3.5 and 4.8.1 for
+Windows Server 2022 (KB5054693) How to get this update Release Channel Available
+Next Step Windows Update and Microsoft Update Yes None. This update will be
+downloaded and installed automatically from Windows Update. Windows Update for
+Business Yes None. This update will be downloaded and installed automatically
+from Windows Update. Microsoft Update Catalog Yes To get the standalone package
+for this update, go to the Microsoft Update Catalog website. Windows Server
+Update Services (WSUS) Yes This operating system update will offer, as
+applicable, and individual .NET Framework product updates will be installed. For
+more information about individual .NET Framework product updates see additional
+information about this update section. This update will automatically sync with
+WSUS if you configure as follows: Product: Windows Server 2022 Classification:
+Updates How to obtain help and support for this update Help for installing
+updates: Windows Update FAQ Protect yourself online and at home: Windows
+Security support Local support according to your country: International Support
+
+================================================================================

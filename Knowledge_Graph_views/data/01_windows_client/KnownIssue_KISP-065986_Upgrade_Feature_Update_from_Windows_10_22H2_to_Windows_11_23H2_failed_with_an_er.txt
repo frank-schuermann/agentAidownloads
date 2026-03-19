@@ -1,0 +1,53 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-065986
+Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an error 0x800f0818
+================================================================================
+
+Issue ID     : KI-KISP-065986
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-04-16
+Last Updated : 2025-06-09
+Source KB     : KISP-065986
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/upgrade-feature-update-from-windows-10-22h2-to-windows-11-23h2-failed-with-an-error-0x800f0818-1a41a708-6aa9-5531-14d9-07f57309a032
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an
+error 0x800f0818 Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 201754 link for any updates. Author: Aravindhan A
+Summary/Symptom Customer trying to upgrade the machine from Windows
+
+ROOT CAUSE:
+-----------
+During previous windows 10 feature update via SCCM, there was a
+“setupconfig.ini” stored under the below path,
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+Inside the Setupconfig.ini file: [SetupConfig] InstallLangPacks
+C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\LP
+PostOOBE=C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\SetupComplete.cmd P
+ostRollback=C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\ErrorHandler.cmd
+DynamicUpdate Disable
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-065986
+for full scope.
+
+WORKAROUND:
+-----------
+Deleted the below reg key and then the upgrade went successful,
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+More information If the update is delivered through Windows Update, Windows
+Setup searches in a default location for a setupconfig file. You can include the
+setupconfig file at
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-
+setup-automation-overview?view=windows-11#using-windows-update
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-065986
+
+================================================================================

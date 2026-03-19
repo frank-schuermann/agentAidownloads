@@ -1,0 +1,53 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-033676
+ADDS: PKI: Certificate Revocation Fails for LDAP locations for Standalone or Clustered CAs After Renewing CA with New Key
+================================================================================
+
+Issue ID     : KI-KISP-033676
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-11-18
+Last Updated : 2025-06-09
+Source KB     : KISP-033676
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-certificate-revocation-fails-for-ldap-locations-for-standalone-or-clustered-cas-after-renewing-ca-with-new-key-e5323ef8-c9f1-943b-839d-f66291a5dd1a
+Tags         : Active Directory, Cluster, PKI
+
+SYMPTOMS:
+---------
+s PKIView displays the error "Unable to download" Revocation failures in
+environment for new certificates post CA renewal. Running certutil -verify
+-urlfetch against a cert (If publish was done incorrectly) fails with "Wrong
+Issuer"
+
+ROOT CAUSE:
+-----------
+the renewal isn't done from the cluster resource. It is done from an individual
+node. This means that certutil -dspublish must be used. However, documentation
+on how to leverage certutil is suboptimal, to say the least. There is a barely
+noted option for DSCDPCN, that mentions "DSCDPCN is the DS CDP object CN based
+on the sanitized CA short name and key index." This is not even covered on
+pkisolutions.com or sysadmins.lv, where we usually go to get better quality
+documentation.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-033676
+for full scope.
+
+WORKAROUND:
+-----------
+Modify the certutil command to include the index. This index will be found in
+C:\Windows\System32\CertSrv\CertEnroll. It will be the number in parenthesis at
+the end of the filename. Format: certutil [options] -dspublish CRLfile
+[DSCDPContainer [DSCDPCN]] Example for Offline Root Contoso-Root-CA running on
+computer ContOffRoot: certutil -f -dspublish
+C:\Windows\System32\CertSrv\CertEnroll\Contoso-Root-CA(2).crl RootCA
+ContOffRoot(2) Example for clustered enterprise clustered subordinate CA Adatum-
+Issuing-CA running on cluster resource AdaSubCA: certutil -f -dspublish
+C:\Windows\System32\CertSr
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-033676
+
+================================================================================

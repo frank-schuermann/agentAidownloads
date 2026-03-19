@@ -1,0 +1,91 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-048131
+ConfigMgr:Core -  Error Code : 80041313 - ConfigMgr Management Point -- Error 25006. Setup was unable to create the Internet virtual directory CCM_Incoming
+================================================================================
+
+Article ID       : KISP-048131
+Language          : en-us
+Created           : 2025-04-23
+Last Modified     : 2025-04-23
+Views             : 31
+Keywords          : "80041313","25006"
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-error-code-80041313-configmgr-management-point-error-25006-setup-was-unable-to-create-the-internet-virtual-directory-ccm-incoming-81945650-5597-3fcd-bfee-42978faf8048
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr:Core - Error Code : 80041313 - ConfigMgr Management Point -- Error
+25006. Setup was unable to create the Internet virtual directory CCM_Incoming
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 201632 link for any updates. Author: Baraneetharan Manivannan
+Summary/Symptom Mpsetup.log Mpmsi.log Verified the return value 3 and found
+failed to configure CCM_Incoming VD Enabling BITS @@ERR:25006 Product: ConfigMgr
+Management Point -- Error 25006. Setup was unable to create the Internet virtual
+directory CCM_Incoming The error code is 80041313 Error 25006. Setup was unable
+to create the Internet virtual directory CCM_Incoming The error code is 80041313
+CustomAction CcmCreateIISVirtualDirectories returned actual error code 1603
+(note this may not be 100% accurate if translation happened inside sandbox) The
+issue occurs while enabling the BITS in CCM_Incoming. Verified BITS services
+running. Reinstalled the BITS service but still same issue. Tried to enable the
+BITS upload in IIS console manually but fails and throws below error in event
+logs. LAB REPRO: Captured procmon while Installing the MP role. Found below
+things while on creating CCM_Incoming VD and Enabling BITS steps. Procmon
+Capture: 4:21:14.6174984 PM MsiExec.exe 2152 Process Create
+C:\Windows\System32\rundll32.exe SUCCESSPID: 10680, Command line: rundll32.exe
+MSI8D77.tmp,RunDll_EnableBits IIS://LocalHost/W3SVC/1/Root;CCM_Incoming;
+4:21:14.6175037 PM rundll32.exe10680Process StartSUCCESS Parent PID: 2152,
+Command line: rundll32.exe MSI8D77.tmp,RunDll_EnableBits
+IIS://LocalHost/W3SVC/1/Root;CCM_Incoming;, Current directory:
+C:\Windows\Installer\, Environment: =E:=E:\ =F:=F:\
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Windows\system32\config\systemprofile\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files COMPUTERNAME=CON-PS1SITE
+ComSpec=C:\Windows\system32\cmd.exe
+DriverData=C:\Windows\System32\Drivers\DriverData
+LOCALAPPDATA=C:\Windows\system32\config\systemprofile\AppData\Local
+NUMBER_OF_PROCESSORS=8 OS=Windows_NT Path=C:\Windows\system32;C:\Windows;C:\Wind
+ows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System3
+2\OpenSSH\;C:\tools;C:\tools\ConfigMgr.Prerequisites.Tool.3.0.5;C:\tools\LogMach
+ine;C:\tools\sysinternals;C:\Program Files (x86)\Microsoft SQL
+Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files
+(x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL
+Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client
+SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL
+Server\150\DTS\Binn\;C:\Program Files\Microsoft Network Monitor 3\
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PROCESSOR_ARCHITECTURE=AMD64 PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 85
+Stepping 7, GenuineIntel PROCESSOR_LEVEL=6 PROCESSOR_REVISION=5507
+ProgramData=C:\ProgramData ProgramFiles=C:\Program Files
+ProgramFiles(x86)=C:\Program Files (x86) ProgramW6432=C:\Program Files
+PSModulePath=C:\Program Files (x86)\WindowsPowerShell\Modules;C:\Windows\system3
+2\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL
+Server\150\Tools\PowerShell\Modules\;E:\ConfigMgr\AdminConsole\bin
+PUBLIC=C:\Users\Public SMS_ADMIN_UI_PATH=E:\ConfigMgr\AdminConsole\bin\i386
+SMS_LOG_PATH=E:\ConfigMgr\logs SystemDrive=C: SystemRoot=C:\Windows
+TEMP=C:\Windows\TEMP TMP=C:\Windows\TEMP USERDOMAIN=contoso USERNAME=SYSTEM
+USERPROFILE=C:\Users\Default windir=C:\Windows PID: 10680 4:21:17.1847341 PM
+rundll32.exe 10680 CreateFile
+C:\Windows\Tasks\BITS_CCM_Incoming_{C6B93C4D-D881-4824-8A9A-E531A107C082}.job
+NAME NOT FOUND Desired Access: Read Attributes, Synchronize, Disposition: Open,
+Options: Synchronous IO Non-Alert, Non-Directory File, Attributes: n/a,
+ShareMode: Read, Write, AllocationSize: n/a 4:21:17.1851607 PM rundll32.exe
+10680 CreateFile C:\Windows\Tasks\BITS_CCM_Incoming_{C6B93C4D-D881-4824-8A9A-
+E531A107C082}.jobSUCCESS Desired Access: Generic Write, Read Attributes,
+Disposition: Create, Options: Sequential Access, Synchronous IO Non-Alert, Non-
+Directory File, Attributes: H, ShareMode: Read, Delete, AllocationSize: 0,
+OpenResult: Created --------- It creates BITS_CCM_Incoming Task Scheduler Task
+Object in the path C:\Windows\Tasks. Under Task Scheduler could see the JOB
+running Cause Noticed that already some other Task Scheduler Task Object was
+existing in "C:\Windows\Tasks" which is invalid one and was not able to view in
+Task Scheduler as well. Due to the Invalid Task Object existing on the path, we
+are getting below error while configuring and enabling BITS in CCM_Incoming VD
+during MP installation. Article resolution Took backup and deleted the invalid
+Task Object job from the path C:\Windows\tasks. Reinitiated the MP installation
+and this time CCM_Incoming VD created successfully with enabling BITS and
+BITS_CCM_Incoming task object job created successfully. MP installation was
+successful. Notes: First published: Apr 23, 2025 Keywords: "80041313", "25006"
+
+================================================================================

@@ -1,0 +1,29 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-042769
+Error while creating a Remote Perfmon dataset
+================================================================================
+
+Article ID       : KISP-042769
+Language          : en-us
+Created           : 2024-12-18
+Last Modified     : 2025-06-09
+Views             : 3
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/error-while-creating-a-remote-perfmon-dataset-9420e29a-7395-4dc5-6e9e-27adb26ce6f4
+
+================================================================================
+CONTENT:
+================================================================================
+
+Error while creating a Remote Perfmon dataset Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 198353 link for any
+updates. Author: Abdul Qadir Khambati Summary/Symptom When a user tries to
+create a Remote Perfmon data set they get the following error: "Remote Perfmon
+gives the following error: ""when attempting to create the data collector set
+the following system error occurred, A specified logon session does not exist,
+it may already have been terminated". Cause The following Security policy is
+enabled on the system: “Network access: Do not allow storage of passwords and
+credentials for network authentication” Article resolution Disable the following
+security policy: “Network access: Do not allow storage of passwords and
+credentials for network authentication”
+
+================================================================================

@@ -1,0 +1,41 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-036294
+ConfigMgr: CORE: Management Point unable to execute queries against database (CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09) 
+================================================================================
+
+Issue ID     : KI-KISP-036294
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-12-06
+Last Updated : 2024-12-06
+Source KB     : KISP-036294
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-management-point-unable-to-execute-queries-against-database-cmpdbconnection-executesql-icommandtext-execute-failed-with-0x80040e09-95e0a324-e2b4-b6b0-1994-ffbfd35e39a6
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+ConfigMgr: CORE: Management Point unable to execute queries against database
+(CMPDBConnection::ExecuteSQL(): ICommandText::Execute() failed with 0x80040E09)
+Microsoft Configuration Manager (current branch) More...Less Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-036294
+for full scope.
+
+WORKAROUND:
+-----------
+We removed the computer account for the secondary site server (Proxy Management
+Point for which we are getting the error) from the Primary Site Server database:
+Then we readded it using the queries: CREATE LOGIN [XXXXXXXX\XXXXXXX$] FROM
+WINDOWS WITH DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english] GO CREATE
+USER [XXXXXXXX\XXXXXXX1$] FOR LOGIN [XXXXXXXX\XXXXXXX$] WITH
+DEFAULT_SCHEMA=[dbo] GO Issue was remediated post performing the above-mentioned
+operation.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-036294
+
+================================================================================

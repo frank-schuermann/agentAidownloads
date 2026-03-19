@@ -1,0 +1,191 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-167873
+June 10, 2025—KB5060533 (OS Builds 19044.5965 and 19045.5965)
+================================================================================
+
+Article ID       : KISP-167873
+Language          : en-us
+Created           : 2025-06-13
+Last Modified     : 2026-03-14
+Views             : 16
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/june-10-2025-kb5060533-os-builds-19044-5965-and-19045-5965-eeae388c-ca1c-4569-95d7-3d7be2e0b8ba
+
+================================================================================
+CONTENT:
+================================================================================
+
+June 10, 2025—KB5060533 (OS Builds 19044.5965 and 19045.5965) Notice for Surface
+Hub v1 users DO NOT install this update. Instead, install update KB5063159. For
+more information, see the Known issues in this update section.​​​​​​​ Important
+Windows updates do not install Microsoft Store application updates. If you are
+an enterprise user, see Microsoft Store apps - Configuration Manager. If you are
+a consumer user, see Get updates for apps and games in Microsoft Store. For
+information about Windows update terminology, see the article about the types of
+Windows updates and the monthly quality update types. For an overview of Windows
+10, version 22H2, see its update history page. Note Follow @WindowsUpdate to
+find out when new content is published to the Windows release health dashboard.
+Change log Change date Change description June 16, 2025 Added the Resolution for
+the Surface Hub v1 known issue. June 13, 2025 Added a known issue for Surface
+Hub v1. End of support information Support for Windows 10 has ended on October
+14, 2025 After October 14, 2025, Microsoft will no longer provide free software
+updates from Windows Update, technical assistance, or security fixes for Windows
+10. Your PC will still work, but we recommend moving to Windows
+11.​​​​​​​​​​​​​​​​​​​​​ Learn more Summary This article lists the security
+issues and quality improvements included in this update. Windows 10, version
+21H2Windows 10, version 22H2 Applies to: Windows 10 Enterprise LTSC 2021 and
+Windows 10 IoT Enterprise LTSC 2021 Important: Use EKB KB5003791 to update to
+Windows 10, version 21H2 on supported editions. Because Windows 10, version 21H2
+updates are cumulative, this security update also includes the fixes and quality
+improvements that were a part of the following updates: May 13, 2025—KB5058379
+(OS Builds 19044.5854 and 19045.5854) May 19, 2025—KB5061768 (OS Builds
+19044.5856 and 19045.5856) Out-of-band May 27, 2025—KB5061979 (OS Builds
+19044.5859 and 19045.5859) Out-of-band May 28, 2025—KB5058481 (OS Build
+19045.5917) Preview Below is a summary of the key issues that this update
+addresses when you install this update. If there are new features, it lists them
+as well. The bold text within the brackets indicates the item or area of the
+change we are documenting. [Internal Windows OS] This update contains
+miscellaneous security improvements to internal Windows OS functionality. No
+specific issues are documented for this release. Applies to: Windows 10, version
+22H2, all editions Important: Use EKB KB5015684 to update to Windows 10, version
+22H2. Because Windows 10, version 22H2 updates are cumulative, this security
+update also includes the fixes and quality improvements that were a part of the
+following updates: May 13, 2025—KB5058379 (OS Builds 19044.5854 and 19045.5854)
+May 19, 2025—KB5061768 (OS Builds 19044.5856 and 19045.5856) Out-of-band May 27,
+2025—KB5061979 (OS Builds 19044.5859 and 19045.5859) Out-of-band May 28,
+2025—KB5058481 (OS Build 19045.5917) Preview Below is a summary of the key
+issues that this update addresses when you install this update. If there are new
+features, it lists them as well. The bold text within the brackets indicates the
+item or area of the change we are documenting. [Internal Windows OS] This update
+contains miscellaneous security improvements to internal Windows OS
+functionality. No specific issues are documented for this release. If you
+installed earlier updates, only the new updates contained in this package will
+be downloaded and installed on your device. For more information about security
+vulnerabilities, please refer to the new Security Update Guide website and the
+May 2025 Security Updates. Windows 10 servicing stack update (KB5059504) -
+19044.5911 and 19045.5911 Microsoft now combines the latest servicing stack
+update (SSU) for your operating system with the latest cumulative update (LCU).
+SSUs improve the reliability of the update process to mitigate potential issues
+while installing updates. This update makes quality improvements to the
+servicing stack, which is the component that installs Windows updates. To learn
+more about SSUs, see Servicing stack updates and Servicing Stack Updates (SSU):
+Frequently Asked Questions. Known issues in this update Noto fonts Symptoms
+There are reports of blurry or unclear CJK (Chinese, Japanese, Korean) text when
+displayed at 96 DPI (100% scaling) in Chromium-based browsers such as Microsoft
+Edge and Google Chrome. The March 2025 Preview Update introduced Noto fonts in
+collaboration with Google, for CJK languages as fallbacks to improve text
+rendering when websites or apps don’t specify appropriate fonts. The issue is
+due to limited pixel density at 96 DPI, which can reduce the clarity and
+alignment of CJK characters. Increasing the display scaling improves clarity by
+enhancing text rendering. Workaround Microsoft has shared its findings on the
+blurry text issue at 96 DPI, along with potential solutions with Google for
+further discussion. For additional support, users can report issues related to
+Noto CJK fonts through the official Google Noto Fonts GitHub repository. Surface
+Hub v1 Symptoms After installing this update for Windows 10, version 22H2,
+Surface Hub v1 devices might fail to start with error: “Secure Boot Violation:
+Invalid signature detected. Check Secure Boot Policy in Setup.” Surface Hub 2S
+and Surface Hub 3 are not impacted by this issue. Resolution This issue is fixed
+in update KB5063159. Update delay with deferral policies Symptoms Some devices
+in environments where IT admis use quality update (QU) deferral policies might
+experience delays in receiving the June 2025 Windows security update. Although
+the update was released on June 10, 2025, its update metadata timestamp reflects
+a date of June 20, 2025. This discrepancy might cause devices with configured
+deferral periods to receive the update later than expected. Workaround To
+accelerate deployment of the June 2025 updates, admins can take one of the
+following actions: Create an expedite policy to bypass deferral settings and
+deliver the update immediately if the organization is using Windows Autopatch.
+Adjust deployment rings or deferral configurations to reduce the delay window
+for affected devices. This delay issue affects only the timing of update
+availability for organizations using QU deferral policies and doesn't impact the
+quality or applicability of the update. We will not change the metadata value
+from the current June 20, 2025, value. This workaround is the final resolution
+we will provide for this issue. How to get this update Before you install this
+update Based on your installation scenario, choose one of the following: For
+offline OS image servicing: If your image does not have the July 25, 2023
+(KB5028244) or later LCU, you must install the special standalone October 13,
+2023 SSU (KB5031539) before installing this update. For Windows Server Update
+Services (WSUS) deployment or when installing the standalone package from
+Microsoft Update Catalog: If your devices do not have the May 11, 2021
+(KB5003173) or later LCU, you must install the special standalone August 10,
+2021 SSU (KB5005260) before installing this update. Install this update To
+install this update, use one of the following Windows and Microsoft release
+channels. Windows UpdateBusinessUpdate CatalogServer Update Services Available
+Next Step This update will be downloaded and installed automatically from
+Windows Update and Microsoft Update. Available Next Step This update will be
+downloaded and installed automatically from Windows Update for Business in
+accordance with configured policies. Available Next Step To get the standalone
+package for this update, go to the Microsoft Update Catalog website. For
+information about how to download and install updates from the Update Catalog,
+see How to download updates that include drivers and hotfixes from the Windows
+Update Catalog. Available Next Step This update will automatically sync with
+Windows Server Update Services (WSUS) if you configure Products and
+Classifications as follows: Product: Windows 10, version 1903 and later
+Classification: Security Updates If you want to remove the LCU To remove the LCU
+after installing the combined SSU and LCU package, use the DISM/Remove-Package
+command line option with the LCU package name as the argument. You can find the
+package name by using this command: DISM /online /get-packages. Running Windows
+Update Standalone Installer (wusa.exe) with the /uninstall switch on the
+combined package will not work because the combined package contains the SSU.
+You cannot remove the SSU from the system after installation. File information A
+list of the files that are included in this update are provided in a CSV (Comma
+delimited) (*.csv) file. The file can be opened in a text editor such as Notepad
+or in Microsoft Excel. Download the file information for this cumulative update
+KB5060533 now. Download the file information for the SSU (KB5059504) - versions
+19044.5911 and 19045.5911 update now. Microsoft Internal Support Information Bug
+information Released in 2025 6B (2025.6 B) Individual VSO bugs related to
+KB5060533 Bug ID Title 56840884 [MSRC 96152][Vb] iediagcmd.exe - ITW Remote Path
+Injection On .URL files via WebDAV - Check Point Software Technologies 56109806
+[MSRC 94783][Vb] Windows Installer Service - attacker can exploit the
+C:\\Config.Msi folder to gain SYSTEM-level privileges - Zero Day Initiative
+56695394 [MSRC 95864][Vb] ZDI - Microsoft Windows Installer Service Link
+Following Local Privilege Escalation Vulnerability - Zero Day Initiative
+56778866 [MSRC 96039][Vb] DWM.exe - Uninitialized stack value leak from
+DwmAnimationCoordinationGetCommitHandle DWM ALPC endpoint- InformationDisclosure
+- Internal 56450409 [MSRC 95465] A write-what-where vulnerability in Insyde UEFI
+firmware allows for execution of untrusted software - Individual 56075455 [MSRC
+94702] Local Security Authority - null pointer reference vulnerability in the
+LsaICallPackagePassthrough function - Individual 56309499 [MSRC 95173][Vb] Task
+Scheduler - User can bypass access restrictions on tasks in root directory -
+Unknown 56487425 [MSRC 95530] netlogon.dll - Netlogon Remote Protocol
+NetrServerAuthenticate3 - Authentication Bypass - Individual 56220417 [MSRC
+95004][Vb] IPPROMON - Windows RRAS - IP Protocols Monitor - bypass of 90590 -
+Unknown 56199697 [MSRC 94975][Vb] mprsnap - Windows RRAS Snapin RCE
+Vulnerability - Unknown 55386012 [MSRC 93243][Vb] Untrusted LNK files allow RCE
+via malicious arguments to ?Known Good? executables - Internal 57637695 [Vb]
+Adding permissions to provide R/W access to Backup Registry Key 56031992 [MSRC
+94646][Vb] Win32kFull.sys - UMPDOBJ::m_pFontProcess is used without a reference
+to the process - Internal 56118114 [MSRC 94804][Vb] mstscax.dll - RDP Client
+heap memory disclosure - Individual 56233177 [MSRC 95041][Vb]
+ElevationOfPrivilege - Type confusion in KspBuildFilterDataBlob - Internal
+56277772 [MSRC 95089] RecoveryDrive.exe- Windows Recovery Driver Privilege
+Escalation - Unknown 55379276 [MSRC 93217][Vb] mispace.dll - memory corruption
+vulnerability due to unchecked pointer derefence in `PmCreateVolume` and
+`PmCopyStringFromBufferOffset` functions - Unknown 55385390 [MSRC 93237][Vb]
+Vulnerability in Microsoft Storage Spaces SMP Service Due to Unchecked Pointer
+Dereference 56047049 [MSRC 94672][Vb] ElevationOfPrivilege - LSA Policy RPC
+Elevation of Privilege - Individual 56183636 [MSRC 94907][Vb]
+Spctl_Subsystem_CreatePool_L1 - Microsoft Windows smphost - Individual 56183664
+[MSRC 94908][Vb] Spctl_Subsystem_SetAttributes_L1 - Microsoft Windows smphost -
+Individual 56183766 [MSRC 94912][Vb] Spctl_Pool_AddPhysicalDisk_P1 - Microsoft
+Windows smphost - Individual 56183811 [MSRC 94914][Vb]
+Spctl_PhysicalDisk_MaintenanceMode_B1 - Microsoft Windows smphost - Individual
+56188257 [MSRC 94920][Vb] smphost - The Vulnerability exists in
+`Spctl_Pool_CreateVirtualDisk_P0`. - Individual 56188420 [MSRC 94924][Vb]
+smphost - Vulnerability exists in 'Spctl_Pool_CreateStorageTier_P1' - Individual
+56195956 [MSRC 94969][Vb] SMBv2/v3 client: LOCAL integer/kernel heap overflow in
+the NtSetInformationFile packet serialization path - Internal 56259517 [MSRC
+95079][Vb] storport!RaidAdapterDiagnosticIoctl - kernel pointer leak - Unknown
+56353484 [MSRC 92376][Vb] mispace.dll Storage Spaces SMP Service - Unchecked
+Pointer Dereference - Unknown 56353708 [MSRC 92378][Vb] mispace.dll - Heap-Based
+Buffer Overflow via GetCreateVolumeParams - Unknown 56353837 [MSRC 92405][Vb]
+Information disclosure Vulnerability in Microsoft Storage Spaces SMP Service Due
+to Unchecked Pointer Dereference - Unknown 56450346 [MSRC 95464][Vb] lsass.exe -
+remote attackers able to exhaust memory by flooding process with referral URLs -
+SafeBreach 56614082 [MSRC 95693][Vb] EOP - Reflective Kerberos Relay Attack -
+Unknown 56049248 [MSRC 94681][Vb] clfs.sys - Pool-based Buffer Overflow -
+Unknown 56183747 [MSRC 94911][Vb] Spctl_ResiliencySetting_SetDefaults_P1 -
+Microsoft Windows smphost - Individual 56202471 [MSRC 94983][Vb]
+Spctl_StorageTier_SetAttributes_P1 - Microsoft Windows smphost - Individual
+56203362 [MSRC 94985][Vb] smphost - Vulnerability exists in
+`Spctl_VirtualDisk_AddStorageFaultDomain_P1`. - Individual
+
+================================================================================

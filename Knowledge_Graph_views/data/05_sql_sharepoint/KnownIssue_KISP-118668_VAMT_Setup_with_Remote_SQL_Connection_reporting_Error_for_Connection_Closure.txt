@@ -1,0 +1,43 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-118668
+VAMT Setup with Remote SQL Connection reporting Error for Connection Closure
+================================================================================
+
+Issue ID     : KI-KISP-118668
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-05-22
+Last Updated : 2025-06-09
+Source KB     : KISP-118668
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/vamt-setup-with-remote-sql-connection-reporting-error-for-connection-closure-1be9bb1c-015b-10e1-2908-7fa0bab30a52
+Tags         : SQL
+
+SYMPTOMS:
+---------
+VAMT Setup with Remote SQL Connection reporting Error for Connection Closure
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 164103 link for any updates. Author: Aashish Kamavisdar Summary/Symptom
+Issue VAMT Setup with Remote SQL Connection reporting Error for C
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-118668
+for full scope.
+
+WORKAROUND:
+-----------
+While comparing the logs and post enabling the TLS 1.0 on the affected server
+Issue got fixed. Additional Considerations: However, TLS 1.0 is not a secure
+protocol , if you want to disable TLS 1.0 please follow the best practices from
+the below document. https://docs.microsoft.com/en-
+us/security/engineering/solving-tls1-problem And please enforce TLS 1.2 for the
+client by following this article https://docs.microsoft.com/en-
+us/mem/configmgr/core/plan-design/security/enable-tls-1-2-client Also, ensure
+affected client must initiate TLS 1.2 traffic before disabling TLS 1.0. Notes:
+First published
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-118668
+
+================================================================================

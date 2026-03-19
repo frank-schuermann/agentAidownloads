@@ -1,0 +1,65 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035476
+System requirements for Microsoft 365 for home use - Microsoft Support
+================================================================================
+
+Article ID       : KISP-035476
+Language          : en-us
+Created           : 2024-12-20
+Last Modified     : 2025-10-18
+Views             : 1
+Source URL         : https://support.microsoft.com/en-us/topic/system-requirements-for-microsoft-365-for-home-use-cf5ca69c-71cf-4d99-a394-12ec8ce9e9fc
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToExcel for Microsoft 365 Word for Microsoft 365 Outlook for Microsoft
+365 PowerPoint for Microsoft 365 Access for Microsoft 365 OneNote for Microsoft
+365 Excel for Microsoft 365 for Mac Word for Microsoft 365 for Mac Outlook for
+Microsoft 365 for Mac PowerPoint for Microsoft 365 for Mac OneNote for Microsoft
+365 for Mac Excel for the web Excel for iPad Word for iPad PowerPoint for iPad
+OneNote for iOS Excel for iPhone Word for iPhone PowerPoint for iPhone Word for
+Android tablets Excel for Android tablets PowerPoint for Android tablets Excel
+for Android phones Excel Mobile Microsoft Office Microsoft365.com OneNote for
+Android Outlook for Android Outlook for iOS PowerPoint for Android phones Word
+for Android phones Microsoft 365 suites for individuals and families are
+subscription plans that include premium versions of productivity apps across all
+your devices, monthly feature updates, and 1 TB of cloud storage per user. The
+system requirements below apply to Microsoft 365 Family and Microsoft 365
+Personal. Setup and install To set up Microsoft 365 for the first time, visit
+the Microsoft 365 Setup ​​​​​​​page and follow the instructions on the screen.
+Or, if you purchased online, you can go directly to the Microsoft 365 My Account
+page to manage your account and installs, because Microsoft 365 was set up
+automatically. Skype minutes To find out about Skype minutes, see the frequently
+asked questions. System requirements Component Windows Mac Android iOS Computer
+and processor 1.6 GHz or faster, 2-core Intel processor ARM-based or Intel x86
+processor Not applicable Operating system Windows 11 One of the three most
+recent versions of macOS. When a new major version of macOS is released, the
+macOS and the previous two versions. The last 4 major versions of Android The 2
+most recent versions of iOS Memory 4 GB RAM; 2 GB RAM (32-bit) 4 GB RAM 1 GB Not
+applicable. Hard disk 4 GB of available disk space 10 GB of available disk
+space; HFS+ hard disk format (also known as Mac OS Extended) or APFS. Updates
+may require additional storage over time. Not applicable. Not applicable.
+Display 1280 x 768 screen resolution (32-bit requires hardware acceleration for
+4K and higher) 1280 x 800 screen resolution. Web apps require the same minimum
+resolution as the OS they are running on. Apps running inside of Microsoft Teams
+adhere to the Teams minimum resolution. Minimum resolution assumes zoom, DPI
+settings, and text scaling are set at 100%. If not set to 100%, minimum
+resolution should be scaled accordingly. Not applicable. Not applicable.
+Graphics Graphics hardware acceleration requires DirectX 9 or later. No graphics
+requirements. Not applicable. Not applicable. .NET version Some features may
+require .NET 3.5 or 4.6 and higher to also be installed. Not applicable. Not
+applicable. Not applicable. Notes: Internet functionality requires an internet
+connection. Fees may apply. To use some additional Outlook features, Microsoft
+Edge WebView2 must be installed. A touch-enabled device is required to use any
+multitouch functionality, but all features and functionality are always
+available by using a keyboard, mouse, or other standard or accessible input
+device. Product functionality and graphics may vary based on your system
+configuration. Some features may require additional or advanced hardware or
+server connectivity. A Microsoft or organizational account is required for
+licensing and access to services. Skype requires a standard laptop camera or USB
+2.0 video camera, a microphone, and an audio output device to utilize its full
+range of calling features.
+
+================================================================================

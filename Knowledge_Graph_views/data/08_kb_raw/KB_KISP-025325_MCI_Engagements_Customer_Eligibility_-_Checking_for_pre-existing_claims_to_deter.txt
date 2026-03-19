@@ -1,0 +1,82 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-025325
+MCI Engagements: Customer Eligibility - Checking for pre-existing claims to determine customer eligibility OR customer unable to give consent in browser
+================================================================================
+
+Article ID       : KISP-025325
+Language          : en-us
+Created           : 2024-09-17
+Last Modified     : 2024-10-15
+Views             : 2
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/mci-engagements-customer-eligibility-checking-for-pre-existing-claims-to-determine-customer-eligibility-or-customer-unable-to-give-consent-in-browser-a5681fd1-789f-4ca3-9a18-cdfe0e9e385c
+
+================================================================================
+CONTENT:
+================================================================================
+
+MCI Engagements: Customer Eligibility - Checking for pre-existing claims to
+determine customer eligibility OR customer unable to give consent in browser
+Earnings Incentives More...Less Who should use this article? DfM Engagements
+Consent MCI Customer Eligibility MCI Engagements Online LOB Partner Activities
+What is this article about? [Insert a description of what this article covers,
+and include when it should be followed] Table of contents 1. Prerequisites 2.
+Scenario/Problem statement 3. Investigation 4. Resolution 5. Resources 5.1
+Example of previous cases 1. Prerequisites Return to top 2. Scenario/Problem
+statement Starting June 19, 2023, use this table
+https://aka.ms/MCIBIEIneligibleReasons to help partners understand the reason
+text that appears to them for each ineligible engagement they see in the
+Associate Engagement step of adding/claiming customers. The reasons are ranked.
+If multiple ineligible reasons apply, partner will only see the reason text with
+the highest rank. Both Partner location ID and customer ID appear to be eligible
+for desired engagement per the relevant BI reports linked in
+https://aka.ms/MCIBIEPowerBIReportsLibrary but partner cannot create new claim
+for customer. OR Both Partner location ID and customer ID appear to be eligible
+in MCI Eligibility Report for desired engagement. Partner has already created
+claim but when customer tries to use emailed link to give consent, they get
+below error message in browser window: Once customer gives consent to one
+partner on an engagement, any other partners will not be able to get consent for
+that same engagement from that customer unless the consented claim is cancelled,
+expired, or rejected unless the engagement allows customers to receive multiple
+deliveries. You can confirm whether an engagement allows the same customer to be
+associated to more than 1 active/approved claim by checking the "Max claims
+allowed per customer" column in https://aka.ms/MCIEngagementsIDMasterList. In
+this example shown in screenshot, AIM Assessment - Fixed Fee only allows 1
+active/approved claim per customer ID, whereas AMM PL for ISV SAP RISE (L) has
+no limit on how many active/approved claims are allowed per customer. If the
+"Max claims allowed per customer" limit shown in
+https://aka.ms/MCIEngagementsIDMasterList has been hit, do not share details of
+claims from one partner to another - only advise that the customer already gave
+consent and that we cannot divulge specifics per Microsoft's confidentiality
+agreement with each partner and customer. Return to top 3. Investigation Search
+in Partner Center (microsoft.com) and WorkshopClaimsAndPayments - Power BI
+report for customer ID and engagement name to look for active or completed
+claims that would prevent new claims from being made for that customer ID +
+engagement. An engagement claim is considered Active or Completed if it is in
+any of the following states: Draft/Customer Consent Received Submitted Under
+Review Partner Action Required Approved Disputed Rejected (if rejection occurred
+less than 30 days ago) If you cannot find matching engagement using same
+engagement name, use Engagement ID to name mapping table here
+https://aka.ms/MCIEngagementsIDMasterList to determine whether customer already
+has an active or complete claim for matching engagement under a different name.
+If you cannot find any active or completed engagement that would prevent new
+claims from being made for this engagement + customer ID, return to #39691274
+and proceed through the remaining steps in that scenario. If customer ID already
+has an active or completed engagement and the "Max claims allowed per customer"
+limit shown in https://aka.ms/MCIEngagementsIDMasterList has been hit, respond
+as follows:Response for partner/requester: In addition to the qualifications
+specified for each individual MCI engagement, customers who were already
+nominated for an active or completed [ENGAGEMENT NAME] engagement will be
+ineligible to receive that engagement again in MCI. Customer ID [ID] is not
+currently eligible to [claim / to give consent] to a claim for [ENGAGEMENT NAME]
+because they already have given consent on an active or completed claim for this
+engagement with another partner. This customer will not be eligible to [be
+claimed / give consent] for this engagement to any other partner unless the
+current active claim is expired, rejected, or cancelled. Return to top 4.
+Resolution Return to top 5. Resources 5.1 Example of previous cases #41112774
+#41866662 Case: Case for Interactive experience: 1st- 28-03-2023 CH
+5-0000009899005_Error in Customer Approval for Workshop - Dynamics 365
+Incident-378149697 Details - IcM (microsofticm.com) Return to top Change history
+Item ID Change Description Date Original work item Migrate from ADO to DfM.
+9/11/2024
+
+================================================================================

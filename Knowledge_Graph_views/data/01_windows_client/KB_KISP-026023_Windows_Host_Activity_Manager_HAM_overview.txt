@@ -1,0 +1,56 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-026023
+Windows: Host Activity Manager (HAM) overview
+================================================================================
+
+Article ID       : KISP-026023
+Language          : en-us
+Created           : 2024-09-16
+Last Modified     : 2025-06-09
+Views             : 1
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-host-activity-manager-ham-overview-fe35a86d-6179-bedd-8dc6-966fbf293772
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows: Host Activity Manager (HAM) overview Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 195772 link for any
+updates. Author: Jason Epperly Summary/Symptom Host Activity Manager (HAM) is
+the component responsible for tracking packaged applications ‘activities’ that
+they need to perform and ensuring that any other required applications are in
+the resumed state when attempts are made to perform these activities. Examples
+of packaged applications include: Universal Windows Platform (UWP) Centennial
+applications On modern versions of Windows, this component lives in
+PsmServiceExthost.dll which is loaded in the service host (svchost.exe)
+associated with DcomLaunch.Debugging Example0: kd> !mex.tProcess Thread CID
+UserTime KernelTime ContextSwitches Wait Reason Time State COM-
+Initializedsvchost.exe (DcomLaunch) (ffff800b27d20080) ffff800b29e7f080 3ec.5e24
+266ms 16ms 683 WrAlertByThreadId 6m:58.296 Waiting APTKIND_MULTITHREADED (MTA) #
+Call Site Info 0 nt!KiSwapContext+0x76 1 nt!KiSwapThread+0xbfd 2
+nt!KiCommitThreadWait+0x144 3 nt!KeWaitForAlertByThreadId+0xd4 4
+nt!NtWaitForAlertByThreadId+0x65 5 nt!KiSystemServiceCopyEnd+0x25 6
+ntdll!ZwWaitForAlertByThreadId+0x14 7 ntdll!RtlpWaitOnAddressWithTimeout+0x81 8
+ntdll!RtlpWaitOnAddress+0xae 9 ntdll!RtlWaitOnAddress+0x13 a
+psmserviceexthost!HampHostSnapshotTerminate+0x157 b
+psmserviceexthost!HampPkgTerminate+0x91 c
+psmserviceexthost!HamSrvTerminatePackage+0xa6 d RPCRT4!Invoke+0x73 e
+RPCRT4!Ndr64StubWorker+0xb1d f RPCRT4!NdrServerCallAll+0x3c 10
+RPCRT4!DispatchToStubInCNoAvrf+0x1811
+RPCRT4!RPC_INTERFACE::DispatchToStubWorker+0x2d112
+RPCRT4!RPC_INTERFACE::DispatchToStub+0xcb13
+RPCRT4!LRPC_SBINDING::DispatchToStub+0x1d14
+RPCRT4!LRPC_SCALL::DispatchRequest+0x31f15
+RPCRT4!LRPC_SCALL::QueueOrDispatchCall+0x12516
+RPCRT4!LRPC_SCALL::HandleRequest+0x7fa Request from sihost.exe
+(ffff800b58adb080) PID: 0x5060 TID: 0x704017
+RPCRT4!LRPC_SASSOCIATION::HandleRequest+0x20018
+RPCRT4!LRPC_ADDRESS::HandleRequest+0x34119
+RPCRT4!LRPC_ADDRESS::ProcessIO+0x89e1a RPCRT4!LrpcIoComplete+0xc5 1b
+ntdll!TppAlpcpExecuteCallback+0x14d1c ntdll!TppWorkerThread+0x462 1d
+KERNEL32!BaseThreadInitThunk+0x141e ntdll!RtlUserThreadStart+0x21 More
+information References Internal Host Activity Manager (OSGWiki) Activity
+Management (SpecStore) Notes: Support Topics: Windows Servers, Windows First
+published: Sep 16, 2024
+
+================================================================================

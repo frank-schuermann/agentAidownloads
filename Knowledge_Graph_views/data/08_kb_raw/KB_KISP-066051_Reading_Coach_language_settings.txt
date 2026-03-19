@@ -1,0 +1,119 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-066051
+Reading Coach language settings - Microsoft Support
+================================================================================
+
+Article ID       : KISP-066051
+Language          : en-us
+Created           : 2025-05-08
+Last Modified     : 2025-08-12
+Views             : 3
+Source URL         : https://support.microsoft.com/en-us/topic/reading-coach-language-settings-9ae2fd8f-46cc-424b-b1da-79b017cf0387
+Description       : Learn how to manage language settings in Reading Coach.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToMicrosoft Teams Microsoft Teams for Education Language settings for 81
+locales have been added to Reading Coach to help with the overall application
+experience, Paste a Passage, Create a Story, and Word Practice. With 81
+different locales from around the world, the Reading Coach app is now better for
+learners seeking to navigate the app and better reading fluency in multiple
+languages. Reading Coach is a helpful tool available on the web at
+coach.microsoft.com and also available on the windows store. It helps you read
+better and say words correctly. Now, it works in more languages than just US
+English. This means you can navigate the application, and practice reading in
+other languages, not just your own. It helps people who are learning to read in
+a new language or trying to get better at a second language. Supported languages
+and locales Note: Reading Coach picks one main language for each place. For
+example, if you are in Mexico, it will use Spanish-Mexico. If you want to read
+in a different language, you need to change your browser and reading settings.
+This lets you use Reading Coach in the language you prefer. These languages are
+available now on Reading coach for Paste a Passage, Word Practice, and for the
+app itself. Create a story has a separate list of languages for it that are
+listed in the section below. Languages Afrikaans (South Africa): af-ZA Albanian
+(Albania): sq-AL Amharic (Ethiopia): am-ET Armenian (Armenia): hy-AM Assamese
+(India): as-IN Azerbaijani (Azerbaijan): az-Latn-AZ Basque (Spain): eu-ES
+Bengali (India): bn-IN Bosnian (Bosnia and Herzegovina): bs-Latn-BA Bulgarian
+(Bulgaria): bg-BG Catalan (Spain): ca-ES Catalan (Valencia, Spain): ca-Es-
+VALENCIA Chinese (China): zh-CN Chinese (Taiwan): zh-TW Croatian (Croatia): hr-
+HR Czech (Czech Republic): cs-CZ Danish (Denmark): da-DK Dutch (Netherlands):
+nl-NL English American (United States): en English Australian (Australia): en-au
+English Canadian (Canada): en-ca English Ghana (Ghana): en-gh English Great
+Britain (United Kingdom): en-GB English Hong Kong (Hong Kong): en-hk English
+India (India): en-in English Kenya (Kenya): en-ke English New Zealand (New
+Zealand): en-nz English Nigeria (Nigeria): en-ng English Philippine
+(Philippines): en-ph English Singapore (Singapore): en-sg English South African
+(South Africa): en-za English Tanzania (Tanzania): en-tz Estonian (Estonia): et-
+EE Filipino (Philippines): fil-PH Finnish (Finland): fi-FI French (Canada): fr-
+CA French (France): fr-FR Galician (Spain): gl-ES Georgian (Georgia): ka-GE
+German (Germany): de-DE Greek (Greece): el-GR Gujarati (India): gu-IN Hindi
+(India): hi-IN Hungarian (Hungary): hu-HU Icelandic (Iceland): is-IS Indonesian
+(Indonesia): id-ID Irish (Ireland): ga-IE Italian (Italy): it-IT Japanese
+(Japan): ja-JP Kannada (India): kn-IN Kazakh (Kazakhstan): kk-KZ Khmer
+(Cambodia): km-KH Konkani (India): kok-IN Korean (South Korea): ko-KR Lao
+(Laos): lo-LA Latvian (Latvia): lv-LV Lithuanian (Lithuania): lt-LT
+Luxembourgish (Luxembourg): lb-LU Macedonian (North Macedonia): mk-MK Malay
+(Malaysia): ms-MY Malayalam (India): ml-IN Maltese (Malta): mt-MT Maori (New
+Zealand): mi-NZ Marathi (India): mr-IN Nepali (Nepal): ne-NP Norwegian Bokmål
+(Norway): nb-NO Norwegian Nynorsk (Norway): nn-NO Odia (India): or-IN: Polish
+(Poland): pl-PL Portuguese (Brazil): pt-BR Portuguese (Portugal): pt-PT Punjabi
+(India): pa-IN Quechua (Peru): quz-PE Romanian (Romania): ro-RO Russian
+(Russia): ru-RU Scottish Gaelic (United Kingdom): gd-gb Serbian (Cyrillic,
+Bosnia, and Herzegovina): sr-Cyrl-BA Serbian (Cyrillic, Serbia): sr-Cyrl-RS
+Serbian (Latin, Serbia): sr-Latn-RS Slovak (Slovakia): sk-SK Slovenian
+(Slovenia): sl-SI Spanish (Mexico): es-MX Spanish (Spain): es-ES Swedish
+(Sweden): sv-SE: Tamil (India): ta-IN Tatar (Russia): tt-RU Telugu (India): te-
+IN Thai (Thailand): th-TH Turkish (Türkiye): tr-TR Ukrainian (Ukraine): uk-UA
+Uyghur (China): ug-CN Uzbek (Latin, Uzbekistan): uz-Latn-UZ Vietnamese
+(Vietnam): vi-VN Welsh (United Kingdom): cy-GB Multiple English dialects
+supported Learners can also now read in 14 different English dialects. Reading
+Coach will track your pronunciation all 14 of the English dialects listed below:
+English American (United States): en English Australian (Australia): en-au
+English Canadian (Canada): en-ca English Ghana (Ghana): en-gh English Great
+Britain (United Kingdom): en-gb English Hong Kong (Hong Kong): en-hk English
+India (India): en-in English Kenya (Kenya): en-ke English New Zealand (New
+Zealand): en-nz English Nigeria (Nigeria): en-ng English Philippine
+(Philippines): en-ph English Singapore (Singapore): en-sg English Tanzania
+(Tanzania): en-tz English South African (South Africa): en-za Paste a passage
+These new reading languages in 81 locales allow you to have content in one
+language but paste text for reading practice in another. You can also paste
+content in their native tongue as the application locale. For example, you can
+set your language settings to US English but paste a reading language in
+Spanish. Reading Coach's AI will recognize that this is content for Spanish and
+return an assessment of your performance graded accurately on your
+pronunciation. Now when you paste content written in a foreign language into the
+passage text box, Reading Coach's AI will detect the language of that content.
+(See the screenshot below.) Changing your reading language Choosing the button
+labeled with your current reading language will produce a pop-up window from
+which you can choose your preferred reading language from a dropdown menu.
+Create a story Language selection in 13 languages continues to be useful when
+learners are creating a story in Reading Coach. Learn more about creating a
+story.​​​​​​​ How to set reading language for creating a story Navigate to the
+Create a Story feature in reading coach. Choose the language button in the top
+right corner. Select a reading language from the dropdown menu. The language
+selection will take effect, translating the app features into content for the
+selected language. The screenshot above shows the selected language as "Spanish-
+Mexico" so all the text for the create a story feature including the names of
+the AI animal actors has changed to reflect that selection. The learner will be
+listened to in the chosen language. Supported languages for Create a Story
+Chinese (Taiwan): zh-tw Dutch (Netherlands): nl-nl English American (United
+States): en English Australian (Australia): en-au English Canadian (Canada): en-
+ca English Ghana (Ghana): en-gh English Great Britain (United Kingdom): en-gb
+English Hong Kong (Hong Kong): en-hk English India (India): en-in English Kenya
+(Kenya): en-ke English New Zealand (New Zealand): en-nz English Nigeria
+(Nigeria): en-ng English Philippine (Philippines): en-ph English Singapore
+(Singapore): en-sg English Tanzania (Tanzania): en-tz English South African
+(South Africa): en-za Filipino (Philippines): fil-ph French (France): fr-fr
+German (Germany): de-de Italian (Italy): it-it Japanese (Japan): ja-jp Korean
+(South Korea): ko-kr Portuguese (Portugal): pt-pt Spanish (Span): es-es Swedish
+(Sweden): sv-se Word Practice The evaluation happens while you are reading the
+passage aloud. The results of this evaluation are displayed on the final screen.
+Reading Coach will then allow learners to practice words they missed the most.
+Learners may choose a word they had difficulty pronouncing and practice using
+their device's built in microphone. The learner should press the microphone and
+read the word aloud. They may choose the speaker icon to hear the word said
+aloud by Sunny, an AI voice actor. ​​​​​​​
+
+================================================================================

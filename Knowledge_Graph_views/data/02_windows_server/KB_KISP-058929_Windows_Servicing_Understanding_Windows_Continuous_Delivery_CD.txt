@@ -1,0 +1,167 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-058929
+Windows Servicing: Understanding Windows Continuous Delivery (CD)
+================================================================================
+
+Article ID       : KISP-058929
+Language          : en-us
+Created           : 2025-04-01
+Last Modified     : 2025-10-10
+Views             : 34
+Keywords          : wiaftrin,cd,windows
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-servicing-understanding-windows-continuous-delivery-cd-df73d47c-8eda-d5c6-cc14-7424a85fbb7c
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows Servicing: Understanding Windows Continuous Delivery (CD) Important:
+This was authored via https://aka.ms/contentidea. Follow Content Idea (CI)
+201140 link for any updates. Author: Will Aftring Summary Short URL for this KB:
+https://aka.ms/howto-cd Windows Continuous Delivery (CD) is a new servicing
+delivery mechanism for Windows. As it is a new process, these items are subject
+to change. This document is to serve as an introduction to the process and
+OSGWiki should serve as the authoritative resource. If you have questions or
+concerns that are not covered in this KB, please reach out to the following
+folks so that they may update the KB accordingly. Email method 1 Email method 2
+To: wiaftrin@microsoft.com; codoesch@microsoft.comSubject: Windows Servicing:
+Understanding Windows Continuous Delivery (CD) Questions Use the Mailto link
+HERE Growing Pains: It is important to acknowledge that CD is a very new process
+as a result there is lots of learning that will need to take place both within
+engineering and within CSS. Communicating to enterprise customers about CD
+fixes: The CD process will be mostly irrelevant to enterprise customers other
+than when a CD fixes' parent bundle is enabled by default. The internal process
+about requiring telemetry and internal branch testing is not relevant to
+customers and should not be shared. The enabled by default release date for the
+feature bundle that contains the fix in question is what should be communicated
+with enterprise customers. For example: If a bug is disabled by default in 3D,
+this information is not relevant to the customer as the timing may change
+without notice. If a bug is enabled by default in 3D, then it can be
+communicated that the change is likely to be available for them to leverage in
+the 4D / 5B Additionally, if a customer wants to enable the change early, see
+"How do I enable a CD fix early" Please note that the client and server SKU
+differences should be communicated clearly. If they have heard about the CD
+process already, then you can refer them to the public documentation around
+continuous innovation. Delivering continuous innovation in Windows 11 -
+Microsoft Support How do I know when my change is coming out? Work Item: In the
+CD work items, the release called out in the work item is the intended
+EnabledByDefault release date. The remaining text will use the following bug as
+an example: Bug 55641152: [Ge] Kerberos AP-REQ fails with
+STATUS_KDC_UNKNOWN_ETYPE when using RC4 due to new Kerb3961 behavior - Boards
+The release date is listed as "2025.03". In this case, the work item is slotted
+to be released EnabledByDefault in 3D. Meaning: The code change is in a feature
+preview state and will be broadly enabled as of 4D/5B on client SKUs or 8B on
+Server SKUs. From Code: When reviewing a work item in code you will need to know
+the specific feature AND branch you are curious about. Using
+Feature_Servicing_Kerb3961ApRepOfferKeys as an example. { "owner":
+"wiaftrin@microsoft.com", "BugId": 55641152, "Description": "Kerb3961 adds
+support for ApRepOffer keys to permit EType negotiation", "className":
+"Feature_Servicing_Kerb3961ApRepOfferKeys", "Stage": "DisabledByDefault",
+"DependsOn": [ { "FeatureStagingXmlName": "FeatureStaging-ContinuousDelivery",
+"ClassName": "Feature_Bundle_Future" } ]} This change is DisableByDefault
+meaning it is not yet ready to be enabled for end customers. DO NOT ATTEMPT TO
+ENABLE FEATURES IN THIS STATE UNLESS EXPLICITLY INFORMED BY OWNING DEV TEAM It
+is parented to Feature_Bundle_Future This means that as of the time of this
+check in, there is not a specific release date in code. The bug id is the work
+item that went through servicing and scheduling and can be used to determine a
+more authoritative time. { "owner": "wiaftrin@microsoft.com", "BugId": 55641152,
+"Description": "Kerb3961 adds support for ApRepOffer keys to permit EType
+negotiation", "className": "Feature_Servicing_Kerb3961ApRepOfferKeys", "Stage":
+"EnabledByDefault", "DependsOn": [ { "FeatureStagingXmlName": "FeatureStaging-
+ContinuousDelivery", "ClassName": "Feature_Bundle_2503" } ]} The change is in an
+EnabledByDefault state and will be enabled when the parent bundle is enabled.
+The depends on is set to Feature_Bundle_2503 meaning that in 3D it will go
+through a CFR rollout for non-enterprise customers. If you have a customer who
+would like to test this change while it is in the state, see "Enabling changes
+early." If the change does not have a release date in the work item, and it is
+bundled to Feature_Bundle_Future then there is no set release date. Follow up
+with the owner to clarify expectations. These release dates are subject to
+change at the discretion of both WSD and the owning dev. Lifecycle of a CD Work
+item: The largest difference between traditional servicing and CD is the
+mechanism in which the change will be enabled broadly. Here is the lifecycle of
+a change that will go through CD. This operates under the assumption that a
+change is needed in active branch (AB) as well. A code change is made and
+validated in AB The change is then placed behind containment. In code this is
+typically an if statement containing Feature_XXX::IsEnabled() Here is an example
+PR that shows this behavior: Pull request 12093571: [Kerb3961][CherryPick] Key
+usage for initiator listing allowed ApRep types - Repos The containment can be
+in a Json or an XML file depending on the team From there the change is flighted
+internally for at least 5 business days and needs to hit a specific usage
+threshold The change is flipped to EnabledByDefault and parented to a specific
+feature bundle When a change is in this state IT IS NOT ENABLED UNTIL THE PARENT
+BUNDLE IS ENABLED When referring to this state, it is useful to refer to this as
+"in feature preview" Here is an example PR: Pull request 12244586: [Kerb3961]
+Flipping Feature_Servicing_Kerb3961ApRepOfferKeys to EbD - Repos In the
+following D release, the feature bundle will be changed to enabled by default,
+broadly enabling the change. Delays in Enablement on Server SKUs: In the
+previous section it was discussed that the broad enablement of an
+EnabledByDefault change would occur in the following D release. This is true for
+Client SKUs but is NOT true for Server SKUs. There is a 3.5 release delay for
+the enablement of Server SKU CD changes. See the table below. CD Bundle Key
+Windows 11 24H2 (Client Edition) Windows Server 2025 (Server Edition) Release
+(N) D DisabledByDefault Release (N+1) B DisabledByDefault* Release (N+1) D
+EnabledByDefault <No Impact to Server> Release (N+4) B EnabledByDefault Example:
+I change is checked disabled by default in 2D It is changed to enabled by
+default in 3D The parent bundle is enabled in 4D On Server the change will be
+enabled by default in 8B This is outside of the control of the Windows component
+owner and is a decision that has been made by Windows Server leadership and is
+subject to change without any notice to CSS. Source: Delivering Windows via
+Continuous Delivery - OSGWiki CD Exceptions: If you believe that this timeline
+does not work for your customer, you can work with the dev owner to request a CD
+exception. This process MUST be started prior to the change being checked into a
+CD branch. The dev owner is responsible for filing and updating the status of
+the CD exception request in the work item. If you do not see this being done,
+please follow up with the dev owner. Ultimately, getting a CD exception is
+primarily under the discretion of the WSD owners of the component. If a work
+item is accepted for an exception thit will have the CD_Exception tag. How do I
+enable a CD fix early: There are two kinds of early CD fixes. Enabling the
+specific CD work item early This should rarely be the case. If a work item is in
+a DisabledByDefault state, it is not yet ready for customer usage and should be
+considered unsupported unless the owning dev specifies otherwise. Enabling the
+parent feature bundle early Regarding #2 this process is outlined here: Use
+Group Policy to enable a disabled by default update - Windows Client | Microsoft
+Learn You will need to download the appropriate feature preview enablement
+packages from "Preview GPs for CD Bundle Features/Bug Fixes" section of WSD
+Wiki-Enabling KIR preview fixes - OSGWiki: Client SKUs: Each bundle is enabled
+in the following month’s servicing update; in most cases, enabling the bundle
+with the fix will enable your feature Server SKUs: Each bundle is enabled in
+N+3.5 months (e.g. 2025.02D will be enabled in 2025.06B). Each bundle that
+hasn’t been enabled yet will need to be enabled for the feature to be enabled.
+For example, to enable a fix going in 2025.05D, 2025.05D, 2025.04D, and 2023.03D
+will need to be enabled. See Delivering Windows via Continuous Delivery -
+OSGWiki Frequently Asked Questions: Q: "Why does my bug need to go through CD?
+It's a one-line change?"A1: It doesn't matter. CD is the preferred way to send
+out updates. If you have an objection to this then you will need a CD exception.
+Q: "Why did the release date of my bug fix change?"A2: There are telemetry
+requirements in order to change a work items state from DisabledByDefault to
+EnabledByDefault. These telemetry requirements are not visible to CSS if you
+have questions, follow up with the owning dev or PM. These telemetry
+requirements must be met. If you have an objection to this then you will need a
+CD exception. Q: "What do I do if there is a regression?"A3: File an IcM with
+the owning team and they will create a KIR rollback GP. Q: "Why are we shipping
+these things disabled by default? We are just delaying the detection of
+regressions."A4: While that is possible there is internal flighting and
+validation that is done. Additionally, running CFRs provides the following
+benefits. Confirmation that rolling back the change will not introduce new
+issues. Any given change CAN be rolled back. Q:" Why do I need to wait on a CD
+change to go out if I need a fix in older OS versions?"A5: Changes cannot be
+backported until the owning feature team addresses the behavior. Prior to CD
+this was just an active branch, however, now feature teams' own CD servicing as
+well where it must go through the CD process before it can go out. This may lead
+to delays in work item fixes in non-CD OS versions. If you have an objection to
+this then you will need a CD exception. More information Additional Resources:
+Continuous Delivery - OSGWiki Delivering Windows via Continuous Delivery -
+OSGWiki OSGWIKI: WSD Wiki-Enabling KIR preview fixes Windows Payload Tracking
+EE-310 Continous Delivery for you and Me QA.COM: Introducing Continuous Delivery
+for Windows 11 and Windows Server 2025 (requires logon with "Microsoft" as
+domain logon and NOT "microsoft.com" to trigger Microsoft SSO) Microsoft-
+internal content created especially for customer-facing delivery partners, SEs
+and SEEs in the Windows Commercial part of CSS directly supporting enterprise
+customers needing to understand when and how continuous-delivery covered bug
+fixes and features will ship enabled-by-default. This content was created by
+Windows Commercial Readiness Engineer and Microsoft FTE Harley Henderson
+<harleyh@microsoft.com> on the QA.COM domain used for ALL official content
+created by the Microsoft Readiness team. Notes: First published: Apr 01, 2025
+Keywords: wiaftrin, cd, windows
+
+================================================================================

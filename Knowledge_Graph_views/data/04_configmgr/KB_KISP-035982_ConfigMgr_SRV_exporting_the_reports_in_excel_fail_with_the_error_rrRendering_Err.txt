@@ -1,0 +1,37 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035982
+ConfigMgr: SRV: exporting the reports in excel fail with the error "rrRendering Error" 
+================================================================================
+
+Article ID       : KISP-035982
+Language          : en-us
+Created           : 2024-11-22
+Last Modified     : 2024-11-22
+Views             : 2
+Keywords          : rrRendering error,SSRS,nborkar,reporting,excel
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-exporting-the-reports-in-excel-fail-with-the-error-rrrendering-error-d5374142-2d4e-6598-30eb-479fe786c3bf
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: SRV: exporting the reports in excel fail with the error "rrRendering
+Error" Microsoft Configuration Manager (current branch) More...Less Important:
+This was authored via https://aka.ms/contentidea. Follow Content Idea (CI)
+197513 link for any updates. Author: Nikhil Chandra Borkar Summary/Symptom When
+the customer is exporting reports from SSRS web portal in excel format, they
+were getting the following error message: Cause The permissions on the execution
+account (make sure to grab it from reporting configuration manager) were missing
+on a registry key which will cause the exporting failure. Article resolution 1/
+we grabbed a procmon of the system when executing the export of the report. 2/
+we observed that we were getting access denied on the following registry key -
+Computer\HKEY_USERS\S-1-5-xxxxxxxxxxxxxxxxxxxxxx\Software\Microsoft\
+Avalon.Graphics 3/ we gave the execution account read permission to the reg key
+exclusively which resolved the issue. More information
+https://stackoverflow.com/questions/45864808/ssrs-reports-exporting-to-excel-
+gives-rrrenderingerror-error-the-type-initial Reporting Services Registry Access
+Denied When Exporting - Business wIntelligence Notes: Support Topics: Management
+Tools\Configuration Manager First published: Nov 22, 2024 Keywords: rrRendering
+error, SSRS, nborkar, reporting, excel
+
+================================================================================

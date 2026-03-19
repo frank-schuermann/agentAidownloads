@@ -1,0 +1,46 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-066859
+Unable to Set Cloud Witness. Error: The Client and Server Cannot Communicate, Because They do Not Possess a Common Algorithm
+================================================================================
+
+Issue ID     : KI-KISP-066859
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-04-25
+Last Updated : 2025-06-09
+Source KB     : KISP-066859
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/unable-to-set-cloud-witness-error-the-client-and-server-cannot-communicate-because-they-do-not-possess-a-common-algorithm-1cce41bc-72a6-4bcc-4af9-1f5d3ea9b2cd
+Tags         : Cloud Witness, Cluster, Windows
+
+SYMPTOMS:
+---------
+Symptom cx needs to have windows cluster with cloud witness. “The client and
+server cannot communicate, be
+
+ROOT CAUSE:
+-----------
+they do not possess a common algorithm” which cx received while adding cloud
+witness. Cx was following below documentation: hhttps://learn.microsoft.com/en-
+us/windows-server/failover-clustering/deploy-quorum-witness Cause The
+communication between storage account and cluster nodes happens on using TLS
+1.0. The error appeared because TLS 1.0 was disabled on the server. To overcome
+this, we can use below PowerShell commands to use TLS1.2 for cloud quorum setup.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-066859
+for full scope.
+
+WORKAROUND:
+-----------
+Ensure that both the client and server are configured to use TLS 1.2. You can
+enable TLS 1.2 on the server using the following PowerShell commands:
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Set-ClusterQuorum -Cluster ClusterName -CloudWitness -AccountName
+"NameOfStorageAccount" -AccessKey "AccessKeyForStorageAccount"
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-066859
+
+================================================================================

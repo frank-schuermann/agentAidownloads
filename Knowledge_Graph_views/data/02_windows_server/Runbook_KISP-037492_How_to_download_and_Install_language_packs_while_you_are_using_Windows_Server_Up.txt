@@ -1,0 +1,64 @@
+================================================================================
+RUNBOOK — RB-KISP-037492
+How to download and Install language packs while you are using Windows Server Update Services (WSUS) as the update source
+================================================================================
+
+Runbook ID        : RB-KISP-037492
+Category          : Configuration / Setup
+Estimated Time    : 30 minutes
+Last Updated      : 2025-06-09
+Source KB          : KISP-037492
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/how-to-download-and-install-language-packs-while-you-are-using-windows-server-update-services-wsus-as-the-update-source-56a8e84b-4c31-2c3b-386f-1bce2f29d035
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+How to download and Install language packs while you are using Windows Server
+Update Services (WSUS) as the update source Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 198350 link for any
+updates. Author: Selim Abdallah Summary/Symptom As the WSUS does not offer to
+download the language pack files , The Windows instance cannot obtain the
+corresponding updates from the WSUS server. As a result, installation issues
+occur because the installation files of language packs do not exist on the
+instance. symptoms: the check box of the install language back does not appear
+when you try to add language from settings Cause WSUS does not offer to download
+the language pack files Article resolution Workaround: Method 1 - first work
+around is to run the below script before you add language to temporary disable
+the link to use WSUS for a moment of the installation and restore it back again
+after installing Open PowerShell as an admin and run the below commands Set-
+ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU'
+-Name UseWUServer -Value 0 Restart-Service -Name wuauserv Then go to setting and
+add language you will see the check box appear After that you need to run the
+script again to restore the changes to value 1 for the WSUS setting Set-
+ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU'
+-Name UseWUServer -Value 1 Restart-Service -Name wuauserv
+------------------------------------------------------- -- Method 2 Downland the
+language pack ISO of Windows 2019 and install the required language pack as
+below Download language pack offline iso from your volume license On the
+Microsoft Volume License Site or the Microsoft Visual Studio Subscription
+website, search for language pack and you will find all language packs for all
+supported operating systems. Extract or mount the ISO on a server share to be
+shared with all servers Use LPKsetup.exe to install the language pack , Run the
+langua
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-037492
+
+================================================================================

@@ -1,0 +1,46 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-035982
+ConfigMgr: SRV: exporting the reports in excel fail with the error "rrRendering Error" 
+================================================================================
+
+Issue ID     : KI-KISP-035982
+Severity     : P2
+Status       : Fix Available
+Reported     : 2024-11-22
+Last Updated : 2024-11-22
+Source KB     : KISP-035982
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-exporting-the-reports-in-excel-fail-with-the-error-rrrendering-error-d5374142-2d4e-6598-30eb-479fe786c3bf
+Tags         : ConfigMgr
+
+SYMPTOMS:
+---------
+Symptom When the customer is exporting reports from SSRS web portal in excel
+format, they were getting the following error message:
+
+ROOT CAUSE:
+-----------
+The permissions on the execution account (make sure to grab it from reporting
+configuration manager) were missing on a registry key which will cause the
+exporting failure.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-035982
+for full scope.
+
+WORKAROUND:
+-----------
+1/ we grabbed a procmon of the system when executing the export of the report.
+2/ we observed that we were getting access denied on the following registry key
+- Computer\HKEY_USERS\S-1-5-xxxxxxxxxxxxxxxxxxxxxx\Software\Microsoft\
+Avalon.Graphics 3/ we gave the execution account read permission to the reg key
+exclusively which resolved the issue. More information
+https://stackoverflow.com/questions/45864808/ssrs-reports-exporting-to-excel-
+gives-rrrenderingerror-error-the-type-initial Reporting Services Registry Access
+Denied When Exporting - Business wIntelligence Notes: Support Topics: Managem
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-035982
+
+================================================================================

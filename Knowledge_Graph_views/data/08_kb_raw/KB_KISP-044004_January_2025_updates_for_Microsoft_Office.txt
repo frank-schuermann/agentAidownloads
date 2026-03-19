@@ -1,0 +1,51 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-044004
+January 2025 updates for Microsoft Office - Microsoft Support
+================================================================================
+
+Article ID       : KISP-044004
+Language          : en-us
+Created           : 2025-01-14
+Last Modified     : 2025-01-14
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/january-2025-updates-for-microsoft-office-589272db-d79a-4429-80d7-fa79edd82aa4
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToSharePoint Server Subscription Edition SharePoint Server 2019
+SharePoint Server 2016 Office Online Server Access 2016 Excel 2016 Office
+Professional Plus 2016 Office Professional 2016 Office Standard 2016 Office Home
+and Business 2016 Office Home and Student 2016 Outlook 2016 PowerPoint 2016
+Introduction Microsoft released the following security and nonsecurity updates
+for Office in January 2025. These updates are intended to help our customers
+keep their computers up to date. We recommend that you install all updates that
+apply to you. To download an update, select the corresponding Knowledge Base
+article in the following list, and then go to the "How to download and install
+the update" section of the article. List of Office updates released in January
+2025 Microsoft Office 2016 Product Knowledge Base article title and number
+Access 2016 Description of the security update for Access 2016: January 14, 2025
+(KB5002670) Excel 2016 Description of the security update for Excel 2016:
+January 14, 2025 (KB5002673) Office 2016 Description of the security update for
+Office 2016: January 14, 2025 (KB5002595) Office 2016 Description of the
+security update for Office 2016: January 14, 2025 (KB5002675) Outlook 2016
+Description of the security update for Outlook 2016: January 14, 2025
+(KB5002656) PowerPoint 2016 January 7, 2025, update for PowerPoint 2016
+(KB5002632) SharePoint Server Subscription Edition Product Knowledge Base
+article title and number SharePoint Server Subscription Edition Description of
+the security update for SharePoint Server Subscription Edition: January 14, 2025
+(KB5002676) Microsoft SharePoint Server 2019 Product Knowledge Base article
+title and number SharePoint Server 2019 Description of the security update for
+SharePoint Server 2019: January 14, 2025 (KB5002666) SharePoint Server 2019
+Language Pack Description of the security update for SharePoint Server 2019
+Language Pack: January 14, 2025 (KB5002667) Microsoft SharePoint Server 2016
+Product Knowledge Base article title and number SharePoint Enterprise Server
+2016 Description of the security update for SharePoint Enterprise Server 2016:
+January 14, 2025 (KB5002672) SharePoint Enterprise Server 2016 Language Pack
+Description of the security update for SharePoint Enterprise Server 2016
+Language Pack: January 14, 2025 (KB5002671) Office Online Server Product
+Knowledge Base article title and number Office Online Server Description of the
+security update for Office Online Server: January 14, 2025 (KB5002677)
+
+================================================================================

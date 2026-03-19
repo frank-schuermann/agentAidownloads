@@ -1,10 +1,11 @@
 """
 Intelligent Knowledge Graph Generator
 =====================================
-Automatically generates knowledge_graph.json from text files in the data/ directory.
+Automatically generates knowledge_graph.json from text files in the data/ directory
+or from a ZIP archive containing text files.
 
 The script:
-- Scans all .txt files in the data/ folder
+- Scans all .txt files in the data/ folder (including subdirectories)
 - Extracts node type from filename (KnownIssue_, Runbook_, UserGuide_, etc.)
 - Parses structured information from text files
 - Automatically generates properties and tags
@@ -13,10 +14,13 @@ The script:
 Usage:
     python generate_knowledge_graph.py
     python generate_knowledge_graph.py --data-dir ./data --output knowledge_graph.json
+    python generate_knowledge_graph.py --zip ./my_articles.zip --output knowledge_graph.json
 """
 
 import json
 import re
+import tempfile
+import zipfile
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Set
 from datetime import datetime
@@ -314,8 +318,8 @@ class KnowledgeGraphGenerator:
         self.edges: List[Dict[str, str]] = []
     
     def scan_and_parse_documents(self) -> None:
-        """Scans the data/ directory and parses all .txt files."""
-        txt_files = sorted(self.data_dir.glob("*.txt"))
+        """Scans the data/ directory (including subdirectories) and parses all .txt files."""
+        txt_files = sorted(self.data_dir.rglob("*.txt"))
         
         if not txt_files:
             print(f"⚠ No .txt files found in {self.data_dir}")
@@ -324,7 +328,10 @@ class KnowledgeGraphGenerator:
         print(f"📄 Found: {len(txt_files)} text files")
         
         for txt_file in txt_files:
-            print(f"   Parsing: {txt_file.name}...", end=" ")
+            # Show subfolder context if file is in a subdirectory
+            rel = txt_file.relative_to(self.data_dir)
+            display = str(rel) if rel.parent != Path(".") else txt_file.name
+            print(f"   Parsing: {display}...", end=" ")
             parser = TextDocumentParser(txt_file)
             node = parser.parse_to_node()
             
@@ -658,13 +665,20 @@ class KnowledgeGraphGenerator:
 def main():
     """Main function."""
     parser = argparse.ArgumentParser(
-        description="Generates knowledge_graph.json from text files in the data/ directory"
+        description="Generates knowledge_graph.json from text files in the data/ directory or a ZIP archive"
     )
     parser.add_argument(
         '--data-dir',
         type=Path,
-        default=Path(__file__).parent / 'data',
+        default=None,
         help='Directory with text files (default: ./data)'
+    )
+    parser.add_argument(
+        '--zip',
+        type=Path,
+        default=None,
+        dest='zip_file',
+        help='ZIP archive containing .txt files (alternative to --data-dir)'
     )
     parser.add_argument(
         '--output',
@@ -675,14 +689,54 @@ def main():
     
     args = parser.parse_args()
     
+    # Determine data source
+    if args.zip_file and args.data_dir:
+        print("❌ Error: Specify either --zip or --data-dir, not both.")
+        return 1
+
+    if args.zip_file:
+        zip_path = args.zip_file
+        if not zip_path.exists():
+            print(f"❌ Error: ZIP file not found: {zip_path}")
+            return 1
+        if not zipfile.is_zipfile(zip_path):
+            print(f"❌ Error: Not a valid ZIP file: {zip_path}")
+            return 1
+
+        # Extract ZIP to a temporary directory
+        tmp_dir = tempfile.mkdtemp(prefix="kg_zip_")
+        tmp_path = Path(tmp_dir)
+        print(f"📦 Extracting ZIP: {zip_path}")
+        with zipfile.ZipFile(zip_path, 'r') as zf:
+            # Only extract .txt and .json files to avoid unexpected content
+            safe_members = [
+                m for m in zf.namelist()
+                if (m.endswith('.txt') or m.endswith('.json'))
+                and not m.startswith('/')
+                and '..' not in m
+            ]
+            zf.extractall(tmp_path, members=safe_members)
+            print(f"   Extracted {len(safe_members)} files to temp directory")
+
+        data_dir = tmp_path
+    else:
+        data_dir = args.data_dir or (Path(__file__).parent / 'data')
+        tmp_path = None
+
     # Validation
-    if not args.data_dir.exists():
-        print(f"❌ Error: Data directory not found: {args.data_dir}")
+    if not data_dir.exists():
+        print(f"❌ Error: Data directory not found: {data_dir}")
         return 1
     
-    # Execute generator
-    generator = KnowledgeGraphGenerator(args.data_dir, args.output)
-    generator.run()
+    try:
+        # Execute generator
+        generator = KnowledgeGraphGenerator(data_dir, args.output)
+        generator.run()
+    finally:
+        # Clean up temp directory if we extracted from ZIP
+        if tmp_path and tmp_path.exists():
+            import shutil
+            shutil.rmtree(tmp_path, ignore_errors=True)
     
     return 0
 

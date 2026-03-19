@@ -1,0 +1,55 @@
+================================================================================
+RUNBOOK — RB-KISP-156334
+Intune : How to retrieve Intune managed app version through PowerShell
+================================================================================
+
+Runbook ID        : RB-KISP-156334
+Category          : Operational Procedure
+Estimated Time    : 30 minutes
+Last Updated      : 2025-05-31
+Source KB          : KISP-156334
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/intune-how-to-retrieve-intune-managed-app-version-through-powershell-4dd54b4b-24c3-9ace-a6d7-58dd7fbc9eec
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Intune : How to retrieve Intune managed app version through PowerShell
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 202800 link for any updates. Author: Aanand Jha Summary/Symptom To fetch
+the version of a managed app using PowerShell in an Intune-managed environment,
+you generally use the Microsoft Graph API. Cause Reviewed all available output
+properties, including AdditionalProperties, but couldn’t locate any field
+corresponding to the app version. Article resolution I recommend trying the
+following query: Module --> Microsoft.Graph.Beta.Devices.CorporateManagement
+(Get-MgBetaDeviceAppManagementMobileApp -MobileAppId
+"MOBILEAPPID").AdditionalProperties Reference: In the base command, version
+details are not provided by default. You need to add an additional parameter
+function to retrieve the version information. Expand property capability is not
+supported because additional property values or attributes are dictionary types,
+attributes, or objects, not string objects. Since expand property only works
+with string-type objects, using it alongside additional properties in the same
+command line will not work. Instead, a second command line is required, where
+you specify the base command followed by brackets and '.additionalProperties' to
+get the output.
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-156334
+
+================================================================================

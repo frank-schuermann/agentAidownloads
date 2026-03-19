@@ -1,0 +1,90 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035439
+December 10, 2024—KB5048661 (OS Build 17763.6659) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-035439
+Language          : en-us
+Created           : 2024-12-10
+Last Modified     : 2024-12-10
+Views             : 15
+Source URL         : https://support.microsoft.com/en-us/topic/december-10-2024-kb5048661-os-build-17763-6659-68e48f87-3b78-4dd3-b249-19a47a0b4d6a
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWin 10 Ent LTSC 2019 Win 10 IoT Ent LTSC 2019 Windows 10 IoT Core LTSC
+Windows Server 2019 11/17/20 For information about Windows update terminology,
+see the article about the types of Windows updates and the monthly quality
+update types. For an overview of Windows 10, version 1809, see its update
+history page. Important: Windows updates do not install Microsoft Store
+application updates. If you are an enterprise user, see Microsoft Store apps -
+Configuration Manager. If you are a consumer user, see Get updates for apps and
+games in Microsoft Store. Highlights This update addresses security issues for
+your Windows operating system. Improvements This security update includes
+improvements. Below is a summary of the key issues that this update addresses
+when you install this KB. If there are new features, it lists them as well. The
+bold text within the brackets indicates the item or area of the change we are
+documenting. [Motherboard replacement] Fixed: Windows does not activate after
+you replace a motherboard. ​​​​​​​ If you installed earlier updates, only the
+new updates contained in this package will be downloaded and installed on your
+device. For more information about security vulnerabilities, please refer to the
+new Security Update Guide website and the December 2024 Security Updates.
+Windows 10 servicing stack update (KB5043126) - 17763.6289 This update makes
+quality improvements to the servicing stack, which is the component that
+installs Windows updates. Servicing stack updates (SSU) ensure that you have a
+robust and reliable servicing stack so that your devices can receive and install
+Microsoft updates. Known issues in this update Symptom Workaround Following the
+installation of the October 2024 security update, some customers report that the
+OpenSSH (Open Secure Shell) service fails to start, preventing SSH connections.
+The service fails with no detailed logging, and manual intervention is required
+to run the sshd.exe process. This issue is affecting both enterprise, IOT, and
+education customers, with a limited number of devices impacted. Microsoft is
+investigating whether consumer customers using Home or Pro editions of Windows
+are affected. Customers can temporarily resolve the issue by updating
+permissions (ACLs) on the affected directories. Follow these steps: Open
+PowerShell as an Administrator. Update the permissions for C:\ProgramData\ssh
+and C:\ProgramData\ssh\logs to allow full control for SYSTEM and the
+Administrators group, while allowing read access for Authenticated Users. You
+can restrict read access to specific users or groups by modifying the
+permissions string if needed. Use the following commands to update the
+permissions: $directoryPath = "C:\ProgramData\ssh" $acl = Get-Acl -Path
+$directoryPath $sddlString =
+"O:BAD:PAI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1200a9;;;AU)"
+$securityDescriptor = New-Object
+System.Security.AccessControl.RawSecurityDescriptor $sddlString
+$acl.SetSecurityDescriptorSddlForm($securityDescriptor.GetSddlForm("All")) Set-
+Acl -Path $directoryPath -AclObject $acl Repeat the above steps for
+C:\ProgramData\ssh\logs. Microsoft is actively investigating the issue and will
+provide a resolution in an upcoming Windows update. Further communications will
+be provided when a resolution or additional workarounds are available. How to
+get this update Before you install this update Microsoft now combines the latest
+servicing stack update (SSU) for your operating system with the latest
+cumulative update (LCU). SSUs improve the reliability of the update process to
+mitigate potential issues while installing the LCU. For general information
+about SSUs, see Servicing stack updates and Servicing Stack Updates (SSU):
+Frequently Asked Questions. Prerequisite: You must install the August 10, 2021
+SSU (KB5005112) before installing the LCU. Install this update To install this
+update, use one of the following Windows and Microsoft release channels. Windows
+UpdateBusinessCatalogServer Update Services Available Next Step Yes None. This
+update will be downloaded and installed automatically from Windows Update and
+Microsoft Update. Available Next Step Yes None. This update will be downloaded
+and installed automatically from Windows Update for Business in accordance with
+configured policies. Available Next Step Yes To get the standalone package for
+this update, go to the Microsoft Update Catalog website. Available Next Step Yes
+This update will automatically sync with Windows Server Update Services (WSUS)
+if you configure Products and Classifications as follows: Product: Windows 10
+Classification: Security Updates If you want to remove the LCU To remove the LCU
+after installing the combined SSU and LCU package, use the DISM/Remove-Package
+command line option with the LCU package name as the argument. You can find the
+package name by using this command: DISM /online /get-packages. Running Windows
+Update Standalone Installer (wusa.exe) with the /uninstall switch on the
+combined package will not work because the combined package contains the SSU.
+You cannot remove the SSU from the system after installation. File information
+For a list of the files that are provided in this update, download the file
+information for cumulative update 5048661. For a list of the files that are
+provided in the servicing stack update, download the file information for the
+SSU (KB5043126) - version 17763.6289.
+
+================================================================================

@@ -1,0 +1,63 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-042455
+The 'Add device' button is greyed out when attempting to add a printer on Windows 11 version 23H2.
+================================================================================
+
+Article ID       : KISP-042455
+Language          : en-us
+Created           : 2025-01-06
+Last Modified     : 2025-06-09
+Views             : 4
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/the-add-device-button-is-greyed-out-when-attempting-to-add-a-printer-on-windows-11-version-23h2-4a32a8cb-9e97-6603-c886-72a7be1f98cc
+
+================================================================================
+CONTENT:
+================================================================================
+
+The 'Add device' button is greyed out when attempting to add a printer on
+Windows 11 version 23H2. Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 196556 link for any
+updates. Author: Denis Passos Summary/Symptom The 'Add device' button is greyed
+out when attempting to add a printer on Windows 11 version 23H2 via Settings >
+Bluetooth & Devices >Printers & Scanner > ADD DEVICE. Cause Bug on Device
+Association Service (das.dll) Bug 49078478: [Ni] Random crash occurs when
+attempting to add printing device via Settings page - Boards (visualstudio.com)
+Article resolution Fix to be released on January (2025.01 D ) More information
+Over 700 das!DasHostStartDevnodeManagement threads waiting on ALPC response. 0:
+kd> !di Windows 10 Kernel Version 22621 MP (12 procs) Free x64 Product: WinNt,
+suite: TerminalServer SingleUserTS Edition build lab:
+22621.2506.amd64fre.ni_release_svc_prod3.231018-1809 Kernel base =
+0xfffff802`41600000 PsLoadedModuleList = 0xfffff802`422134a0 Debug session time:
+Thu Feb 1 04:30:55.915 2024 (UTC - 6:00) System Uptime: 0 days 0:05:33.804
+SystemManufacturer = HP SystemProductName = HP Pro Tower 290 G9 Desktop PC
+Processor: 12th Gen Intel(R) Core(TM) i5-12400 Bugcheck: D1 (FFFFA480842DF660,
+2, 0, FFFFF8023C1012D0) Bugcheck: This is a myfault.sys dump. Kernel Complete
+Dump File: Full address space is available. Current Update Build Revision:
+22621.2506 System Summary 0: kd> !mex.us -p ffffd701a54e20c0 -wr WrLpcReply 768
+threads [stats]: ffffd701a87b6080 ffffd701a87ba080 ffffd701a87f0080
+ffffd701a870a080 ffffd701a87f1080 ffffd701a7d37080 ffffd701a561a080
+ffffd701a87350c0 ffffd701a5880080 ffffd701a8acd080 ... fffff80241a1fe76
+nt!KiSwapContext+0x76 fffff802418cb3f5 nt!KiSwapThread+0xab5 fffff802418cd5d7
+nt!KiCommitThreadWait+0x137 fffff802418cf4f6 nt!KeWaitForSingleObject+0x256
+(Inline) nt!AlpcpWaitForSingleObject+0x27 fffff802418412ee
+nt!AlpcpSignalAndWait+0x5e fffff80241ccbfb6 nt!AlpcpReceiveSynchronousReply+0x56
+fffff80241ccbbf2 nt!AlpcpProcessSynchronousRequest+0x3e2 fffff80241cf2799
+nt!NtAlpcSendWaitReceivePort+0x1d9 fffff80241a2b6e5
+nt!KiSystemServiceCopyEnd+0x25 00007ff8543104e4
+ntdll!ZwAlpcSendWaitReceivePort+0x14 (Inline)
+RPCRT4!RpcpAlpcSendWaitReceivePort+0x32 (Inline)
+RPCRT4!LRPC_CASSOCIATION::AlpcSendWaitReceivePort+0x6d 00007ff852b8e6b2
+RPCRT4!LRPC_BASE_CCALL::DoSendReceive+0x112 (Inline)
+RPCRT4!LRPC_BASE_CCALL::SendReceive+0x26 00007ff852b8b57b
+RPCRT4!LRPC_CCALL::SendReceive+0x5b 00007ff852b99e39
+RPCRT4!I_RpcSendReceive+0x79 00007ff852b5933f RPCRT4!NdrSendReceive+0x2f
+(Inline) RPCRT4!Ndr64pSendReceive+0x305 00007ff852c226ea
+RPCRT4!NdrpClientCall3+0x6aa 00007ff852c21b6b RPCRT4!NdrClientCall3+0xeb
+(Inline) das!DasHostStartDevnodeManagement+0x18 00007ff8362ed56a
+das!DAS::DevnodeManagment::DevnodeFactory::SetupOutOfProc+0x15e 00007ff8362ed73a
+das!DAS::DevnodeManagment::DevnodeFactory::SetupWorkCallback+0xda
+00007ff8542d23ca ntdll!TppWorkpExecuteCallback+0x13a 00007ff8542a5986
+ntdll!TppWorkerThread+0x8f6 00007ff852d3257d KERNEL32!BaseThreadInitThunk+0x1d
+00007ff8542caa58 ntdll!RtlUserThreadStart+0x28
+
+================================================================================

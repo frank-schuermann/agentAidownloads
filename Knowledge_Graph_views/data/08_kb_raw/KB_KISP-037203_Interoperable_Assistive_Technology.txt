@@ -1,0 +1,29 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-037203
+Interoperable Assistive Technology - Microsoft Support
+================================================================================
+
+Article ID       : KISP-037203
+Language          : en-us
+Created           : 2024-12-06
+Last Modified     : 2024-12-06
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/surface/interoperable-assistive-technology-6cab683f-d04f-42e5-ac19-97a2ad101c92
+
+================================================================================
+CONTENT:
+================================================================================
+
+Non-Microsoft assistive technologies[1] may be compatible with Surface devices,
+but Microsoft cannot confirm their interoperability or performance. While non-
+Microsoft assistive products might function properly with Surface device, using
+multiple layers of assistive technology can introduce complexity and potentially
+lead to unexpected results. Therefore, interactions between non-Microsoft
+products with a Surface [or Windows] device cannot be guaranteed. [1] Non-
+Microsoft products are those products that are not manufactured by Microsoft.
+Microsoft is not responsible for their performance or compliance with applicable
+regulatory, compliance, safety or any other requirements. Navigate the menu on
+the left to learn more about Microsoft's adaptive products and how to use them.
+​​​​​​​
+
+================================================================================

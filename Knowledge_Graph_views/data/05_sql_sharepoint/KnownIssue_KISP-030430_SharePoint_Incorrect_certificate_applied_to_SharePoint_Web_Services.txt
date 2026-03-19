@@ -1,0 +1,49 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-030430
+SharePoint: Incorrect certificate applied to SharePoint Web Services
+================================================================================
+
+Issue ID     : KI-KISP-030430
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-11-04
+Last Updated : 2024-11-04
+Source KB     : KISP-030430
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/sharepoint-incorrect-certificate-applied-to-sharepoint-web-services-a8f3e63c-82d3-6cc0-3198-50d3cf4a3ebe
+Tags         : PKI, SharePoint
+
+SYMPTOMS:
+---------
+SharePoint: Incorrect certificate applied to SharePoint Web Services SharePoint
+Server More...Less Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 197091 link for any updates. Author: Revathi Krishnan
+Summary/Symptom On the Search Admin page, we see the error me
+
+ROOT CAUSE:
+-----------
+Identified that Customer by mistake installed a custom certificate for "
+SharePoint Web services " Ran Netsh http show sslcert and confirmed the same
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-030430
+for full scope.
+
+WORKAROUND:
+-----------
+edSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count) at
+System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer,
+AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken
+message, AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[]
+buffer, AsyncProtocolRequest asyncRequest) at
+System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext
+executionContext, ContextCallback callba
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-030430
+
+================================================================================

@@ -1,0 +1,47 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-055437
+ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due to corrupt list on Windows 11 24H2 / Windows Server 2025
+================================================================================
+
+Issue ID     : KI-KISP-055437
+Severity     : P1
+Status       : Fix Available
+Reported     : 2025-02-28
+Last Updated : 2025-12-04
+Source KB     : KISP-055437
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/adds-security-lsass-crash-0xc0000409-when-kerberos-accesses-a-file-share-due-to-corrupt-list-on-windows-11-24h2-windows-server-2025-36ba23ef-7f19-6325-644e-26b0b9a46df0
+Tags         : Active Directory, Kerberos, LSASS, Windows
+
+SYMPTOMS:
+---------
+ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due
+to corrupt list on Windows 11 24H2 / Windows Server 2025 Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 200092 link
+for any updates. Author: Ryan Ries Summary/Symptom A Windows 11
+
+ROOT CAUSE:
+-----------
+I have proposed the following to
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-055437
+for full scope.
+
+WORKAROUND:
+-----------
+. A crash has been observed when accessing a cloud (AAD) file share, and also
+crashing while accessing an onprem file share. Both scenarios appear to be
+affected. Exception details c0000409 STATUS_FAIL_FAST_EXCEPTION Subcode: 0x3
+FAST_FAIL_CORRUPT_LIST_ENTRY A crash dump of lsass reveals the following: DbgID
+ThreadID User Kernel Create Time (UTC)10 3450 (0n13392) 3s.296 3s.234 02/27/2025
+06:14:03.616 AM # Call Site Info 0 kerberos!RtlFailFast+0x5 1
+kerberos!FatalListEntryError+0x5 2 kerberos!InsertHeadList+0xe 3
+kerberos!KerbCacheKdcProxyCacheEntry+0x72 4
+kerberos!KerbInitializeCloudKerbFromAs
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-055437
+
+================================================================================

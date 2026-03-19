@@ -1,0 +1,182 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-037218
+September 10, 2024—KB5043125 (Monthly Rollup)
+================================================================================
+
+Article ID       : KISP-037218
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 1
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/september-10-2024-kb5043125-monthly-rollup-ad55a82a-6379-402e-9787-a458848f7061
+
+================================================================================
+CONTENT:
+================================================================================
+
+September 10, 2024—KB5043125 (Monthly Rollup) Important The installation of this
+Extended Security Update (ESU) might fail when you try to install it on an Azure
+Arc-enabled device that is running Windows Server 2012. For a successful
+installation, please make sure all Subset of endpoints for ESU only are met as
+described in Connected Machine agent network requirements. End of support
+information Windows Server 2012 reached the end of support (EOS) on October 10,
+2023. Extended Security Updates (ESUs) are available for purchase and will
+continue for three years, renewable on an annual basis, until the final date on
+October 13, 2026. For more information, see Windows Server End of Support: Key
+Dates. For information about the procedure to continue receiving security
+updates, see Procedure to continue receiving security updates after extended
+support has ended on October 10, 2023. For more information about the ESU
+program, see Learn about the ESU program. We recommend that you upgrade to a
+later version of Windows Server. For more information, see Overview of Windows
+Server upgrades. Windows Embedded 8 Standard reached the end of support (EOS) on
+July 11, 2023. Therefore, technical assistance and software updates are no
+longer provided. Change log Change date Change description October 8, 2024 Added
+the fix for the Remote Procedure Call over HTTP known issue. September 20, 2024
+Added the resolution for the Windows/Linux start up known issue. Summary Learn
+more about this cumulative security update, including improvements, any known
+issues, and how to get the update. Note Verify that you have installed the
+required updates listed in the How to get this update section before installing
+this update. For information about the various types of Windows updates, such as
+critical, security, driver, service packs, and so on, please see the following
+Description of the standard terminology that is used to describe Microsoft
+software updates. To view other notes and messages, see the Windows Server 2012
+update history home page. Improvements This cumulative security update contains
+improvements that are part of update KB5041851 (released August 13, 2024). The
+following is a summary of the key issues that this update addresses. The bold
+text within the brackets indicates the item or area of the change we are
+documenting. [User Account Control (UAC)] When the Windows Installer repairs an
+application, the UAC does not prompt for your credentials. After you install
+this update, it will prompt for them. Because of this, you might have to update
+your automation scripts. Additionally, you should add the Shield icon to
+indicate that your automation scripts require full administrator access. To turn
+off the UAC prompt, set the HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windo
+ws\Installer\DisableLUAInRepair registry value to 1. For more information, see:
+Application Resiliency: Unlock the Hidden Features of Windows Installer Machine
+Policies - Win32 apps [Remote Desktop Services (RDS)] Fixes an issue in which
+RDS would stop responding. [Dual boot of Windows and Linux (known issue)] Linux
+might fail to start up after installing the August 2024 Windows update. The
+error message is, “Verifying shim SBAT data failed: Security Policy Violation.
+Something has gone seriously wrong: SBAT self-check failed: Security Policy
+Violation.” See the full guidance in CVE-2022-2601 and CVE-2023-40547. For more
+information about the resolved security vulnerabilities, please refer to the
+Deployments | Security Update Guide and the September 2024 Security Updates.
+Known issues in this update Symptom Next Step After installing the Windows
+update released on or after July 9, 2024, Windows Servers might affect Remote
+Desktop Connectivity across an organization. This issue might occur if legacy
+protocol (Remote Procedure Call over HTTP) is used in Remote Desktop Gateway.
+Resulting from this, remote desktop connections might be interrupted. This issue
+might occur intermittently, such as repeating every 30 minutes. At this
+interval, logon sessions are lost and users will need to reconnect to the
+server. IT administrators can track this as a termination of the TSGateway
+service which becomes unresponsive with exception code 0xc0000005. This issue is
+fixed in update KB5044342. For the current status of any past known issue, see
+the Windows Server 2012 Known Issues page. How to get this update Before
+installing this update We strongly recommend that you install the latest
+servicing stack update (SSU) for your operating system before installing the
+latest Rollup. SSUs improve the reliability of the update process to mitigate
+potential issues while installing the Rollup and applying Microsoft security
+fixes. For general information about SSUs, see Servicing stack updates and
+Servicing Stack Updates (SSU): Frequently Asked Questions. If you use Windows
+Update, the latest SSU (KB5044412) will be offered to you automatically. To get
+the standalone package for the latest SSU, search for it in the Microsoft Update
+Catalog. Language packs If you install a language pack after you install this
+update, you must reinstall this update. Therefore, we recommend that you install
+any language packs that you need before you install this update. For more
+information, see Learn about adding a language pack to Windows. Install this
+update To install this update, use one of the following release channels.
+Windows UpdateUpdate CatalogServer Update Services Available Next step Yes This
+update will be downloaded and installed automatically from Windows Update.
+Available Next step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. To download updates from the Update Catalog,
+see Steps to download updates from the Windows Update Catalog. Available Next
+step Yes This update will automatically sync if you configure Products and
+Classifications as follows: Product: Windows Server 2012 Classification:
+Security Updates For more information about configuring in WSUS, see Windows
+Server Update Services (WSUS). For more information about configuring in
+Configuration Manager, see Synchronize software updates. File information For a
+list of the files that are provided in this update, download the file
+information for update KB5043125. Microsoft Internal Support Information Bug
+information Released in 2024 9B (2024.9 B) Individual VSO bugs related to
+KB5043125 Bug ID Title 50311007 [KIR Cleanup Bug] 49579473 : [MSRC
+86581][Svr2012] Pwn2Own2024 - ZDI-CAN-23791 - EOP win32kbase.sys Resource
+Marshaler UAF through release during update - Zero Day Initiative 52129848
+Comprehensive Fix [MSRC 85165] MSI- LPE via insecure MSI installers - Unknown -
+Copy 45586324 [KIR Cleanup Bug] 45431091 : [KIR Enablement Bug] [Windows Server
+2012] Kerberos constrained delegation (KCD) fails with KRB_AP_ERR_MODIFIED on
+11B.22-patched RWDCs due to zeroing out branch ID (ICM 370065478) 50238855 [MSRC
+87442] Kerberos PAC validation - Bypass of our security checks for MSRC 79610 -
+Internal 50550630 [KIR Cleanup Bug] 48308630 : [MSRC 84587] X509 Timestamp
+Response RCE - Individual [win8] 52295886 [SSIRP Kickback] Give customers a
+reliable way to query a device registry for presence of PCA2023 cert and PCA2023
+signed boot manager 49204021 [KIR Cleanup Bug] 46956493 : [MSRC 82848] Windows -
+DenialOfService - Authenticated remote denial-of-service (DoS) on Domain
+Controllers - Unknown 51251075 [MSRC 88230] EtwpQuerySessionDemuxObject - Kernel
+memory disclosure - Individual 48394220 [KIR Cleanup Bug] 46976636 : [SSIRP
+Kickback] [DisabledByDefault] Update BitLocker to account for new PCA signing
+certificate 50565700 [MSRC 87750][Svr2012] dhcpssvc.dll - DHCP Server Service
+ProcessDhcpRequest function Memory Leak - Individual 50781438 [KIR Cleanup Bug]
+48929042 : [MSRC 85573][Svr2012] RemoteCodeExecution - DHCPfo Rce - Beijing
+CyberKunlun Technology Co., Ltd 51264162 [MSRC 88238][Svr2012] NDIS! -
+ndisParseReceivedNBL - null pointer deference - Individual 50704587 [KIR Cleanup
+Bug] 49170050 : [MSRC 86001][Svr2012]
+nwifi!Dot11Translate80211ToEthernetNdisPacket_RemoteCodeExecution - Individual
+50736138 [KIR Cleanup Bug] 50182404 : [MSRC 87351][Svr2012] RRAS - programming
+interface remote heap-based buffer OOB /w vulnerability XV - Unknown 50736145
+[KIR Cleanup Bug] 50203144 : [MSRC 87378][Svr2012] RRAS - programming interface
+remote heap-based buffer OOB /w vulnerability - Unknown 52968909 [Win8]
+Incorrect PRCB_BPB_BHB_FLUSH_SEQUENCE_MASK value causing BHI mitigation to
+execute incorrect flush sequence 49428076 [KIR Cleanup Bug] 47124397 : [MSRC
+78227][Svr2012] NDR- Type Confusion Vulnerability - Internal 50001467 [KIR
+Cleanup Bug] 48610274 : [MSRC 85088] vmms.exe - RCE -
+FrnDeltaTargetThread::GetTargetFileListInfo - Individual 50042201 [KIR Cleanup
+Bug] 48616315 : [MSRC 85100][Win 8] vmms.exe - FrCtLogParser::ParseCtLogFile
+function in vmms.exe has an Integer overflow vulnerability - Individual 50285192
+[KIR Cleanup Bug] 48223904 : [MSRC 84416] MoTW - Bypass via SLDF_HAS_DARWINID
+Flag - Unknown 53177518 [MSRC 89798][9B][Win8] SmartScreen - Crafted .lnk files
+escape MotW and Smart App Control checks - Unknown 53387831 [MSRC 90494] MotW -
+Incorrect Handling of STATUS_SUCCESS in
+CFSTransfer::_InitializeZoneIdentifierInterfaces Method - Internal 50806406 [KIR
+Cleanup Bug] 49402823 : [MSRC 86327][Svr2012] ZDI-CAN-23462: Microsoft Windows
+Menu DC Brush Use-After-Free Local Privilege Escalation Vulnerability - Zero Day
+Initiative 51163560 [KIR Cleanup Bug] 49645223 : [MSRC 86686][Svr2012]
+ElevationOfPrivilege - Windows Kernel Pool Buffer Overflow in
+win32kfull!vOrNonAlignedGrayGlyphOdd - Unknown 51176757 [MSRC 88188][Svr2012]
+NTGDI - double free condition vulnerability in PATH_CORE::createrec function -
+Internal 51368288 [MSRC 88303][Svr2012] GDI - buffer over read vulnerability in
+bSrcCopySRLE4D1 - Internal 51601914 [MSRC 88520][Svr2012] ElevationOfPrivilege -
+ZDI-CAN-24174: Microsoft Windows BeginPaint Pen Use-After-Free Local Privilege
+Escalation Vulnerability - Zero Day Initiative 50450285 [MSRC 87642][Svr2012]
+lserver - TLS - lserver!ReportDelete - Unknown 50568252 [MSRC 87761][Svr2012]
+mstlsapi!ConnectLsServer - Forced Authentication - Unknown 50631892 [MSRC
+87836][Svr2012] Preauth Arbitrary File Read Info Disclosure in procedure
+`FetchReportBegin` - Unknown 51092526 [MSRC 88127][Svr2012] RemoteCodeExecution
+- Terminal Server Licensing Service Preauth Race Condition Use After Free Remote
+Code Execution - Unknown 51092831 [MSRC 88132][Svr2012] RemoteCodeExecution -
+Terminal Server Licensing Service Preauth Race Condition Use After Free Remote
+Code Execution - Unknown 51406273 [MSRC 88363] [CHILD CASE of MSRC 88102]
+[AuthZ][Svr2012] RDS Licensing - broken authn/authz protocol in
+TermServLicensing RPC interface - Internal 53113119 [MSRC 90211] [CHILD CASE of
+MSRC 88363] [AuthZ][Svr2012] RDS Licensing - broken authn/authz protocol in
+TermServLicensing RPC interface - Internal 50736137 [KIR Cleanup Bug] 49686634 :
+[MSRC 86767] [CHILD CASE of MSRC 86578][Svr2012] Pwn2Own2024 - ZDI-CAN-23773 -
+EOP Race condition vulnerability in ks!UnserializePropertySet. - Zero Day
+Initiative 50736153 [KIR Cleanup Bug] 49579019 : [MSRC 86578][Svr2012]
+Pwn2Own2024 - ZDI-CAN-23773 - EOP Race condition vulnerability in
+ks!UnserializePropertySet. - Zero Day Initiative 51214780 [KIR Cleanup Bug]
+49645169 : [MSRC 86685][Svr2012] ElevationOfPrivilege - Windows Kernel Streaming
+WOW Thunk Service Driver Elevation of Privilege Vulnerability - Unknown 51792695
+[MSRC 88721][Svr2012] lserver.dll - Terminal Server Licensing Service Preauth
+Arbitrary Address Free Remote Code Execution - Unknown 51247519 [MSRC
+88228][Svr2012] ElevationOfPrivilege - Windows Kernel Streaming Driver Elevation
+of Privilege Vulnerability - Unknown 50692831 [MSRC 87886] wdsmc.dll - UAF in
+wdsmc!CMulticastNamespace::MgmtJoinClient - Unknown 50781441 [KIR Cleanup Bug]
+49303434 : [MSRC 86207][Svr2012] mqise.dll - use after free vulnerability within
+function mqise!HttpExtensionProc - Beijing CyberKunlun Technology Co., Ltd
+50742666 [KIR Cleanup Bug] 49140465 : [MSRC 85981][Svr2012] sqloledb.dll -
+CDBConnection::GetColData OOBW - Beijing CyberKunlun Technology Co., Ltd
+51405167 [MSRC 88359][Svr2012] sqloledb.dll - CRowMetadata::LayoutRowBuffer Row
+Size Integer Overflow OOB Write - Internal 50736132 [KIR Cleanup Bug] 48757535 :
+[MSRC 85282][Svr2012] SMB - Referral Injection vulnerability in DFS_REFERRAL_V3
+responses - Internal
+
+================================================================================

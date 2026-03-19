@@ -1,0 +1,85 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-027772
+Driver Verifier false positive for ECP leak
+================================================================================
+
+Article ID       : KISP-027772
+Language          : en-us
+Created           : 2024-11-04
+Last Modified     : 2025-06-09
+Views             : 7
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/driver-verifier-false-positive-for-ecp-leak-909a72b6-9408-c156-3127-698af4dd65a8
+
+================================================================================
+CONTENT:
+================================================================================
+
+Driver Verifier false positive for ECP leak Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 197163 link for any
+updates. Author: Fred Jeng Summary/Symptom With driver verified enabled, if a
+filter driver attempts to free an Extra Create Parameter (ECP) buffer, driver
+verifier incorrectly attributes this to the filter manager rather than the
+filter driver and will bugcheck with the error "FILTER VERIFIER ERROR: A filter
+tried to release/free an object that it did not own.." Article resolution
+Verifier bug has been fixed in Dilithium build Bug 49376855: Verifier doesn't
+track references acquired on behalf of a filter - Boards More information
+SYSTEM_SERVICE_EXCEPTION (3b) An exception happened while executing a system
+service routine. Arguments: Arg1: 0000000080000003, Exception code that caused
+the BugCheck Arg2: fffff80749bc94e8, Address of the instruction which caused the
+BugCheck Arg3: ffffa980f71387e0, Address of the context record for the exception
+that caused the BugCheck Arg4: 0000000000000000, zero. 4: kd> !mex.t Process
+Thread CID UserTime KernelTime ContextSwitches Wait Reason Time State
+svchost.exe (smbsvcs, LanmanServer) (ffffc585fc9f9680) ffffc58603184080 ffc.1f84
+0s 78ms 564 WrPageIn 0s Running on CPU 4 Irp List: IRP File Driver
+ffffc5861a6d0c60 \ FltMgr Priority: Current Base UB FB IO Page 9 8 0 0 2 5 #
+Child-SP Return Call Site Info 0 ffffa980f7137ea8 fffff80749bd3f69
+nt!KeBugCheckEx 1 ffffa980f7137eb0 fffff80749bd30fc nt!KiBugCheckDispatch+0x69 2
+ffffa980f7137ff0 fffff80749bca48f nt!KiSystemServiceHandler+0x7c 3
+ffffa980f7138030 fffff80749a2e7b0 nt!RtlpExecuteHandlerForException+0xf 4
+ffffa980f7138060 fffff80749af4344 nt!RtlDispatchException+0x430 5
+ffffa980f71387b0 fffff80749bd4042 nt!KiDispatchException+0x144 6
+ffffa980f7138e60 fffff80749bd2adc nt!KiExceptionDispatch+0xc2 7 ffffa980f7139040
+fffff80749bc94e8 nt!KiDebugServiceTrap+0x31c 8 ffffa980f71391d8 fffff80749cf2635
+nt!DebugPrompt+0x18 9 ffffa980f71391e0 fffff809885ec9ab nt!DbgPrompt+0x35 a
+ffffa980f7139230 fffff809885ecb6e FLTMGR!FltpvPrintErrors+0x183 b
+ffffa980f71394b0 fffff80988591029 FLTMGR!FltpvUnlinkResourceFromFilter+0x10a c
+ffffa980f7139500 fffff8074a0a6d6b FLTMGR!FltMgrVerifierFsRtlEcpCleanup+0x19 d
+ffffa980f7139530 fffff8074a0a6cae nt!FsRtlFreeExtraCreateParameter+0x4b e
+ffffa980f7139560 fffff809885d581e nt!FsRtlFreeExtraCreateParameterList+0x4e f
+ffffa980f7139590 fffff8074d13dcd5 FLTMGR!FltFreeExtraCreateParameterList+0xe 10
+ffffa980f71395c0 fffff8074d13fa45 vmmgmt+0x7dcd5 11 ffffa980f71396f0
+fffff8074d143165 vmmgmt+0x7fa45 12 ffffa980f7139880 fffff8074d124c41
+vmmgmt+0x83165 13 ffffa980f7139970 fffff8074d123459 vmmgmt+0x64c41 14
+ffffa980f7139a20 fffff8074d0f966f vmmgmt+0x63459 15 ffffa980f7139ab0
+fffff8074d0f4676 vmmgmt+0x3966f 16 ffffa980f7139b20 fffff8074d0f6590
+vmmgmt+0x34676 17 ffffa980f7139b80 fffff8074d0c5c8f vmmgmt+0x36590 18
+ffffa980f7139c60 fffff8074d0c6ad0 vmmgmt+0x5c8f 19 ffffa980f7139ca0
+fffff8074d0c730b vmmgmt+0x6ad0 1a ffffa980f7139d10 fffff8074d0dbe7c
+vmmgmt+0x730b 1b ffffa980f7139de0 fffff8074d0def66 vmmgmt+0x1be7c 1c
+ffffa980f7139ef0 fffff8074d7893ca vmmgmt+0x1ef66 1d ffffa980f7139f50
+fffff8074d750453 vmlfs+0x493ca 1e ffffa980f7139fa0 fffff809885eeeff
+vmlfs+0x10453 1f ffffa980f713a040 fffff8098859fca2 FLTMGR!FltvPreOperation+0xdf
+20 ffffa980f713a160 fffff80988597389 FLTMGR!FltpPerformPreCallbacksWorker+0x4d2
+21 ffffa980f713a270 fffff80988596f6c FLTMGR!FltpPerformPreCallbacks+0x79 22
+ffffa980f713a2c0 fffff809885cdce5 FLTMGR!FltpPassThroughInternal+0x8c 23
+ffffa980f713a2f0 fffff80749b7686a FLTMGR!FltpCreate+0x2e5 24 ffffa980f713a3a0
+fffff8074a329f49 nt!IopfCallDriver+0x56 25 ffffa980f713a3e0 fffff80749c165ed
+nt!IovCallDriver+0x275 4: kd> .frame /r 0xa;.echo; !mex.x 0a ffffa980`f7139230
+fffff809`885ecb6e FLTMGR!FltpvPrintErrors+0x183 rax=0000000000000002
+rbx=0000000000000052 rcx=fffff809885b1c88 rdx=ffffa980f713001f
+rsi=fffff809885b9fa0 rdi=000000000000002f rip=fffff809885ec9ab
+rsp=ffffa980f7139230 rbp=ffffa980f7139330 r8=ffffa980f7139260
+r9=0000000000000002 r10=ffffa980f7139040 r11=0000000000000000
+r12=ffffc58614e4f530 r13=ffff84038a59cb00 r14=ffffc58617e06158
+r15=0000000000000000 iopl=0 nv up ei ng nz na pe nc cs=0010 ss=0018 ds=002b
+es=002b fs=0053 gs=002b efl=00000282 FLTMGR!FltpvPrintErrors+0x183:
+fffff809`885ec9ab 0f1f440000 nop dword ptr [rax+rax] ffffa980`f71394b0 MessageId
+= FLTV_MSG_OBJECT_NOT_OWNED (0n41) ffffa980`f7139270 finalBuffer = char [512]
+"FILTER VERIFIER ERROR: A filter tried to release/free an object that it did not
+own..(Filter = FFFFC585F3CE2010 (vmlfs)), ObjectType = (null), Object =
+FFFFC58617E06158).Type "!fltkd.filter FFFFC585F3CE2010 8 1" in the debugger for
+more information about the .filter and objects referenced/allocated by the
+filter.." related bug Bug 26315193: Fltmgr erroneously detects a ECP leak -
+Boards
+
+================================================================================

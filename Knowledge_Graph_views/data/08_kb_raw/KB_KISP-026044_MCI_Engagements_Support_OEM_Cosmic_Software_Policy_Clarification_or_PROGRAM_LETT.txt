@@ -1,0 +1,38 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-026044
+MCI Engagements: Support: OEM Cosmic Software: Policy Clarification or PROGRAM LETTER FY22
+================================================================================
+
+Article ID       : KISP-026044
+Language          : en-us
+Created           : 2024-11-05
+Last Modified     : 2024-11-05
+Views             : 2
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/mci-engagements-support-oem-cosmic-software-policy-clarification-or-program-letter-fy22-7ea06a75-5961-4178-99a3-a190326b3ea4
+
+================================================================================
+CONTENT:
+================================================================================
+
+MCI Engagements: Support: OEM Cosmic Software: Policy Clarification or PROGRAM
+LETTER FY22 Who should use this article? DPC OEM LOB Software What is this
+article about? [Insert a description of what this article covers, and include
+when it should be followed] Table of contents 1. Prerequisites 2.
+Scenario/Problem statement 3. Investigation 4. Resolution 5. Resources 1.
+Prerequisites Return to top 2. Scenario/Problem statement Problem Description:
+If Partner or PSE reaches Incentive support team requesting to provide the
+Program letter for period FY22 or requesting for policy clarification about the
+program letter policies. Key Evidence: Case requestor needs to confirm the
+Program name for which they are requesting the Program letter. Key Callouts:
+Need to download requested period program letter from Device Partner Center. We
+need to suggest the requestor that they can also download in Device Partner
+center. If partner requests for policy clarification, then we will be reaching
+out to the program GPM regarding the partner request. Return to top 3.
+Investigation Return to top 4. Resolution We will download program letter from
+Device partner center for the requested period (Ex: FY22 period) and share with
+the requestor and we will provide the policy clarification once we receive
+feedback from the GPM and follow PC 2 strike rule process. Return to top 5.
+Resources Return to top Change history Item ID Change description Date Original
+work item Migrated from ADO to DfM. 11/5/2024
+
+================================================================================

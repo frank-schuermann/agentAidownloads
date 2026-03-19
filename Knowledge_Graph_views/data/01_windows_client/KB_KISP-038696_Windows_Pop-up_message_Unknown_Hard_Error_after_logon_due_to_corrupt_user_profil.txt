@@ -1,0 +1,30 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-038696
+Windows: Pop-up message "Unknown Hard Error" after logon due to corrupt user profile
+================================================================================
+
+Article ID       : KISP-038696
+Language          : en-us
+Created           : 2025-01-06
+Last Modified     : 2025-06-09
+Views             : 34
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-pop-up-message-unknown-hard-error-after-logon-due-to-corrupt-user-profile-5cc20f41-8def-6798-9dc2-7f3c8f4d7c64
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows: Pop-up message "Unknown Hard Error" after logon due to corrupt user
+profile Important: This was authored via https://aka.ms/contentidea. Follow
+Content Idea (CI) 198618 link for any updates. Author: Manish Singh
+Summary/Symptom UNKNOWN HARD ERROR pop up after logging in. We click on OK and
+nothing happens. cx is completely unable to do anything on the machine. Cause
+User Profile corruption Article resolution Modified below registry and it
+stopped the UNKNOWN HARD ERROR pop up. 1. Run Registry Editor. 2. From the
+HKEY_LOCAL_MACHINE subtree, go to the following key:
+\SYSTEM\CurrentControlSet\Control\Windows Value: ErrorMode Type: REG_DWORD
+Default: 0 3. Change it to 2. 4. Reboot the machine. Additionally, found that
+local admin was working fine. Recreated the user profile and it resolved the
+issue. Note: First published: Jan 06, 2025
+
+================================================================================

@@ -1,0 +1,72 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-041873
+Accessibility in Viva Learning - Microsoft Support
+================================================================================
+
+Article ID       : KISP-041873
+Language          : en-us
+Created           : 2024-12-19
+Last Modified     : 2025-05-09
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/accessibility-in-viva-learning-628b4ed2-d6e9-4888-8c61-98d3ba39c0f1
+
+================================================================================
+CONTENT:
+================================================================================
+
+Viva Learning is committed to creating an inclusive experience for all users who
+use the app to discover, share, and recommend learning content. Read this
+article to learn about the current accessibility features you can use to have
+the best learning experience for you. These features include: 1. Screen reader
+support 2. Keyboard only navigation 3. Text size adjustments 4. Optimized color
+contrast for all elements on screen 5. Multiple color themes: light mode, dark
+mode and high contrast mode 6. Subtitles for video and audio content 7. Multi-
+language support You can utilize screen readers and magnifiers to access Viva
+Learning, helping you navigate and use the platform effectively. Viva Learning
+is available on both the Web and Teams. Here's how to activate and use
+accessibility features on each. Enabling accessibility features on your browser
+To activate the feature Do this Narrator on Windows Press the Windows logo key +
+Ctrl + Enter on your keyboard. In earlier versions of Windows, you may need to
+press the Windows logo key + Enter. On the sign-in screen, select the Ease of
+access button in the lower-right corner, and turn on the toggle under Narrator.
+Go to Settings > Ease of Access > Narrator, and then turn on the toggle under
+Use Narrator. Voice over on Mac Go to System Preferences from the Apple menu.
+Select Accessibility. In the left sidebar, choose VoiceOver. Check the box to
+Enable VoiceOver or press Command + F5 to toggle VoiceOver on or off. Adjust
+text size You can change the text size in your browser to view Viva Learning.
+Microsoft Edge: Open the browser and select the ellipsis (three dots) in the top
+right corner of the home page. Go to Settings > Appearance. Find the Fonts
+section. Choose your preferred font size from the dropdown. Learn more about
+increasing default text size. Change the color theme Select Settings (the gear
+icon at the top right corner of the screen). A side panel opens, displaying the
+available theme options and an option to enable dark mode. Additionally, you can
+adjust color themes in the browser you use to view Viva Learning. Microsoft
+Edge: Open the Microsoft Edge browser. Select the ellipsis (three dots) in the
+top right corner of the home page. Go to Settings. From the Settings page, go to
+Appearance. Choose your preferred theme from the Theme and Overall appearance
+section. Turn on or turn off subtitles Select a course with video content.
+Toggle subtitles on or off by selecting the CC icon in the video player control
+bar. Change language Select the ellipsis (three dots) in the top right corner of
+the home page. Select Settings from the dropdown menu. In the Language tab,
+choose your preferred language and select Save & Refresh. Enabling accessibility
+features on the Teams application To activate the feature Do this Narrator on
+Windows Press the Windows logo key + Ctrl + Enter on your keyboard. In earlier
+versions of Windows, you may need to press the Windows logo key + Enter. On the
+sign-in screen, select the Ease of access button in the lower-right corner, and
+turn on the toggle under Narrator. Go to Settings > Ease of Access > Narrator,
+and then turn on the toggle under Use Narrator. Voice over on Mac Go to System
+Preferences from the Apple menu. Select Accessibility. In the left sidebar,
+choose VoiceOver. Check the box to Enable VoiceOver or press Command + F5 to
+toggle VoiceOver on or off. Adjust text size Select the ellipsis (three dots)
+next to your avatar in the top right corner. Select Zoom from the panel Adjust
+zoom with + or – icons. Change the color theme Select the ellipsis (three dots)
+next to your avatar in the top right corner. Select Settings. Go to Appearance
+and accessibility from the left menu. Under the Theme section, you can choose a
+theme according to your preferences Turn on or turn off subtitles Select a
+course with video content. Toggle subtitles on or off by selecting the CC icon
+in the video player control bar. Change language Select the ellipsis (three
+dots) in the top right corner of the home page. Select Settings from the
+dropdown menu. In the Language tab, choose your preferred language and select
+Save & Refresh.
+
+================================================================================

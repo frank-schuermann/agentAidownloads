@@ -1,0 +1,66 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-167166
+Upgrade | Windows Server 2016 to 2022 Upgrade Fails Due to Read-Only Machine.config File
+================================================================================
+
+Article ID       : KISP-167166
+Language          : en-us
+Created           : 2025-05-31
+Last Modified     : 2025-06-09
+Views             : 21
+Keywords          : CreatedByRubik
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/upgrade-windows-server-2016-to-2022-upgrade-fails-due-to-read-only-machine-config-file-71496290-3fa2-e5dd-4187-c4870a8c1a9a
+Description       : Remove the "Read-Only" attribute from `machine.config` to fix Windows Server 2022 upgrade failure.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Upgrade | Windows Server 2016 to 2022 Upgrade Fails Due to Read-Only
+Machine.config File AI-assisted content. This article was partially
+created/improved with the help of AI. An author reviewed and revised the content
+as needed. Learn more Important: This was authored via https://aka.ms/Rubik.
+Follow Rubik 5993 link for any updates. Author: Esterlin Aleman When upgrading
+from Windows Server 2016 to Windows Server 2022, the process may fail and revert
+to the previous version. This article provides details on the issue, its causes,
+and steps to resolve it. Symptoms During the upgrade attempt, the process fails,
+and the server reverts to Windows Server 2016. The following error is logged in
+the registry at HKEY_LOCAL_MACHINE\SYSTEM\Setup\setupdiag\results: Error Found
+AdvancedInstaller failure. Last Phase: Pre SysPrep Last Operation: Upgrade
+securityExecutable: WFServicesReg.exe Exit Code: 2147500037 Phase: 38 Mode:
+Install (first install) Component: NetFx35CDF-CDF_GenericCommands,
+Culture=neutral, PublicKeyToken=31bf3856ad364e35, ProcessorArchitecture=amd64
+Additionally, the setup log located at
+C:\$WINDOWS.~BT\Sources\Panther\setupact.log contains the following errors:
+2025-05-05 11:05:35, Error CSI 00000232 (F) Done with generic command 115;
+CreateProcess returned 0, CPAW returned S_OK Process exit code 2147500037
+resulted in success? false Process output: [l:511 [511'DDSet_Entry:
+WFServicesReg.exe DDSet_Status: CFxInstaller::CopyConfigFilesToTemp is64bit=1
+DDSet_Status: CFileHelper::CopyConfigFilesToTempLocation DDSet_Error:
+CFileHelper::CheckIsWriteable
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\machine.config is read
+only. DDSet_Error: _fileHelper->CopyConfigFilesToTempLoca[gle=0x80004005]
+2025-05-05 11:05:35, Error CSI tion failed. Error code: 0x80004005 DDSet_Error:
+Failed to copy config files to temp directory. Error code: 0x80004005
+DDSet_CARetVal: -2147467259 DDSet_Exit: WFServicesReg.exe '][gle=0x80004005]
+2025-05-05 11:05:35, Info CSI 00000233 Direct SIL provider: Number of files
+opened: 1. 2025-05-05 11:05:35, Error [0x018007] CSI 00000234 (F) Failed
+execution of queue item Installer: Generic Command
+({81a34a10-4256-436a-89d6-794b97ca407c}) with HRESULT HRESULT_FROM_WIN32(14109).
+Failure will not be ignored: A rollback will be initiated after all the
+operations in the installer queue are completed; installer is
+reliable[gle=0x80004005] Cause The issue occurs because the file
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\machine.config has the
+"Read-Only" attribute enabled. This prevents the upgrade process from modifying
+the file, causing the upgrade to fail. Resolution To resolve this issue, follow
+these steps: Navigate to the directory
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\. Locate the file named
+machine.config. Right-click the file and select Properties. Under the General
+tab, uncheck the Read-Only attribute. Click OK to save the changes. Retry the
+upgrade process. After disabling the "Read-Only" attribute, the upgrade should
+complete successfully. More information Notes: First published: May 21, 2025
+Keywords: CreatedByRubik Tags: Rubik Article Id: 5993 Support Topics: Windows
+Servers\Windows Server 2016\Windows Server 2016\Windows Setup, Upgrade and
+Deployment\Installing or upgrading Windows
+
+================================================================================

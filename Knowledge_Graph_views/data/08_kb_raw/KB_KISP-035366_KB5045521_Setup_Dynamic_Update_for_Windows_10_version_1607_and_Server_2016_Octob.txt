@@ -1,0 +1,93 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035366
+KB5045521: Setup Dynamic Update for Windows 10, version 1607 and Server 2016: October 8, 2024
+================================================================================
+
+Article ID       : KISP-035366
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/kb5045521-setup-dynamic-update-for-windows-10-version-1607-and-server-2016-october-8-2024-32beefec-2e93-41f4-a5de-982c5f2568df
+
+================================================================================
+CONTENT:
+================================================================================
+
+KB5045521: Setup Dynamic Update for Windows 10, version 1607 and Server 2016:
+October 8, 2024 Summary This update makes improvements to Windows setup binaries
+or any files that setup uses for feature updates in Windows 10, version 1607 and
+Windows Server 2016. How to get this update Install this update To install this
+update, use one of the following release channels. Windows UpdateUpdate
+CatalogServer Update Services Available Next step Yes This update is available
+through Windows Update. It will be downloaded and installed automatically.
+Available Next step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. To download updates from the Update Catalog,
+see Steps to download updates from the Windows Update Catalog. Available Next
+step Yes This update will automatically sync with WSUS if you configure Products
+and Classifications as follows: Product: Windows 10​​​​​​​ Classification:
+Security Updates Prerequisites There are no prerequisites to apply this update.
+Restart information You do not have to restart your computer after you apply
+this update. Update replacement information This update does not replace any
+previously released update. File information The English (United States) version
+of this software update installs files that have the following attributes. This
+update might contain files for additional languages. For all supported x86-based
+versions File name File version Date Time File size appraiser.sdb Not versioned
+10-Sep-24 17:42 6,876,360 mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24
+17:42 44,032 mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 50,688
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 48,128
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 47,104
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 52,224
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 54,272
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 45,056
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 50,176
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 47,616
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 53,760
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 53,248
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 40,448
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 49,152
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 51,200
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 33,792
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 32,256
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 46,592
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 48,640
+MediaSetupUIMgr.dll 10.0.14393.7420 10-Sep-24 17:42 13,725,736 MupMigPlugin.dll
+10.0.14393.7420 10-Sep-24 17:42 82,944 mup-replacement.man Not versioned
+10-Sep-24 17:42 1,657 SetupPlatform.dll 1.42.14393.7420 10-Sep-24 17:42
+5,774,376 SetupPlatform.exe 1.42.14393.7420 10-Sep-24 17:42 154,160
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 49,664
+UpdateSetupUIMgr.dll 10.0.14393.7420 10-Sep-24 17:42 1,615,800
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 28,160
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 28,672 For all supported
+x64-based versions File name File version Date Time File size appraiser.sdb Not
+versioned 10-Sep-24 17:42 7,055,216 mediasetupuimgr.dll.mui 10.0.14393.7420
+10-Sep-24 17:42 44,032 mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42
+50,688 mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 48,128
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 47,104
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 52,224
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 54,272
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 45,056
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 50,176
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 47,616
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 53,760
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 53,248
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 40,448
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 49,152
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 51,200
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 33,792
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 32,256
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 46,592
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 48,640
+MediaSetupUIMgr.dll 10.0.14393.7420 10-Sep-24 17:42 13,853,736 MupMigPlugin.dll
+10.0.14393.7420 10-Sep-24 17:42 109,056 mup-replacement.man Not versioned
+10-Sep-24 17:42 1,657 SetupPlatform.dll 1.42.14393.7420 10-Sep-24 17:42
+7,220,264 SetupPlatform.exe 1.42.14393.7420 10-Sep-24 17:42 165,928
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 49,664
+UpdateSetupUIMgr.dll 10.0.14393.7420 10-Sep-24 17:42 1,696,336
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 28,160
+mediasetupuimgr.dll.mui 10.0.14393.7420 10-Sep-24 17:42 28,672 References
+​​​​​​​Description of the standard terminology that is used to describe
+Microsoft software updates Bug ID Title 53630286 [SetupDU][MSRC 86704] Windows
+Update Stack Elevation of Privilege - SafeBreach File version: v1.000
+
+================================================================================

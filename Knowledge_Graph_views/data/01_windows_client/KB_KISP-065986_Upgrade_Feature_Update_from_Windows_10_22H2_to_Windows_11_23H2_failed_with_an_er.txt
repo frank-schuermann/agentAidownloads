@@ -1,0 +1,116 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-065986
+Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an error 0x800f0818
+================================================================================
+
+Article ID       : KISP-065986
+Language          : en-us
+Created           : 2025-04-16
+Last Modified     : 2025-06-09
+Views             : 58
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/upgrade-feature-update-from-windows-10-22h2-to-windows-11-23h2-failed-with-an-error-0x800f0818-1a41a708-6aa9-5531-14d9-07f57309a032
+
+================================================================================
+CONTENT:
+================================================================================
+
+Upgrade: Feature Update from Windows 10 22H2 to Windows 11 23H2 failed with an
+error 0x800f0818 Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 201754 link for any updates. Author: Aravindhan A
+Summary/Symptom Customer trying to upgrade the machine from Windows 10 22H2 to
+Windows 11 23H2 via feature update and it was rolled back during the SAFE_OS
+phase and INSTALL_UPDATES operation //From setupact.log: YYYY-MM-DD HH:MM:SS,
+Info MOUPG SetupHost::Initialize: CmdLine = [/Product Client /PreDownload
+/Package /Priority Normal /Quiet /ReportId 96CEE****************3-2D4E1B1306F5.1
+/FlightData "RS:24944" "/CancelId" "C-757a2**********************4256ca34"
+"/PauseId" "P-757a20**********************" "/CorrelationVector"
+"otIKT***B0mTOyAl.1.1.28.4" "/DownloadSizeInMB" "3046" /InstallLangPacks
+C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\LP /PostOOBE
+C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\SetupComplete.cmd
+/PostRollback
+C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\ErrorHandler.cmd
+/DynamicUpdate Disable /Compat IgnoreWarning] ++++++++++ YYYY-MM-DD HH:MM:SS,
+Info MOUPG SetupManager: Copying user-provided langpack package files from
+[C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\LP] ->
+[C:\$WINDOWS.~BT\LangPacks\User]... +++++++++++ YYYY-MM-DD HH:MM:SS, Info CBS
+External EvaluateApplicability - Current state, package: Microsoft-Windows-
+Client-LanguagePack-Package~31bf3856ad364e35~amd64~hu-HU~10.0.19041.1, package
+current state: Absent, lowest rollup current state: Absent, resulting current
+state: Absent YYYY-MM-DD HH:MM:SS, Error DISM API: PID=33880 TID=33436 The
+package is not applicable to the image. -
+CAddPackageCommandObject::InternalExecute(hr:0x800f081e) YYYY-MM-DD HH:MM:SS,
+Error DISM API: PID=33880 TID=33436 InternalExecute failed -
+CBaseCommandObject::Execute(hr:0x800f081e) YYYY-MM-DD HH:MM:SS, Error DISM API:
+PID=33880 TID=32676 CAddPackageCommandObject internal execution failed -
+DismAddPackageInternal(hr:0x800f081e) YYYY-MM-DD HH:MM:SS, Error SP
+CAddCbsPackage::DoExecute: Failed to add package Add [1] package
+C:\$WINDOWS.~BT\LangPacks\User\hu-hu\Microsoft-Windows-Client-Language-
+Pack_x64_hu-hu.cab to C:\$WINDOWS.~BT\NewOS. Error: 0x800F081E +++++++++++ YYYY-
+MM-DD HH:MM:SS, Info CBS Appl: Evaluating package applicability for package
+Microsoft-Windows-Xps-Xps-Viewer-Opt-
+Package~31bf3856ad364e35~amd64~~10.0.22621.1, applicable state: Installed YYYY-
+MM-DD HH:MM:SS, Info CBS Package doesn't match FOD for the current OS, package:
+Microsoft-Windows-LanguageFeatures-Basic-hu-hu-
+Package~31bf3856ad364e35~amd64~~10.0.19041.1, expected:Microsoft-Windows-
+LanguageFeatures-Basic-hu-hu-Package~31bf3856ad364e35~amd64~~10.0.22621.1
+[HRESULT = 0x800f0818 - CBS_E_IDENTITY_MISMATCH] YYYY-MM-DD HH:MM:SS, Info CBS
+Failed to check capability logic [HRESULT = 0x800f0818 -
+CBS_E_IDENTITY_MISMATCH] YYYY-MM-DD HH:MM:SS, Error DISM DISM Package Manager:
+PID=1312 TID=1632 Failed initiating changes -
+CDISMPackage::Internal_ChangePackageState(hr:0x800f0818) YYYY-MM-DD HH:MM:SS,
+Error DISM DISM Package Manager: PID=1312 TID=1632 Failed to Install the package
+Microsoft-Windows-LanguageFeatures-Basic-hu-hu-
+Package~31bf3856ad364e35~amd64~~10.0.19041.1. -
+CDISMPackage::InstallEx(hr:0x800f0818) YYYY-MM-DD HH:MM:SS, Error DISM API:
+PID=1600 TID=448 Failed to install package -
+CAddPackageCommandObject::InternalExecute(hr:0x800f0818) YYYY-MM-DD HH:MM:SS,
+Error DISM API: PID=1600 TID=448 InternalExecute failed -
+CBaseCommandObject::Execute(hr:0x800f0818) YYYY-MM-DD HH:MM:SS, Error DISM API:
+PID=1600 TID=1604 CAddPackageCommandObject internal execution failed -
+DismAddPackageInternal(hr:0x800f0818) YYYY-MM-DD HH:MM:SS, Error SP
+CAddCbsPackage::DoExecute: Failed to add package Add [1] package
+C:\$WINDOWS.~BT\LangPacks\User\hu-hu\Microsoft-Windows-LanguageFeatures-Basic-
+hu-hu-Package~31bf3856ad364e35~amd64~~.cab to C:\$WINDOWS.~BT\NewOS. Error:
+0x800F0818 YYYY-MM-DD HH:MM:SS, Info DISM API: PID=1600 TID=1604 Input
+parameters: Session: 2, ScanImage: 0, CancelEvent: 0x0000000000000000, Progress:
+0x00007FFDF3588220, UserData: 0x000000FEA310B218 - DismCheckImageHealthInternal
+++++++++++ YYYY-MM-DD HH:MM:SS, Error SP Operation execution failed: 3. hr =
+0x800F0818 YYYY-MM-DD HH:MM:SS, Error SP ExecuteOperations: Main operation
+execution failed. Error: 0x800F0818 YYYY-MM-DD HH:MM:SS, Error SP
+ExecuteOperations: Failed execution phase Safe OS. Error: 0x800F0818 YYYY-MM-DD
+HH:MM:SS, Error SP CSetupPlatformPrivate::Execute: Execution of operations queue
+failed, abandoning. Error: 0x800F0818 YYYY-MM-DD HH:MM:SS, Info Persisting
+diagnostics data to C:\$WINDOWS.~BT\Sources\Diagnostics\diagnostics.dat YYYY-MM-
+DD HH:MM:SS, Info Diagnostics data saved successfully YYYY-MM-DD HH:MM:SS, Info
+SP Execution phase [Safe OS] exiting with HRESULT [0x800F0818] Error code:
+0x800f0818 # for hex 0x800f0818 / decimal -2146498536 CBS_E_IDENTITY_MISMATCH
+cbsapi.h # container package points to a package manifest whose # identity
+doesn't match the identity specified. //From setupact_rollback.log YYYY-MM-DD
+HH:MM:SS, Info MOUPG InitializeRoutine: MOSETUP_ACTION_IMAGE_EXIT YYYY-MM-DD
+HH:MM:SS, Info MOUPG ImageExit: Initializing SetupResult: [0x800f0818] YYYY-MM-
+DD HH:MM:SS, Info MOUPG ImageExit: Initializing Extended: [0x20003] YYYY-MM-DD
+HH:MM:SS, Info MOUPG ImageExit: Initializing Scenario: [6] YYYY-MM-DD HH:MM:SS,
+Info MOUPG ImageExit: Initializing Mode: [5] YYYY-MM-DD HH:MM:SS, Info MOUPG
+ImageExit: Initializing Product: [1] YYYY-MM-DD HH:MM:SS, Info MOUPG ImageExit:
+Initializing Target: [C] YYYY-MM-DD HH:MM:SS, Info MOUPG ImageExit: Initializing
+SQM: [FALSE] YYYY-MM-DD HH:MM:SS, Info MOUPG ImageExit: Initializing PostReboot:
+[TRUE] Decoded setup exit code: Result code: 0x800f0818 Extend code: 0x20003
+Extend code: phase 2 SP_EXECUTION_SAFE_OS Extend code: operation 3
+SP_EXECUTION_OP_INSTALL_UPDATES Cause During previous windows 10 feature update
+via SCCM, there was a “setupconfig.ini” stored under the below path,
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+Inside the Setupconfig.ini file: [SetupConfig] InstallLangPacks
+C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\LP
+PostOOBE=C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\SetupComplete.cmd P
+ostRollback=C:\ProgramData\Temp\Inplaceupgrade\W10_22H2\Scripts\ErrorHandler.cmd
+DynamicUpdate Disable Article resolution Deleted the below reg key and then the
+upgrade went successful,
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+More information If the update is delivered through Windows Update, Windows
+Setup searches in a default location for a setupconfig file. You can include the
+setupconfig file at
+%systemdrive%\Users\Default\AppData\Local\Microsoft\Windows\WSUS\SetupConfig.ini
+https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-
+setup-automation-overview?view=windows-11#using-windows-update
+
+================================================================================

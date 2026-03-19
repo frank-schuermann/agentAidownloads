@@ -1,0 +1,101 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-062259
+March 11, 2025—Hotpatch KB5053638 (OS Build 20348.3270)
+================================================================================
+
+Article ID       : KISP-062259
+Language          : en-us
+Created           : 2025-04-23
+Last Modified     : 2026-03-14
+Views             : 1
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/march-11-2025-hotpatch-kb5053638-os-build-20348-3270-b1437455-081c-4610-b496-3acfc72472e9
+
+================================================================================
+CONTENT:
+================================================================================
+
+March 11, 2025—Hotpatch KB5053638 (OS Build 20348.3270) Improvements and fixes
+This security update includes quality improvements. The following summary
+outlines key issues addressed by the KB update after you install it. Also,
+included are available new features. The bold text within the brackets indicates
+the item or area of the change. This update makes miscellaneous security
+improvements to internal OS functionality. No additional issues were documented
+for this release. If you installed earlier updates, your device downloads and
+installs only the new updates contained in this package. How to get this update
+Before you install this update Microsoft now combines the latest servicing stack
+update (SSU) for your operating system with the hotpatch update. For general
+information about SSUs, see Servicing stack updates and Servicing Stack Updates
+(SSU): Frequently Asked Questions. If you are using Windows Update or Windows
+Server Update Services (WSUS), the latest SSU will be installed with this
+update. Install this update To install this update, use one of the following
+Windows and Microsoft release channels. Windows UpdateCatalogServer Update
+Services Available Next Step This update downloads and installs automatically
+from Windows update and Microsoft Update. Available Next Step See the other
+options. ​​​​​​​ Available Next Step This update automatically syncs with
+Windows Server Update Services (WSUS) if you configure Products and
+Classifications as follows: Product: Server 2022 Hotpatch Category
+Classification: Security Updates File information For a list of the files that
+are in this update, download the file information for cumulative update 5053638.
+For a list of the files that are in the servicing stack update, download the
+file information for the SSU (KB5053666) - version 20348.3320. Microsoft
+Internal Support Information - K5053638 Bug information Released in 2025 3B
+(2025.3 B) Individual VSO bugs related to K5053638 ID Title 53304663 [MSRC
+90376][Hot 2022] win32kfull!xxxSetShellWindow Use After Free - Internal 55896729
+[MSRC 91072][Hot 2022] Spoofing - Internet Explorer Edge - MapUrlToZone Bypass
+due to &quot;:&quot; in first part of IP address - Internal - Copy 54792822
+[MSRC 92283] ElevationOfPrivilege - Controlled heap corruption in lsass.exe from
+LPAC sandbox 56038554 [MSRC 94663] mmc.exe - Microsoft Windows MSC File
+Insufficient UI Warning - RCE - Zero Day Initiative 54900790 [MSRC 92448][Hot
+2022] RemoteCodeExecution - UAF while processing dynamic DNS updates leads to
+RCE - Internal 55051047 [MSRC 92670][Hot 2022] - TAPI32!lineGetAddressCapsA -
+OOBW - Unknown 55114437 [MSRC 92737][Hot 2022] RRAS - IP Router Monitor RCE
+Vulnerability - Unknown 56280511 [SPACE][Hotpatch Orchestrator] Update Hotpatch
+Orchestrator to Address Manifest Generation Errors That Excludes Some Hotpatch
+Binaries in Build Package - FE 55119814 [MSRC 92759][Hot 2022] vhdmp.sys -
+Rct::SequenceTable::ConsumeOffsetTable EoP - Unknown 55138050 [MSRC 92796][Hot
+2022] vhdmp.sys - Rct::SequenceTable::IsUpdatePresentInOffsetTable OOB write -
+Unknown 56185404 [Fe Hot]Failed VhdPong.Tests: Regression from fix for MSRC
+92796 54854641 [MSRC 92352][Hot 2022] Windows File Explorer (explorer.exe) -
+NTLM Hash Capture via .library-ms File Handling without User Interaction -
+Unknown 55080051 [MSRC 92706][Hot 2022] NTLM Hash Disclosure through
+searchConnector-ms - Unknown 56018773 [MSRC 94616] [CHILD CASE of MSRC
+92706][Hot 2022] NTLM Hash Disclosure through searchConnector-ms: iconReference
+tag - Unknown 54877605 [MSRC 92392][Hot 2022] ks.sys - Windows Kernel Streaming
+Driver arbitrary physical memory mapping - Unknown 55235499 [MSRC 93005][Hot
+2022] ElevationOfPrivilege - Windows Kernel Streaming Driver Elevation of
+Privilege Vulnerability - Unknown 55429713 [MSRC 93291][Hot 2022] Remote Desktop
+Gateway - receive callback compete causing UAF or Double free - Unknown 55580599
+[MSRC 93611][Hot 2022] RCE/EoP from WSL2/GuestVM to Host via arbitrary write on
+host kernel address space via
+DXG_HOST_VIRTUALGPU_VMBUS::VmBusSubmitVailPresentHistoryToken 55798263 [MSRC
+94100] [CHILD CASE of MSRC 93611][Hot 2022] Null Pointer dereference in
+DXG_HOST_VIRTUALGPU_VMBUS::VmBusQueryAdapterInfo - Google, Inc. 56033590 [MSRC
+94652] [CHILD CASE of MSRC 92392][Hot 2022] ks.sys - Windows Kernel Streaming
+Driver arbitrary physical memory mapping - Unknown 54877824 [MSRC 92393] ks.sys
+[bypass of MSRC 88065][Hot 2022] - buffer overflow vulnerability within function
+'ks!CKsMdlcache::MdlCacheProcessPostProbeIrp' - Unknown 55059493 [MSRC
+92673][Hot 2022] usbvideo.sys - USBD_ParseDescriptors OOB read - Internal
+55059728 [MSRC 92674] [CHILD CASE of MSRC 92673][Hot 2022] usbvideo.sys
+-SelectDeviceConfiguration OOB read - Internal 55059811 [MSRC 92675] [CHILD CASE
+of MSRC 92673][Hot 2022] usbvideo.sys - insufficient length check causing OOB
+read - Internal 56459774 [MSRC 95493][Hot 2022] mstscax.dll - vulnerability
+within request handler W32DrDevice::ConstructFileName - Internal 56111708 [MSRC]
+Hotpatch for Windows Server 2022 Hotpatch - KB5053638 - 2025.03 B 54860714
+[Undo][MSRC 92376][Hot 2022] mispace.dll Storage Spaces SMP Service - Unchecked
+Pointer Dereference - Unknown 54860865 [Undo][MSRC 92378][Hot 2022] mispace.dll
+- Heap-Based Buffer Overflow via GetCreateVolumeParams - Unknown 54881423
+[Undo][MSRC 92405][Hot 2022] Information disclosure Vulnerability in Microsoft
+Storage Spaces SMP Service Due to Unchecked Pointer Dereference - Unknown
+55826328 [MSRC 94159][Hot 2022][ApolloSurge] fastfat!FatSetupAllocationSupport -
+EoP -heap buffer overflow - Internal 55870096 [MSRC 94241] [VARIANT CASE of MSRC
+94159][Hot 2022][ApolloSurge] variant of 94159 -ExFat - heap buffer overflow
+vulnerability within !FatSetupAllocationSupport - Internal 56034334 [MSRC
+94655][Hot 2022][ApolloSurge] NTFS Metadata leaking ntoskrnl build number -
+Internal 56118727 [MSRC 94806][Hot 2022] ElevationOfPrivilege - OOB read in
+Ntfs!InitializeNewTable - Internal 56129501 [MSRC 94820][Hot 2022] NTFS - Out of
+bounds read in NTFS!InitializeRestartState due to improper-length string -
+Internal 56134551 [MSRC 94846][Hot 2022] ElevationOfPrivilege - Out of bounds
+write in ntfs!InitializeRestartState due to improperly-trusted OAT - Internal
+55010037 [MSRC 92563][Hot 2022] CLFS.sys - Clfs kernel denial of service
+
+================================================================================

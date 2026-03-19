@@ -1,0 +1,65 @@
+================================================================================
+RUNBOOK — RB-KISP-040904
+ADDS: GPHELP: Understanding Group Policy Object versionNumber Limits
+================================================================================
+
+Runbook ID        : RB-KISP-040904
+Category          : Operational Procedure
+Estimated Time    : 30 minutes
+Last Updated      : 2025-12-04
+Source KB          : KISP-040904
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/adds-gphelp-understanding-group-policy-object-versionnumber-limits-cd2d0948-5f4b-bea7-9cff-3c5480650102
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+ADDS: GPHELP: Understanding Group Policy Object versionNumber Limits Important:
+This was authored via https://aka.ms/contentidea. Follow Content Idea (CI)
+198572 link for any updates. Author: Vivek Agarwal Summary When the Group Policy
+Object (GPO) version number for a computer reaches its maximum value of 65535
+(Decimal), any further changes made by the admin to the GPO will still be
+detected by the client machines. Lab Environment: Client Machine:
+Client3.contoso.com Domain Controller (DC): ContTokDCD.contoso.com GPO Name:
+MSTEST-GPO5 More information Steps to Reproduce: Create a GPO: Create a GPO
+named MSTEST-GPO5 and configure one computer group policy setting in it. It will
+show computer version 1 (AD) and 1 (Sysvol). Example GPO GUID:
+{AE143147-B206-469D-A074-0B908A12FCDC} Set Maximum Version Number: In adsiedit,
+edit the GPO GUID {AE143147-B206-469D-A074-0B908A12FCDC} and set the
+versionNumber attribute value to 2147483647. In the Sysvol folder for the GPO
+{AE143147-B206-469D-A074-0B908A12FCDC}, set the gpt.iniversionNumber value to
+2147483647. Link the GPO appropriately where the computer objects reside. It
+will show computer version 65535 (AD) and 65535 (Sysvol) in GPMC.
+GPSVC(1890.f24) 05:17:51:870 ProcessGPOs(Machine): Processing extension Registry
+GPSVC(1890.f24) 05:17:51:870 ReadStatus: Read Extension's Previous status
+successfully. GPSVC(1890.f24) 05:17:51:870 ReadGPOList:++ GPSVC(1890.f24)
+05:17:51:871 ReadGPOList: Read Key:0 GPSVC(1890.f24) 05:17:51:872 ReadGPOList:
+Read Key:1 GPSVC(1890.f24) 05:17:51:872 ReadGPOList:-- (Result:TRUE)
+GPSVC(1890.f24) 05:17:51:872 CheckGPOs: ReadGPOList count = 2 GPSVC(1890.f24)
+05:17:51:872 CompareGPOLists: Different version numbers found -------
+GPSVC(1890.f24) 05:17:51:873 ParseRegistryFile: Entering with \\contoso.com\SysV
+ol\contoso.com\Policies\{AE143147-B206-469D-A074-
+0B908A12FCDC}\Machine\registry.pol. GPSVC(1890.f24) 05:17:51:889
+SetRegistryValue: RedirectionGuardPolicy => 1 [OK] GPSVC(1890.f24) 05:17:51:889
+Se
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-040904
+
+================================================================================

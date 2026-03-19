@@ -1,0 +1,47 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035195
+ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE
+================================================================================
+
+Article ID       : KISP-035195
+Language          : en-us
+Created           : 2025-01-06
+Last Modified     : 2025-01-06
+Views             : 113
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-communication-failing-with-error-winhttp-invalid-server-response-0120c3e3-d7fc-d90a-c27a-7169891a33a3
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: Communication failing with ERROR_WINHTTP_INVALID_SERVER_RESPONSE
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 197967 link for any updates. Author: Yukti Arora Summary/Symptom One
+complete subnet after client upgrade not able to communicate with MP and few
+clients in same subnet where client upgrade failed were able to communicate.
+Successfully queued event on HTTP/HTTPS failure for server 'ABC.XYZ.COM'.
+CcmMessaging Post to http://ABC.XYZ.COM/ccm_system/request failed with
+0x87d00231. CcmMessaging Failed in WinHttpReceiveResponse API, ErrorCode =
+0x2f78 CcmMessaging [CCMHTTP] ERROR:
+URL=http://ABC.XYZ.COM/ccm_system_windowsauth/request, Port=80, Options=1504,
+Code=12152, Text=ERROR_WINHTTP_INVALID_SERVER_RESPONSE Cause Specifically check
+and ask for all the proxy in between source and destination. Article resolution
+Check in IIS logs with client logs in case of any hit (as client needs to
+connect to the windows_auth endpoint first, first hit will fail with 401 but
+subsequent request goes through since the client get the kerb token) If no hits
+are found in IIS, then: Collect netmon trace from source and destination while
+browsing URL http://ABC.XYZ.COM/ccm_system/request and
+http://ABC.XYZ.COM/ccm_system_windowsauth/request failed in system context.
+Filter with IP address with source and destination in respective netmon to check
+if you are able to find hit or misses. If you are not able to find respective
+IP’s in netmon, then try to download cab file using link
+http://WUServerFQDN:port/Selfupdate/wuident.cab and check in IIS, if you are
+able to find respective IP addresses in the log file. If any proxy issue will be
+there, client will be re-directed to proxy address and that will be present in
+IIS log file during that time stamp. From there you can be assured that this is
+a proxy configuration issue and not something with SCCM. Notes: Support Topics:
+Management Tools\Configuration Manager\Microsoft Configuration Manager (current
+branch)\Client Installation, Registration and Assignment\Client Registration
+First published: Jan 06, 2025
+
+================================================================================

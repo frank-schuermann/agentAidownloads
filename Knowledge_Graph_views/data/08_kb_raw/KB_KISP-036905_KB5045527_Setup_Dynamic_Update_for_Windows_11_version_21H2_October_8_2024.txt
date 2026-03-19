@@ -1,0 +1,217 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-036905
+KB5045527: Setup Dynamic Update for Windows 11, version 21H2: October 8, 2024
+================================================================================
+
+Article ID       : KISP-036905
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/kb5045527-setup-dynamic-update-for-windows-11-version-21h2-october-8-2024-db8566e8-49c2-4bf4-9bb1-c0e6a086aa41
+
+================================================================================
+CONTENT:
+================================================================================
+
+KB5045527: Setup Dynamic Update for Windows 11, version 21H2: October 8, 2024
+Summary This update makes improvements to Windows setup binaries or any files
+that setup uses for feature updates in Windows 11, version 21H2. How to get this
+update Install this update To install this update, use one of the following
+release channels. Windows UpdateUpdate CatalogServer Update Services Available
+Next step Yes This update is available through Windows Update. It will be
+downloaded and installed automatically. Available Next step Yes To get the
+standalone package for this update, go to the Microsoft Update Catalog website.
+To download updates from the Update Catalog, see Steps to download updates from
+the Windows Update Catalog. Available Next step Yes This update will
+automatically sync with Windows Server Update Services (WSUS) if you configure
+Products and Classifications as follows: Product: Windows 11 Classification:
+Security Updates Prerequisites There are no prerequisites to apply this update.
+Restart information You do not have to restart your computer after you apply
+this update. Update replacement information This update replaces the previously
+released update KB5032305. File information The English (United States) version
+of this software update installs files that have the following attributes. This
+update might contain files for additional languages. For all supported x64-based
+versions File name File version Date Time File size AcRes.dll 10.0.22000.3250
+10-Sep-24 21:28 345,568 Appraiser.dll 10.0.22000.3250 10-Sep-24 21:28 2,242,024
+appraiser.sdb Not versioned 10-Sep-24 21:28 2,665,110 AppraiserRes.dll
+10.0.22000.3250 10-Sep-24 21:28 198,112 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 324,608 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 32,256
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 56,832 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:28 25,600 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 36,864 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28
+66,048 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 29,696
+compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 30,720
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 57,856 cmi2migxml.dll
+10.0.22000.3250 10-Sep-24 21:28 230,768 compatctrl.dll 10.0.22000.3250 10-Sep-24
+21:28 202,248 compatResources.dll 10.0.22000.3250 10-Sep-24 21:28 361,952
+cpufms.ini Not versioned 10-Sep-24 21:28 677 AcRes.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 349,184 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28
+30,208 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 62,464
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 25,088 csiagent.dll
+10.0.22000.3250 10-Sep-24 21:28 718,304 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 340,480 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 29,184
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 60,928 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:28 28,672 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 379,904 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 68,608
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 30,208 Dism.exe
+10.0.22000.3250 10-Sep-24 21:28 333,304 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 396,800 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 39,424
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 71,680 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:28 31,744 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 27,648 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 26,624
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 373,760 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 29,696 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 66,560 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 27,136
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 30,720 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 28,672 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 60,416 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 27,648
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 343,552 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 61,440 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 31,232 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28
+71,168 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 31,232 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 378,368 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 70,144 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28
+52,224 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 24,576
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 64,000 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 370,688 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 63,488 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 28,160
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 238,080 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 43,008 SetupPrep.exe.mui 10.0.22000.3250
+10-Sep-24 21:28 20,992 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 225,280
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 40,960 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:28 20,480 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 62,976 MediaSetupUIMgr.dll 10.0.22000.3250 10-Sep-24 21:28
+1,205,728 migcore.dll 10.0.22000.3250 10-Sep-24 21:28 9,709,024 mighost.exe
+10.0.22000.3250 10-Sep-24 21:28 280,072 migisol.dll 10.0.22000.3250 10-Sep-24
+21:28 148,848 migres.dll 10.0.22000.3250 10-Sep-24 21:28 26,080 MigStore.dll
+10.0.22000.3250 10-Sep-24 21:28 1,320,456 MigSys.dll 10.0.22000.3250 10-Sep-24
+21:28 456,176 MXEAgent.dll 10.0.22000.3250 10-Sep-24 21:28 374,256 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 341,504 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 382,464 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 29,184
+oscomps.xml Not versioned 10-Sep-24 21:28 449,232 AcRes.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 385,024 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 358,400
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 359,936 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 65,024 microsoft-hyper-v-migration-
+replacement.man Not versioned 10-Sep-24 21:28 6,052
+AppxUpgradeMigrationPlugin.dll 10.0.22000.3250 10-Sep-24 21:28 484,736
+SystemSettings_Handlers_Cortana-Replacement.man Not versioned 10-Sep-24 21:28
+992 twinui-replacement.man Not versioned 10-Sep-24 21:28 12,337 UpdateAgent-
+Replacement.man Not versioned 10-Sep-24 21:28 1,124 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 64,512 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 357,376 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 35,840
+Setup.exe 10.0.22000.3250 10-Sep-24 21:28 337,416 setupcompat.dll
+10.0.22000.3250 10-Sep-24 21:28 402,928 SetupCore.dll 10.0.22000.3250 10-Sep-24
+21:28 2,352,608 SetupHost.exe 10.0.22000.3250 10-Sep-24 21:28 861,680
+SetupPlatform.cfg Not versioned 10-Sep-24 21:28 13,549 SetupPlatform.dll
+1.66.22000.3250 10-Sep-24 21:28 9,602,528 SetupPlatform.exe 1.66.22000.3250
+10-Sep-24 21:28 243,160 SetupPrep.exe 10.0.22000.3250 10-Sep-24 21:28 1,250,800
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 350,208 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:28 41,984 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 58,880 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:28 337,920
+compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 35,328 UpdateAgent.dll
+10.0.22000.3250 10-Sep-24 21:28 3,200,520 upgradeagent.dll 10.0.22000.3250
+10-Sep-24 21:28 3,290,616 compatResources.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 31,744 winsetup.dll 10.0.22000.3250 10-Sep-24 21:28 3,036,640
+WinSetupBoot.sys 10.0.22000.3250 10-Sep-24 21:28 108,024 WinSetupMon.sys
+10.0.22000.3250 10-Sep-24 21:28 91,672 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:28 183,296 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:28 25,088
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28 34,816 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:28 17,920 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:28 25,600 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:28
+35,328 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:28 18,432 For all
+supported Arm64-based versions File name File version Date Time File size
+AcRes.dll 10.0.22000.3250 10-Sep-24 21:30 335,232 Appraiser.dll 10.0.22000.3250
+10-Sep-24 21:30 2,205,688 appraiser.sdb Not versioned 10-Sep-24 21:30 1,968,914
+AppraiserRes.dll 10.0.22000.3250 10-Sep-24 21:30 190,432 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 324,608 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 32,256 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+56,832 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 25,600
+compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30 36,864
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 66,048 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:30 29,696 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 30,720 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+57,856 cmi2migxml.dll 10.0.22000.3250 10-Sep-24 21:30 221,192 compatctrl.dll
+10.0.22000.3250 10-Sep-24 21:30 199,152 compatResources.dll 10.0.22000.3250
+10-Sep-24 21:30 353,248 cpufms.ini Not versioned 10-Sep-24 21:30 677
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 349,184 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 30,208 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 62,464 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 25,088
+csiagent.dll 10.0.22000.3250 10-Sep-24 21:30 708,064 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 340,480 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 29,184 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+60,928 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 28,672 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 379,904 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 68,608 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 30,208
+Dism.exe 10.0.22000.3250 10-Sep-24 21:30 342,400 AcRes.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 396,800 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+39,424 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 71,680
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 31,744 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 27,648 SetupPrep.exe.mui 10.0.22000.3250
+10-Sep-24 21:30 26,624 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 373,760
+compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30 29,696
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 66,560 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:30 27,136 SetupPrep.exe.mui 10.0.22000.3250
+10-Sep-24 21:30 30,720 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+28,672 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 60,416
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 27,648 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 343,552 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 61,440 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+31,232 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 71,168
+SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 31,232 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 378,368 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 70,144 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+52,224 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 24,576
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 64,000 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 370,688 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 63,488 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 28,160
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 238,080 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 43,008 SetupPrep.exe.mui 10.0.22000.3250
+10-Sep-24 21:30 20,992 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 225,280
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 40,960 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:30 20,480 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 62,976 MediaSetupUIMgr.dll 10.0.22000.3250 10-Sep-24 21:30
+1,219,040 migcore.dll 10.0.22000.3250 10-Sep-24 21:30 9,969,160 mighost.exe
+10.0.22000.3250 10-Sep-24 21:30 265,712 migisol.dll 10.0.22000.3250 10-Sep-24
+21:30 119,792 migres.dll 10.0.22000.3250 10-Sep-24 21:30 17,392 MigStore.dll
+10.0.22000.3250 10-Sep-24 21:30 1,339,376 MigSys.dll 10.0.22000.3250 10-Sep-24
+21:30 450,032 MXEAgent.dll 10.0.22000.3250 10-Sep-24 21:30 361,976 AcRes.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 341,504 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:30 382,464 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 29,184
+oscomps.xml Not versioned 10-Sep-24 21:30 449,232 AcRes.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 385,024 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 358,400
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 359,936 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 65,024 microsoft-hyper-v-migration-
+replacement.man Not versioned 10-Sep-24 21:30 6,052
+AppxUpgradeMigrationPlugin.dll 10.0.22000.3250 10-Sep-24 21:30 501,744
+SystemSettings_Handlers_Cortana-Replacement.man Not versioned 10-Sep-24 21:30
+992 twinui-replacement.man Not versioned 10-Sep-24 21:30 12,337 UpdateAgent-
+Replacement.man Not versioned 10-Sep-24 21:30 1,124 MediaSetupUIMgr.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 64,512 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:30 357,376 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30 35,840
+Setup.exe 10.0.22000.3250 10-Sep-24 21:30 322,928 setupcompat.dll
+10.0.22000.3250 10-Sep-24 21:30 397,320 SetupCore.dll 10.0.22000.3250 10-Sep-24
+21:30 2,407,928 SetupHost.exe 10.0.22000.3250 10-Sep-24 21:30 873,952
+SetupPlatform.cfg Not versioned 10-Sep-24 21:30 13,549 SetupPlatform.dll
+1.66.22000.3250 10-Sep-24 21:30 9,984,520 SetupPlatform.exe 1.66.22000.3250
+10-Sep-24 21:30 236,016 SetupPrep.exe 10.0.22000.3250 10-Sep-24 21:30 1,251,808
+AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 350,208 compatResources.dll.mui
+10.0.22000.3250 10-Sep-24 21:30 41,984 MediaSetupUIMgr.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 58,880 AcRes.dll.mui 10.0.22000.3250 10-Sep-24 21:30 337,920
+compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30 35,328 UpdateAgent.dll
+10.0.22000.3250 10-Sep-24 21:30 3,267,552 upgradeagent.dll 10.0.22000.3250
+10-Sep-24 21:30 3,386,352 compatResources.dll.mui 10.0.22000.3250 10-Sep-24
+21:30 31,744 winsetup.dll 10.0.22000.3250 10-Sep-24 21:30 3,029,512
+WinSetupBoot.sys 10.0.22000.3250 10-Sep-24 21:30 81,368 WinSetupMon.sys
+10.0.22000.3250 10-Sep-24 21:30 63,880 AcRes.dll.mui 10.0.22000.3250 10-Sep-24
+21:30 183,296 compatResources.dll.mui 10.0.22000.3250 10-Sep-24 21:30 25,088
+MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30 34,816 SetupPrep.exe.mui
+10.0.22000.3250 10-Sep-24 21:30 17,920 compatResources.dll.mui 10.0.22000.3250
+10-Sep-24 21:30 25,600 MediaSetupUIMgr.dll.mui 10.0.22000.3250 10-Sep-24 21:30
+35,328 SetupPrep.exe.mui 10.0.22000.3250 10-Sep-24 21:30 18,432 References
+​​​​​​​Description of the standard terminology that is used to describe
+Microsoft software updates Query words: Setup DU Bug ID Title 53630336
+[SetupDU][MSRC 86704] Windows Update Stack Elevation of Privilege - SafeBreach
+File version: v1.000
+
+================================================================================

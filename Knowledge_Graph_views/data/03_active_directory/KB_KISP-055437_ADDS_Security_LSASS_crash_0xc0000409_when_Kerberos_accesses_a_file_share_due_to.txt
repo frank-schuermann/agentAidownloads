@@ -1,0 +1,116 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-055437
+ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due to corrupt list on Windows 11 24H2 / Windows Server 2025
+================================================================================
+
+Article ID       : KISP-055437
+Language          : en-us
+Created           : 2025-02-28
+Last Modified     : 2025-12-04
+Views             : 42
+Keywords          : repub-2025-05-29
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-security-lsass-crash-0xc0000409-when-kerberos-accesses-a-file-share-due-to-corrupt-list-on-windows-11-24h2-windows-server-2025-36ba23ef-7f19-6325-644e-26b0b9a46df0
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: Security: LSASS crash (0xc0000409) when Kerberos accesses a file share due
+to corrupt list on Windows 11 24H2 / Windows Server 2025 Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 200092 link
+for any updates. Author: Ryan Ries Summary/Symptom A Windows 11 24H2 client or
+Windows Server 2025 machine attempts to access a file share, and lsass crashes.
+Subsequently the machine reboots. The user may not realize what the trigger is
+and it may appear as though the machine is crashing randomly. This occurs on
+machines that are fully up to date (as of the time of this writing) with the
+February 2025 hotfix. A crash has been observed when accessing a cloud (AAD)
+file share, and also crashing while accessing an onprem file share. Both
+scenarios appear to be affected. Exception details c0000409
+STATUS_FAIL_FAST_EXCEPTION Subcode: 0x3 FAST_FAIL_CORRUPT_LIST_ENTRY A crash
+dump of lsass reveals the following: DbgID ThreadID User Kernel Create Time
+(UTC)10 3450 (0n13392) 3s.296 3s.234 02/27/2025 06:14:03.616 AM # Call Site Info
+0 kerberos!RtlFailFast+0x5 1 kerberos!FatalListEntryError+0x5 2
+kerberos!InsertHeadList+0xe 3 kerberos!KerbCacheKdcProxyCacheEntry+0x72 4
+kerberos!KerbInitializeCloudKerbFromAsRepCredential+0x5e5 5
+kerberos!KerbConsumeAsRepCallbackAndInitializeCloudKerb+0x7a 6
+kerberos!KerbQuerySpnOracle+0x92 7 kerberos!KerbGetServiceTicketInternal+0xa01 8
+kerberos!KerbGetServiceTicketEx+0xce Ticket:
+cifs/pii_removed.file.core.windows.net@ 9 kerberos!KerbGetServiceTicket+0x7b a
+kerberos!SpInitLsaModeContext_Old+0x2f2c b lsasrv!WLsaProcessContext+0x73d c
+lsasrv!WLsaInitContext+0x97 d lsasrv!NegBuildRequestToken+0xa9f e
+lsasrv!NegGenerateInitialToken+0x56 f lsasrv!NegInitLsaModeContext+0x8c910
+lsasrv!NegInitLsaModeContextEx+0xea11 lsasrv!WLsaProcessContext+0x73d12
+lsasrv!WLsaInitContext+0xcc13 lsasrv!SspiExProcessSecurityContext+0x60414
+sspisrv!SspirProcessSecurityContext+0x25215 rpcrt4!Invoke+0x7316
+rpcrt4!Ndr64StubWorker+0x6ee17 rpcrt4!NdrServerCallAll+0x3c18
+rpcrt4!DispatchToStubInCNoAvrf+0x1719
+rpcrt4!RPC_INTERFACE::DispatchToStubWorker+0x1941a
+rpcrt4!RPC_INTERFACE::DispatchToStub+0x8b91b
+rpcrt4!LRPC_SBINDING::DispatchToStub+0x8b91c
+rpcrt4!LRPC_SCALL::DispatchRequest+0xaa81d
+rpcrt4!LRPC_SCALL::QueueOrDispatchCall+0xe41e
+rpcrt4!LRPC_SCALL::HandleRequest+0x2ba Client: PID: 0x4 TID: 0x44301f
+rpcrt4!LRPC_SASSOCIATION::HandleRequest+0x24620
+rpcrt4!LRPC_ADDRESS::HandleRequest+0x3ac21
+rpcrt4!LRPC_ADDRESS::ProcessIO+0x2f322 rpcrt4!LrpcIoComplete+0xc823
+ntdll!TppAlpcpExecuteCallback+0x3b424 ntdll!TppWorkerThread+0x56325
+kernel32!BaseThreadInitThunk+0x1726 ntdll!RtlUserThreadStart+0x2c 0:007> ??
+LogonSession->PrimaryCredentials.KdcProxyCache.Initializedunsigned char 0x00 ''
+TTD is impossible due to the virtual machines having RunAsPPL enabled with UEFI
+lock, and RunAsPPL cannot be disabled because it would require running the UEFI
+opt-out tool and it would require physical access to the machine at a very early
+phase during boot, which is not possible in an AVD environment. lsass crashes
+while attempting to acquire a Kerberos service ticket for
+cifs/pii_removed.file.core.windows.net. When lsass attempts to acquire this
+Kerberos service ticket, it first looks in the local SPN cache. It did not find
+the cache entry there, so it goes on to query the SPN Oracle. This of course is
+an Azure endpoint that requires Cloud Kerb and so the KDC proxy is a
+login.microsoftonline.com/tenant-id/kerberos URL. So now we have a cache entry
+for the KDC Proxy cache so we try to add that cache entry to the KDC Proxy
+cache. Problem is, that cache is uninitialized. In the simplest terms we attempt
+to add an object to an uninitialized linked list, and this makes lsass explode.
+KerbInitKdcProxyCache must be called prior to adding anything to this cache.
+KerbCleanupKdcProxyCache unitializes the cache. Probably every time the cache is
+emptied out. But it seems we have a race condition where someone has called the
+uninitialize function first, then we try to add something new to the list
+without re-initializing the list first. Cause I have proposed the following to
+fix to the crash from VOIDKerbCacheKdcProxyCacheEntry( __in PKDC_PROXY_CACHE
+KdcProxyCache, __inout PKDC_PROXY_CACHE_ENTRY CacheEntry ){
+D_DebugLog((DEB_TRACE_KDC, "cache proxy cache entry %p for domain %wZ\n",
+CacheEntry, &CacheEntry->DomainName)); KerbLockKdcProxyCache(); InsertHeadList(
+&KdcProxyCache->CacheEntries.List, &CacheEntry->ListEntry.Next );
+KerbUnlockKdcProxyCache();} To this: VOIDKerbCacheKdcProxyCacheEntry( __in
+PKDC_PROXY_CACHE KdcProxyCache, __inout PKDC_PROXY_CACHE_ENTRY CacheEntry ){
+D_DebugLog((DEB_TRACE_KDC, "cache proxy cache entry %p for domain %wZ\n",
+CacheEntry, &CacheEntry->DomainName)); NT_ASSERTMSG("KdcProxyCache->Initialized
+== TRUE", KdcProxyCache->Initialized); KerbLockKdcProxyCache();if
+(KdcProxyCache.Initialized) { InsertHeadList( &KdcProxyCache->CacheEntries.List,
+&CacheEntry->ListEntry.Next ); } KerbUnlockKdcProxyCache();} This safeguard is
+already in place in several other functions through the same source code file.
+Article resolution Track related bugs. Install corrective or preventative OS
+versions or OS updates as they become available OS Bug # Resolving KB Release
+Date Comments VNEXT \ Active Branch 57576500 RTM RTM Windows 11 24H2 56488103
+(DBD)56488103 (EBD)56488103 (EBD) KB5064081 <TBD><TBD> 2025 8D 2025 9D on client
+SKU2026 1B on Server SKUs 2025 8D KB5064081 released to WUC on August 29, 2026
+disabled by default. That fix will be flighted from 0 to 100% enablement on
+WIn11 24H2 clients over the next 30 days with full enblement triggered by the
+installation of 9D.25. Current thinking is that this fix will not be enabled by
+default on WS 2025 Server SKUs until 1B.26. This fix shipped disabled by default
+in Windows Updates released on and after 8D.25 KB5064081 but via an MSI needs
+documented in: WSD Wiki-Enabling KIR preview fixes - OSGWiki For questions NOT
+resolved by this KB including whether this issue was mitigated by 8D.25
+KB5064081, please notify To: Herbert Mauerer <Herbert.Mauerer@microsoft.com>;
+Ryan Ries <Ryan.Ries@microsoft.com>; Telmo Terencio
+<Telmo.Terencio@microsoft.com>; Arren Conner <arrenc@microsoft.com> Subject: MSS
+Case <case #> is a match for KB5055152 ADDS: Windows 11 24H2: LSASS crash in
+Kerberos when attempting to access a file share due to corrupt list Include:
+Repro Steps Business impact details More information Related bugs OS Bug
+57576500: [AB] Crash in Kerberos when attempting to access a cloud file share
+due to corrupt list OS Bug 56488103: [Ge] Crash in Kerberos when attempting to
+access a cloud file share due to corrupt list Related Cases 2503070040009352
+2502200050004829 2501300040013852 2503050030003350 2503260050003356
+2504110040007715 2503260050003356 2508040050002118 Notes: SR Number:
+2501300040013852 First published: Feb 28, 2025 Keywords: repub-2025-05-29 Tags:
+underinvestigation
+
+================================================================================

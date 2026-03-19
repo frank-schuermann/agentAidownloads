@@ -1,0 +1,282 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-038306
+Windows 11:NET: Wi-Fi fails to connect automatically after GP update when fMinimizeConnections and fBlockNonDomain transition from 3,1 to 0,0 respectively
+================================================================================
+
+Article ID       : KISP-038306
+Language          : en-us
+Created           : 2025-01-15
+Last Modified     : 2025-06-09
+Views             : 95
+Keywords          : fMinimizeConnections,fBlockNonDomain,Wi-Fi,Auto-connect,WCM,Security Baseline
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-11-net-wi-fi-fails-to-connect-automatically-after-gp-update-when-fminimizeconnections-and-fblocknondomain-transition-from-3-1-to-0-0-respectively-e5c200b1-aa0c-21b7-07ec-601b8480cb7c
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows 11:NET: Wi-Fi fails to connect automatically after GP update when
+fMinimizeConnections and fBlockNonDomain transition from 3,1 to 0,0 respectively
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 198835 link for any updates. Author: Bharath Kumar M Summary/Symptom The
+customer is implementing a security baseline called CIS Baseline Security GPO,
+which has WCM configuration to disables simultaneous network connections and
+blocks any new network connections when a domain authenticated connection is
+already present. This security baseline policy sets the WCM settings
+fMinimizeConnections to 3 and fBlockNonDomain to 1. This Group Policy is applied
+to all Windows 11 devices in the environment. However, the customer wants to
+create an exception to allow multiple network connections for a specific set of
+devices. They created another Group Policy with WCM settings
+fMinimizeConnections set to 0 and fBlockNonDomain set to 0. Baseline Security
+GPO is also enabling “Process even if the Group Policy objects have not changed”
+setting. The issue arises when the first Group Policy is processed, causing the
+Wi-Fi interface to disconnect as expected. However, when the second Group Policy
+is processed, the Wi-Fi should automatically reconnect, but it does not do so.
+Repro Steps: Customer has setup two GPOs in the following way in an OU
+containing Windows 11 machines.The 1st GPO having lowest precedence is setting
+the below to all Windows 11 machines, Apply the settings as specified in CIS
+Baseline Security GPO which also contains the below WCM settings.
+fMinimizeConnections to 3 to block Wi-Fi Connection when connected to Ethernet.
+fBlockNonDomain to 1 to prevent connections to both a domain-based network and a
+non-domain-based network at the same time. The 2nd GPO having higher precedence
+is setting the below to few Windows 11 machines through GPO machine account
+security filtering to exempt them from above strict WCM policy,
+fMinimizeConnections set to 0 fBlockNonDomain to 0. Let’s say we have a client
+in the exemption category (WCM settings of Winning GPO - 2nd GPO) and with the
+above GPO configuration in place, perform a gpupdate with Ethernet and Wi-Fi
+connected to CORP network. Both connections are needed to reproduce the issue.
+Wi-Fi gets disconnected and it does not connect automatically. Even when
+Ethernet is unplugged later, Wi-Fi does not auto-connect. Expected Behaviour:
+Wi-Fi should reconnect automatically. Cause This issue is identified as bug in
+Windows 11 ( 21H2 /22H2 /23H2 /24H2) Operating system Bug 55459382: Win11: Wi-Fi
+fails to connect automatically after GP update when fMinimizeConnections and
+fBlockNonDomain transition from 3,1 to... - Boards Article resolution Verified
+workarounds: 1. Once disconnected, disable and re-enable the Wi-Fi adapter, to
+let Wi-Fi connect automatically. 2. Set “Process even if the Group Policy
+objects have not changed” to disabled. 3. Organize the GPOs linked in the
+Windows 11 OU such that, GPO 1 – “Applies baseline security settings (except WCM
+settings) to all computers” GPO 2 – “Applies the fMinimizeConnections=3,
+fBlockNonDomain=1 to all computers with exempted computers in the Deny List” GPO
+3 – “Applies the fMinimizeConnections=0, fBlockNonDomain=0 only to the exempted
+computers” 4. The other possibility is to restart the WCM service after the
+group policies have been applied. This will then auto-reconnect the Wi-Fi. But
+during the application of the GPOs the Wi-Fi gets disconnected and would only be
+re-connected after restarting the WCM when Group Policy is completed. More
+information +++++++++++ MS INTERNAL Do not share with customer +++++++++++++++
+WCMSvc gets the notification as GPO changes are applied, and we will review the
+2 stages below, 1. fMinimizeConnections to 3 and fBlockNonDomain to 1 2.
+fMinimizeConnections to 0 and fBlockNonDomain to 0 (After GP Registry extension
+processing is completed – Settings of 2nd GPO - Winning)For 1st set of
+notification,1. fMinimizeConnections=3 and fBlockNonDomain=1 values are read,
+with Wi-Fi connected still.2. EvaluateDomainDomainPolicyAction () identifies no
+conflict between Ethernet and Wi-Fi as both are domain-authenticated.3.
+TokenManager::Evaluate calls to ApplyStrictMinimizePolicyFilter() which clears
+all tokens for Wi-Fi interface as Ethernet is already connected
+(fMinimizeConnections=3).4. WCM is later notified of Wi-Fi disconnection through
+the event “wcm_notification_cde_disconnected” and
+EvaluateDomainDomainPolicyAction() is called as result of network status
+change.5. EvaluateDomainDomainPolicyAction() disables AutoConnect token for Wi-
+Fi and marks the action as “DisconnectAndDenyAutoConnect” as
+fBlockNonDomain=1.The reason is that as we have a domain-authenticated Ethernet,
+Wi-Fi is disconnected currently, hence Wi-Fi auto-connect to be blocked.For 2nd
+set of notification, 1. fMinimizeConnections=0 and fBlockNonDomain=0 values are
+read again. 2. EvaluateDomainDomainPolicyAction() is called, does not reset the
+Action set on the list of interfaces and returns early. 3.
+TokenManager::Evaluate() -> ApplyDomainPolicyFilter() ->
+GetDomainPolicyActionForInterface () returns the stale value
+“DisconnectAndDenyAutoConnect” that was calculated when the settings were
+fMinimizeConnections=3 and fBlockNonDomain=1.4. Wi-Fi interface does not have
+the auto-connect token after the last GP change notification and needs to be
+connected manually.Detailed Analysis:Ethernet GUID –
+{e70fbf0f-0589-4599-b3d0-2004a22aa980}Wi-Fi GUID –
+{e37d2a65-7e67-4b24-9eff-479611d13435}For 1st set of notification,1.
+fMinimizeConnections=3 and fBlockNonDomain=1 values are read, with Wi-Fi
+connected still.11556 [0] 0A80.1048::11/15/24-18:31:48.3755083 [wcmserver]
+configmanager_cpp708 ConfigManager::InternalGetCdePolicies() -
+ConfigManager::InternalGetCdePolicies - using the Group Policy
+fMinimizeConnections value (3)11580 [1]0A80.1048::11/15/24-18:31:48.3900956
+[Operational ] A Group Policy change was processed11585 [5]
+0A80.1074::11/15/24-18:31:48.3906645 [wcmserver] configmanager_cpp854
+ConfigManager::InternalGetWcmGroupOrLocalPolicy() -
+ConfigManager::InternalGetWcmGroupOrLocalPolicy - using the Group Policy
+fBlockNonDomain value (1)2. EvaluateDomainDomainPolicyAction () identifies no
+conflict between Ethernet and Wi-Fi as both are domain-authenticated.11591 [5]
+0A80.1074::11/15/24-18:31:48.3906905 [wcmserver] domainpolicyhandler_cpp180
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction() -
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction: Found domain-
+authenticated ethernet: e70fbf0f-0589-4599-b3d0-2004a22aa98011592 [5]
+0A80.1074::11/15/24-18:31:48.3906919 [wcmserver] domainpolicyhandler_cpp229
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction() -
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction: No conflict between
+domain-authenticated Ethernet and domain-authenticated Wi-Fi
+(e37d2a65-7e67-4b24-9eff-479611d13435)3. TokenManager::Evaluate calls to
+ApplyStrictMinimizePolicyFilter() which clears all tokens for Wi-Fi interface as
+Ethernet is already connected (fMinimizeConnections=3).11593 [5]
+0A80.1074::11/15/24-18:31:48.3906937 [wcmserver] tokenmanager_cpp2758
+TokenManager::Evaluate() - --> TokenManager::Evaluate11745 [5]
+0A80.1074::11/15/24-18:31:48.4407784 [wcmserver] tokenmanager_cpp2785
+TokenManager::Evaluate() - Candidate: Initial sort order:11746 [5]
+0A80.1074::11/15/24-18:31:48.4407799 [wcmserver] tokenmanager_cpp1179
+TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>11747 [5] 0A80.1074::11/15/24-18:31:48.4407813 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x6,
+profile: <null>11751 [5] 0A80.1074::11/15/24-18:31:48.4408493 [wcmserver]
+configmanager_cpp708 ConfigManager::InternalGetCdePolicies() -
+ConfigManager::InternalGetCdePolicies - using the Group Policy
+fMinimizeConnections value (3)11777 [6] 0A80.1074::11/15/24-18:31:48.4423376
+[wcmserver] tokenmanager_cpp1168 LogCandidate() - TokenManager::LogCandidate:
+Minimize: [Block Wi-Fi Policy] Found Ethernet connected candidate
+e70fbf0f-0589-4599-b3d0-2004a22aa980 <null>11822 [4]
+0A80.1074::11/15/24-18:31:48.4507373 [wcmserver] tokenmanager_cpp1613
+ApplyStrictMinimizePolicyFilter() - TokenManager::Evaluate: [Block Wi-Fi Policy]
+Cleared all tokens for Wi-Fi e37d2a65-7e67-4b24-9eff-479611d13435 (profile
+<null>) as Ethernet is connected11823 [4] 0A80.1074::11/15/24-18:31:48.4507392
+[wcmserver] tokenmanager_cpp2801 TokenManager::Evaluate() - Candidate: Final
+order:11855 [4] 0A80.1074::11/15/24-18:31:48.4508021 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>11856 [4] 0A80.1074::11/15/24-18:31:48.4508035 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x0,
+profile: <null>11872 [4]0A80.1074::11/15/24-18:31:48.4516513
+[Microsoft.Windows.ConnectionManager] [WnfStateManager::SetConnectToken]
+interfaceGuid={e37d2a65-7e67-4b24-9eff-479611d13435}, mediaType=2,
+autoConnectEnabled=0, manualConnectEnabled=011887 [4]
+0A80.1074::11/15/24-18:31:48.4516927 [wcmserver] tokenmanager_cpp2842
+TokenManager::Evaluate() - TokenManager::Evaluate - processing soft-
+disconnect11987 [6] 0A80.1074::11/15/24-18:31:48.4589505 [wcmserver]
+tokenmanager_cpp2849 TokenManager::Evaluate() - <-- TokenManager::Evaluate: 0 6.
+WCM is later notified of Wi-Fi disconnection through the event
+“wcm_notification_cde_disconnected” and EvaluateDomainDomainPolicyAction() is
+called as result of network status change.12531 [1]
+0A80.1048::11/15/24-18:31:48.9464973 [wcmserver] cde_cpp457 HandleCdeEvent() -
+CDE: HandleCdeEvent processing source L2_NOTIFICATION_SOURCE_WCM_CSP (0x200)
+code wcm_notification_cde_disconnected (0x20007) for interface
+e37d2a65-7e67-4b24-9eff-479611d1343512537 [1]
+0A80.1048::11/15/24-18:31:48.9465072 [wcmserver] SelectionManager_cpp539
+SelectionManager::InternalNotify() - SelectionManager::Notify
+(wcm_notification_cde_disconnected) processing
+e37d2a65-7e67-4b24-9eff-479611d13435 profile: WcmWlanCspProfile4.
+EvaluateDomainDomainPolicyAction() disables AutoConnect token for Wi-Fi and
+marks the action as “DisconnectAndDenyAutoConnect” as fBlockNonDomain=1. The
+reason is that as we have a domain-authenticated Ethernet, Wi-Fi is disconnected
+currently, hence Wi-Fi auto-connect to be blocked.12569 [7]
+0A80.1074::11/15/24-18:31:48.9582671 [wcmserver] domainpolicyhandler_cpp180
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction() -
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction: Found domain-
+authenticated ethernet: e70fbf0f-0589-4599-b3d0-2004a22aa98012570 [7]
+0A80.1074::11/15/24-18:31:48.9582686 [wcmserver] domainpolicyhandler_cpp302
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction() -
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction: There is a connected
+Ethernet, disallow auto-connect for Wi-Fi
+(e37d2a65-7e67-4b24-9eff-479611d13435)In EvaluateDomainDomainPolicyAction (),<
+snip > if (domainPolicyInterface.connectionState ==
+ConnectionState::NotConnected) { if (domainAuthenticatedEthernet ||
+nonDomainAuthenticatedEthernet) {
+WcmINFO("DomainPolicyHandler::EvaluateDomainDomainPolicyAction: There is a
+connected Ethernet, disallow auto-connect for Wi-Fi (%!guid!)",
+&domainPolicyInterface.interfaceGuid); domainPolicyInterface.domainPolicyAction
+= DomainPolicyAction::DisconnectAndDenyAutoConnect; }12575 [4]
+0A80.1074::11/15/24-18:31:48.9582994 [wcmserver] tokenmanager_cpp2758
+TokenManager::Evaluate() - --> TokenManager::Evaluate12643 [7]
+0A80.1074::11/15/24-18:31:48.9598828 [wcmserver] tokenmanager_cpp2785
+TokenManager::Evaluate() - Candidate: Initial sort order:12644 [7]
+0A80.1074::11/15/24-18:31:48.9598844 [wcmserver] tokenmanager_cpp1179
+TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>12645 [7] 0A80.1074::11/15/24-18:31:48.9598858 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x6,
+profile: <null>12647 [7] 0A80.1074::11/15/24-18:31:48.9598902 [wcmserver]
+tokenmanager_cpp1168 LogCandidate() - TokenManager::LogCandidate:
+TokenManager::ApplyDomainPolicyFilter: Disconnect and deny Auto Connect
+e37d2a65-7e67-4b24-9eff-479611d13435 <null>12649 [4]
+0A80.1074::11/15/24-18:31:48.9603364 [wcmserver] configmanager_cpp708
+ConfigManager::InternalGetCdePolicies() - ConfigManager::InternalGetCdePolicies
+- using the Group Policy fMinimizeConnections value (3)12671 [5]
+0A80.1074::11/15/24-18:31:48.9663903 [wcmserver] tokenmanager_cpp1168
+LogCandidate() - TokenManager::LogCandidate: Minimize: [Block Wi-Fi Policy]
+Found Ethernet connected candidate e70fbf0f-0589-4599-b3d0-2004a22aa980
+<null>12722 [4] 0A80.1074::11/15/24-18:31:48.9718820 [wcmserver]
+tokenmanager_cpp1613 ApplyStrictMinimizePolicyFilter() - TokenManager::Evaluate:
+[Block Wi-Fi Policy] Cleared all tokens for Wi-Fi
+e37d2a65-7e67-4b24-9eff-479611d13435 (profile <null>) as Ethernet is
+connected12723 [4] 0A80.1074::11/15/24-18:31:48.9718843 [wcmserver]
+tokenmanager_cpp2801 TokenManager::Evaluate() - Candidate: Final order:12724 [4]
+0A80.1074::11/15/24-18:31:48.9718860 [wcmserver] tokenmanager_cpp1179
+TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>12725 [4] 0A80.1074::11/15/24-18:31:48.9718875 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x0,
+profile: <null>12746 [4] 0A80.1074::11/15/24-18:31:48.9719228 [wcmserver]
+tokenmanager_cpp2842 TokenManager::Evaluate() - TokenManager::Evaluate -
+processing soft-disconnect12795 [7] 0A80.1074::11/15/24-18:31:48.9721041
+[wcmserver] tokenmanager_cpp2849 TokenManager::Evaluate() - <--
+TokenManager::Evaluate: 0For the Wi-Fi interface
+e37d2a65-7e67-4b24-9eff-479611d13435, action: 0x0 - has no token for Auto and
+Manual connect.// bitmasks for the WCM_CANDIDATE::dwCdeAction field#define
+WCM_CDE_SOFT_DISCONNECT 0x01 // begin soft disconnect monitoring#define
+WCM_CDE_ALLOW_AUTO_TOKEN 0x02#define WCM_CDE_ALLOW_MANUAL_TOKEN 0x04For 2nd set
+of notification, that are applied1. fMinimizeConnections=0 and fBlockNonDomain=0
+values are read again.13768 [1] 0A80.1048::11/15/24-18:31:57.3522131 [wcmserver]
+configmanager_cpp708 ConfigManager::InternalGetCdePolicies() -
+ConfigManager::InternalGetCdePolicies - using the Group Policy
+fMinimizeConnections value (0)13777 [1]0A80.1048::11/15/24-18:31:57.3526133
+[Microsoft-Windows-Wcmsvc/Operational] A Group Policy change was processed13780
+[5] 0A80.1074::11/15/24-18:31:5.3527071 [wcmserver] configmanager_cpp854
+ConfigManager::InternalGetWcmGroupOrLocalPolicy() -
+ConfigManager::InternalGetWcmGroupOrLocalPolicy - using the Group Policy
+fBlockNonDomain value (0)2. EvaluateDomainDomainPolicyAction() is called, does
+not reset the Action set on the list of interfaces and returns early.13781 [5]
+0A80.1074::11/15/24-18:31:57.3527169 [wcmserver] domainpolicyhandler_cpp154
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction() -
+DomainPolicyHandler::EvaluateDomainDomainPolicyAction: domain policy is off, not
+evaluating domain policy action3. TokenManager::Evaluate() ->
+ApplyDomainPolicyFilter() -> GetDomainPolicyActionForInterface () returns the
+stale value “DisconnectAndDenyAutoConnect” that was calculated when the settings
+were fMinimizeConnections=3 and fBlockNonDomain=1.In
+DomainPolicyHandler::GetDomainPolicyActionForInterface (),We return the action
+stored for the Wi-Fi interface which is DisconnectAndDenyAutoConnect.auto
+foundInterface = std::find_if(m_interfaceList.begin(), m_interfaceList.end(),
+[&](const auto& domainPolicyInterface) { return
+domainPolicyInterface.interfaceGuid ==interfaceGuid; }); if (foundInterface !=
+m_interfaceList.end()) { return foundInterface->domainPolicyAction; } return
+DomainPolicyAction::AllowAutoAndManualConnect;13782 [5]
+0A80.1074::11/15/24-18:31:57.3527178 [wcmserver] tokenmanager_cpp2758
+TokenManager::Evaluate() - --> TokenManager::Evaluate13793 [6]
+0A80.0B38::11/15/24-18:31:57.3529013 [wcmserver] configmanager_cpp708
+ConfigManager::InternalGetCdePolicies() - ConfigManager::InternalGetCdePolicies
+- using the Group Policy fMinimizeConnections value (0)13863 [0]
+0A80.1074::11/15/24-18:31:57.3537644 [wcmserver] tokenmanager_cpp2785
+TokenManager::Evaluate() - Candidate: Initial sort order:13864 [0]
+0A80.1074::11/15/24-18:31:57.3537653 [wcmserver] tokenmanager_cpp1179
+TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>13865 [0] 0A80.1074::11/15/24-18:31:57.3537661 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x6,
+profile: <null>13867 [0] 0A80.1074::11/15/24-18:31:57.3537686 [wcmserver]
+tokenmanager_cpp1168 LogCandidate() - TokenManager::LogCandidate:
+TokenManager::ApplyDomainPolicyFilter: Disconnect and deny Auto Connect
+e37d2a65-7e67-4b24-9eff-479611d13435 <null> 4. Wi-Fi interface does not have the
+auto-connect token after the last policy change notification and needs to be
+connected manually.13888 [5] 0A80.1074::11/15/24-18:31:57.3542513 [wcmserver]
+tokenmanager_cpp2801 TokenManager::Evaluate() - Candidate: Final order:13889
+[5]0A80.1074::11/15/24-18:31:57.3542523 [wcmserver] tokenmanager_cpp1179
+TokenManager::Evaluate() - TokenManager::LogCandidates:
+e70fbf0f-0589-4599-b3d0-2004a22aa980, MediaType: 1, flags: 0x5, action: 0x6,
+profile: <null>13890 [5] 0A80.1074::11/15/24-18:31:57.3542531 [wcmserver]
+tokenmanager_cpp1179 TokenManager::Evaluate() - TokenManager::LogCandidates:
+e37d2a65-7e67-4b24-9eff-479611d13435, MediaType: 2, flags: 0x1, action: 0x4,
+profile: <null> +++++++++++ MS INTERNAL Do not share with customer
++++++++++++++++ Notes: Support Topics: Windows\Windows 11\Windows 11 Enterprise
+and Education, version 22H2\Network Connectivity and File Sharing\Wireless
+(802.1x, Bluetooth, Miracast, Mobile Broadband) First published: Jan 15, 2025
+Keywords: fMinimizeConnections, fBlockNonDomain, Wi-Fi, Auto-connect, WCM,
+Security Baseline Tags: Auto-connect, fBlockNonDomain, fMinimizeConnections,
+Security Baseline, WCM, Wi-Fi
+
+================================================================================

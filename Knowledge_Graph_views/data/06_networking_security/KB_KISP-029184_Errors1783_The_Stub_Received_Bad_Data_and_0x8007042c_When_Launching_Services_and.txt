@@ -1,0 +1,76 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-029184
+Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching Services and Firewall Console in Windows Servers
+================================================================================
+
+Article ID       : KISP-029184
+Language          : en-us
+Created           : 2024-10-28
+Last Modified     : 2025-06-09
+Views             : 34
+Keywords          : 1783,Services bloat,0x8007042c,The Stub Received Bad Data
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/errors-1783-the-stub-received-bad-data-and-0x8007042c-when-launching-services-and-firewall-console-in-windows-servers-105ab785-99f2-2aef-b2c9-8e43d3d1d113
+
+================================================================================
+CONTENT:
+================================================================================
+
+Errors:1783 ('The Stub Received Bad Data') and 0x8007042c, When Launching
+Services and Firewall Console in Windows Servers Important: This was authored
+via https://aka.ms/contentidea. Follow Content Idea (CI) 196935 link for any
+updates. Author: Saisrinivas Chikoti Summary/Symptom The customer followed these
+steps, based on the external article, to enable multiple remote desktop sessions
+per user: Terminal Services installation guide (tricentis.com) In the Registry
+Editor go to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TerminalServer.
+On selecting the TerminalServices Registry, you can see the
+fSingleSessionPerUser registry key on the right panel. If the key is not
+available, then create a new key by right clicking Terminal Services and
+selecting New > DWORD. Double click the fSingleSessionPerUser key. Change the
+value from "1" to "0". The value "1" means single session for each user and "0"
+means multiple sessions for each user. The system is a Windows Server 2016 with
+the Application role, hosted on VMware. After rebooting following the changes
+above, issues arose with the services console, MMC, firewall console, and RDP
+connections, Etc. The errors displayed include: "Error 1783: The Stub received
+bad data" and "Windows Defender Firewall can't change some of your settings.
+Error code 0x8007042c. Additionally, access to the machine is limited to the
+VMware console with a local admin account, and attempting to launch the MMC
+triggers the same error: "The Stub received bad data." It shows the below errors
+--> While launching the services console The Error code of firewall console
+pointing to 0x42c 1068 ERROR_SERVICE_DEPENDENCY_FAIL ( winerror.h ) Cause The
+error message “Error 1783: The stub received bad data” typically occurs when
+there is an issue with the Services Management Console (Services.msc) on Windows
+Server. This error can happen when the number of services installed exceeds the
+size limit of the Services.msc buffer, which is limited to 256 kb of data. It
+was documented in public as well: Error 1783 when you open Services.msc -
+Windows Server | Microsoft Learn which is by design. It was confirmed that there
+is no registry bloat present. The customer is using a third-party application
+called "Tricentis NeoLoad", which can remotely initiate multiple Windows
+sessions as needed on each Windows Server utilized as a Load Generator. Each
+Windows session automatically starts a Load Generator process, which is then
+added to the list of available Load Generators for the zone. Additionally, each
+Load Generator creates a registry key under the path
+"HKLM\CurrentControlSet\Services\PAExec-12212-***********" on each Windows
+instance using a service account, leading to service bloat as described in the
+referenced article above. Article resolution suggested the customer remove the
+registry keys (PAExec*) under the path "HKLM:\SYSTEM\CurrentControlSet\Services"
+after backing up the existing registry hives. The customer consulted the vendor,
+who confirmed that it was safe to delete these keys. The customer used the
+custom script below to delete the keys after backing up the existing hives.
+Following a reboot, the machine functioned as expected. It was recommended that
+the customer consult the vendor for further investigation. +++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ $registryPath =
+"HKLM:\SYSTEM\CurrentControlSet\Services" $pattern = "PAExec*" # Get all
+registry keys matching the pattern and delete them Get-ChildItem -Path
+$registryPath | Where-Object { $_.PSChildName -like $pattern } | ForEach-Object
+{ Remove-Item -Path $_.PSPath -Recurse -Force -ErrorAction SilentlyContinue }
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Reference images show multiple services present on the customer’s machine, with
+over 1,000 registry keys. Note: Please note that this action was not recommended
+by Microsoft, it was carried out as a last resort after obtaining customer
+consent and ensuring a backup was taken as best effort More information Error
+1783 when you open Services.msc - Windows Server | Microsoft Learn Notes:
+Support Topics: Windows Servers\Windows Server 2016\Windows Server 2016, all
+editions (Preview)\System Performance (Preview) First published: Oct 28, 2024
+Keywords: 1783, Services bloat, 0x8007042c, The Stub Received Bad Data
+
+================================================================================

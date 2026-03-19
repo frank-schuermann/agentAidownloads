@@ -1,0 +1,51 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-045125
+Windows: DPS: Diagnostic Policy Service fails to start with error 4201
+================================================================================
+
+Article ID       : KISP-045125
+Language          : en-us
+Created           : 2025-01-13
+Last Modified     : 2025-06-09
+Views             : 10
+Keywords          : DPS,4201
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-dps-diagnostic-policy-service-fails-to-start-with-error-4201-571af82d-585e-caab-9369-329c79a26b8f
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows: DPS: Diagnostic Policy Service fails to start with error 4201
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 198828 link for any updates. Author: Samuel Weng Summary/Symptom The
+Diagnostic Policy Service (DPS) service fails to start. Cause The cause of this
+issue is related to event trace session DiagLog. Stopping the event trace
+session DiagLog triggers these errors when starting the DPS service. Article
+resolution Check if ETW session DiagLog is running on your machine using tools
+like Perfmon. After starting the DiagLog ETW session, try starting the DPS
+service. More information The DPS trace logs may show entries like: The
+Diagnostic Policy Service encountered an error in file
+base\diagnosis\pdi\wdi\framework\dps\trace.c, function DpsRun, line 168: Error =
+4201 The Diagnostic Policy Service encountered an error in file
+base\diagnosis\pdi\wdi\framework\dps\dpssqm.c, function
+DpspGetDroppedEventCounts, line 1579: Error = 4201 Notes: Support Topics:
+Windows\Windows 11\Windows 11 Enterprise and Education, version 21H2
+(Retired)\System Management Components (Retired)\Windows Diagnostic Data
+Processor Configuration (Retired), Windows\Windows 11\Windows 11 Enterprise and
+Education, version 22H2\System Management Components\Windows Diagnostic Data
+Processor Configuration, Windows\Windows 11\Windows 11 Enterprise and Education,
+version 23H2\System Management Components\Windows Diagnostic Data Processor
+Configuration, Windows\Windows 11\Windows 11 Enterprise and Education, version
+24H2\System Management Components\Windows Diagnostic Data Processor
+Configuration, Windows\Windows 11\Windows 11 version 23H2, all editions
+(Preview)\System Management Components (Preview)\Windows Diagnostic Data
+Processor Configuration (Preview), Windows Servers\Windows Server 2022\Windows
+Server 2022\System Management Components\Windows Diagnostic Data Processor
+Configuration, Windows Servers\Windows Server 2022\Windows Server 2022, all
+editions (Preview)\System Management Components (Preview)\Windows Diagnostic
+Data Processor Configuration (Preview), Windows Servers\Windows Server
+2025\Windows Server 2025\System Management Components\Windows Diagnostic Data
+Processor Configuration SR Number: 2410290030001118 First published: Jan 13,
+2025 Keywords: DPS, 4201
+
+================================================================================

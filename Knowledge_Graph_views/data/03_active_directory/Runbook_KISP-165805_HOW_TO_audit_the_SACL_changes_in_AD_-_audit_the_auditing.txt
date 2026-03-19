@@ -1,0 +1,64 @@
+================================================================================
+RUNBOOK — RB-KISP-165805
+HOW TO audit the SACL changes in AD - audit the auditing
+================================================================================
+
+Runbook ID        : RB-KISP-165805
+Category          : Audit / Compliance
+Estimated Time    : 30 minutes
+Last Updated      : 2025-06-21
+Source KB          : KISP-165805
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/how-to-audit-the-sacl-changes-in-ad-audit-the-auditing-ea0d7c55-0cbb-390f-afba-c5dfb0249459
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+HOW TO audit the SACL changes in AD - audit the auditing Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 203304 link
+for any updates. Author: Kunal Patel Summary You found out DCs security log is
+flooded with events due to someone/something updating SACL on objects to include
+activity which can cause event flooding. eg auding "read all" on domain
+partition or OUs/users which are frequently queried). How to track who made the
+SACL Change More information Enable auditing Audit Directory Service Changes -
+Windows 10 | Microsoft Learn Setting up "write SACL" audit Using LDP.exe Open
+the object you would want to audit for SACL change. In this example, we will use
+"cn=configuration,DC=contoso,DC=com" LDP.exe --> Connect ---> bind ---> view
+tree ---> "cn=configuration,DC=contoso,DC=com" Right click the object -->
+advance --> security descriptor --> check box on SACL --> OK You may Update the
+Trustee, Access Mask, and ACE Flags as required. **Below sample will only
+monitor if member of domain admin makes a SACL change. Tracking Changes in
+Security logs Event generated 5136(S) A directory service object was modified. -
+Windows 10 | Microsoft Learn First 5136 to remove existing entry (deleted) and
+then updating with new entry (added) Log Name: Security Source: Microsoft-
+Windows-Security-Auditing Date: 6/19/2025 7:53:26 PM Event ID: 5136 Task
+Category: Directory Service Changes Level: Information Keywords: Audit Success
+User: N/A Computer: CONDC2.contoso.com Description: A directory service object
+was modified. Subject: Security ID: CONTOSO\conadmin Account Name: conadmin
+Account Domain: CONTOSO Logon ID: 0xB71E1 Directory Service: Name: contoso.com
+Type: Active Directory Domain Services Object: DN:
+CN=Configuration,DC=contoso,DC=com GUID: CN=Configuration,DC=contoso,DC=com
+Class: configuration Attribute: LDAP Display Name: nTSecurityDescriptor Syntax
+(OID): 2.5.5.15 Value:
+O:S-1-5-21-1839131865-236561047-4151560400-519G:S-1-5-21-183913186
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-165805
+
+================================================================================

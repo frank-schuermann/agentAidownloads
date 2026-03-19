@@ -1,0 +1,63 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-041643
+ConfigMgr: Core: ConfigMgr Setup fails with "SetCertRegistryRemote failed with error 0x80070057"
+================================================================================
+
+Article ID       : KISP-041643
+Language          : en-us
+Created           : 2025-01-10
+Last Modified     : 2025-01-10
+Views             : 13
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-core-configmgr-setup-fails-with-setcertregistryremote-failed-with-error-0x80070057-9d2566c5-ec9c-ccaf-4d45-8f7a82c86fa9
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: Core: ConfigMgr Setup fails with "SetCertRegistryRemote failed with
+error 0x80070057" Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 198811 link for any updates. Author: Pavel Yurenev
+Summary/Symptom Customer tries to set up a new ConfigMgr site. After filling up
+all the wizard fields and passing the prerequisite checks, the Setup fails with
+the following error in ConfigMgrSetup.log: Configuration Manager Setup 5976
+(0x1758) Make sure there is crypto key generated for the site
+server.Configuration Manager Setup 5976 (0x1758) crypto key is not found.
+Generate crypt key.Configuration Manager Setup 5976 (0x1758) ERROR: Failed to
+get Exchange Public key.Configuration Manager Setup 5976 (0x1758) INFO:
+Configuring SQL trace flags for server SQL.Server.FQDNConfiguration Manager
+Setup 5976 (0x1758) INFO: Setting -T8295 SQL Server Param already exists as
+SQLArg3.Configuration Manager Setup 5976 (0x1758) INFO: Name for SQL Server
+Param string value is SQLArg4.Configuration Manager Setup 5976 (0x1758) INFO:
+Creating SQL Server machine certificate for Server
+[SQL.Server.FQDN]...Configuration Manager Setup 5976 (0x1758) INFO:
+'SQL.Server.FQDN' is a valid FQDN.Configuration Manager Setup 5976 (0x1758)
+SetCertRegistryRemote failed with error 0x80070057Configuration Manager Setup
+5976 (0x1758) ERROR: Failed to write certificate configuration to registry on
+server SQL.Server.FQDNConfiguration Manager Setup 5976 (0x1758) ERROR: Failed to
+create SQL Server [SQL.Server.FQDN] certificate remotely.Configuration Manager
+Setup 5976 (0x1758) Not recovery mode or not top level site. Skip restoring
+client piloting packages.Configuration Manager Setup 5976 (0x1758)
+~~===================== Completed Configuration Manager Server Setup
+===================== The latter error code 0x80070057 is
+ERROR_INVALID_PARAMETER - The parameter is incorrect. Cause
+SetCertRegistryRemote writes the registry entries remotely to the SQL machine,
+including the public key that should be created before. However, this process
+failed few lines above: the proper logging should look like: Configuration
+Manager Setup 1108 (0x454) Make sure there is crypto key generated for the site
+server.Configuration Manager Setup 1108 (0x454) crypto key is not found.
+Generate crypt key.Configuration Manager Setup 1108 (0x454) site server has
+crypto key. public key is 0602... Capturing the ProcMon filtered by
+C:\ProgramData\Microsoft\Crypto\RSA\MachineKeys folder shows that SetupWPF.exe
+fails to access the machine key: SetupWpf.exe 10264 11152 CreateFile C:\ProgramD
+ata\Microsoft\Crypto\RSA\MachineKeys\ca6f80c6495f318cbd7dddd0d9102cc2_09cea177-
+5c11-4006-9f8b-93d15ff882de ACCESS DENIED Desired Access: Generic Read,
+Disposition: Open, Options: Sequential Access, Synchronous IO Non-Alert, Non-
+Directory File, Attributes: n/a, ShareMode: Read, AllocationSize: n/a This means
+that Machine Keys have been tampered with - making the OS out of support.
+Article resolution Reinstall the future Site Server OS from scratch (just
+recreate the VM). More information If the customer accepts the risks, find the
+affected Key File in the Procmon trace: filter by SetupWPF.exe process and Path
+containing MachineKeys. Then provide the user who runs the Setup the full
+control over the key file.
+
+================================================================================

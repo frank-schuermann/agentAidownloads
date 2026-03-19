@@ -1,0 +1,56 @@
+================================================================================
+RUNBOOK — RB-KISP-036746
+Procedure: Unsupported devices for hosting Windows Server 2022
+================================================================================
+
+Runbook ID        : RB-KISP-036746
+Category          : Operational Procedure
+Estimated Time    : 30 minutes
+Last Updated      : 2025-01-06
+Source KB          : KISP-036746
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/procedure-unsupported-devices-for-hosting-windows-server-2022-8ab129be-0c4e-da16-a012-26d5269ff9e5
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Procedure: Unsupported devices for hosting Windows Server 2022 Important: This
+was authored via https://aka.ms/Rubik. Follow Rubik 429 link for any updates.
+Author: v-yinghuang@microsoft.com This article provides a list of devices that
+are not supported for hosting Windows Server 2022 as of February 2023. It aims
+to help you determine if your device is eligible for firmware updates or if it
+can host Windows Server 2022. The following devices are not supported for
+hosting Windows Server 2022 and are not eligible for firmware updates: Dell
+PowerEdge R630 Dell PowerEdge R930 Server Dell PowerEdge T430 HP EliteDesk 800
+G2 Mini HPE DL20 Gen9 HPE DL580 Gen9 HPE ProLiant XL420 Gen9 Intel NUC NUC6i7KYK
+(desktop client system) Lenovo M93p Tiny Other legacy devices Ensure that your
+hardware is compatible with the requirements of Windows Server 2022 before
+attempting installation. If your device is listed above, consider upgrading to a
+supported model to ensure compatibility and receive necessary firmware updates.
+Have feedback about this article? – Provide feedback in the survey link at the
+bottom of this article. If you want to make a change to this article, be sure to
+access aka.ms/contentidea, and then create an AECT item here and follow the
+change instructions. Notes: First published: Dec 16, 2024 Keywords: ktest1,
+ktest2, ktest3 Tags: 429 Support Topics: Windows Servers\Windows Server
+2022\Windows Server 2022 Standard (Preview)
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-036746
+
+================================================================================

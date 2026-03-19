@@ -1,0 +1,210 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034875
+November 12, 2024—KB5046615 (OS Build 17763.6532)
+================================================================================
+
+Article ID       : KISP-034875
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 39
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/november-12-2024-kb5046615-os-build-17763-6532-46c11b64-65a1-429f-8cf0-54f70bf1849c
+
+================================================================================
+CONTENT:
+================================================================================
+
+November 12, 2024—KB5046615 (OS Build 17763.6532) 11/17/20 For information about
+Windows update terminology, see the article about the types of Windows updates
+and the monthly quality update types. For an overview of Windows 10, version
+1809, see its update history page. Important: Windows updates do not install
+Microsoft Store application updates. If you are an enterprise user, see
+Microsoft Store apps - Configuration Manager. If you are a consumer user, see
+Get updates for apps and games in Microsoft Store. Highlights This update
+addresses security issues for your Windows operating system. Improvements This
+security update includes improvements. Below is a summary of the key issues that
+this update addresses when you install this KB. If there are new features, it
+lists them as well. The bold text within the brackets indicates the item or area
+of the change we are documenting. [vmswitch] Fixed: A vmswitch triggers a stop
+error. This occurs when you use Load Balancing and Failover (LBFO) teaming with
+two virtual switches on a virtual machine (VM). In this case, one virtual switch
+uses single root Input/Output virtualization (SR-IOV). [Windows Kernel
+Vulnerable Driver Blocklist file (DriverSiPolicy.p7b)] Fixed: This update adds
+to the list of drivers that are at risk for Bring Your Own Vulnerable Driver
+(BYOVD) attacks. If you installed earlier updates, only the new updates
+contained in this package will be downloaded and installed on your device. For
+more information about security vulnerabilities, please refer to the new
+Security Update Guide website and the November 2024 Security Updates. Windows 10
+servicing stack update (KB5043126) - 17763.6289 This update makes quality
+improvements to the servicing stack, which is the component that installs
+Windows updates. Servicing stack updates (SSU) ensure that you have a robust and
+reliable servicing stack so that your devices can receive and install Microsoft
+updates. Known issues in this update Symptom Workaround Following the
+installation of the October 2024 security update, some customers report that the
+OpenSSH (Open Secure Shell) service fails to start, preventing SSH connections.
+The service fails with no detailed logging, and manual intervention is required
+to run the sshd.exe process. This issue is affecting both enterprise, IOT, and
+education customers, with a limited number of devices impacted. Microsoft is
+investigating whether consumer customers using Home or Pro editions of Windows
+are affected. This issue is addressed in KB5053596. How to get this update
+Before you install this update Microsoft now combines the latest servicing stack
+update (SSU) for your operating system with the latest cumulative update (LCU).
+SSUs improve the reliability of the update process to mitigate potential issues
+while installing the LCU. For general information about SSUs, see Servicing
+stack updates and Servicing Stack Updates (SSU): Frequently Asked Questions.
+Prerequisite: You must install the August 10, 2021 SSU (KB5005112) before
+installing the LCU. Install this update To install this update, use one of the
+following Windows and Microsoft release channels. Windows
+UpdateBusinessCatalogServer Update Services Available Next Step Yes None. This
+update will be downloaded and installed automatically from Windows Update and
+Microsoft Update. Available Next Step Yes None. This update will be downloaded
+and installed automatically from Windows Update for Business in accordance with
+configured policies. Available Next Step Yes To get the standalone package for
+this update, go to the Microsoft Update Catalog website. Available Next Step Yes
+This update will automatically sync with Windows Server Update Services (WSUS)
+if you configure Products and Classifications as follows: Product: Windows 10
+Classification: Security Updates If you want to remove the LCU To remove the LCU
+after installing the combined SSU and LCU package, use the DISM/Remove-Package
+command line option with the LCU package name as the argument. You can find the
+package name by using this command: DISM /online /get-packages. Running Windows
+Update Standalone Installer (wusa.exe) with the /uninstall switch on the
+combined package will not work because the combined package contains the SSU.
+You cannot remove the SSU from the system after installation. File information
+For a list of the files that are provided in this update, download the file
+information for cumulative update 5046615. For a list of the files that are
+provided in the servicing stack update, download the file information for the
+SSU (KB5043126) - version 17763.6289. Released in 2024 11B (2024.11 B)
+Individual VSO bugs related to KB 5046615 ID Title 51795920 [KIR Cleanup Bug]
+38853170 : [MSRC 71131][RS5] EoP in InputService allows input injection from
+AppContainer to High IL CRM:0461305911 - Internal 53077281 [MSRC 90154][RS5]
+.URL - Bypass double click - ITW attack - Unknown 53131295 [RS5] IoTCore:
+Deadlock in IOTShell - Ghost software input panel keyboard appears on screen
+53990137 [DCR Check-in Bug][RS5]GB18030-2022 Amendment msftedit.dll (RichEdit)
+51694003 [MSRC 88572] cdpsvc.dll - listening on port 5040 does not validate the
+connection - Cyberspace Defense Forces (DKWOC) 52436419 [MSRC 89405][rs5]
+dwmcore! - CDrawListBitmap::GetCurrentRealization - uninitialized pointer -
+Unknown 52532476 [MSRC 89505] [Windows 10 1809]
+NtDCompositionDuplicateHandleToProcess - Unprobed arbitrary pointer write -
+Internal 49330950 [KIR Cleanup Bug] 48186866 : [KIR Enablement Bug] 46024894 :
+[DisabledByDefault] When a policy has per-app rules, SIPolicyHasPerAppPolicy
+incorrectly matches all files. This results in .NET NGEN not being respected and
+causes CPU spikes in Azure services 50163295 [KIR Cleanup Bug] 48653645 : [MSRC
+85152] Windows Code Integrity - by creating mount point, attacker can redirect
+folder/file creation to arbitrary location - Internal 51241030 Quarterly release
+of DriverSIPolicy/Vulnerable Driver Block List - Oct/Nov 51878266 [DRTM] Renew
+DRTM auth blob signing key for Fall 2024 52087481 [KIR Cleanup Bug] 51752367 :
+[MSRC 87855] SecurityCenterBroker.dll - OOBR in
+Windows::SecurityCenter::WscSecurityAppManager::GetSecurityAppList due to
+missing array value check - Unknown 52266815 [RS5](Server 2019) Table
+Node->FullName.Buffer drops a character from the parent table node resulting in
+a Bugcheck - luafv!LuafvFreePool 52284408 [KIR Cleanup Bug] 50138625 : [MSRC
+87209] lsasrv.dll! - Uninitialized Memory - lsasrv.dll!WLsaGetSecurityUserInfo -
+Unknown 52294275 [KIR Cleanup Bug] 50216394 : [MSRC 87401] lsasrv.dll -
+initialized memory leak vulnerability within function WLsaEnumeratePackages -
+Unknown 52844993 [Certenroll] [RFH] [RS5] Potential issue with string terminal
+check in CertEnroll!CertEnroll::VerifyBStrBYTE 52846855 [MSRC 89857] msasn1.dll
+- msasn1.dll!ASN1BEREncLength integer overflow - Beijing CyberKunlun Technology
+Co., Ltd 52928738 [KIR Cleanup Bug] 50951979 : [MSRC 88029] [CHILD CASE of MSRC
+84239] Kerberos - exploit of legacy crypto 53034167 [DCR Check-In][Rs5][MDE]
+[InMarketOS] MDE enhancements 11B 2024 53491394 [MSRC 90669] WDAC - evaluation
+issue on RS5/Server 2019 allows deny signer rules to not be honored - Internal
+53799136 LSA Telemetry needed for MSRC 86317 54009733 [CTL] [RS5] Integrate May
+2024 Trusted Root Payload in the LCU 54084615 [MSRC 91354] Update VBS, SKUSI and
+Audit Policy for Secure Kernel (89217 and 88640) - Internal 51864875 [MSRC
+88849][RS5] RemoteSP - Windows Telephony Service
+RemoteSP!TSPI_providerEnumDevice - OOBW - Unknown 51865133 [MSRC 88850][RS5]
+RemoteSP! - Windows Telephony Service RemoteSP!TSPI_lineGetAddressCaps() - OOBW
+- Unknown 52297108 [KIR Cleanup Bug] 49818660 : [MSRC 86903][RS5] bridge.sys -
+Lack of null pointer check in function sub_C788 call NdisGetDataBuffer -
+Individual 52297118 [KIR Cleanup Bug] 49820951 : [MSRC 86907][RS5] bridge.sys -
+MultiFragment netbuffer cause null pointer deref - Individual 52925651 [MSRC
+89942] DNSSEC - Provide users with tampered data that has failed DNSSEC
+verification - Unknown 52929243 [KIR Cleanup Bug] 51989906 : [MSRC 88996] [RS5]
+[Matrix Cup] Windows Print Spooler EOP bypass for CVE-2024-21433 - 360Vulcan
+52929272 [KIR Cleanup Bug] 52126203 : [REDO][MSRC 87127][RS5] tcpip.sys - out of
+bound write vulnerability in function Ipv6pReassemblyTimeout - Individual
+53595692 CFEReliability:KernelMode:Bluescreen in # Module=vmsproxy.sys #
+BucketId=av_vmsproxy!vmsproxyvmbchannelallocate 53861602 [RS5] Bugcheck
+triggered by vmswitch lock contention in legacy LBFO setup only 51913994 [MSRC
+88915][RS5] RemoteSP - RemoteSP!TSPI_lineOpen - heap OOBW - Unknown 52292035
+[MSRC 89235][RS5] tapisrv.dll - Telephony Server OOB read/write EoP - Individual
+52295818 [MSRC 89279][RS5] RemoteCodeExecution - Windows Telephony Service
+RemoteSP RCE vulnerability VI - Unknown 52322758 [MSRC 89311][RS5]
+RemoteCodeExecution - Windows Telephony Service RemoteSP RCE vulnerability V -
+Unknown 52511548 [MSRC 89489][RS5] RemoteCodeExecution - Windows Telephony
+Service TAPI32 RCE vulnerability XVIII - Unknown 53795193
+[RS5][Localization]NetSetup fails due to illegal character on Windows Server
+2019 52081798 [MSRC 89090][RS5] Storage VSP Driver Arbitrary Address Read -
+Unknown 52888848 [MSRC 89901][RS5] Kernel - SKMM_FAILURE_LOG
+SkmiWriteFailureToLog() and SkmmRegisterFailureLog() OOBW - Internal 53653078
+[RS5] [KIR Cleanup Bug] 48765487: [DCR Check-in][RS5] Implement Boot Manager
+Undocking Flow for resolving Black Lotus/Kickback SSIRP 53693618 [Windows 10
+1809] SSIRP Kickback - 20348 build missing DVD_EX (efisys*.bin) after applying:
+KB 5036909 (2024 - 4B) 50171180 49589580 : [RS5] CVM with driver verifier
+crashes 52294239 [KIR Cleanup Bug] 50005941 : [MSRC 86959][RS5] Windows kernel -
+Information Disclosure in NtQueryInformationFile - Internal 52929160 [KIR
+Cleanup Bug] 51907853 : [MSRC 88903] pdc.sys (Power Dependency Coordinator) -
+Use After Free vulnerability in function PdcProcessMessage due to improper
+synchronization CRM:0100005389 53082610 [MSRC 90167][RS5] Kernel - double-fetch
+in the loading of remote registry hives leads to memory corruption - Google,
+Inc. 53161863 [MSRC 90239][RS5] Kernel - registry security descriptor refcount
+may overflow when referenced by too many transacted operations - Google, Inc.
+51609312 [KIR Cleanup Bug] 51541511 : [MSRC 86270][RS5] Shell - LNK Shortcut No-
+Click Hash Disclosure - Individual 51726447 [KIR Cleanup Bug] 49213008 :
+[RS5][MSRC 86065] CVE-2024-21320 - paths starting with "\??\GLOBAL..." can still
+bypass function "PathIsUnc" algorithm - Akamai Technologies 51778459 [KIR
+Cleanup Bug] 49426541 : [MSRC 86372][RS5] DCOM - Users can perform a Privilege
+Escalation - Individual 52269105 [KIR Cleanup Bug] 50219887 : [MSRC 87412] [RS5]
+[CHILD CASE of MSRC 34368] Address down-level fixes 38783 [SSIRP 16016 Joshua] -
+Internal 52472723 [KIR Cleanup Bug] 49107502 : [MSRC 85912][RS5] cabview.dll -
+cab file traversal via .URL files; Case tracks fixes for WSCRIPT (RE: MSRC
+84048) - Unknown 50762951 [KIR Cleanup Bug] 49598254 : [MSRC 86615][RS5]
+Pwn2Own2024 - ZDI-CAN-23774 - EOP via lack of resolution validation
+gdi32.dll!GdiPrinterThunk - Zero Day Initiative 51555906 [KIR Cleanup Bug]
+49924507 : [MSRC 86902][RS5] tif_read.cpp - buffer overflow heap corruption in
+function TIFFSeekMaxBuffer - Internal 51603627 [KIR Cleanup Bug] 48420516 :
+[MSRC 84770][RS5] Multipoint server - race condition double free in
+webservices!HttpRequestChannel::OnEnterReceiveBodyStart - Beijing CyberKunlun
+Technology Co., Ltd 51624416 [KIR Cleanup Bug] 49538485 : [MSRC 86508][RS5]
+memcpy crash in MyAdd_NL_SequenceDescTag when ICC profile is provided within
+```CMCreateDeviceLinkProfile``` - Individual 51624458 [KIR Cleanup Bug] 50154794
+: [MSRC 87241][RS5] ZDI-CAN-23562: Microsoft Windows Menu DC Path Use-After-Free
+Local Privilege Escalation Vulnerability - Zero Day Initiative 51665803 [KIR
+Cleanup Bug] 51404702 : [MSRC 88354][RS5] win32kfull.sys -
+win32kfull!CreateHalftoneBrushPat causes bsod0x50 - Internal 51904360 [KIR
+Cleanup Bug] 48777580 : [MSRC 85333][RS5] win32kfull! - out-of-bounds memory
+access vulnerability between `NtGdiRectangle` and `NtUserScrollDC` - Unknown
+52460294 [KIR Cleanup Bug] 50383396 : [MSRC 87617][RS5] Clipboard Virtual
+Channel Extension - RDP - Use after free - Unknown 52709101 [MSRC 89691][RS5]
+usbvideo.sys - Improper Input Validation in function
+DumpAndValidateAllDescriptors - Individual 52711028 [MSRC 89704][RS5]
+usbvideo.sys - Vuln_DumpAndValidateFrameMjpeg OOBR - Individual 52711123 [MSRC
+89706][RS5] usbvideo.sys - Vuln_DumpAndValidateExtensionUnit OOBR - Individual
+52711465 [MSRC 89709][RS5] usbvideo.sys -
+Vuln_DumpAndValidateStillImageFrame_CWE-20 in usbvideo.sys - Individual 52713547
+[MSRC 89718][RS5] usbvideo.sys - Vuln_DumpAndValidateOutputTerminal_CWE-20 in
+usbvideo.sys - Individual 52713588 [MSRC 89719][RS5] usbvideo.sys -
+Vuln_DumpAndValidateInputTerminal_LoopCount_CWE-606 in usbvideo.sys - Individual
+52726412 [MSRC 89730][RS5] usbvideo.sys - DumpAndValidateFrameH264 OOBR -
+Individual 52727830 [MSRC 89742][RS5] usbvideo.sys -
+DumpAndValidateInputTerminal_LoopCount2 OOBR - Individual 52727908 [MSRC
+89744][RS5] usbvideo.sys - DumpAndValidateFrameVendor OOBR - Individual 52729879
+[MSRC 89755][RS5] usbvideo.sys - Vuln_DumpAndValidateOutputHeader_CWE-20 in
+usbvideo.sys - Individual 52730439 [MSRC 89759][RS5] usbvideo.sys - OOBR in
+Vuln_DumpAndValidateFrameFrame - Individual 52848525 [MSRC 89863][RS5] [CHILD
+CASE of MSRC 89709] usbvideo.sys - child variant of 89704 - Individual 52892266
+[MSRC 89919][RS5] [CHILD CASE of MSRC 89704] Internal variant of 89755 -
+usbvideo.sys - Vuln_DumpAndValidateFrameMjpeg OOBR - Individual 52122444 [MSRC
+89118][RS5] ElevationOfPrivilege - nt!FsRtlNotifyFilterReportChangeLiteEx
+integer overflow EoP - Unknown 52297131 [KIR Cleanup Bug] 50096671 : [MSRC
+87124][RS5] NTFS - `NtfsQueryEaSimpleScan` function uses the `NextEaOffset`
+field inappropriately, leading to potential out-of-bounds read - Individual
+52925036 [MSRC 89890][RS5] Client Side Caching (CSC) Driver- arbitrary read
+vulnerability allows attacker to leak kernel information - Unknown 52929234 [KIR
+Cleanup Bug] 51982963 : [MSRC 88992][RS5] [Matrix Cup] Cldflt.sys - Integer
+overflow - 360Vulcan 52294253 [KIR Cleanup Bug] 50135808 : [MSRC 87203][RS5] SQL
+- OLE DB - CStmt::ExtendedFetch OOBW - Beijing CyberKunlun Technology Co., Ltd
+52928813 [KIR Cleanup Bug] 51575318 : [MSRC 88491][RS5] clfs.sys -
+CClfsBaseFilePersisted::WriteMetadataBlock EoP - Unknown
+
+================================================================================

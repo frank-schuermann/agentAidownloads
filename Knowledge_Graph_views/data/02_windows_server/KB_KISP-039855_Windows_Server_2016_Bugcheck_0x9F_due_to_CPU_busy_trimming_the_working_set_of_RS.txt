@@ -1,0 +1,252 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-039855
+Windows Server 2016: Bugcheck 0x9F due to CPU busy trimming the working set of RStudio process rsession-utf8.exe
+================================================================================
+
+Article ID       : KISP-039855
+Language          : en-us
+Created           : 2024-12-13
+Last Modified     : 2025-06-09
+Views             : 31
+Keywords          : ws16,bug check,bsod,blue screen,crash,stop,watchdog,
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-server-2016-bugcheck-0x9f-due-to-cpu-busy-trimming-the-working-set-of-rstudio-process-rsession-utf8-exe-5dc96de0-707c-b670-6923-d87634690b7c
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows Server 2016: Bugcheck 0x9F due to CPU busy trimming the working set of
+RStudio process rsession-utf8.exe Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 197545 link for any
+updates. Author: Khalid Sabri Summary/Symptom Reported on Windows Server 2016
+Reported symptoms System crashes with bugcheck DRIVER_POWER_STATE_FAILURE,
+hexadecimal value 9F. But the issue can be manifested in other ways such as high
+CPU, system hang or slowness or other bugcheck codes Cause The memory dump shows
+the system is locked up with many threads from various processes waiting for
+long time on various types of locks. Following the wait chains lead to the
+thread running on CPU#0, which has been running for long time at high priority
+trimming the working set for an instance of the process rsession-utf8.exe. A
+process working set is the process memory pages that are resident in the
+physical memory. This rsession-utf8.exe process instance has massive memory
+usage of 30GB+ of physical memory when it had run for a total time of only
+~3hrs. Furthermore, there are multiple instances of the rsession-utf8.exe with
+high memory usage, one of them alone using ~110GB of memory. rsession-utf8.exe
+is launched by rstudio.exe, which is part of RStudio Desktop, an integrated
+development environment (IDE) with a set of tools built to help develop apps
+using the R and Python languages. RStudio is owned by Posit Software. The system
+lockup caused one of the power requests (to power on COM2 serial port) to block
+hence triggering the power manager kernel component watchdog timeout mechanism
+(10min) to crash the system with bugcheck DRIVER_POWER_STATE_FAILURE (9F). This
+is just a symptom of the system lockup for long period of time. Article
+resolution Follow up with the vendor for RStudio to investigate the high memory
+usage. More information Debug notes from similar issue below: // system info48:
+kd> !mex.diKernel Version : Windows 10 Kernel Version 14393 MP (64 procs) Free
+x64Product : Server, suite: TerminalServer DataCenterEdition build lab :
+14393.6981.amd64fre.rs1_release.240503-1859System Uptime : 4 days
+17:23:03.012System Manufacturer : Microsoft CorporationSystem Product Name :
+Virtual MachineProcessor : Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHzBugcheck
+Info : Bugcheck 9f (3, ffffa009e181dbf0, ffffcb006f67ecb0,
+ffffa00a163385a0)Kernel Summary Dump : Kernel address space is available - user
+address space may not be availableBuild Revision : 14393.6981// bugcheck code
+and params48: kd> !analyze -showDRIVER_POWER_STATE_FAILURE (9f)A driver has
+failed to complete a power IRP within a specific time.Arguments:Arg1:
+0000000000000003, A device object has been blocking an IRP for too long a
+timeArg2: ffffa009e181dbf0, Physical Device Object of the stackArg3:
+ffffcb006f67ecb0, nt!TRIAGE_9F_POWER on Win7 and higher, otherwise the
+Functional Device Object of the stackArg4: ffffa00a163385a0, The blocked IRP//
+dump the device stack for the device blocking the power request (in bugcheck
+Arg2)48: kd> !devstack ffffa009e181dbf0 !DevObj !DrvObj !DevExt ObjectName
+ffff9807c7275d60 \Driver\Serenum ffff9807c7275eb0 ffff9807c7275070
+\Driver\Serial ffff9807c72751c0 Serial0> ffffa009e181dbf0 \Driver\ACPI
+ffff9807c29b74e0 0000005b!DevNode ffff9807c2b9a770 : DeviceInst is
+"ACPI\PNP0501\2" ServiceName is "Serial"// find which device48: kd> !mex.devlist
+-d "ACPI\PNP0501\2"============================================================D
+eviceName : Communications PortFriendryName : Communications Port
+(COM2)============================================================// this is
+COM2 serial port// dump the power request (which is also saved in bugcheck
+Arg4)48: kd> !mex.mirp ffffa00a163385a0Irp Stack Frame(s) # Driver Major Minor
+Dispatch Routine Flg Ctrl Status Completion Invoker(s) Device File Context
+Completion Routine Args === =============== ===== ================
+================ === ==== ======= ====================== ================ ======
+====================== =======================
+=================================================================== ->7
+\Driver\Serenum POWER IRP_MN_SET_POWER IRP_MJ_POWER 0 e1 Pending Cancel,
+Success, Error ffff9807c7275d60 (null) ffff9807c2980c80(PoIr)
+nt!PopRequestCompletion 0000000000000000 0000000000000001 0000000000000001
+0000000000000000IO Status: 0xc00000bb (The request is not supported.)// the
+power request is pending in the Serenum.sys driver// power action info48: kd>
+!poactionAllocated power irps (PopIrpList - fffff8025738cab0) IRP:
+ffffa00a163385a0 (set/D0,), PDO: ffffa009e181dbf0<snip>// it's a set D0 power
+request, i.e. a request to power up the COM2 serial port device// check this
+blocked thread48: kd> !mex.tc ffffa009ec8e1680Process Thread CID UserTime
+KernelTime ContextSwitches Wait Reason Time StateWaAppAgent.exe
+(ffff9807caed8800) ffffa009ec8e1680 1890.3d64 18s.094 40s.031 662822 Executive
+10m:00.000 WaitingIrp List: IRP File Driver ffffa00a126e6b40 Serial# Call Site0
+nt!KiSwapContext+0x761 nt!KiSwapThread+0x17d2 nt!KiCommitThreadWait+0x14f3
+nt!KeWaitForSingleObject+0x3774 serial!SerialGotoPowerState+0x675
+serial!SerialCreateOpen+0x1bd6 serenum!Serenum_DispatchPassThrough+0x867
+serenum!Serenum_CreateClose+0xe48 nt!IoCallDriverWithTracing+0xbd9
+nt!IopParseDevice+0x172fa nt!ObpLookupObjectName+0x11d8b
+nt!ObOpenObjectByNameEx+0x1ddc nt!IopCreateFile+0x860d nt!NtCreateFile+0x79e
+nt!KiSystemServiceCopyEnd+0x13f 0x7fffcb4068c4// check for waiting threads and
+their wait reasons48: kd> !mex.tltPID Address Name Cr Rn Ry IO Pl Er Lc Mu Ps Th
+Su Tr In====== ======= ================ ================================= == ==
+== == == === === === == == == ==== ==0x4 0n4 ffff9807c28a3040 System . 1 13 . 1
+25 . . . 2 . 10 10xe04 0n3588 ffff9807c5725080 svchost.exe . . 1 . 1 6 3 . . . .
+1 .0xe40 0n3648 ffff9807c5761080 svchost.exe . . . . . 3 15 . . . . 2 .0xe88
+0n3720 ffff9807c5797080 svchost.exe . . 1 . . 1 3 . . . . 6 .0xeb8 0n3768
+ffffa009e216c080 LogonUI.exe . . . . . 1 . . . . . 1 .0xf58 0n3928
+ffff9807c57ef800 svchost.exe . . 4 . . 2 1 . . . . 4 .0xf60 0n3936
+ffff9807c56dc080 svchost.exe . . . . . 12 30 . . 1 . 24 .0xf68 0n3944
+ffff9807c57ed080 svchost.exe . . 1 . . 1 . . . . . 3 .0xf70 0n3952
+ffff9807c57ec080 svchost.exe . . . . . 2 1 . . . . 4 .0xfbc 0n4028
+ffff9807c57e2080 svchost.exe . . 1 . 1 . . . . . . 2 .0xc88 0n3208
+ffff9807c57fa080 svchost.exe . . . . . 2 2 . . . . 8 .0x1700 0n5888
+ffff9807cae64800 NetworkWatcherAgent.exe . . 1 . 1 1 . . . 1 . . 10x1718 0n5912
+ffffa009e2d87080 conhost.exe . . . . . 2 . . . . . . .0x1730 0n5936
+ffffa009e245b640 svchost.exe . . . . . . 1 . . . . 1 .0x1738 0n5944
+ffff9807cae7e800 HpcNamingWinService.exe . . . . . 6 . . . . . 118 60x1750
+0n5968 ffff9807cae76800 HpcMonitoringClient.exe . . 5 . 1 . . . . . . 123
+.0x1764 0n5988 ffff9807cae73080 HpcDiagnostics.exe . . 2 . . 1 . . . . . 39
+.0x1778 0n6008 ffff9807caec1800 HpcSdm.exe . . . . . 6 . . . . . 51 60x1780
+0n6016 ffff9807cb16e800 HpcScheduler.exe . . 1 . . 2 1 . . 1 . 153 10x1788
+0n6024 ffff9807caec4080 HpcFrontendWinService.exe . . 2 . . . . . . . . 76
+.0x1790 0n6032 ffff9807caec6800 HpcSession.exe . . 1 . . . . . . . . 447 .0x17a4
+0n6052 ffff9807caec5080 HpcMonitoringServer.exe . . 3 . . 3 . . . . . 144
+30x17a0 0n6048 ffff9807cae9e080 HpcManagement.exe . . 1 . . 2 1 . . . . 55
+10x1300 0n4864 ffff9807cb165340 OfficeClickToRun.exe . . . . . 3 1 . . . . 1
+.0x1890 0n6288 ffff9807caed8800 WaAppAgent.exe . . . . 1 5 1 4 1 1 . 2 30x18f8
+0n6392 ffff9807caf07080 HpcNodeManager.exe . . . . . 5 . . . . . 78 50x1930
+0n6448 ffff9807caf35080 svchost.exe . . . . 1 2 4 . . . . 1 .0x1954 0n6484
+ffffa009e2ddb280 sqlbrowser.exe *32 . . . . . . . . . . . 1 .0x196c 0n6508
+ffff9807caf1f800 STDispatch.exe . . 1 . . . 5 . . . . 2 .0x1a04 0n6660
+ffff9807caf6c800 conhost.exe . . . . . 1 . . . . . . .0x1aac 0n6828
+ffff9807cafea280 WindowsAzureGuestAgent.exe . . . . 1 4 . . . . . 22 10x1ad4
+0n6868 ffff9807cafe2440 sqlservr.exe . 63 7 . 1 . . . . . . 3 10x1c18 0n7192
+ffff9807cb227800 dsa.exe . . . . 1 2 1 . . . . 1 .0x205c 0n8284 ffff9807cbb2f800
+HpcSoaDiagMon.exe . . . . . 2 . . . . . 65 20x20e8 0n8424 ffff9807cbb5e080
+WmiPrvSE.exe . . 1 . 5 . . . . . . 2 .0x2540 0n9536 ffff9807cbc68080 dllhost.exe
+. . . . . 1 . . . . . . .0x2588 0n9608 ffff9807c4640800 sqlceip.exe . . 2 . 1 8
+. . . . . 22 90x37fc 0n14332 ffff9807e159a580 HealthService.exe . . . . . 4 . .
+. . . 13 .0x6f3c 0n28476 ffff9807e1937800 DiagnosticsPlugin.exe . . 9 . . 27 . .
+1 . . 61 30x63a0 0n25504 ffffa00a0673e800 MMAExtensionHeartbeatService.exe . . .
+. . 4 17 . . . . 61 10x8864 0n34916 ffff9807dfe96200 MonitoringHost.exe . . 4 .
+12 55 54 5 1 1 . 10 10x9a00 0n39424 ffff9807e1138800 MonitoringHost.exe . . . .
+1 3 3 . . . . 48 .0x9f6c 0n40812 ffff9807e0f04200 MsSenseS.exe . . . . . 11 3 .
+. . . 1 .<snip>====== ======= ================ =================================
+== == == == == === === === == == == ==== ==PID Address Name 0 64 83 0 37 368 178
+102 8 12 2 2957 46// the system is not in a healthy state as we have many
+threads from various processes waiting on locks especially EResource locks//
+list Eresource locks with contention48: kd> !winde.blocks || || Blocking Locks
+Summary || No. Tag Type Lock Addr Waiters Owners Owner Thread Owner Wait Time
+Tag Owner Waiting On Owner Function 1 ???? !er fffff802`57385d60 58 1 !t
+ffff9807`cb245080 3h:20m:35.734s CPU - READY thread 2 ???? !er fffff802`be698d60
+1 1 !t ffff9807`cf37b040 1.906s No. 8 tmeyes+0x46606 3 ???? !er
+fffff802`bfb6ad80 219 2 * !t ffff9807`df882800 11m:12.687s CPU - READY thread
+tmeyes+0x46546 4 ???? !er ffff9807`c460cc70 115 1 !t ffff9807`e04ba800 1.781s
+No. 8 win32kbase!_GetDCEx+0x8d 5 ???? !er ffff9807`ca31f9a0 7 1 !t
+ffff9807`e0858800 4m:10.437s CPU - READY thread
+win32kbase!GreAcquireSemaphore+0x1c 6 ???? !er ffff9807`cad7aa28 2 1 !t
+ffff9807`e1062080 5h:30m:08.187s CPU - READY thread 7 ???? !er ffffa009`e2fffe60
+9 1 !t ffff9807`cfff9800 2.890s No. 8 tmeyes+0x46606 <snip>// we see several
+EResource locks with many waiters, especially 3 locks with high number of
+waiting threads// dump the owner for the first lock48: kd> !mex.tc
+ffff9807`cb245080Process Thread CID UserTime KernelTime ContextSwitches Wait
+Reason Time Statesvchost.exe (ffff9807c57ed080) ffff9807cb245080 f68.1aec 203ms
+1s.438 809391 WrPreempted 3h:20:35.734 Ready# Call Site0 nt!KiSwapContext+0x761
+nt!KzCheckForThreadDispatch+0xc52 nt!KiCheckForThreadDispatch+0xc53
+nt!KiProcessDeferredReadyList+0xd84 nt!KeSetSystemGroupAffinityThread+0x1035
+nt!KeGenericProcessorCallback+0xd86 nt!KeGenericCallDpc+0x277
+nt!KeSetSystemTime+0x2b8 nt!ExpSetSystemTime+0x609 nt!NtSetSystemTime+0xf2a
+nt!KiSystemServiceCopyEnd+0x13b 0x7fffcb409134This thread has been ready for
+3h:20:35.734 on CPU 0 which is running System thread ffff9807c29c5040// dump the
+owner for the second lock48: kd> !mex.tc ffff9807`df882800 Process Thread CID
+UserTime KernelTime ContextSwitches Wait Reason Time Statesqlceip.exe
+(ffff9807c4640800) ffff9807df882800 2588.6e7c 234ms 0s 49 WrResource 11m:12.687
+Ready# Call Site Info0 nt!KiSwapContext+0x761 nt!KiSwapThread+0x17d2
+nt!KiCommitThreadWait+0x14f3 nt!KeWaitForSingleObject+0x1994
+nt!ExpWaitForResource+0x2935 nt!ExAcquireResourceSharedLite+0x30e6
+tmeyes+0x465467 tmeyes+0x259cc8 tmeyes+0x264369 tmeyes+0x169d5a
+nt!ObpCallPreOperationCallbacks+0x16a b nt!ObpPreInterceptHandleCreate+0x9cc
+nt!ObpCreateHandle+0xbc4d nt!ObOpenObjectByPointer+0x183e
+nt!PspCreateObjectHandle+0x3df nt!PspInsertThread+0x45e10
+nt!PspCreateThread+0x2d111 nt!NtCreateThreadEx+0x1ef12
+nt!KiSystemServiceCopyEnd+0x1313 0x7fffcb4074d4This thread has been ready for
+11m:12.687 on CPU 0 which is running System thread ffff9807c29c5040// this
+thread is also waiting to run on CPU#0// dump the owner for the third lock48:
+kd> !mex.tc ffff9807`e04ba800 Process Thread CID UserTime KernelTime
+ContextSwitches Wait Reason Time Stateconhost.exe (ffffa00a15cd8800)
+ffff9807e04ba800 5328.7f04 3s.891 19s.391 5138074 WrResource 4m:10.281 Waiting#
+Call Site0 nt!KiSwapContext+0x761 nt!KiSwapThread+0x17d2
+nt!KiCommitThreadWait+0x14f3 nt!KeWaitForSingleObject+0x1994
+nt!ExpWaitForResource+0x2935 nt!ExAcquireResourceExclusiveLite+0x2176
+nt!ExEnterCriticalRegionAndAcquireResourceExclusive+0x1b7
+win32kbase!GreAcquireSemaphore+0x148 win32kbase!GreLockVisRgn+0x699
+win32kbase!_GetDCEx+0x8da win32kbase!_GetDC+0x15b win32kbase!NtUserGetDC+0x159c
+nt!KiSystemServiceCopyEnd+0x13d 0x7fffc82f11e4This thread has been waiting
+4m:10.281 on an EResource ffff9807ca31f9a0 owned exclusively by conhost.exe
+thread ffff9807e0858800// dump conhost.exe thread ffff9807e085880048: kd>
+!mex.tc ffff9807e0858800Process Thread CID UserTime KernelTime ContextSwitches
+Wait Reason Time Stateconhost.exe (ffffa00a04a6c800) ffff9807e0858800 8fcc.1774
+1s.375 8s.359 1197190 WrResource 4m:10.437 Ready# Call Site0
+nt!KiSwapContext+0x761 nt!KiSwapThread+0x17d2 nt!KiCommitThreadWait+0x14f3
+nt!KeWaitForSingleObject+0x1994 nt!ExpWaitForResource+0x2935
+nt!ExAcquireResourceExclusiveLite+0x2176
+nt!ExEnterCriticalRegionAndAcquireResourceExclusive+0x1b7
+win32kbase!GreAcquireSemaphore+0x1c8 win32kfull!DEVLOCKBLTOBJ::bLock+0x2bc9
+win32kfull!NtGdiBitBltInternal+0x4e0a nt!KiSystemServiceCopyEnd+0x13b
+0x7fffc82f11a4This thread has been ready for 4m:10.437 on CPU 0 which is running
+System thread ffff9807c29c5040// this thread is also waiting to run on CPU#0//
+dump the thread running on CPU#048: kd> !mex.tc ffff9807c29c5040Process
+AttachedProcess Thread CID UserTime KernelTime ContextSwitches Wait Reason Time
+StateSystem (ffff9807c28a3040) rsession-utf8.exe (ffffa009ec9bb440)
+ffff9807c29c5040 4.134 0s 7h:28:24.641 381799 WrQuantumEnd 18m:51.375 Running on
+CPU 0# Call Site0 nt!MiPopFreeWsle+0x7a1 nt!MiRemoveWorkingSetPages+0x3092
+nt!MiTrimWorkingSet+0x6ab3 nt!MiTrimOrAgeWorkingSet+0x49f4
+nt!MiProcessWorkingSets+0x1ee5 nt!MiWorkingSetManager+0x1607556
+nt!MmWorkingSetManager+0xe7 nt!KeBalanceSetManager+0x1518
+nt!PspSystemThreadStartup+0x419 nt!KxStartSystemThread+0x16This thread has been
+running on CPU 0 (Pri 17, BasePri 8) for 18m:51.375// CPU#0 has been running for
+long time at high priority of 17 trimming the working set for process rsession-
+utf8.exe // dump the rsession-utf8.exe process48: kd> !mex.p
+ffffa009ec9bb440Name Address Ses PID Act Thrd Handle Mods Create Time Up Time Z
+Thrd Parent ================= ================ === ============== ========
+====== ==== ========================== ============= ======
+==========================rsession-utf8.exe ffffa009ec9bb440 10 9ac4 (0n39620)
+113 922 0 07/03/2024 08:42:20.046 AM 14h:02:21.953 0 rstudio.exe 8e98
+(0n36504)Memory Details: VM Peak Work Set Commit Size PP Quota NPP Quota
+======== ======== ======== =========== ========= ========= 35.44 GB 91.25 GB
+30.36 GB 32.18 GB 728.41 KB 332.78 KBCPU Details: User Kernel Total ==========
+============ ============ 51m:46.712 2h:22:33.427 3h:14:20.139// note the
+massive memory usage of this process, 30GB+ of physical memory when it ran for a
+total time of only ~3hrs. rsession-utf8.exe is launched by rstudio.exe// list
+memory usage of running processes48: kd> !mex.tl -memPID Address Name VM PeakVM
+WS MinWS MaxWS PeakWS Shared AWE Size Commit Size PP Quota NPP Quota======
+======= ================ ================================= ========= =========
+========= ========= ========= ========= ========= ======== =========== =========
+=========<snip>0x1790 0n6032 ffff9807caec6800 HpcSession.exe 81.33 GB 81.38 GB
+139.64 MB 200.00 KB 1.35 MB 225.82 MB 3.05 MB 0 1.12 GB 715.75 KB 638.91
+KB0xbb4c 0n47948 ffffa00a144f9800 rsession-utf8.exe 3.93 GB 4.03 GB 509.73 MB
+200.00 KB 1.35 MB 506.19 MB 3.49 MB 0 1.14 GB 756.61 KB 67.93 KB0xa5bc 0n42428
+ffffa00a154e9280 rsession-utf8.exe 4.09 GB 4.16 GB 705.41 MB 200.00 KB 1.35 MB
+713.33 MB 3.57 MB 0 1.34 GB 797.50 KB 71.72 KB0x1780 0n6016 ffff9807cb16e800
+HpcScheduler.exe 82.09 GB 83.83 GB 1.39 GB 200.00 KB 1.35 MB 1.56 GB 3.06 MB 0
+2.50 GB 1.03 MB 764.30 KB0x1ad4 0n6868 ffff9807cafe2440 sqlservr.exe 314.95 GB
+314.98 GB 653.37 MB 200.00 KB 1.35 MB 3.68 GB 2.75 MB 0 2.52 GB 8.64 MB 119.34
+KB0x9ac4 0n39620 ffffa009ec9bb440 rsession-utf8.exe 35.44 GB 91.25 GB 30.36 GB
+200.00 KB 1.35 MB 82.63 GB 3.54 MB 0 32.18 GB 728.41 KB 332.78 KB0x7584 0n30084
+ffffa00a0fa6f800 rsession-utf8.exe 35.97 GB 95.88 GB 32.55 GB 200.00 KB 1.35 MB
+80.70 GB 3.54 MB 0 33.20 GB 726.57 KB 82.83 KB0x9f70 0n40816 ffff9807dbd75800
+rsession-utf8.exe 113.21 GB 190.16 GB 97.86 GB 200.00 KB 1.35 MB 174.15 GB 3.48
+MB 0 109.61 GB 803.53 KB 162.25 KB====== ======= ================
+================================= ========= ========= ========= =========
+========= ========= ========= ======== =========== ========= =========PID
+Address Name 780.23 TB 780.46 TB 171.67 GB 371.29 MB 4.11 GB 362.24 GB 2.38 GB 0
+195.18 GB 106.01 MB 11.72 MB// note we have multiple instances of the rsession-
+utf8.exe process with very high memory usage, one of them alone using ~110GB of
+memory Notes: Support Topics: Windows Servers\Windows Server 2016\Windows Server
+2016\System Performance\System Reliability (crash, errors, bug check or Blue
+Screen, unexpected reboot) First published: Nov 19, 2024 Keywords: ws16, bug
+check, bsod, blue screen, crash, stop, watchdog,
+
+================================================================================

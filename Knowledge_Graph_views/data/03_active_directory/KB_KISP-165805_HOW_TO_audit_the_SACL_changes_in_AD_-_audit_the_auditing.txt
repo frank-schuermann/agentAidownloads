@@ -1,0 +1,147 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-165805
+HOW TO audit the SACL changes in AD - audit the auditing
+================================================================================
+
+Article ID       : KISP-165805
+Language          : en-us
+Created           : 2025-06-20
+Last Modified     : 2025-06-21
+Views             : 7
+Keywords          : SACL Audit,excessive auditing,kupatel,audit the auditing,event flooding,521s
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/how-to-audit-the-sacl-changes-in-ad-audit-the-auditing-ea0d7c55-0cbb-390f-afba-c5dfb0249459
+
+================================================================================
+CONTENT:
+================================================================================
+
+HOW TO audit the SACL changes in AD - audit the auditing Important: This was
+authored via https://aka.ms/contentidea. Follow Content Idea (CI) 203304 link
+for any updates. Author: Kunal Patel Summary You found out DCs security log is
+flooded with events due to someone/something updating SACL on objects to include
+activity which can cause event flooding. eg auding "read all" on domain
+partition or OUs/users which are frequently queried). How to track who made the
+SACL Change More information Enable auditing Audit Directory Service Changes -
+Windows 10 | Microsoft Learn Setting up "write SACL" audit Using LDP.exe Open
+the object you would want to audit for SACL change. In this example, we will use
+"cn=configuration,DC=contoso,DC=com" LDP.exe --> Connect ---> bind ---> view
+tree ---> "cn=configuration,DC=contoso,DC=com" Right click the object -->
+advance --> security descriptor --> check box on SACL --> OK You may Update the
+Trustee, Access Mask, and ACE Flags as required. **Below sample will only
+monitor if member of domain admin makes a SACL change. Tracking Changes in
+Security logs Event generated 5136(S) A directory service object was modified. -
+Windows 10 | Microsoft Learn First 5136 to remove existing entry (deleted) and
+then updating with new entry (added) Log Name: Security Source: Microsoft-
+Windows-Security-Auditing Date: 6/19/2025 7:53:26 PM Event ID: 5136 Task
+Category: Directory Service Changes Level: Information Keywords: Audit Success
+User: N/A Computer: CONDC2.contoso.com Description: A directory service object
+was modified. Subject: Security ID: CONTOSO\conadmin Account Name: conadmin
+Account Domain: CONTOSO Logon ID: 0xB71E1 Directory Service: Name: contoso.com
+Type: Active Directory Domain Services Object: DN:
+CN=Configuration,DC=contoso,DC=com GUID: CN=Configuration,DC=contoso,DC=com
+Class: configuration Attribute: LDAP Display Name: nTSecurityDescriptor Syntax
+(OID): 2.5.5.15 Value: O:S-1-5-21-1839131865-236561047-4151560400-519G:S-1-5-21-
+1839131865-236561047-4151560400-519D:(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;S-1-5-21-1839131865-236561047-4151560400-498)(OA;;CR;89e95b76-
+444d-4c62-991a-0facbeda640c;;BA)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;89e95b76-444d-4c62-991a-
+0facbeda640c;;ED)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(A;CI;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;S-1-5-21-1839131865-
+236561047-4151560400-
+519)(A;CIIO;CCLCSWRPWPLOCRSDRCWDWO;;;DA)(A;;LCRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCR
+SDRCWDWO;;;SY)S:AI(OU;SA;CR;45ec5156-db7e-47bb-b53f-
+dbeb2d03c40f;;WD)(AU;SA;CR;;;DU)(AU;CISA;RPWP;;;DU)(AU;SAFA;0x1000000;;;S-1-5-
+21-1839131865-236561047-4151560400-
+1105)(AU;CISAFA;0x1000000;;;DA)(AU;SA;CR;;;BA) Operation: Type: Value Deleted
+Correlation ID: {e79b3737-3d45-40ed-a279-a97785848305} Application Correlation
+ID: - // Converting SDDL to string for value deleted operation PS C:\> $deleted
+= ConvertFrom-SddlString "O:S-1-5-21-1839131865-236561047-4151560400-519G:S-1-5-
+21-1839131865-236561047-4151560400-519D:(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;S-1-5-21-1839131865-236561047-4151560400-498)(OA;;CR;89e95b76-
+444d-4c62-991a-0facbeda640c;;BA)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;89e95b76-444d-4c62-991a-
+0facbeda640c;;ED)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(A;CI;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;S-1-5-21-1839131865-
+236561047-4151560400-
+519)(A;CIIO;CCLCSWRPWPLOCRSDRCWDWO;;;DA)(A;;LCRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCR
+SDRCWDWO;;;SY)S:AI(OU;SA;CR;45ec5156-db7e-47bb-b53f-
+dbeb2d03c40f;;WD)(AU;SA;CR;;;DU)(AU;CISA;RPWP;;;DU)(AU;SAFA;0x1000000;;;S-1-5-
+21-1839131865-236561047-4151560400-
+1105)(AU;CISAFA;0x1000000;;;DA)(AU;SA;CR;;;BA)" PS C:\> $deleted.SystemAcl
+BUILTIN\Administrators: SystemAudit SuccessfulAccess (WriteAttributes)
+CONTOSO\Domain Admins: SystemAudit AuditFlags (AccessSystemSecurity)
+CONTOSO\Domain Users: SystemAudit SuccessfulAccess (Traverse, WriteAttributes,
+WriteExtendedAttributes) CONTOSO\conadmin: SystemAudit AuditFlags
+(AccessSystemSecurity) Everyone: SystemAudit SuccessfulAccess (WriteAttributes)
+============================================ Log Name: Security Source:
+Microsoft-Windows-Security-Auditing Date: 6/19/2025 7:53:26 PM Event ID: 5136
+Task Category: Directory Service Changes Level: Information Keywords: Audit
+Success User: N/A Computer: CONDC2.contoso.com Description: A directory service
+object was modified. Subject: Security ID: CONTOSO\conadmin Account Name:
+conadmin Account Domain: CONTOSO Logon ID: 0xB71E1 Directory Service: Name:
+contoso.com Type: Active Directory Domain Services Object: DN:
+CN=Configuration,DC=contoso,DC=com GUID: CN=Configuration,DC=contoso,DC=com
+Class: configuration Attribute: LDAP Display Name: nTSecurityDescriptor Syntax
+(OID): 2.5.5.15 Value: O:S-1-5-21-1839131865-236561047-4151560400-519G:S-1-5-21-
+1839131865-236561047-4151560400-519D:(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;S-1-5-21-1839131865-236561047-4151560400-498)(OA;;CR;89e95b76-
+444d-4c62-991a-0facbeda640c;;BA)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;89e95b76-444d-4c62-991a-
+0facbeda640c;;ED)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(A;CI;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;S-1-5-21-1839131865-
+236561047-4151560400-
+519)(A;CIIO;CCLCSWRPWPLOCRSDRCWDWO;;;DA)(A;;LCRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCR
+SDRCWDWO;;;SY)S:AI(OU;SA;CR;45ec5156-db7e-47bb-b53f-
+dbeb2d03c40f;;WD)(AU;SA;CR;;;DU)(AU;CISA;RPWP;;;DU)(AU;SAFA;0x1000000;;;S-1-5-
+21-1839131865-236561047-4151560400-1105)(AU;SA;CR;;;BA)(AU;CISA;LCRPWPRC;;;WD)
+Operation: Type: Value Added Correlation ID:
+{e79b3737-3d45-40ed-a279-a97785848305} Application Correlation ID: - //
+converting the SDDL for value ADDED operation PS C:\> $added = ConvertFrom-
+SddlString "O:S-1-5-21-1839131865-236561047-4151560400-519G:S-1-5-21-1839131865-
+236561047-4151560400-519D:(OA;;CR;1131f6aa-9c07-11d1-f79f-00c04fc2dcd2;;S-1-5-
+21-1839131865-236561047-4151560400-498)(OA;;CR;89e95b76-444d-4c62-991a-
+0facbeda640c;;BA)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;BA)(OA;;CR;89e95b76-444d-4c62-991a-
+0facbeda640c;;ED)(OA;;CR;1131f6aa-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ab-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ac-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(OA;;CR;1131f6ad-9c07-11d1-f79f-
+00c04fc2dcd2;;ED)(A;CI;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;S-1-5-21-1839131865-
+236561047-4151560400-
+519)(A;CIIO;CCLCSWRPWPLOCRSDRCWDWO;;;DA)(A;;LCRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCR
+SDRCWDWO;;;SY)S:AI(OU;SA;CR;45ec5156-db7e-47bb-b53f-
+dbeb2d03c40f;;WD)(AU;SA;CR;;;DU)(AU;CISA;RPWP;;;DU)(AU;SAFA;0x1000000;;;S-1-5-
+21-1839131865-236561047-4151560400-1105)(AU;SA;CR;;;BA)(AU;CISA;LCRPWPRC;;;WD)"
+PS C:\> $added.SystemAcl Everyone: SystemAudit SuccessfulAccess
+(CreateDirectories, GenericExecute, ReadPermissions, Traverse,
+WriteExtendedAttributes) BUILTIN\Administrators: SystemAudit SuccessfulAccess
+(WriteAttributes) CONTOSO\Domain Users: SystemAudit SuccessfulAccess (Traverse,
+WriteAttributes, WriteExtendedAttributes) CONTOSO\conadmin: SystemAudit
+AuditFlags (AccessSystemSecurity) Everyone: SystemAudit SuccessfulAccess
+(WriteAttributes) ================================= Additional References: ADDS:
+Security: The real reason for Event ID 521 (Status code 0x80000005 ) on Domain
+Controllers Notes: First published: Jun 20, 2025 Keywords: SACL Audit, excessive
+auditing, kupatel, audit the auditing, event flooding, 521s
+
+================================================================================

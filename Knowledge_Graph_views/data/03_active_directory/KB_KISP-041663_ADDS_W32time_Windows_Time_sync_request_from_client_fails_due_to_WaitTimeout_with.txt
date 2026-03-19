@@ -1,0 +1,97 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-041663
+ADDS: W32time: Windows Time sync request from client fails due to WaitTimeout with error code “0x800705B4”
+================================================================================
+
+Article ID       : KISP-041663
+Language          : en-us
+Created           : 2024-12-30
+Last Modified     : 2025-07-29
+Views             : 132
+Keywords          : 0x800705B4,W32time,WaitTimeout,stripchart
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-w32time-windows-time-sync-request-from-client-fails-due-to-waittimeout-with-error-code-0x800705b4-c165cde0-f0b9-b086-1a49-399fa6091348
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: W32time: Windows Time sync request from client fails due to WaitTimeout
+with error code “0x800705B4” Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 198559 link for any
+updates. Author: Md Habib Nawaz Summary/Symptom In certain scenarios, a time
+synchronization request from a client to a domain controller can fail, returning
+a "WaitTimeout" error. This issue is often identified through the failure of the
+Strip Chart command, which returns the error code "0x800705B4". Below is an
+example of the output when attempting to sync time with the command w32tm
+/stripchart /computer:Cont-DC.contoso.com /samples:5 /dataonly: Tracking Cont-
+DC.contoso.com [DC:123]. Collecting 5 samples. The current time is 12/16/2024
+1:17:10 PM. 13:17:10, error: 0x800705B4 13:17:13, error: 0x800705B4 13:17:16,
+error: 0x800705B4 13:17:19, error: 0x800705B4 13:17:22, error: 0x800705B4 Cause
+The primary cause of this issue is the disabling of the Windows Time NTP Server
+provider on the domain controller via the system registry. This configuration
+prevents proper time synchronization with the client. Article resolution To
+resolve this issue, follow these steps: Backup the Registry: Before making any
+changes to the registry, it's crucial to back up the current settings. Navigate
+to HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\ and create a backup.
+Enable the NTP Server Provider: Option 1: Set the "Enabled" (DWORD) value to 1
+in the following registry key:
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpServer
+Option 2: Alternatively, you can delete the registry key
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpServer
+after ensuring a backup is available. Restart the Windows Time Service: After
+making the registry changes, restart the Windows Time service to apply the new
+settings. You can do this by running the following command in the Command
+Prompt: net stop w32time && net start w32time Verify Time Synchronization: Use
+the Strip Chart command again to verify that the time synchronization is
+functioning correctly: w32tm /stripchart /computer:<dcname> /samples:5 Ensure
+that the error code "0x800705B4" is no longer present in the output. More
+information Error Details: # No results found for hex 0x800705b4 / decimal
+-2147023436 # as an HRESULT: Severity: FAILURE (1), FACILITY_WIN32 (0x7), Code
+0x5b4 # for hex 0x5b4 / decimal 1460 ERROR_TIMEOUT winerror.h # This operation
+returned because the timeout period expired. # 1 matches found for "0x800705B4"
+Network Trace: 217 2024-12-17 02:46:04.795483 Client DC 90 NTP NTP Version 1,
+client 220 2024-12-17 02:46:07.806284 Client DC 90 NTP NTP Version 1, client 226
+2024-12-17 02:46:10.814996 Client DC 90 NTP NTP Version 1, client W32time Debug
+Logs: 154847 21:16:01.7875393s - ListeningThread -- response heard from
+x.x.x.x:56035 <- x.x.x.x:123 154847 21:16:01.7875591s - /-- NTP Packet: 154847
+21:16:01.7875641s - | LeapIndicator: 0 - no warning; VersionNumber: 1; Mode: 3 -
+Client; LiVnMode: 0x0B 154847 21:16:01.7875693s - | Stratum: 0 - unspecified or
+unavailable 154847 21:16:01.7875727s - | Poll Interval: 0 - unspecified;
+Precision: 0 - unspecified 154847 21:16:01.7875775s - | RootDelay: 0x0000.0000s
+- unspecified; RootDispersion: 0x0000.0000s - unspecified 154847
+21:16:01.7875850s - | ReferenceClockIdentifier: 0x00000000 - unspecified 154847
+21:16:01.7875905s - | ReferenceTimestamp: 0x0000000000000000 - unspecified
+154847 21:16:01.7875961s - | OriginateTimestamp: 0x0000000000000000 -
+unspecified 154847 21:16:01.7876017s - | ReceiveTimestamp: 0x0000000000000000 -
+unspecified 154847 21:16:01.7876074s - | TransmitTimestamp: 0xEB0B1711C7543287 -
+13378857361778628500ns - 154847 21:16:01.7786285s 154847 21:16:01.7876167s - >--
+Non-packet info: 154847 21:16:01.7876208s - | DestinationTimestamp: 154847
+21:16:01.7876247s - 0xEB0B1711C9997303154847 21:16:01.7876281s - -
+13378857361787497700ns154847 21:16:01.7876318s - - 154847 21:16:01.7874977s
+154847 21:16:01.7876363s - | RoundtripDelay: 8869200ns (0s) 154847
+21:16:01.7876429s - | LocalClockOffset: -4434600ns - 0:00.004434600s 154847
+21:16:01.7876515s - \-- 154847 21:16:01.7876738s - Ignoring packet invalid mode
+combination (in:3 out:0). 154847 21:16:02.8034494s - ClockDispln Discipline:
+*SKEW*TIME* - PhCRR:49 CRD:48 PhCRR_:50 CRD_:49 CR:9999973 (PhCRRL:49 CRL:156249
+phcTL:64) UI:100 KPhO:11173 154847 21:16:04.2703350s - PeerPollingThread:
+WaitTimeout w32tm.exe /query /configuration Command Output on DC:
+[TimeProviders] NtpClient (Local) DllName: C:\windows\system32\w32time.dll
+(Local) Enabled: 1 (Local) InputProvider: 1 (Local)
+AllowNonstandardModeCombinations: 1 (Local) ResolvePeerBackoffMinutes: 15
+(Policy) ResolvePeerBackoffMaxTimes: 7 (Policy) CompatibilityFlags: 2147483648
+(Local) EventLogFlags: 1 (Policy) LargeSampleSkew: 3 (Local)
+SpecialPollInterval: 1024 (Policy) Type: NTP (Policy) NtpServer:
+time.windows.com,0x8 (Policy) VMICTimeProvider (Local) DllName:
+C:\windows\System32\vmictimeprovider.dll (Local) Enabled: 0 (Local)
+InputProvider: 1 (Local) NtpServer (Local) DllName:
+C:\windows\system32\w32time.dll (Local) Enabled: 0 (Policy) InputProvider: 0
+(Local) Reference: Windows Time service tools and settings | Microsoft Learn
+Notes: Support Topics: Windows Servers\Windows Server 2022\Windows Server
+2022\Active Directory\Windows Time Service configuration, accuracy, and
+synchronization, Windows Servers\Windows Server 2019\Windows Server 2019\Active
+Directory\Windows Time Service configuration, accuracy, and synchronization,
+Windows Servers\Windows Server 2016\Windows Server 2016\Active Directory\Windows
+Time Service configuration, accuracy, and synchronization First published: Dec
+30, 2024 Keywords: 0x800705B4, W32time, WaitTimeout, stripchart
+
+================================================================================

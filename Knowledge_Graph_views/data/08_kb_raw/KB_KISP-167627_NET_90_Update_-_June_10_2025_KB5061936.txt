@@ -1,0 +1,41 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-167627
+.NET 9.0 Update - June 10, 2025 (KB5061936) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-167627
+Language          : en-us
+Created           : 2025-06-10
+Last Modified     : 2025-06-10
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/-net-9-0-update-june-10-2025-kb5061936-8996a082-e0a3-46da-8ed8-af41db881107
+
+================================================================================
+CONTENT:
+================================================================================
+
+NET 9.0 has been refreshed with the latest update as of June 10, 2025. This
+update contains both security and non-security fixes. See the release notes for
+details on updated packages. .NET 9.0 servicing updates are upgrades. The latest
+servicing update for 9.0 will remove the previous 9.0 update upon successful
+installation. For example, when .NET 9.0.6 is installed .NET 9.0.5 version will
+be removed from the computer if present. How to obtain and install the update
+This update is available on Microsoft Update for Windows client operating
+systems and available on WSUS and MU Catalog for Windows Server operating
+systems. Prerequisites This update will be offered if you have .NET 9.0
+installed on a supported version of Windows. Restart Requirement You may need to
+restart the computer after you apply this update if any affected files are being
+used. We recommend that you exit all .NET based applications before you apply
+this update. Supported Windows Versions This page on .NET 9.0 Supported Windows
+Versions provides the most up-to-date details on the supported operating system
+versions. .NET Support Lifecycle This page on .NET Core and .NET 9 Support
+Policy provides the most up-to-date details on .NET Core Support Lifecycle
+Policy. How to obtain help and support for this update Microsoft Support For
+assisted support with .NET Core technologies, contact a Microsoft Support
+Professional. You need to be on a supported servicing level (the latest
+available servicing update) to be eligible for support. Community Support
+Community support is another great way to get help and even contribute to
+projects. See our Community page for details. More Information To get the latest
+.NET update, go to the Download .NET website
+
+================================================================================

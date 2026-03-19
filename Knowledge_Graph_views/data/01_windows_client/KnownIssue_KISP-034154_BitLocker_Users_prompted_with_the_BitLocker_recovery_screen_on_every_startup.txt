@@ -1,0 +1,35 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-034154
+BitLocker: Users prompted with the BitLocker recovery screen on every startup.
+================================================================================
+
+Issue ID     : KI-KISP-034154
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-11-04
+Last Updated : 2025-06-09
+Source KB     : KISP-034154
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/bitlocker-users-prompted-with-the-bitlocker-recovery-screen-on-every-startup-05002086-c962-fb76-ca48-413c63d57325
+Tags         : BitLocker
+
+SYMPTOMS:
+---------
+Symptom User's getting BitLocker recovery screen every time they boot up the
+machine and hence used recovery password to unlock the OS Drive.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-034154
+for full scope.
+
+WORKAROUND:
+-----------
+Since the TPM protector was removed by the SCCM Task sequence, I advised the
+customer to contact the SCCM team to determine who executed the script and the
+reason behind it.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-034154
+
+================================================================================

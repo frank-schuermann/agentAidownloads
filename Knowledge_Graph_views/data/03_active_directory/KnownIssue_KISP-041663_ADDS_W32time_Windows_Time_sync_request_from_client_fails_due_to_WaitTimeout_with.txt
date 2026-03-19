@@ -1,0 +1,48 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-041663
+ADDS: W32time: Windows Time sync request from client fails due to WaitTimeout with error code “0x800705B4”
+================================================================================
+
+Issue ID     : KI-KISP-041663
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2024-12-30
+Last Updated : 2025-07-29
+Source KB     : KISP-041663
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/adds-w32time-windows-time-sync-request-from-client-fails-due-to-waittimeout-with-error-code-0x800705b4-c165cde0-f0b9-b086-1a49-399fa6091348
+Tags         : Active Directory, Windows
+
+SYMPTOMS:
+---------
+is the disabling of the Windows Time NTP Server provider on the domain
+controller via the system registry. This configuration prevents proper time
+synchronization with the client. Article
+
+ROOT CAUSE:
+-----------
+The primary cause of this issue is the disabling of the Windows Time NTP Server
+provider on the domain controller via the system registry. This configuration
+prevents proper time synchronization with the client.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-041663
+for full scope.
+
+WORKAROUND:
+-----------
+To resolve this issue, follow these steps: Backup the Registry: Before making
+any changes to the registry, it's crucial to back up the current settings.
+Navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\ and create a
+backup. Enable the NTP Server Provider: Option 1: Set the "Enabled" (DWORD)
+value to 1 in the following registry key:
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpServer
+Option 2: Alternatively, you can delete the registry key
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpServer
+after ensuring a backup is availa
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-041663
+
+================================================================================

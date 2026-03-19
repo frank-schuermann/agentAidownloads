@@ -1,0 +1,45 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-029768
+Windows 11: Some Apps missing icon in search results, but retain icons in Start Menu after upgrade
+================================================================================
+
+Issue ID     : KI-KISP-029768
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-10-30
+Last Updated : 2025-06-09
+Source KB     : KISP-029768
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-11-some-apps-missing-icon-in-search-results-but-retain-icons-in-start-menu-after-upgrade-62efd8e9-9c6d-200f-928c-4146474bd315
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Icons of applications like Edge and other apps like Chrome browser tool lose its
+image in Search results, but retain it Start Menu and taskbar. Icons are
+clickable No profile management in use. Issue observed only with User accounts
+and not with admin accounts so far. Issue happened after in-place upgrade from
+Windows 10 to Windows 11 The issue was only temporary, and would appear after
+first logon post reboot, and then would disappear eventually only to come back
+after few reboots. Article
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-029768
+for full scope.
+
+WORKAROUND:
+-----------
+Please start by making below policy as default on the test machine (after
+removing it from the OU for the domain policy): Bypass Traverse Checking:
+Expected entries: Default Members : Administrators , Backup Operators, Everyone
+, Local Service, Network Service, Users impacted device: Administrators, Local
+Service, Network Service, Users Please add- Backup Operators, Everyone to Bypass
+Traverse Checking entry under: Policy :Computer Configuration\Windows
+Settings\Security Settings\Local Policies\User Rights Assignments\ Gpupdate
+/force Try to repro the issue by uninstalling and installing back
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-029768
+
+================================================================================

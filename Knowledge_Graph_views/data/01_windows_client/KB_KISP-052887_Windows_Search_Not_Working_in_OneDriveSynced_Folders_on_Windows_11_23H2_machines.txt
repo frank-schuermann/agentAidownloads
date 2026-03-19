@@ -1,0 +1,96 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-052887
+Windows Search Not Working in "OneDriveSynced" Folders on Windows 11 23H2 machines
+================================================================================
+
+Article ID       : KISP-052887
+Language          : en-us
+Created           : 2025-03-13
+Last Modified     : 2025-06-09
+Views             : 22
+Keywords          : Onedrivesearch,Onedrivesync
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-search-not-working-in-onedrivesynced-folders-on-windows-11-23h2-machines-c5f6a65f-ab9b-46dd-c69d-0f8e2c8c83e9
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows Search Not Working in "OneDriveSynced" Folders on Windows 11 23H2
+machines Important: This was authored via https://aka.ms/contentidea. Follow
+Content Idea (CI) 200368 link for any updates. Author: Saisrinivas Chikoti
+Summary/Symptom Reported on: Windows 11 23h2 Machines Reported Symptoms: When an
+end user searches within File Explorer for a file or folder in a OneDrive-synced
+folder, no results are displayed. Other information: Windows Search and File
+Explorer search function normally without any issues. We rebuilt the index, and
+under Indexing Options, OneDrive appears to be indexed under the Users
+directory. Additionally, Cloud Content Search is enabled. Problem snippet :
+OneDrive Sync folder problem snippet: Cause We gathered Search ETL traces and
+Process Monitor logs during the reproduction of the issue by creating a test
+folder. A test folder was created, and three different file types were moved
+into it. These files were then hydrated by selecting "Always keep on this
+device" before stopping the logs. Log Analysis: Converted and merged the ETL
+traces. It shows successful indexing for all 3 different files in "Test folder"
+[Microsoft-Windows-Search-Core/Diagnostic] ITrans=0x272B0ABCB20, ResID=0x5DF1,
+Status=0x2, Type=0x1, Flags=0x8100017D, InternalFlags=0x4,
+CrawlNumber=0xFFFFFFFF, CrawlType=0x0, Extra1=0xF5B, Extra2=0x0, Extra3=0x0,
+Path=file:C:/Users/XXXX/OneDrive - AXA_OLD/Documents/Quiz - Windows Edition -
+XXXXXX.docx [Microsoft-Windows-Search-Core/Diagnostic] DocID=53127,
+URL=C:\[a0bb3b87-872f-47aa-ab86-2dadb40c39ea]\Users\XXXX\OneDrive -
+AXA\TEST\XXXX.xlsx, Info=ProcessDataChange - EXTERNAL Notification on existing
+URL received (MODIFY) scope:1962 [Microsoft-Windows-Search-Core/Diagnostic]
+ITrans=0x272AC302F60, ResID=0xCF87, Status=0x4, Type=0x2, Flags=0xA1100175,
+InternalFlags=0x0, CrawlNumber=0xFFFFFFFF, CrawlType=0x0, Extra1=0x0,
+Extra2=0x0, Extra3=0x0, Path=file:C:/Users/XXXX/OneDrive - AXA/TEST/XXXXXX.xlsx
+[Microsoft-Windows-Search-Core/Diagnostic] ITrans=0x272B270DD60, ResID=0xAD78,
+Status=0x2, Type=0x1, Flags=0x8110817D, InternalFlags=0x4,
+CrawlNumber=0xFFFFFFFF, CrawlType=0x0, Extra1=0x2, Extra2=0x494E4458,
+Extra3=0x0, Path=file:C:/Users/XXXX/OneDrive - AXA/TEST FOLDER/XXX.txt Procmon :
+Search indexer querying the Test folder and it show success too:
+SearchIndexer.exe 16228 CreateFile C:\Users\XXXX\OneDrive - AXA\TEST SUCCESS
+Desired Access: Read Attributes, Disposition: Open, Options: Open Reparse Point,
+Attributes: n/a, ShareMode: Read, Write, Delete, AllocationSize: n/a,
+OpenResult: Opened SearchIndexer.exe 16228 QueryBasicInformationFile
+C:\Users\XXXX\OneDrive - AXA\TEST SUCCESS CreationTime: 2/28/2025 3:46:07 PM,
+LastAccessTime: 2/28/2025 4:16:33 PM, LastWriteTime: 2/28/2025 3:46:49 PM,
+ChangeTime: 2/28/2025 4:16:33 PM, FileAttributes: RDARP 0x80000 S
+earchIndexer.exe 16228 CloseFile C:\Users\XXXX\OneDrive - AXA\TEST SUCCESS We
+see an error in the ETL logs: 0x80070057 QueryText=SELECT WorkId,
+System.ParsingName, System.ItemNameDisplay, System.SFGAOFlags, System.ItemType,
+System.ThumbnailCacheId, System.Kind, System.Search.Rank, System.ItemTypeText,
+System.ItemFolderPathDisplayNarrow, Path, System.FileAttributes,
+System.DateModified, System.DateCreated, System.DateAccessed, System.Size FROM
+SystemIndex WHERE NOT System.Shell.SFGAOFlagsStrings = SOME ARRAY['superhidden']
+AND System.Shell.OmitFromView != 'true' AND (Scope = 'file:C:/Users/XXX/OneDrive
+- AXA') ORDER BY System.Search.Rank DESC, System.DateModified DESC,
+System.ItemNameDisplay ASC, ErrorCode=0x80070057 0x80070057 -2147024809
+E_INVALIDARG However, the procmon does not show any errors interestingly.
+Article resolution Later, we collected TTD traces for the explorer.exe and
+SearchIndexer.exe processes. These traces revealed that the Local ID data was
+incorrect. 0:005> dv Locale = 0x7d0 0:005> ?0x7d0 Evaluate expression: 2000 =
+00000000`000007d0 This locale ID is not valid, the valid one is 0x2000 (8192)
+TransientLangId is set to wrong value: which is 2000: which shows in process
+monitor too: We went to the path: - HKEY_CURRENT_USER\Control
+Panel\International\User Profile\en-BE Wrong Value: 0x7d0( 2000) The correct
+value for en-BE is 0x2000 (8192 in decimal) And changed the value to 0x2000
+(8192 in decimal) shown in below snippet: Then later, rebooted the machine. The
+Search works as expected in the OneDrive Sync folder. A heartfelt thank you to
+EE, Pablo (pgavela@microsoft.com) for his invaluable assistance in analyzing the
+logs and guiding in the right direction to resolve the issue. More information
+Search ETL Commands: To start the Trace: logman create trace "enduser_MSSearch2"
+-ow -o c:\enduser_MSSearch2.etl -p "Microsoft-Windows-Search" 0xffffffffffffffff
+0xff -nb 16 16 -bs 1024 -mode Circular -f bincirc -max 4096 -ets logman update
+trace "enduser_MSSearch2" -p "Microsoft-Windows-Search-ProfileNotify"
+0xffffffffffffffff 0xff -ets logman update trace "enduser_MSSearch2" -p
+{2955E23C-4E0B-45CA-A181-6EE442CA1FC0} 0xffffffffffffffff 0xff -ets logman
+update trace "enduser_MSSearch2" -p "Microsoft-Windows-Search-ProtocolHandlers"
+0xffffffffffffffff 0xff -ets logman update trace "enduser_MSSearch2" -p
+"Microsoft-Windows-Search-Core" 0xffffffffffffffff 0xff -ets To stop the Trace:
+logman stop "enduser_MSSearch2" -ets TTD Tracing: tttracer -attach <explorer.exe
+PID> tttracer -attach <SearchIndexer.exe PID> Windows: Windows Search overview
+Windows: Search: Guidance and initial troubleshooting for Windows Search https:/
+/dev.azure.com/Supportability/SharePointOnline/_wiki/wikis/SharePointOnline/1285
+065/Windows-desktop-search-not-returning-OneDrive-contents-(VDI) Notes: Support
+Topics: Windows\Windows 11 SR Number: 2502201420001312 First published: Mar 13,
+2025 Keywords: Onedrivesearch, Onedrivesync
+
+================================================================================

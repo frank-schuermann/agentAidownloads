@@ -1,0 +1,42 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-038696
+Windows: Pop-up message "Unknown Hard Error" after logon due to corrupt user profile
+================================================================================
+
+Issue ID     : KI-KISP-038696
+Severity     : P2
+Status       : Fix Available
+Reported     : 2025-01-06
+Last Updated : 2025-06-09
+Source KB     : KISP-038696
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-pop-up-message-unknown-hard-error-after-logon-due-to-corrupt-user-profile-5cc20f41-8def-6798-9dc2-7f3c8f4d7c64
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom UNKNOWN HARD ERROR pop up after logging in. We click on OK and nothing
+happens. cx is completely unable to do anything on the machine.
+
+ROOT CAUSE:
+-----------
+User Profile corruption Article
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-038696
+for full scope.
+
+WORKAROUND:
+-----------
+Modified below registry and it stopped the UNKNOWN HARD ERROR pop up. 1. Run
+Registry Editor. 2. From the HKEY_LOCAL_MACHINE subtree, go to the following
+key: \SYSTEM\CurrentControlSet\Control\Windows Value: ErrorMode Type: REG_DWORD
+Default: 0 3. Change it to 2. 4. Reboot the machine. Additionally, found that
+local admin was working fine. Recreated the user profile and it resolved the
+issue. Note: First published: Jan 06, 2025
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-038696
+
+================================================================================

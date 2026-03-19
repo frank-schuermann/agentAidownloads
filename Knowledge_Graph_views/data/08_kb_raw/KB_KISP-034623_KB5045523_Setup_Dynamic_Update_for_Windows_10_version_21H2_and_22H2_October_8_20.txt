@@ -1,0 +1,204 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034623
+KB5045523: Setup Dynamic Update for Windows 10, version 21H2 and 22H2: October 8, 2024
+================================================================================
+
+Article ID       : KISP-034623
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 4
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/kb5045523-setup-dynamic-update-for-windows-10-version-21h2-and-22h2-october-8-2024-9f519864-d268-469f-b348-0b6977ecacb0
+
+================================================================================
+CONTENT:
+================================================================================
+
+KB5045523: Setup Dynamic Update for Windows 10, version 21H2 and 22H2: October
+8, 2024 Summary This update makes improvements to Windows setup binaries or any
+files that setup uses for feature updates in Windows 10, version 21H2 and
+Windows 10, version 22H2. How to get this update Install this update To install
+this update, use one of the following release channels. Windows UpdateUpdate
+CatalogServer Update Services Available Next step Yes This update is available
+through Windows Update. It will be downloaded and installed automatically.
+Available Next step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. To download updates from the Update Catalog,
+see Steps to download updates from the Windows Update Catalog. Available Next
+step Yes This update will automatically sync with WSUS if you configure Products
+and Classifications as follows: Product: Windows 10, version 1903 and
+later​​​​​​​ Classification: Security Updates Prerequisites There are no
+prerequisites to apply this update. Restart information You do not have to
+restart your computer after you apply this update. Update replacement
+information This update replaces the previously released update KB5032906. File
+information The English (United States) version of this software update installs
+files that have the following attributes. This update might contain files for
+additional languages. For all supported x86-based versions File name File
+version Date Time File size acmigration.dll 10.0.19041.5000 10-Sep-24 18:13
+489,952 AcRes.dll 10.0.19041.5000 10-Sep-24 18:13 333,808 Appraiser.dll
+10.0.19041.5000 10-Sep-24 18:13 1,899,000 appraiser.sdb Not versioned 10-Sep-24
+18:13 2,455,993 AppraiserRes.dll 10.0.19041.5000 10-Sep-24 18:13 215,536
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 323,072 cmi2migxml.dll
+10.0.19041.5000 10-Sep-24 18:13 147,424 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 347,136 csiagent.dll 10.0.19041.5000 10-Sep-24 18:13 536,048 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 338,432 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 377,856 diagtrack.dll 10.0.10586.10008 10-Sep-24 18:13 919,736 Dism.exe
+10.0.19041.5000 10-Sep-24 18:13 226,288 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 394,752 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 372,224
+Facilitator.dll 10.0.19041.5000 10-Sep-24 18:13 794,080 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 342,016 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 376,320 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 368,640
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 237,056 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 224,768 MediaSetupUIMgr.dll 10.0.19041.5000
+10-Sep-24 18:13 13,846,912 migcore.dll 10.0.19041.5000 10-Sep-24 18:13 6,834,144
+mighost.exe 10.0.19041.5000 10-Sep-24 18:13 249,824 migisol.dll 10.0.19041.5000
+10-Sep-24 18:13 119,800 migres.dll 10.0.19041.5000 10-Sep-24 18:13 17,400
+MigStore.dll 10.0.19041.5000 10-Sep-24 18:13 958,944 MigSys.dll 10.0.19041.5000
+10-Sep-24 18:13 325,112 Mitigation.dll 10.0.19041.5000 10-Sep-24 18:13 247,792
+MXEAgent.dll 10.0.19041.5000 10-Sep-24 18:13 259,040 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 339,456 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 380,928 offline.xml Not versioned 10-Sep-24 18:13 38,899 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 383,488 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 356,352 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 358,400
+AppXDeploymentServer-Replacement.man Not versioned 10-Sep-24 18:13 4,900
+EdgeMigrationPlugin.man Not versioned 10-Sep-24 18:13 923 edpnotify-
+replacement.man Not versioned 10-Sep-24 18:13 830 fveApi-replacement.man Not
+versioned 10-Sep-24 18:13 1,101 Edge.dat Not versioned 10-Sep-24 18:13 12,288
+EdgeMigrationPlugin.dll 1.0.0.1 10-Sep-24 18:13 90,088 EdgeUpdate.dat Not
+versioned 10-Sep-24 18:13 12,288 TileStoreMigrationPlugin.dll 10.0.19041.5000
+10-Sep-24 18:13 97,784 AppxUpgradeMigrationPlugin.dll 10.0.19041.5000 10-Sep-24
+18:13 380,912 iismig.dll 10.0.19041.5000 10-Sep-24 18:13 312,824
+SxsMigPlugin.dll 10.0.19041.5000 10-Sep-24 18:13 109,440 PPIPolicies-General-
+Replacement.man Not versioned 10-Sep-24 18:13 2,161 PPIPolicies-Miracast-
+Replacement.man Not versioned 10-Sep-24 18:13 1,352 StartTileData-
+Replacement.man Not versioned 10-Sep-24 18:13 2,702 ReserveManager.dll
+10.0.19041.5000 10-Sep-24 18:13 217,608 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+18:13 355,840 Setup.exe 10.0.19041.5000 10-Sep-24 18:13 244,232 setupcompat.dll
+10.0.19041.5000 10-Sep-24 18:13 293,856 SetupCore.dll 10.0.19041.5000 10-Sep-24
+18:13 1,900,552 SetupHost.exe 10.0.19041.5000 10-Sep-24 18:13 704,496
+SetupMgr.dll 10.0.19041.5000 10-Sep-24 18:13 768,496 SetupPlatform.dll
+1.60.19041.5000 10-Sep-24 18:13 7,231,496 SetupPlatform.exe 1.60.19041.5000
+10-Sep-24 18:13 153,080 SetupPrep.exe 10.0.19041.5000 10-Sep-24 18:13 10,659,336
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 348,672 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 18:13 336,384 unbcl.dll 10.0.19041.5000 10-Sep-24
+18:13 837,088 uninstall.xml Not versioned 10-Sep-24 18:13 3,508 UpdateAgent.dll
+10.0.19041.5000 10-Sep-24 18:13 2,146,784 upgrade_bulk.xml Not versioned
+10-Sep-24 18:13 208,513 upgradeagent.dll 10.0.19041.5000 10-Sep-24 18:13
+2,418,672 WinDlp.dll 10.0.19041.5000 10-Sep-24 18:13 1,103,504 winsetup.dll
+10.0.19041.5000 10-Sep-24 18:13 2,982,408 WinSetupBoot.sys 10.0.19041.5000
+10-Sep-24 18:13 67,568 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 18:13 182,784 For
+all supported x64-based versions File name File version Date Time File size
+acmigration.dll 10.0.19041.5000 10-Sep-24 17:35 658,288 AcRes.dll
+10.0.19041.5000 10-Sep-24 17:35 333,704 Appraiser.dll 10.0.19041.5000 10-Sep-24
+17:35 2,261,472 appraiser.sdb Not versioned 10-Sep-24 17:35 2,759,174
+AppraiserRes.dll 10.0.19041.5000 10-Sep-24 17:35 216,032 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 323,072 cmi2migxml.dll 10.0.19041.5000 10-Sep-24
+17:35 192,368 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 347,136 csiagent.dll
+10.0.19041.5000 10-Sep-24 17:35 726,024 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 338,432 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 377,856
+diagtrack.dll 10.0.10586.10008 10-Sep-24 17:35 1,362,104 Dism.exe
+10.0.19041.5000 10-Sep-24 17:35 289,288 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 394,752 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 372,224
+Facilitator.dll 10.0.19041.5000 10-Sep-24 17:35 1,024,480 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 342,016 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 376,320 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 368,640
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 237,056 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 224,768 MediaSetupUIMgr.dll 10.0.19041.5000
+10-Sep-24 17:35 14,034,928 migcore.dll 10.0.19041.5000 10-Sep-24 17:35 9,097,720
+mighost.exe 10.0.19041.5000 10-Sep-24 17:35 260,480 migisol.dll 10.0.19041.5000
+10-Sep-24 17:35 146,424 migres.dll 10.0.19041.5000 10-Sep-24 17:35 17,280
+MigStore.dll 10.0.19041.5000 10-Sep-24 17:35 1,271,160 MigSys.dll
+10.0.19041.5000 10-Sep-24 17:35 436,080 Mitigation.dll 10.0.19041.5000 10-Sep-24
+17:35 324,584 MXEAgent.dll 10.0.19041.5000 10-Sep-24 17:35 360,328 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 339,456 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 380,928 offline.xml Not versioned 10-Sep-24 17:35 38,899 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 383,488 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 356,352 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 358,400
+AppXDeploymentServer-Replacement.man Not versioned 10-Sep-24 17:35 4,900
+EdgeMigrationPlugin.man Not versioned 10-Sep-24 17:35 923 edpnotify-
+replacement.man Not versioned 10-Sep-24 17:35 830 fveApi-replacement.man Not
+versioned 10-Sep-24 17:35 1,101 Edge.dat Not versioned 10-Sep-24 17:35 12,288
+EdgeMigrationPlugin.dll 1.0.0.1 10-Sep-24 17:35 114,696 EdgeUpdate.dat Not
+versioned 10-Sep-24 17:35 12,288 microsoft-hyper-v-migration-replacement.man Not
+versioned 10-Sep-24 17:35 6,088 TileStoreMigrationPlugin.dll 10.0.19041.5000
+10-Sep-24 17:35 126,968 AppxUpgradeMigrationPlugin.dll 10.0.19041.5000 10-Sep-24
+17:35 469,872 iismig.dll 10.0.19041.5000 10-Sep-24 17:35 377,848
+SxsMigPlugin.dll 10.0.19041.5000 10-Sep-24 17:35 134,152 PPIPolicies-General-
+Replacement.man Not versioned 10-Sep-24 17:35 2,161 PPIPolicies-Miracast-
+Replacement.man Not versioned 10-Sep-24 17:35 1,352 StartTileData-
+Replacement.man Not versioned 10-Sep-24 17:35 2,702 ReserveManager.dll
+10.0.19041.5000 10-Sep-24 17:35 281,056 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 355,840 Setup.exe 10.0.19041.5000 10-Sep-24 17:35 294,368 setupcompat.dll
+10.0.19041.5000 10-Sep-24 17:35 385,504 SetupCore.dll 10.0.19041.5000 10-Sep-24
+17:35 2,368,992 SetupHost.exe 10.0.19041.5000 10-Sep-24 17:35 885,232
+SetupMgr.dll 10.0.19041.5000 10-Sep-24 17:35 989,680 SetupPlatform.dll
+1.60.19041.5000 10-Sep-24 17:35 9,592,840 SetupPlatform.exe 1.60.19041.5000
+10-Sep-24 17:35 170,992 SetupPrep.exe 10.0.19041.5000 10-Sep-24 17:35 10,872,840
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 17:35 348,672 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 17:35 336,384 unbcl.dll 10.0.19041.5000 10-Sep-24
+17:35 1,099,272 uninstall.xml Not versioned 10-Sep-24 17:35 3,508
+UpdateAgent.dll 10.0.19041.5000 10-Sep-24 17:35 2,805,728 upgrade_bulk.xml Not
+versioned 10-Sep-24 17:35 208,513 upgradeagent.dll 10.0.19041.5000 10-Sep-24
+17:35 3,178,504 WinDlp.dll 10.0.19041.5000 10-Sep-24 17:35 1,443,944
+winsetup.dll 10.0.19041.5000 10-Sep-24 17:35 3,740,152 WinSetupBoot.sys
+10.0.19041.5000 10-Sep-24 17:35 80,904 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+17:35 182,784 For all supported Arm64-based versions File name File version Date
+Time File size acmigration.dll 10.0.19041.5000 10-Sep-24 19:17 674,296 AcRes.dll
+10.0.19041.5000 10-Sep-24 19:17 333,696 Appraiser.dll 10.0.19041.5000 10-Sep-24
+19:17 2,301,824 appraiser.sdb Not versioned 10-Sep-24 19:17 1,947,882
+AppraiserRes.dll 10.0.19041.5000 10-Sep-24 19:17 215,544 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 19:17 323,072 cmi2migxml.dll 10.0.19041.5000 10-Sep-24
+19:17 205,184 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 347,136 csiagent.dll
+10.0.19041.5000 10-Sep-24 19:17 765,824 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 338,432 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 377,856
+diagtrack.dll 10.0.10586.0 10-Sep-24 19:17 1,561,952 Dism.exe 10.0.19041.5000
+10-Sep-24 19:17 322,528 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 394,752
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 372,224 Facilitator.dll
+10.0.19041.5000 10-Sep-24 19:17 1,092,064 AcRes.dll.mui 10.0.19041.5000
+10-Sep-24 19:17 342,016 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 376,320
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 368,640 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 19:17 237,056 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 224,768 MediaSetupUIMgr.dll 10.0.19041.5000 10-Sep-24 19:17 14,053,872
+migcore.dll 10.0.19041.5000 10-Sep-24 19:17 9,820,152 mighost.exe
+10.0.19041.5000 10-Sep-24 19:17 262,632 migisol.dll 10.0.19041.5000 10-Sep-24
+19:17 141,168 migres.dll 10.0.19041.5000 10-Sep-24 19:17 17,376 MigStore.dll
+10.0.19041.5000 10-Sep-24 19:17 1,342,832 MigSys.dll 10.0.19041.5000 10-Sep-24
+19:17 466,288 Mitigation.dll 10.0.19041.5000 10-Sep-24 19:17 337,912
+MXEAgent.dll 10.0.19041.5000 10-Sep-24 19:17 380,384 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 19:17 339,456 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 380,928 offline.xml Not versioned 10-Sep-24 19:17 38,899 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 19:17 383,488 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 356,352 AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 358,400
+AppXDeploymentServer-Replacement.man Not versioned 10-Sep-24 19:17 4,900
+EdgeMigrationPlugin.man Not versioned 10-Sep-24 19:17 923 edpnotify-
+replacement.man Not versioned 10-Sep-24 19:17 830 fveApi-replacement.man Not
+versioned 10-Sep-24 19:17 1,101 Edge.dat Not versioned 10-Sep-24 19:17 12,288
+EdgeMigrationPlugin.dll 1.0.0.1 10-Sep-24 19:17 122,352 EdgeUpdate.dat Not
+versioned 10-Sep-24 19:17 12,288 microsoft-hyper-v-migration-replacement.man Not
+versioned 10-Sep-24 19:17 6,088 TileStoreMigrationPlugin.dll 10.0.19041.5000
+10-Sep-24 19:17 133,104 AppxUpgradeMigrationPlugin.dll 10.0.19041.5000 10-Sep-24
+19:17 502,240 iismig.dll 10.0.19041.5000 10-Sep-24 19:17 391,176
+SxsMigPlugin.dll 10.0.19041.5000 10-Sep-24 19:17 144,368 PPIPolicies-General-
+Replacement.man Not versioned 10-Sep-24 19:17 2,161 PPIPolicies-Miracast-
+Replacement.man Not versioned 10-Sep-24 19:17 1,352 StartTileData-
+Replacement.man Not versioned 10-Sep-24 19:17 2,702 ReserveManager.dll
+10.0.19041.5000 10-Sep-24 19:17 278,912 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 355,840 Setup.exe 10.0.19041.5000 10-Sep-24 19:17 297,440 setupcompat.dll
+10.0.19041.5000 10-Sep-24 19:17 408,560 SetupCore.dll 10.0.19041.5000 10-Sep-24
+19:17 2,408,944 SetupHost.exe 10.0.19041.5000 10-Sep-24 19:17 903,664
+SetupMgr.dll 10.0.19041.5000 10-Sep-24 19:17 1,040,752 SetupPlatform.dll
+1.60.19041.5000 10-Sep-24 19:17 10,372,600 SetupPlatform.exe 1.60.19041.5000
+10-Sep-24 19:17 175,088 SetupPrep.exe 10.0.19041.5000 10-Sep-24 19:17 10,918,880
+AcRes.dll.mui 10.0.19041.5000 10-Sep-24 19:17 348,672 AcRes.dll.mui
+10.0.19041.5000 10-Sep-24 19:17 336,384 unbcl.dll 10.0.19041.5000 10-Sep-24
+19:17 1,151,360 uninstall.xml Not versioned 10-Sep-24 19:17 3,508
+UpdateAgent.dll 10.0.19041.5000 10-Sep-24 19:17 2,979,320 upgrade_bulk.xml Not
+versioned 10-Sep-24 19:17 208,513 upgradeagent.dll 10.0.19041.5000 10-Sep-24
+19:17 3,356,152 WinDlp.dll 10.0.19041.5000 10-Sep-24 19:17 1,495,560
+winsetup.dll 10.0.19041.5000 10-Sep-24 19:17 3,784,576 WinSetupBoot.sys
+10.0.19041.5000 10-Sep-24 19:17 80,864 AcRes.dll.mui 10.0.19041.5000 10-Sep-24
+19:17 182,784 References ​​​​​​​Description of the standard terminology that is
+used to describe Microsoft software updates Bug ID Title 53630322 [SetupDU][MSRC
+86704] Windows Update Stack Elevation of Privilege - SafeBreach File version:
+v1.000
+
+================================================================================

@@ -1,0 +1,33 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-062429
+Computer Policy: Windows Settings: Security Settings: Local Policies: Security Options: System objects: Strengthen default permissions of internal system objects (e.g., Symbolic Links)
+================================================================================
+
+Article ID       : KISP-062429
+Language          : en-us
+Created           : 2025-04-02
+Last Modified     : 2025-06-09
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/computer-policy-windows-settings-security-settings-local-policies-security-options-system-objects-strengthen-default-permissions-of-internal-system-objects-e-g-symbolic-links-25a34e2d-19f4-8015-b317-efd4e01159d0
+
+================================================================================
+CONTENT:
+================================================================================
+
+Computer Policy: Windows Settings: Security Settings: Local Policies: Security
+Options: System objects: Strengthen default permissions of internal system
+objects (e.g., Symbolic Links) Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 201213 link for any
+updates. Author: Jason Epperly Summary System objects: Strengthen default
+permissions of internal system objects (e.g., Symbolic Links) This security
+setting determines the strength of the default discretionary access control list
+(DACL) for objects. Active Directory maintains a global list of shared system
+resources, such as DOS device names, mutexes, and semaphores. In this way,
+objects can be located and shared among processes. Each type of object is
+created with a default DACL that specifies who can access the objects and what
+permissions are granted. If this policy is enabled, the default DACL is
+stronger, allowing users who are not administrators to read shared objects but
+not allowing these users to modify shared objects that they did not create.
+Default: Enabled
+
+================================================================================

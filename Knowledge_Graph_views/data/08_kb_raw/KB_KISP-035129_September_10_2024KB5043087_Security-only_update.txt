@@ -1,0 +1,89 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035129
+September 10, 2024—KB5043087 (Security-only update)
+================================================================================
+
+Article ID       : KISP-035129
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 2
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/september-10-2024-kb5043087-security-only-update-3bb9179f-eaa1-402f-b8c9-58551e89b345
+
+================================================================================
+CONTENT:
+================================================================================
+
+September 10, 2024—KB5043087 (Security-only update) End of support information
+Windows Server 2008 SP2 Extended Security Updates (ESU) third and final year
+ended on January 10, 2023. Additionally, Extended Security Updates on Azure only
+support ended on January 9, 2024. For more information, see Extended Security
+Updates for Windows Server overview. We recommend that you upgrade to a later
+version of Windows Server. For more information, see Overview of Windows Server
+upgrades. Summary Learn more about this security-only update, including
+improvements, any known issues, and how to get the update. Note As of July 2020,
+optional non-security releases for this operating system are no longer offered.
+Operating systems in extended support have only cumulative monthly security
+updates. Verify that you have installed the required updates in the How to get
+this update section before installing this update. For information about the
+various types of Windows updates, such as critical, security, driver, service
+packs, and so on, see Description of the standard terminology that is used to
+describe Microsoft software updates. To view other notes and messages for
+Windows Server 2008 SP2, see Windows Server 2008 SP2 update history.
+Improvements The following is a summary of the key issues that this update
+addresses. The bold text within the brackets indicates the item or area of the
+change we are documenting. [User Account Control (UAC)] When the Windows
+Installer repairs an application, the UAC does not prompt for your credentials.
+After you install this update, it will prompt for them. Because of this, you
+might have to update your automation scripts. Additionally, you should add the
+Shield icon to indicate that your automation scripts require full administrator
+access. To turn off the UAC prompt, set the HKEY_LOCAL_MACHINE\SOFTWARE\Policies
+\Microsoft\Windows\Installer\DisableLUAInRepair registry value to 1. For more
+information, see: Application Resiliency: Unlock the Hidden Features of Windows
+Installer Machine Policies - Win32 apps [Remote Desktop Services (RDS)] Fixes an
+issue in which RDS would stop responding. For more information about the
+resolved security vulnerabilities, please refer to the Deployments | Security
+Update Guide and the September 2024 Security Updates. Known issues in this
+update Symptom Next step After installing this update and restarting your
+device, you might receive the error, “Failure to configure Windows updates.
+Reverting Changes. Do not turn off your computer”, and the update might show as
+Failed in Update History. This is expected in the following circumstances: If
+you are installing this update on a device that is running an edition that is
+not supported for ESU. For a complete list of which editions are supported, see
+KB4497181. If you do not have an ESU MAK add-on key installed and activated. If
+you have an ESU key and have encountered this issue, please verify you have
+applied all prerequisites and that your key is activated. For information on
+activation, see the Obtaining Extended Security Updates for eligible Windows
+devices blog post. For information on the prerequisites, see the How to get this
+update section of this article. For the current status of any past known issue,
+see the Windows Server 2008 SP2 Known Issues page. How to get this update Before
+installing this update We strongly recommend that you install the latest
+servicing stack update (SSU) for your operating system before you install the
+latest Monthly Rollup. SSUs improve the reliability of the update process to
+mitigate potential issues while installing the Monthly Rollup and applying
+Microsoft security fixes. For general information about SSUs, see Servicing
+stack updates and Servicing Stack Updates (SSU): Frequently Asked Questions. If
+you use Windows Update, the latest SSU (KB5039341) will be offered to you
+automatically. To get the standalone package for the latest SSU, search for it
+in the Microsoft Update Catalog. Language packs If you install a language pack
+after you install this update, you must reinstall this update. Therefore, we
+recommend that you install any language packs that you need before you install
+this update. For more information, see Learn about adding a language pack to
+Windows. Install this update To install this update, use one of the following
+release channels. Windows UpdateUpdate CatalogServer Update Services Available
+Next step No This update is not available from Windows Update. See the Update
+Catalog or Server Update Services release channel. Available Next step Yes To
+get the standalone package for this update, go to the Microsoft Update Catalog
+website. To download updates from the Update Catalog, see Steps to download
+updates from the Windows Update Catalog. Available Next step Yes This update
+will automatically sync if you configure Products and Classifications as
+follows: Product: Windows Server 2008 Service Pack 2 Classification: Security
+Updates For more information about configuring in WSUS, see Windows Server
+Update Services (WSUS). For more information about configuring in Configuration
+Manager, see Synchronize software updates. Reminder If you are using Security-
+only updates, you will also need to install all previous Security-only updates
+and the latest cumulative update for Internet Explorer (KB5043049). File
+information For a list of the files that are provided in this update, download
+the file information for update KB5043087.
+
+================================================================================

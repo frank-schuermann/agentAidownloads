@@ -1,0 +1,41 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-035578
+WMI namespace equivalent to "root\SecurityCenter2" on Windows Server 2019 and later.
+================================================================================
+
+Issue ID     : KI-KISP-035578
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-12-06
+Last Updated : 2025-06-09
+Source KB     : KISP-035578
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/wmi-namespace-equivalent-to-root-securitycenter2-on-windows-server-2019-and-later-e32a3f5c-5b05-af98-6dfb-7e9618238d68
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom Issue/Inquiry: The existence of a WMI namespace equivalent to
+"root\SecurityCenter2" on Windows Server 2019 and later, specifically to
+retrieve the "productState" property.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-035578
+for full scope.
+
+WORKAROUND:
+-----------
+Unfortunately, there is no WMI class equivalent to "root\SecurityCenter2" for
+this purpose. The class was undocumented for a reason in older versions. The
+above script uses the WscGetSecurityProviderHealth function to get the aggregate
+health state of the security provider categories. For more information, you can
+refer to WscGetSecurityProviderHealth function (wscapi.h) - Win32 apps |
+Microsoft Learn More information It may not work on a Windows Server as it is
+only supported on client systems. The below script uses the
+WscGetSecurityProviderHealth function to get the aggregate health state o
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-035578
+
+================================================================================

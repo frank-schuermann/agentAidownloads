@@ -1,0 +1,38 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-133594
+Troubleshoot MSN WordPress and custom formatting issues - Microsoft Support
+================================================================================
+
+Article ID       : KISP-133594
+Language          : en-us
+Created           : 2025-06-19
+Last Modified     : 2025-06-19
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/troubleshoot-msn-wordpress-and-custom-formatting-issues-52482585-1150-4b25-888b-499ff21696a8
+Description       : Troubleshoot WordPress formatting issues on MSN, fix MSN HTML compatibility problems, and how to format custom styles correctly.
+
+================================================================================
+CONTENT:
+================================================================================
+
+If you're using WordPress on MSN or encountering formatting issues in your
+articles, this page outlines common problems with block compatibility,
+unsupported styles, and HTML rendering limitations. Why doesn’t my WordPress
+layout appear the same on MSN? MSN uses its own article template, which
+overrides WordPress styles. Layout blocks, theme widgets, and special formatting
+may be removed or converted during ingestion. Which WordPress blocks are
+supported? Common blocks like Headings, Paragraphs, Lists, Images, and Quotes
+are supported. Quote styles and special formatting blocks like Verse or
+Pullquote may lose styling. Why isn’t my audio embed working? Audio embeds from
+WordPress are not currently supported on MSN. You may need to convert audio into
+a video or include it on your original article page only. Can I use HTML to
+style my article? Yes, but only in the body or slide image description field.
+Disallowed tags will be removed, and deeply nested tags or inline styles may be
+stripped. Why do some of my embeds fail? MSN only supports certain embeds like
+Twitter, Facebook, and Instagram if they use HTTPS and follow the official embed
+code. Unsupported third-party widgets may be displayed as plaintext. Why do my
+line breaks or paragraph spacing disappear? Avoid using multiple tags or deeply
+nested divs. MSN may clean up extra breaks or misaligned spacing that affects
+readability.
+
+================================================================================

@@ -1,0 +1,51 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-167038
+Window Server 2025: Input lag when using virtualization based security (VBS) or Secure Boot
+================================================================================
+
+Article ID       : KISP-167038
+Language          : en-us
+Created           : 2025-06-10
+Last Modified     : 2025-06-10
+Views             : 8
+Keywords          : input lag,input slowness,KiAbDeferredProcessingWorker,autoboost
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/window-server-2025-input-lag-when-using-virtualization-based-security-vbs-or-secure-boot-b88e6f28-b80a-8a08-5298-fa7800c93f19
+
+================================================================================
+CONTENT:
+================================================================================
+
+Window Server 2025: Input lag when using virtualization based security (VBS) or
+Secure Boot Important: This was authored via https://aka.ms/contentidea. Follow
+Content Idea (CI) 203083 link for any updates. Author: Konstantin Chernyi
+Summary/Symptom Customer using VMware and moving from Windows server 2016 to
+Windows server 2025. User reporting that they are facing lags and input delays.
+Issue only repro when timer interval changed to 1ms (starting
+teams/browser/VLC/etc) Once secure boot or VBS is disabled issue doesn't repro.
+Customer first involved Citrix, they build a test tool that changing timer and
+pushing on session lock due to pushing on win32k as Citrix calling
+MsgWaitForMultipleObjectsEx function (winuser.h) - Win32 apps | Microsoft Learn
+with QS_ALLINPUT as wakemask. In-house repro: Install windows 11/windows server
+2025 Enable Hyper-v Install windows server 2025, enable nested virtualization
+Install windows server 2025 on nested VM <- issue can be reproduced on this VM
+Cause In windows server 2025 we can see from traces a lot of DPC calls -
+KiAbDeferredProcessingWorker This is due to code change in 2025. Article
+resolution Bug 57780645: JPMC Timer Interrupts - Microsoft and Broadcom
+Collaboration - Boards Temporary workaround for the customer - disable secure
+boot/VBS(virtualization based security) More information Traces that were very
+helpful in under understanding the issue: #xperf binary Download tss tool –
+aka.ms/gettss Extract it and and find in Bin folder two files – xperf.exe and
+perfctrl.dll on affected machine create C:\msdata folder and copy them over.
+Open elevated cmd and execute: C:\msdata\xperf -? C:\msdata\xperf -on
+proc_thread+loader+profile+interrupt+dpc+dispatcher+cswitch+timer+clockint
+-stackwalk Profile+CSwitch+ReadyThread -BufferSize 1024 -MinBuffers 128
+-MaxBuffers 384 -MaxFile 4096 -FileMode Circular -start second -on
+"487d6e37-1b9d-46d3-a8fd-54ce8bdf8a53+Microsoft-Windows-Win32k+Microsoft-
+Windows-Winlogon+Microsoft-Windows-WMI-Activity+Microsoft-Windows-RPC"
+-BufferSize 1024 -MinBuffers 128 -MaxBuffers 384 -MaxFile 2048 -FileMode
+Circular Run Citrix tool for 20-30 seconds, repro input lag in notepad and then
+stop: C:\msdata\xperf -stop -stop second -d C:\msdata\%trace_name%.etl Notes:
+First published: Jun 10, 2025 Keywords: input lag, input slowness,
+KiAbDeferredProcessingWorker, autoboost
+
+================================================================================

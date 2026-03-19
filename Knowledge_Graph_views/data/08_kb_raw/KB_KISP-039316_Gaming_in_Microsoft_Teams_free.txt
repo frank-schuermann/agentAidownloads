@@ -1,0 +1,24 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-039316
+Gaming in Microsoft Teams (free) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-039316
+Language          : en-us
+Created           : 2024-12-10
+Last Modified     : 2024-12-11
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/office/gaming-in-microsoft-teams-free-f24d419f-7723-4ae7-ac98-da6a94d2f134
+Description       : Learn about gaming with Microsoft Teams (free).
+
+================================================================================
+CONTENT:
+================================================================================
+
+Start guide and FAQs for Play Together in Microsoft Teams (free) Use Play
+Together to chat and play with friends in Microsoft Teams (free) Make calls or
+start a group chat in Play Together Invite friends to your game in Play Together
+in Microsoft Teams (free) Manage settings for Play Together in Microsoft Teams
+(free)
+
+================================================================================

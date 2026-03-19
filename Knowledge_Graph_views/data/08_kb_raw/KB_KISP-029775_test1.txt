@@ -1,0 +1,75 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-029775
+test1
+================================================================================
+
+Article ID       : KISP-029775
+Language          : en-us
+Created           : 2024-10-30
+Last Modified     : 2025-06-09
+Views             : 0
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/test1-d495a686-0d17-4503-ae6f-ee7a25843f32
+
+================================================================================
+CONTENT:
+================================================================================
+
+test1 Have feedback about this article? – Please provide feedback in the survey
+link at the bottom of this article. Your feedback matters to us and helps
+improve article content and support experience for you and our customers. Share
+your suggestions by providing commentary in the survey box provided. The more
+you tell us the more we can help. This survey isn’t anonymous. If you leave a
+comment, you may be contacted by a member of the Process & Program Excellence
+team​​​​​​​ for more information. Plan 1 1.2 Online Reservation rules These are
+the rules of eligibility for Online Reservation: 1. Program: Commercial
+Enterprise (EA) and Enterprise Subscription only. 2. Products: Office 365,
+Windows Intune, CRM Online. 3. Countries/Regions availability: All
+countries/regions that currently support at least one of the following: O365
+Intune CRM services There are three types of Stock Keeping Units or SKUs that
+are configured for Online Reservations: Show details on SKU types Category
+Standard Reservations: Customer can place reservations in VLSC MAC. Category
+License Reservations: Customer can place reservations in VLSC MAC only if they
+have a prior purchase or fixed pricing configured on the Enrollment for the
+given product. All Active/Invoiced orders except reservations are considered as
+prior purchase orders. Note: If the customer has a multiple tenant setup and the
+order or fixed pricing was done on the lead enrollment, the ROC will configure
+all billing enrollments as well. However, this will not work from bottom to top
+- if for example the order was placed on a billing enrollment the changes will
+not be made on the lead enrollment or on another billing enrollment. Example:
+All Telco SKUs are configured with License Reservations due to the complexity of
+these orders, as the service is not configured in all countries/regions.
+Category not configured for Online Reservations: The customer accepts a formal
+financial obligation to pay for all licenses they committed to (not just
+licenses they used) during True-Up or the Annual Order process. There are also
+SKUs which are not configured for online reservation at all. Examples: DOD/GCC,
+BlackForest PFAMs. Microsoft Licensing Solution Partner needs to always place an
+order. To check which SKU belongs to which scenario, escalate to Tier 3, they
+have tools to check how the SKUs are configured. 4. The customer accepts a
+formal financial obligation to pay for all licenses they committed to (not just
+licenses they used) during True-Up or the Annual Order process. Plan 2 1.2
+Online Reservation rules These are the rules of eligibility for Online
+Reservation: 1. Program: Commercial Enterprise (EA) and Enterprise Subscription
+only. 2. Products: Office 365, Windows Intune, CRM Online. 3. Countries/Regions
+availability: All countries/regions that currently support at least one of the
+following: O365 Intune CRM services There are three types of Stock Keeping Units
+or SKUs that are configured for Online Reservations: Show details on SKU types
+Category Standard Reservations: Customer can place reservations in VLSC MAC.
+Category License Reservations: Customer can place reservations in VLSC MAC only
+if they have a prior purchase or fixed pricing configured on the Enrollment for
+the given product. All Active/Invoiced orders except reservations are considered
+as prior purchase orders. Note: If the customer has a multiple tenant setup and
+the order or fixed pricing was done on the lead enrollment, the ROC will
+configure all billing enrollments as well. However, this will not work from
+bottom to top - if for example the order was placed on a billing enrollment the
+changes will not be made on the lead enrollment or on another billing
+enrollment. Example: All Telco SKUs are configured with License Reservations due
+to the complexity of these orders, as the service is not configured in all
+countries/regions. Category not configured for Online Reservations: There are
+also SKUs which are not configured for online reservation at all. Examples:
+DOD/GCC, BlackForest PFAMs. Microsoft Licensing Solution Partner needs to always
+place an order. To check which SKU belongs to which scenario, escalate to Tier
+3, they have tools to check how the SKUs are configured. 4. The customer accepts
+a formal financial obligation to pay for all licenses they committed to (not
+just licenses they used) during True-Up or the Annual Order process.
+
+================================================================================

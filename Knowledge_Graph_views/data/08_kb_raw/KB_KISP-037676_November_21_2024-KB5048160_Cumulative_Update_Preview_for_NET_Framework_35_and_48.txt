@@ -1,0 +1,50 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-037676
+November 21, 2024-KB5048160 Cumulative Update Preview for .NET Framework 3.5 and 4.8 for Windows 10 Version 22H2 - Microsoft Support
+================================================================================
+
+Article ID       : KISP-037676
+Language          : en-us
+Created           : 2024-11-21
+Last Modified     : 2024-11-22
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/november-21-2024-kb5048160-cumulative-update-preview-for-net-framework-3-5-and-4-8-for-windows-10-version-22h2-fa16084c-98f8-4620-8e0f-9d101a836304
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies To.NET Release Date:November 21, 2024 Version: .NET Framework 3.5 and
+4.8 The November 21, 2024 update for Windows 10 Version 22H2 includes security
+and cumulative reliability improvements in .NET Framework 3.5 and 4.8. We
+recommend that you apply this update as part of your regular maintenance
+routines. Before you install this update, see the Prerequisites and Restart
+requirement sections. Summary Security Improvements There are no new security
+improvements in this release. This update is cumulative and contains all
+previously released security improvements. Quality and Reliability Improvements
+.NET Runtime - Addresses an issue where in rare cases where an infinite loop
+could occur when a thread enters CLR for the first time. Additional information
+about this update The following articles contain additional information about
+this update as it relates to individual product versions. 5048292 Description of
+the Cumulative Update Preview for .NET Framework 3.5, 4.8 and 4.8.1 for Windows
+10 Version 22H2 (KB5048292) Known issues in this update Microsoft is not
+currently aware of any issues in this update. How to get this update Install
+this update Release Channel Available Next Step Windows Update and Microsoft
+Update Yes None. This update will be downloaded and installed automatically from
+Windows Update. Windows Update for Business No None. These changes will be
+included in the next security update to this channel. For more information about
+Windows Update for Business go to the Windows Update for Business website.
+Microsoft Update Catalog Yes To get the standalone package for this update, go
+to the Microsoft Update Catalog website. Windows Server Update Services (WSUS)
+No You can import this update into WSUS manually via 5048292. See the Microsoft
+Update Catalog for instructions. File information For a list of the files that
+are provided in this update, download the file information for cumulative
+update. Prerequisites To apply this update, you must have .NET Framework 3.5 or
+4.8 installed. Restart requirement You must restart the computer after you apply
+this update if any affected files are being used. We recommend that you exit all
+.NET Framework-based applications before you apply this update. How to obtain
+help and support for this update Help for installing updates: Windows Update FAQ
+Protect yourself online and at home: Windows Security support Local support
+according to your country: International Support
+
+================================================================================

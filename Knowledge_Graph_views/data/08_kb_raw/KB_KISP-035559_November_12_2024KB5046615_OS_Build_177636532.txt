@@ -1,0 +1,72 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035559
+November 12, 2024—KB5046615 (OS Build 17763.6532) - Microsoft Support
+================================================================================
+
+Article ID       : KISP-035559
+Language          : en-us
+Created           : 2024-12-10
+Last Modified     : 2024-12-10
+Views             : 5
+Source URL         : https://support.microsoft.com/en-us/topic/november-12-2024-kb5046615-os-build-17763-6532-46c11b64-65a1-429f-8cf0-54f70bf1849c
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToWin 10 Ent LTSC 2019 Win 10 IoT Ent LTSC 2019 Windows 10 IoT Core LTSC
+Windows Server 2019 11/17/20 For information about Windows update terminology,
+see the article about the types of Windows updates and the monthly quality
+update types. For an overview of Windows 10, version 1809, see its update
+history page. Important: Windows updates do not install Microsoft Store
+application updates. If you are an enterprise user, see Microsoft Store apps -
+Configuration Manager. If you are a consumer user, see Get updates for apps and
+games in Microsoft Store. Highlights This update addresses security issues for
+your Windows operating system. Improvements This security update includes
+improvements. Below is a summary of the key issues that this update addresses
+when you install this KB. If there are new features, it lists them as well. The
+bold text within the brackets indicates the item or area of the change we are
+documenting. [vmswitch] Fixed: A vmswitch triggers a stop error. This occurs
+when you use Load Balancing and Failover (LBFO) teaming with two virtual
+switches on a virtual machine (VM). In this case, one virtual switch uses single
+root Input/Output virtualization (SR-IOV). [Windows Kernel Vulnerable Driver
+Blocklist file (DriverSiPolicy.p7b)] Fixed: This update adds to the list of
+drivers that are at risk for Bring Your Own Vulnerable Driver (BYOVD) attacks.
+If you installed earlier updates, only the new updates contained in this package
+will be downloaded and installed on your device. For more information about
+security vulnerabilities, please refer to the new Security Update Guide website
+and the November 2024 Security Updates. Windows 10 servicing stack update
+(KB5043126) - 17763.6289 This update makes quality improvements to the servicing
+stack, which is the component that installs Windows updates. Servicing stack
+updates (SSU) ensure that you have a robust and reliable servicing stack so that
+your devices can receive and install Microsoft updates. Known issues in this
+update Microsoft is not currently aware of any issues with this update.​​​​​​​
+How to get this update Before you install this update Microsoft now combines the
+latest servicing stack update (SSU) for your operating system with the latest
+cumulative update (LCU). SSUs improve the reliability of the update process to
+mitigate potential issues while installing the LCU. For general information
+about SSUs, see Servicing stack updates and Servicing Stack Updates (SSU):
+Frequently Asked Questions. Prerequisite: You must install the August 10, 2021
+SSU (KB5005112) before installing the LCU. Install this update To install this
+update, use one of the following Windows and Microsoft release channels. Windows
+UpdateBusinessCatalogServer Update Services Available Next Step Yes None. This
+update will be downloaded and installed automatically from Windows Update and
+Microsoft Update. Available Next Step Yes None. This update will be downloaded
+and installed automatically from Windows Update for Business in accordance with
+configured policies. Available Next Step Yes To get the standalone package for
+this update, go to the Microsoft Update Catalog website. Available Next Step Yes
+This update will automatically sync with Windows Server Update Services (WSUS)
+if you configure Products and Classifications as follows: Product: Windows 10
+Classification: Security Updates If you want to remove the LCU To remove the LCU
+after installing the combined SSU and LCU package, use the DISM/Remove-Package
+command line option with the LCU package name as the argument. You can find the
+package name by using this command: DISM /online /get-packages. Running Windows
+Update Standalone Installer (wusa.exe) with the /uninstall switch on the
+combined package will not work because the combined package contains the SSU.
+You cannot remove the SSU from the system after installation. File information
+For a list of the files that are provided in this update, download the file
+information for cumulative update 5046615. For a list of the files that are
+provided in the servicing stack update, download the file information for the
+SSU (KB5043126) - version 17763.6289.
+
+================================================================================

@@ -1,0 +1,46 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-038400
+Progress over time and Reading Streaks for Reading Coach - Microsoft Support
+================================================================================
+
+Article ID       : KISP-038400
+Language          : en-us
+Created           : 2024-12-05
+Last Modified     : 2024-12-05
+Views             : 0
+Source URL         : https://support.microsoft.com/en-us/topic/progress-over-time-and-reading-streaks-for-reading-coach-dda19c53-a3f6-4844-b439-e4cbf8058053
+Description       : Learn about changes to the Reading Coach homepage and progress over time.
+
+================================================================================
+CONTENT:
+================================================================================
+
+Applies ToMicrosoft Teams Microsoft Teams for Education Earn Reading 3-day,
+5-day, and 7-day streaks to unlock valuable rewards in Reading Coach. This
+feature aims to motivate students to engage in consistent reading habits.
+Additionally, readers can monitor their progress over different time
+frames—weekly, 30-days, and all-time—through an intuitive dashboard designed for
+learners of all ages. This user-friendly interface not only tracks their reading
+achievements but also encourages them to set and achieve new reading goals,
+thereby fostering a lifelong love for reading. My Progress Achievements and
+History, once on the Reading Coach homepage, are now under the My Progress tab.
+Selecting this tab will load the following page: When you click on the My
+Progress tab, you will see a new page that shows how well you are doing with
+your reading. This page will have the following: Your profile photo as a student
+Switches for three different time periods: reading week, last 30 days, and all
+time. Choosing any one of the boxes for reading time, readings completed,
+average accuracy, and correct words per minute will produce a graph showing your
+progress. My achievements shows the badges you’ve earned over the selected time
+period. And my stories displays stories you’ve completed throughout a select
+period. This way, you can keep track of your progress and see how much you have
+improved over time. Reading Streaks Reading every day is very important. It
+helps you get better at reading, learn new words, and feel good about your
+reading skills. When you read using Reading Coach, you can earn badges. If you
+read for three, five, or seven days in a seven day period, you get special
+badges called Reading Streak badges. You can check how well you are doing and
+see your reading streaks on the My Progress tab. Reading Reward: This shows how
+many minutes you need to read to earn a badge and keep your reading streak
+going. Reading Streak: This shows the past seven days and keeps track of your
+reading badges and how many days you have read in a row.
+
+================================================================================

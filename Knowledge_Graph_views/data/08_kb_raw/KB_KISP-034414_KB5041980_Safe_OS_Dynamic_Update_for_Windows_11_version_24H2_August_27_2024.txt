@@ -1,0 +1,317 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-034414
+KB5041980: Safe OS Dynamic Update for Windows 11, version 24H2: August 27, 2024
+================================================================================
+
+Article ID       : KISP-034414
+Language          : en-us
+Created           : 2024-11-20
+Last Modified     : 2026-03-14
+Views             : 4
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/kb5041980-safe-os-dynamic-update-for-windows-11-version-24h2-august-27-2024-96d95869-d07e-44d2-89e2-e43402184867
+
+================================================================================
+CONTENT:
+================================================================================
+
+KB5041980: Safe OS Dynamic Update for Windows 11, version 24H2: August 27, 2024
+Summary This update makes improvements to the Windows recovery environment in
+Windows 11, version 24H2. How to get this update Install this update To install
+this update, use one of the following release channels. Windows UpdateUpdate
+CatalogServer Update Services Available Next step No This update is not
+available through Windows Update. See the Update Catalog release channel.
+Available Next step Yes To get the standalone package for this update, go to the
+Microsoft Update Catalog website. To download updates from the Update Catalog,
+see Steps to download updates from the Windows Update Catalog. Available Next
+step Yes This update will be installed as part of the associated Windows monthly
+security update. Additionally, this update will automatically sync with WSUS if
+you configure Products and Classifications as follows: Product: Windows 11
+Classification: Security Updates Prerequisites There are no prerequisites to
+apply this update. Restart information You do not have to restart your device
+after you apply this update. Removal information This update cannot be removed
+once it is applied to a Windows image. Update replacement information This
+update replaces the previously released update KB5041979. Verify the
+installation of this update After installing this update, the WinRE version
+installed on the device should be 10.0.26100.1583​​​​​​​. Methods to verify the
+WinRE version installed​​​​​​​​​​​​​​ GetWinReVersion.ps1WinREAgent eventDISM
+command To get the version of WinRE installed, run the following PowerShell
+script "GetWinReVersion.ps1" with Administrator credentials. After you run the
+script, you should receive the installed WinRE version as in the following
+example: GetWinReVersion.ps1 PowerShell script #################################
+############################################################### # # Copyright
+(c) Microsoft Corporation. # Licensed under the MIT License. # # THE SOFTWARE IS
+PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR # IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, # FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE # AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER # LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, # OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE # SOFTWARE. # ############
+################################################################################
+#### # Function to get WinRE path function GetWinREPath { $WinRELocation =
+(reagentc /info | Select-String "Windows RE location") if ($WinRELocation) {
+return $WinRELocation.ToString().Split(':')[-1].Trim() } else { Write-Host
+"Failed to find WinRE path" -ForegroundColor Red exit 1 } } # Creates and needs
+to be return the mount directory function GetMountDir { # systemdirve\mnt
+$MountDir = "$env:SystemDrive\mnt" if (-not (Test-Path $MountDir)) { New-Item
+-ItemType Directory -Path $MountDir -Force | Out-Null } return $MountDir } #
+Function to get WinRE version function GetWinREVersion { $mountedPath =
+GetMountDir $filePath = "$mountedPath\Windows\System32\winpeshl.exe"
+$WinREVersion = (Get-Item $filePath).VersionInfo.FileVersionRaw.Revision return
+[int]$WinREVersion } # Main Execution $WinREPath = GetWinREPath # Make dir
+C:\mnt if not exists $TempDir = GetMountDir # Get the read write permission for
+this directory if (-not (Test-Path $TempDir)) { New-Item -ItemType Directory
+-Path $TempDir -Force | Out-Null } # Mount WinRE image dism /Mount-Image
+/ImageFile:"$WinREPath\winre.wim" /Index:1 /MountDir:"$TempDir" $WinREVersion =
+GetWinREVersion Write-Host "WinRE Version: $WinREVersion" -ForegroundColor Cyan
+dism /Unmount-Image /MountDir:"$TempDir" /Discard Remove-Item -Path $TempDir
+-Force -Recurse WinREAgent logs events related to the Windows Recovery
+Environment (WinRE), primarily recording details about the creation,
+modification, and usage of the recovery image. In this case, we are looking for
+Event ID: 4501 Servicing succeeded events. If you are unsuccessful in locating
+WinREAgent servicing events because of space limitations that might occur in
+your environment, we suggest you use the DISM command. Open the Windows Search
+bar. To do this, right-click Start and then click Search. In the Search bar,
+type Event Viewer and then click Event Viewer. Expand Windows Logs and then
+click System. In the right-side navigation pane, under Actions, click Find. In
+the Find what: box, type WinREAgent and then click Find Next. Click Cancel to
+close the Find dialog box. The WinREAgent servicing event should be shown in the
+bottom middle pane and you should see a message similar to the followng on the
+General tab: Servicing succeeded. The Windows Recovery Environment version is
+now: 10.0.22621.4742 The WinRE version in this example is 10.0.22621.4742.
+​​​​​​​To view the Event Properties pane for the WinREAgent servicing event,
+right-click the WinREAgent entry in the System pane (top middle pane) and then
+click Event Properties. ​​​​​​​ Open an elevated Windows command prompt. To do
+this, press the Windows key, type cmd, right-click Command Prompt, and then
+click Run as Administrator. At the command prompt, type reagentc /info and then
+press Enter. Note the path of the Windows RE location. For this example, the
+location is \\?\GLOBALROOT\device\harddisk0\partition5\Recovery\WindowsRE. This
+path may vary based on your Windows installation. At the command prompt, use the
+DISM command to retrieve the Windows Recovery Environment (WinRE) information.
+For this example, enter the following command and then press Enter: Dism /Get-
+ImageInfo /ImageFile:\\?\GLOBALROOT\device\harddisk0\partition5\Recovery\Windows
+RE\winre.wim /index:1 Note The default name for the WinRE image file is
+winre.wim. In your environment, the name of the WinRE image file might be
+different. Also, the Index number of the default winre.wim file is 1. In your
+environment, the Index number might be different. The WinRE image file
+information is returned as illustrated in the following example: The WinRE
+version in this example is 10.0.22621.4742. File information The English (United
+States) version of this software update installs files that have the attributes
+that are listed in the following tables. File version: v1.001 For all supported
+x64-based versions File name File version Date Time File size storufs.inf Not
+versioned 8-Aug-24 18:12 24,702 storufs.sys 10.0.26100.560 8-Aug-24 18:12
+148,800 Facilitator.dll 10.0.26100.1287 8-Aug-24 18:12 1,111,456 dhcpcore.dll
+10.0.26100.712 8-Aug-24 18:12 435,616 dhcpcsvc.dll 10.0.26100.712 8-Aug-24 18:12
+157,104 dhcpcore6.dll 10.0.26100.712 8-Aug-24 18:12 320,928 dhcpcsvc6.dll
+10.0.26100.712 8-Aug-24 18:12 128,416 cmi2migxml.dll 10.0.26100.1583 8-Aug-24
+18:12 226,624 csiagent.dll 10.0.26100.1583 8-Aug-24 18:12 718,144 diagER.dll
+10.0.26100.1583 8-Aug-24 18:12 99,744 hwcompat.dll 10.0.26100.1583 8-Aug-24
+18:12 242,992 hwcompat.txt Not versioned 8-Aug-24 18:12 963,150 hwexclude.txt
+Not versioned 8-Aug-24 18:12 51 icbexclusion.inf Not versioned 8-Aug-24 18:12
+7,222 migapp.xml Not versioned 8-Aug-24 18:12 654,548 migcore.dll
+10.0.26100.1583 8-Aug-24 18:12 9,274,824 mighost.exe 10.0.26100.1583 8-Aug-24
+18:12 288,176 migres.dll 10.0.26100.1583 8-Aug-24 18:12 25,904 migisol.dll
+10.0.26100.1583 8-Aug-24 18:12 148,920 migstore.dll 10.0.26100.1583 8-Aug-24
+18:12 1,303,984 migsys.dll 10.0.26100.1583 8-Aug-24 18:12 464,176 MXEAgent.dll
+10.0.26100.1583 8-Aug-24 18:12 386,352 AppExtAgent.dll 10.0.26100.1583 8-Aug-24
+18:12 488,752 offline.xml Not versioned 8-Aug-24 18:12 44,544 oscomps.xml Not
+versioned 8-Aug-24 18:12 449,323 osfilter.inf Not versioned 8-Aug-24 18:12
+21,299 pnppropmig.dll 10.0.26100.1583 8-Aug-24 18:12 107,824 ReserveManager.dll
+10.0.26100.1583 8-Aug-24 18:12 316,720 setupplatform.cfg Not versioned 8-Aug-24
+18:12 15,971 setupplatform.dll 1.95.26100.1583 8-Aug-24 18:12 9,684,288
+setupplatform.exe 1.95.26100.1583 8-Aug-24 18:12 255,416 SFCN.dat Not versioned
+8-Aug-24 18:12 1,824 SFLCID.dat Not versioned 8-Aug-24 18:12 1,644 SFLISTW7.dat
+Not versioned 8-Aug-24 18:12 1,703,368 SFLISTW8.dat Not versioned 8-Aug-24 18:12
+2,608,858 SFLISTWB.dat Not versioned 8-Aug-24 18:12 3,172,904 SFLISTWT.dat Not
+versioned 8-Aug-24 18:12 4,935,402 SFLISTRS1.dat Not versioned 8-Aug-24 18:12
+5,593,182 SFPAT.inf Not versioned 8-Aug-24 18:12 11,602 SFPATW7.inf Not
+versioned 8-Aug-24 18:12 17,396 SFPATW8.inf Not versioned 8-Aug-24 18:12 79,818
+SFPATWB.inf Not versioned 8-Aug-24 18:12 91,635 SFPATWT.inf Not versioned
+8-Aug-24 18:12 165,729 SFPATRS1.inf Not versioned 8-Aug-24 18:12 169,730
+unbcl.dll 10.0.26100.1583 8-Aug-24 18:12 1,090,880 upgradeagent.dll
+10.0.26100.1583 8-Aug-24 18:12 3,302,832 upgradeagent.xml Not versioned 8-Aug-24
+18:12 70,907 upgrade_comp.xml Not versioned 8-Aug-24 18:12 6,054
+upgrade_bulk.xml Not versioned 8-Aug-24 18:12 211,949 upgrade_data.xml Not
+versioned 8-Aug-24 18:12 41,750 upgrade_frmwrk.xml Not versioned 8-Aug-24 18:12
+19,157 upgWow_bulk.xml Not versioned 8-Aug-24 18:12 114,707 uninstall.xml Not
+versioned 8-Aug-24 18:12 4,639 uninstall_data.xml Not versioned 8-Aug-24 18:12
+11,122 wdsutil.dll 10.0.26100.1583 8-Aug-24 18:12 353,720 WinSetupMon.hiv Not
+versioned 8-Aug-24 18:12 8,192 WinSetupMon.sys 10.0.26100.1583 8-Aug-24 18:12
+169,304 actionqueue.dll 10.0.26100.1583 8-Aug-24 18:12 267,584
+appcompat_detailed.xsl Not versioned 8-Aug-24 18:12 13,608
+appcompat_detailed_bidi.xsl Not versioned 8-Aug-24 18:12 13,732 cdplib.mof Not
+versioned 8-Aug-24 18:12 1,976 cdplibuninstall.mof Not versioned 8-Aug-24 18:12
+571 dpx.dll 10.0.26100.1583 8-Aug-24 18:12 1,078,600 UpdateCompression.dll
+5.0.1.1 8-Aug-24 18:12 542,000 itgtupg.dll 10.0.26100.1583 8-Aug-24 18:12
+116,160 migtestplugin.dll 10.0.26100.1583 8-Aug-24 18:12 75,304 msdelta.dll
+5.0.1.1 8-Aug-24 18:12 595,360 mspatcha.dll 5.0.1.1 8-Aug-24 18:12 83,400
+smiengine.dll 10.0.26100.1583 8-Aug-24 18:12 927,136 wcmtypes.xsd Not versioned
+8-Aug-24 18:12 1,047 wdsupgcompl.dll 10.0.26100.1583 8-Aug-24 18:12 46,536
+auditetw.dll 10.0.26100.1583 8-Aug-24 18:12 26,152 cmisetupetw.dll
+10.0.26100.1583 8-Aug-24 18:12 26,056 etwproviderinstall.vbs Not versioned
+8-Aug-24 18:12 6,868 setupcletw.dll 10.0.26100.1583 8-Aug-24 18:12 30,248
+winsetupetw.dll 10.0.26100.1583 8-Aug-24 18:12 75,296 migcore.dll
+10.0.26100.1583 8-Aug-24 18:12 9,274,672 migapp.dll 10.0.26100.1583 8-Aug-24
+18:12 329,120 AppExtAgent.dll 10.0.26100.1583 8-Aug-24 18:12 488,768
+csiagent.dll 10.0.26100.1583 8-Aug-24 18:12 718,128 SFLISTXP.dat Not versioned
+8-Aug-24 18:12 1,459,226 SFLISTLH.dat Not versioned 8-Aug-24 18:12 3,347,940
+SFPATXP.inf Not versioned 8-Aug-24 18:12 4,355 SFPATLH.inf Not versioned
+8-Aug-24 18:12 8,678 ncsi.dll 10.0.26100.712 8-Aug-24 18:12 692,224
+netprofmsvc.dll 10.0.26100.712 8-Aug-24 18:12 1,871,872 nlaapi.dll
+10.0.26100.712 8-Aug-24 18:12 53,248 nlmproxy.dll 10.0.26100.712 8-Aug-24 18:12
+53,248 nlmsprep.dll 10.0.26100.712 8-Aug-24 18:12 49,152 diagtrack.dll
+10.0.10586.0 8-Aug-24 18:12 1,365,856 diagtrackrunner.exe 10.0.10586.0 8-Aug-24
+18:12 88,256 reagent.admx Not versioned 8-Aug-24 18:12 1,240 reagent.dll
+10.0.26100.1583 8-Aug-24 18:12 603,440 reagent.xml Not versioned 8-Aug-24 18:12
+837 SetupPlatform.cfg Not versioned 8-Aug-24 18:12 23,023 wdscore.dll
+10.0.26100.1583 8-Aug-24 18:12 279,984 WinSetupBoot.hiv Not versioned 8-Aug-24
+18:12 8,192 WinSetupBoot.sys 10.0.26100.1583 8-Aug-24 18:12 111,936
+wdsclientapi.dll 10.0.26100.1583 8-Aug-24 18:12 267,816 wdscsl.dll
+10.0.26100.1583 8-Aug-24 18:12 112,048 wdsimage.dll 10.0.26100.1583 8-Aug-24
+18:12 128,552 wdstptc.dll 10.0.26100.1583 8-Aug-24 18:12 218,568 bcd.dll
+10.0.26100.998 8-Aug-24 18:12 162,616 bootsvc.dll 10.0.26100.998 8-Aug-24 18:12
+307,136 hwreqchk.dll Not versioned 8-Aug-24 18:12 423,328 ServicingCommon.dll
+10.0.26100.998 8-Aug-24 18:12 1,030,248 utcapi.dll 10.0.26100.998 8-Aug-24 18:12
+66,872 wimgapi.dll 10.0.26100.998 8-Aug-24 18:12 910,768 wdscommonlib.dll
+10.0.26100.998 8-Aug-24 18:12 341,424 dismapi.dll 10.0.26100.998 8-Aug-24 18:12
+1,201,480 dismcore.dll 10.0.26100.998 8-Aug-24 18:12 476,480 dismcoreps.dll
+10.0.26100.998 8-Aug-24 18:12 230,816 dismprov.dll 10.0.26100.998 8-Aug-24 18:12
+300,344 folderprovider.dll 10.0.26100.998 8-Aug-24 18:12 95,552
+imagingprovider.dll 10.0.26100.998 8-Aug-24 18:12 247,200 logprovider.dll
+10.0.26100.998 8-Aug-24 18:12 189,752 UpdateCompression.dll 5.0.1.1 8-Aug-24
+18:12 542,016 vhdprovider.dll 10.0.26100.998 8-Aug-24 18:12 599,456
+wimprovider.dll 10.0.26100.998 8-Aug-24 18:12 697,656 unattend.dll
+10.0.26100.998 8-Aug-24 18:12 275,872 wpx.dll 10.0.26100.998 8-Aug-24 18:12
+1,422,640 locale.nls Not versioned 8-Aug-24 18:12 861,992 nlsbres.dll
+10.0.26100.998 8-Aug-24 18:12 103,856 ServicingCommon.dll 10.0.26100.998
+8-Aug-24 18:12 1,030,224 ResetEngine.dll 10.0.26100.1583 8-Aug-24 18:12
+2,823,600 ResetTelemetry.dll 10.0.26100.1583 8-Aug-24 18:12 570,784
+ResetEngine.exe 10.0.26100.1583 8-Aug-24 18:12 42,424 ResetPluginHost.exe
+10.0.26100.1583 8-Aug-24 18:12 57,344 srms.dat Not versioned 8-Aug-24 18:12
+60,394 sysreset.exe 10.0.26100.1583 8-Aug-24 18:12 487,424 winpeshl.exe
+10.0.26100.1583 8-Aug-24 18:12 57,344 wpeutil.dll 10.0.26100.1583 8-Aug-24 18:12
+159,744 wpeutil.exe 10.0.26100.1583 8-Aug-24 18:12 32,768 wpeinit.exe
+10.0.26100.1583 8-Aug-24 18:12 61,440 startnet.cmd Not versioned 8-Aug-24 18:12
+9 dhcpcore.dll 10.0.26100.712 8-Aug-24 18:12 343,872 dhcpcsvc.dll 10.0.26100.712
+8-Aug-24 18:12 97,072 dhcpcore6.dll 10.0.26100.712 8-Aug-24 18:12 246,576
+dhcpcsvc6.dll 10.0.26100.712 8-Aug-24 18:12 82,864 migcore.dll 10.0.26100.1583
+8-Aug-24 18:12 7,130,528 migstore.dll 10.0.26100.1583 8-Aug-24 18:12 1,004,448
+mighost.exe 10.0.26100.1583 8-Aug-24 18:12 254,768 migres.dll 10.0.26100.1583
+8-Aug-24 18:12 17,328 migapp.dll 10.0.26100.1583 8-Aug-24 18:12 231,840
+MXEAgent.dll 10.0.26100.1583 8-Aug-24 18:12 274,752 AppExtAgent.dll
+10.0.26100.1583 8-Aug-24 18:12 346,432 csiagent.dll 10.0.26100.1583 8-Aug-24
+18:12 527,168 cmi2migxml.dll 10.0.26100.1583 8-Aug-24 18:12 158,624
+ServicingCommon.dll 10.0.26100.998 8-Aug-24 18:12 827,904 For all supported
+Arm64-based versions File name File version Date Time File size storufs.inf Not
+versioned 8-Aug-24 18:09 24,702 storufs.sys 10.0.26100.560 8-Aug-24 18:09
+108,344 Facilitator.dll 10.0.26100.1287 8-Aug-24 18:09 1,160,008 dhcpcore.dll
+10.0.26100.712 8-Aug-24 18:09 720,816 dhcpcsvc.dll 10.0.26100.712 8-Aug-24 18:09
+254,896 dhcpcore6.dll 10.0.26100.712 8-Aug-24 18:09 513,328 dhcpcsvc6.dll
+10.0.26100.712 8-Aug-24 18:09 168,752 cmi2migxml.dll 10.0.26100.1583 8-Aug-24
+18:09 216,504 csiagent.dll 10.0.26100.1583 8-Aug-24 18:09 739,232 diagER.dll
+10.0.26100.1583 8-Aug-24 18:09 77,624 hwcompat.dll 10.0.26100.1583 8-Aug-24
+18:09 234,912 hwcompat.txt Not versioned 8-Aug-24 18:09 218,923 hwexclude.txt
+Not versioned 8-Aug-24 18:09 51 icbexclusion.inf Not versioned 8-Aug-24 18:09
+7,222 migapp.xml Not versioned 8-Aug-24 18:09 654,548 migcore.dll
+10.0.26100.1583 8-Aug-24 18:09 9,871,672 mighost.exe 10.0.26100.1583 8-Aug-24
+18:09 271,280 migres.dll 10.0.26100.1583 8-Aug-24 18:09 17,352 migisol.dll
+10.0.26100.1583 8-Aug-24 18:09 124,720 migstore.dll 10.0.26100.1583 8-Aug-24
+18:09 1,350,464 migsys.dll 10.0.26100.1583 8-Aug-24 18:09 483,232 MXEAgent.dll
+10.0.26100.1583 8-Aug-24 18:09 395,168 AppExtAgent.dll 10.0.26100.1583 8-Aug-24
+18:09 499,504 offline.xml Not versioned 8-Aug-24 18:09 44,544 oscomps.xml Not
+versioned 8-Aug-24 18:09 449,323 osfilter.inf Not versioned 8-Aug-24 18:09
+21,299 pnppropmig.dll 10.0.26100.1583 8-Aug-24 18:09 93,600 ReserveManager.dll
+10.0.26100.1583 8-Aug-24 18:09 310,688 setupplatform.cfg Not versioned 8-Aug-24
+18:09 15,971 setupplatform.dll 1.95.26100.1583 8-Aug-24 18:09 10,160,584
+setupplatform.exe 1.95.26100.1583 8-Aug-24 18:09 239,024 SFCN.dat Not versioned
+8-Aug-24 18:09 1,824 SFLCID.dat Not versioned 8-Aug-24 18:09 1,644 SFLISTW7.dat
+Not versioned 8-Aug-24 18:09 1,703,368 SFLISTW8.dat Not versioned 8-Aug-24 18:09
+2,608,858 SFLISTWB.dat Not versioned 8-Aug-24 18:09 3,172,904 SFLISTWT.dat Not
+versioned 8-Aug-24 18:09 4,935,402 SFLISTRS1.dat Not versioned 8-Aug-24 18:09
+5,593,182 SFPAT.inf Not versioned 8-Aug-24 18:09 11,602 SFPATW7.inf Not
+versioned 8-Aug-24 18:09 17,396 SFPATW8.inf Not versioned 8-Aug-24 18:09 79,818
+SFPATWB.inf Not versioned 8-Aug-24 18:09 91,635 SFPATWT.inf Not versioned
+8-Aug-24 18:09 165,729 SFPATRS1.inf Not versioned 8-Aug-24 18:09 169,730
+unbcl.dll 10.0.26100.1583 8-Aug-24 18:09 1,113,008 upgradeagent.dll
+10.0.26100.1583 8-Aug-24 18:09 3,451,184 upgradeagent.xml Not versioned 8-Aug-24
+18:09 70,907 upgrade_comp.xml Not versioned 8-Aug-24 18:09 6,054
+upgrade_bulk.xml Not versioned 8-Aug-24 18:09 211,949 upgrade_data.xml Not
+versioned 8-Aug-24 18:09 41,750 upgrade_frmwrk.xml Not versioned 8-Aug-24 18:09
+19,157 upgWow_bulk.xml Not versioned 8-Aug-24 18:09 114,707 upgWowA32_bulk.xml
+Not versioned 8-Aug-24 18:09 114,697 uninstall.xml Not versioned 8-Aug-24 18:09
+4,639 uninstall_data.xml Not versioned 8-Aug-24 18:09 11,122 wdsutil.dll
+10.0.26100.1583 8-Aug-24 18:09 352,688 WinSetupMon.hiv Not versioned 8-Aug-24
+18:09 8,192 WinSetupMon.sys 10.0.26100.1583 8-Aug-24 18:09 145,736
+actionqueue.dll 10.0.26100.1583 8-Aug-24 18:09 431,536 appcompat_detailed.xsl
+Not versioned 8-Aug-24 18:09 13,608 appcompat_detailed_bidi.xsl Not versioned
+8-Aug-24 18:09 13,732 cdplib.mof Not versioned 8-Aug-24 18:09 1,976
+cdplibuninstall.mof Not versioned 8-Aug-24 18:09 571 dpx.dll 10.0.26100.1583
+8-Aug-24 18:09 1,891,120 UpdateCompression.dll 5.0.1.1 8-Aug-24 18:09 930,736
+itgtupg.dll 10.0.26100.1583 8-Aug-24 18:09 99,896 migtestplugin.dll
+10.0.26100.1583 8-Aug-24 18:09 55,736 msdelta.dll 5.0.1.1 8-Aug-24 18:09 947,616
+mspatcha.dll 5.0.1.1 8-Aug-24 18:09 116,144 smiengine.dll 10.0.26100.1583
+8-Aug-24 18:09 1,696,672 wcmtypes.xsd Not versioned 8-Aug-24 18:09 1,047
+wdsupgcompl.dll 10.0.26100.1583 8-Aug-24 18:09 26,040 auditetw.dll
+10.0.26100.1583 8-Aug-24 18:09 15,288 cmisetupetw.dll 10.0.26100.1583 8-Aug-24
+18:09 15,928 etwproviderinstall.vbs Not versioned 8-Aug-24 18:09 6,868
+setupcletw.dll 10.0.26100.1583 8-Aug-24 18:09 19,912 winsetupetw.dll
+10.0.26100.1583 8-Aug-24 18:09 68,024 migcore.dll 10.0.26100.1583 8-Aug-24 18:09
+9,871,800 migstore.dll 10.0.26100.1583 8-Aug-24 18:09 1,350,472 migres.dll
+10.0.26100.1583 8-Aug-24 18:09 17,200 migapp.dll 10.0.26100.1583 8-Aug-24 18:09
+334,128 MXEAgent.dll 10.0.26100.1583 8-Aug-24 18:09 395,056 AppExtAgent.dll
+10.0.26100.1583 8-Aug-24 18:09 499,520 csiagent.dll 10.0.26100.1583 8-Aug-24
+18:09 739,256 cmi2migxml.dll 10.0.26100.1583 8-Aug-24 18:09 216,368 SFLISTXP.dat
+Not versioned 8-Aug-24 18:09 1,459,226 SFLISTLH.dat Not versioned 8-Aug-24 18:09
+3,347,940 SFPATXP.inf Not versioned 8-Aug-24 18:09 4,355 SFPATLH.inf Not
+versioned 8-Aug-24 18:09 8,678 ncsi.dll 10.0.26100.712 8-Aug-24 18:09 1,222,144
+netprofmsvc.dll 10.0.26100.712 8-Aug-24 18:09 1,927,680 nlaapi.dll
+10.0.26100.712 8-Aug-24 18:09 75,264 nlmproxy.dll 10.0.26100.712 8-Aug-24 18:09
+77,312 nlmsprep.dll 10.0.26100.712 8-Aug-24 18:09 57,344 diagtrack.dll
+10.0.10586.0 8-Aug-24 18:09 1,561,952 diagtrackrunner.exe 10.0.10586.0 8-Aug-24
+18:09 90,304 reagent.admx Not versioned 8-Aug-24 18:09 1,240 reagent.dll
+10.0.26100.1583 8-Aug-24 18:09 973,232 reagent.xml Not versioned 8-Aug-24 18:09
+837 SetupPlatform.cfg Not versioned 8-Aug-24 18:09 23,023 wdscore.dll
+10.0.26100.1583 8-Aug-24 18:09 260,016 WinSetupBoot.hiv Not versioned 8-Aug-24
+18:09 8,192 WinSetupBoot.sys 10.0.26100.1583 8-Aug-24 18:09 86,856
+wdsclientapi.dll 10.0.26100.1583 8-Aug-24 18:09 251,432 wdscsl.dll
+10.0.26100.1583 8-Aug-24 18:09 94,528 wdsimage.dll 10.0.26100.1583 8-Aug-24
+18:09 110,648 wdstptc.dll 10.0.26100.1583 8-Aug-24 18:09 198,096 bcd.dll
+10.0.26100.998 8-Aug-24 18:09 145,112 bootsvc.dll 10.0.26100.998 8-Aug-24 18:09
+282,528 hwreqchk.dll Not versioned 8-Aug-24 18:09 757,152 ServicingCommon.dll
+10.0.26100.998 8-Aug-24 18:09 1,941,128 utcapi.dll 10.0.26100.998 8-Aug-24 18:09
+46,512 wimgapi.dll 10.0.26100.998 8-Aug-24 18:09 1,538,480 wdscommonlib.dll
+10.0.26100.998 8-Aug-24 18:09 322,464 dismapi.dll 10.0.26100.998 8-Aug-24 18:09
+2,067,264 dismcore.dll 10.0.26100.998 8-Aug-24 18:09 783,664 dismcoreps.dll
+10.0.26100.998 8-Aug-24 18:09 217,504 dismprov.dll 10.0.26100.998 8-Aug-24 18:09
+297,280 folderprovider.dll 10.0.26100.998 8-Aug-24 18:09 162,608
+imagingprovider.dll 10.0.26100.998 8-Aug-24 18:09 470,344 logprovider.dll
+10.0.26100.998 8-Aug-24 18:09 180,128 vhdprovider.dll 10.0.26100.998 8-Aug-24
+18:09 1,090,368 wimprovider.dll 10.0.26100.998 8-Aug-24 18:09 1,283,376
+unattend.dll 10.0.26100.998 8-Aug-24 18:09 256,416 wpx.dll 10.0.26100.998
+8-Aug-24 18:09 1,553,840 locale.nls Not versioned 8-Aug-24 18:09 861,992
+nlsbres.dll 10.0.26100.998 8-Aug-24 18:09 95,136 ServicingCommon.dll
+10.0.26100.998 8-Aug-24 18:09 1,941,136 ResetEngine.dll 10.0.26100.1583 8-Aug-24
+18:09 3,320,240 ResetTelemetry.dll 10.0.26100.1583 8-Aug-24 18:09 583,088
+ResetEngine.exe 10.0.26100.1583 8-Aug-24 18:09 26,416 ResetPluginHost.exe
+10.0.26100.1583 8-Aug-24 18:09 41,472 srms.dat Not versioned 8-Aug-24 18:09
+60,394 sysreset.exe 10.0.26100.1583 8-Aug-24 18:09 480,256 winpeshl.exe
+10.0.26100.1583 8-Aug-24 18:09 37,376 wpeutil.dll 10.0.26100.1583 8-Aug-24 18:09
+139,776 wpeutil.exe 10.0.26100.1583 8-Aug-24 18:09 15,872 wpeinit.exe
+10.0.26100.1583 8-Aug-24 18:09 39,424 startnet.cmd Not versioned 8-Aug-24 18:09
+9 dhcpcore.dll 10.0.26100.712 8-Aug-24 18:09 343,872 dhcpcsvc.dll 10.0.26100.712
+8-Aug-24 18:09 97,072 dhcpcore6.dll 10.0.26100.712 8-Aug-24 18:09 246,576
+dhcpcsvc6.dll 10.0.26100.712 8-Aug-24 18:09 82,864 migcore.dll 10.0.26100.1583
+8-Aug-24 18:09 7,130,528 migstore.dll 10.0.26100.1583 8-Aug-24 18:09 1,004,448
+mighost.exe 10.0.26100.1583 8-Aug-24 18:09 254,768 migres.dll 10.0.26100.1583
+8-Aug-24 18:09 17,328 migapp.dll 10.0.26100.1583 8-Aug-24 18:09 231,840
+MXEAgent.dll 10.0.26100.1583 8-Aug-24 18:09 274,752 AppExtAgent.dll
+10.0.26100.1583 8-Aug-24 18:09 346,432 csiagent.dll 10.0.26100.1583 8-Aug-24
+18:09 527,168 cmi2migxml.dll 10.0.26100.1583 8-Aug-24 18:09 158,624
+ServicingCommon.dll 10.0.26100.998 8-Aug-24 18:09 827,904 References
+​​​​​​​Description of the standard terminology that is used to describe
+Microsoft software updates Query words: safeos du Bug ID Title 52409525 [SafeOS
+DU][HP][Office][PBR][24H2] After enabling “Reduce size of Office pre-install”
+feature, Office applications intermittently can’t be restored after doing PBR -
+Copy 52891057 [SafeOS DU] Narrator is not reading the complete string in the
+First setup UX screen after the restart.
+
+================================================================================

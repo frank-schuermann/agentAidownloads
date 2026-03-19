@@ -1,0 +1,48 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-035939
+ConfigMgr: SRV: SQL ODBC driver was failing to install with error - "Error 2503 Called RunScript when not marked in progress" and "Error 2502 Called InstallFinalize when no install in progress."
+================================================================================
+
+Article ID       : KISP-035939
+Language          : en-us
+Created           : 2024-11-22
+Last Modified     : 2024-11-22
+Views             : 15
+Keywords          : odbc,2503,2502,msi,nborkar,"Called RunScript when not marked in progress","Called InstallFinalize when no install in progress."
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-srv-sql-odbc-driver-was-failing-to-install-with-error-error-2503-called-runscript-when-not-marked-in-progress-and-error-2502-called-installfinalize-when-no-install-in-progress-b5b4df2b-0f19-94ba-170f-2532f9a47afb
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: SRV: SQL ODBC driver was failing to install with error - "Error 2503
+Called RunScript when not marked in progress" and "Error 2502 Called
+InstallFinalize when no install in progress." Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 197515 link for any
+updates. Author: Nikhil Chandra Borkar Summary/Symptom CX was trying to upgrade
+their SCCM infrastructure to latest version but the pre-req check failed with
+ODBC driver install failure. we tried to install the ODBC driver manually but it
+failled with following errors- "Error 2503 Called RunScript when not marked in
+progress" "Error 2502 Called InstallFinalize when no install in progress." Cause
+MSI installation was failing manually on the sever. no particular reason but
+access denied on temp folder. Article resolution 1/ We cleaned up the
+c:\windows\temp folder and made sure the file count in it is less than 64k
+files. 2/ we tried the following commands to check if there was a system level
+corruption- sfc /scannow DISM.exe /Online /Cleanup-Image /RestoreHealth
+/Source:C:\RepairSource\Windows /LimitAccess 3/ We gave the user running the
+install full access to temp folder - Go to Local Disc (C:) and open the Windows
+folder. Find the Temp folder and right-click on it. Go to Properties >>>
+Security tab >>> Advanced. Click on your Windows user and change the permission
+to Full control. Click Apply. If you receive warning messages, click Yes and
+continue. 4/ Rebooted the server and the issue still persists. 5/ We tried to
+use command prompt to install the ODBC driver msi package (make sure to run the
+command prompt as system context, we used psexec here) Msiexec.exe /I
+“mssqlodbc.msi” /l*v “c:\temp\odbcinstall.log” 6/ This time, it went through,
+and the config manger upgrade was also successful. More information
+https://www.boxaid.com/blog/how-to-fix-2502-2503-errors/
+https://advyon.com/solved-2502-2503-error-when-installing-from-a-msi-file/
+Notes: Support Topics: Management Tools\Configuration Manager First published:
+Nov 22, 2024 Keywords: odbc, 2503, 2502, msi, nborkar, "Called RunScript when
+not marked in progress", "Called InstallFinalize when no install in progress."
+
+================================================================================

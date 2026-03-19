@@ -1,0 +1,49 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-167166
+Upgrade | Windows Server 2016 to 2022 Upgrade Fails Due to Read-Only Machine.config File
+================================================================================
+
+Issue ID     : KI-KISP-167166
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-05-31
+Last Updated : 2025-06-09
+Source KB     : KISP-167166
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/upgrade-windows-server-2016-to-2022-upgrade-fails-due-to-read-only-machine-config-file-71496290-3fa2-e5dd-4187-c4870a8c1a9a
+Tags         : Active Directory, Windows
+
+SYMPTOMS:
+---------
+occurs because the file
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\machine.config has the
+"Read-Only" attribute enabled. This prevents the upgrade process from modifying
+the file, causing the upgrade to fail.
+
+ROOT CAUSE:
+-----------
+The issue occurs because the file
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\machine.config has the
+"Read-Only" attribute enabled. This prevents the upgrade process from modifying
+the file, causing the upgrade to fail.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-167166
+for full scope.
+
+WORKAROUND:
+-----------
+To resolve this issue, follow these steps: Navigate to the directory
+C:\WINDOWS\Microsoft.NET\Framework64\v2.0.50727\config\. Locate the file named
+machine.config. Right-click the file and select Properties. Under the General
+tab, uncheck the Read-Only attribute. Click OK to save the changes. Retry the
+upgrade process. After disabling the "Read-Only" attribute, the upgrade should
+complete successfully. More information Notes: First published: May 21, 2025
+Keywords: CreatedByRubik Tags: Rubik Article Id: 5993 Support Topics: Windows
+Servers\Windows Server 2016\Windows Server 2016\Windows Setup,
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-167166
+
+================================================================================

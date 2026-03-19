@@ -1,0 +1,45 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-045125
+Windows: DPS: Diagnostic Policy Service fails to start with error 4201
+================================================================================
+
+Issue ID     : KI-KISP-045125
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-01-13
+Last Updated : 2025-06-09
+Source KB     : KISP-045125
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-dps-diagnostic-policy-service-fails-to-start-with-error-4201-571af82d-585e-caab-9369-329c79a26b8f
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom The Diagnostic Policy Service (DPS) service fails to start.
+
+ROOT CAUSE:
+-----------
+The cause of this issue is related to event trace session DiagLog. Stopping the
+event trace session DiagLog triggers these errors when starting the DPS service.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-045125
+for full scope.
+
+WORKAROUND:
+-----------
+Check if ETW session DiagLog is running on your machine using tools like
+Perfmon. After starting the DiagLog ETW session, try starting the DPS service.
+More information The DPS trace logs may show entries like: The Diagnostic Policy
+Service encountered an error in file
+base\diagnosis\pdi\wdi\framework\dps\trace.c, function DpsRun, line 168: Error =
+4201 The Diagnostic Policy Service encountered an error in file
+base\diagnosis\pdi\wdi\framework\dps\dpssqm.c, function
+DpspGetDroppedEventCounts, line 1579: Error = 4201 Notes: Support Topics:
+Windows\Windows 11\Windows 11 Enterprise and Education,
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-045125
+
+================================================================================

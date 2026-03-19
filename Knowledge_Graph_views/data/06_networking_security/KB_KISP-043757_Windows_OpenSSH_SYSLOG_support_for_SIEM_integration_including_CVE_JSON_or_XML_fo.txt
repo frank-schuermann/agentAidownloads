@@ -1,0 +1,43 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-043757
+Windows: OpenSSH: SYSLOG support for SIEM integration including CVE, JSON or XML formats in OpenSSH
+================================================================================
+
+Article ID       : KISP-043757
+Language          : en-us
+Created           : 2025-03-07
+Last Modified     : 2025-06-09
+Views             : 7
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/windows-openssh-syslog-support-for-siem-integration-including-cve-json-or-xml-formats-in-openssh-f26fcd1b-b186-1f9a-d28d-557b9127d6a6
+
+================================================================================
+CONTENT:
+================================================================================
+
+Windows: OpenSSH: SYSLOG support for SIEM integration including CVE, JSON or XML
+formats in OpenSSH Important: This was authored via https://aka.ms/contentidea.
+Follow Content Idea (CI) 200223 link for any updates. Author: Arren Conner
+Summary Abstract Q. Is it possible for the OpenSSH syslog to support SIEM
+integration (Security information and event management) solutions by exporting
+the CFE , JSON or XML file formats?. OpenSSH does not appear to natively
+generate syslog in CEF, JSON, or XML formats, I see syslog DOES support for
+event log and file txt and not mention this. A. Per
+https://github.com/PowerShell/Win32-OpenSSH/wiki/Logging-Facilities current as
+of March 7, 2025, logging to event viewer or a text file is currently supported.
+More information Author <your name> (<your alias>); <name + alias for
+contributors>; Related Bugs <insert here> Related Content <insert here> Related
+Social Media Threads <insert here> Related Cases <insert here> Notes: Support
+Topics: Windows\Windows 10\Windows 10 Enterprise and Education, version
+22H2\System Management Components\OpenSSH (including SFTP), Windows\Windows
+11\Windows 11 Enterprise and Education, version 22H2\System Management
+Components\OpenSSH (including SFTP), Windows\Windows 11\Windows 11 Enterprise
+and Education, version 23H2\System Management Components\OpenSSH (including
+SFTP), Windows\Windows 11\Windows 11 Enterprise and Education, version
+24H2\System Management Components\OpenSSH (including SFTP), Windows
+Servers\Windows Server 2019\Windows Server 2019\System Management
+Components\OpenSSH (including SFTP), Windows Servers\Windows Server 2022\Windows
+Server 2022\System Management Components\OpenSSH (including SFTP), Windows
+Servers\Windows Server 2025\Windows Server 2025\System Management
+Components\OpenSSH (including SFTP) First published: Mar 07, 2025
+
+================================================================================

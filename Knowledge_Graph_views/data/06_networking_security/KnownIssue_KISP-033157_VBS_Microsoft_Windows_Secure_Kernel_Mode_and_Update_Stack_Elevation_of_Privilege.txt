@@ -1,0 +1,51 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-033157
+VBS: Microsoft Windows Secure Kernel Mode and Update Stack Elevation of Privilege Vulnerability (CVE-2024-21302) still being reported as vulnerable
+================================================================================
+
+Issue ID     : KI-KISP-033157
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2024-11-01
+Last Updated : 2025-06-09
+Source KB     : KISP-033157
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/vbs-microsoft-windows-secure-kernel-mode-and-update-stack-elevation-of-privilege-vulnerability-cve-2024-21302-still-being-reported-as-vulnerable-35d9f531-274f-0e12-6225-82eac78695a8
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom Qualys vulnerability report showed that the servers were requiring
+remediation from CVE-2024-21302 Understanding the New Windows Secure Kernel Mode
+Elevation of Privilege Vulnerability (CVE-2024-21302) | Qualys Security Blog
+Attempts to apply the remediation plan from KB5042562 had failed be
+
+ROOT CAUSE:
+-----------
+the mountvol process would not mount the EFI volume. KB5042562: Guidance for
+blocking rollback of Virtualization-based Security (VBS) related security
+updates - Microsoft Support Cause The customer has enabled VBS Security on the
+servers that have the BIOS Mode of Legacy. The enablement of the VBS Security
+settings are only applicable to servers with the BIOS Type of UEFI. Enable
+memory integrity | Microsoft Learn
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-033157
+for full scope.
+
+WORKAROUND:
+-----------
+Removed the VBS Security policy from the servers by setting the policy to Not
+Configured or Disabled Enable memory integrity | Microsoft Learn Notes: Support
+Topics: Windows Servers\Windows Server 2016\Windows Server 2016\Microsoft Common
+Vulnerabilities and Exposure (Retired)\Microsoft Common Vulnerabilities and
+Exposure Questions (Retired), Windows Servers\Windows Server 2019\Windows Server
+2019\Microsoft Common Vulnerabilities and Exposure (Retired)\Microsoft Common
+Vulnerabilities and Exposure Questions (Retired) First published: Nov 01, 2024
+Keywords: Legacy BIOS, VBS, CVE-2024-21302
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-033157
+
+================================================================================

@@ -1,0 +1,32 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-048693
+ConfigMgr: Machines are failing to scan using WSUS.
+================================================================================
+
+Article ID       : KISP-048693
+Language          : en-us
+Created           : 2025-03-05
+Last Modified     : 2025-03-05
+Views             : 63
+Keywords          : "0x80244022","temporarily overloaded","503"
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-machines-are-failing-to-scan-using-wsus-4b4637d0-a2eb-1d0e-a61f-f642c1a778b3
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: Machines are failing to scan using WSUS. Important: This was authored
+via https://aka.ms/contentidea. Follow Content Idea (CI) 200167 link for any
+updates. Author: Vivekanandan Lingan Summary/Symptom Machines are failing to
+scan using WSUS. Cause These settings are found in IIS Manager > Application
+Pools > choose WsusPool and then click the Advanced Settings link in the right-
+side pane of IIS manager. Queue Length was set to 25000. Error Code: 0x80244022
+(2149859362) Error Name: WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL Error Source:
+Windows Update Agent Error Message: Same as HTTP status 503 - the service is
+temporarily overloaded. Article resolution These settings are found in IIS
+Manager > Application Pools > choose WsusPool and then click the Advanced
+Settings link in the right-side pane of IIS manager. Queue Length was set to
+25000. Modified the Queue Length to 2000. Did IISreset. Notes: First published:
+Mar 05, 2025 Keywords: "0x80244022", "temporarily overloaded", "503"
+
+================================================================================

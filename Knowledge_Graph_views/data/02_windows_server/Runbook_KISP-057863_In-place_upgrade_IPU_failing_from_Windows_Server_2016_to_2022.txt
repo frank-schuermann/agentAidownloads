@@ -1,0 +1,45 @@
+================================================================================
+RUNBOOK — RB-KISP-057863
+In-place upgrade (IPU) failing from Windows Server 2016 to 2022
+================================================================================
+
+Runbook ID        : RB-KISP-057863
+Category          : Configuration / Setup
+Estimated Time    : 30 minutes
+Last Updated      : 2025-08-14
+Source KB          : KISP-057863
+Trigger           : Follow this runbook when encountering the scenario described below.
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/in-place-upgrade-ipu-failing-from-windows-server-2016-to-2022-2807bf20-4803-6bc9-a228-57d8b8f6fe40
+
+================================================================================
+PRE-REQUISITES:
+================================================================================
+- Administrative access to the affected system
+- Backup of current configuration before making changes
+- Relevant logs collected (Event Viewer, application logs)
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+In-place upgrade (IPU) failing from Windows Server 2016 to 2022 Important: This
+was authored via https://aka.ms/contentidea. Follow Content Idea (CI) 200690
+link for any updates. Author: Monalika Priya Summary/Symptom Keep Files and
+Application option grayed out. Cause Mis-match of System Locale language and the
+ISO used for upgrade. Article resolution Issue got resolved once the customer
+used the ISO with English language instead of French. Notes: Support Topics:
+Windows Servers\Windows Server 2016\Windows Server 2016\Windows Setup, Upgrade
+and Deployment\Installing or upgrading Windows First published: Mar 27, 2025
+
+================================================================================
+VALIDATION:
+================================================================================
+1. Confirm the issue is resolved after applying the steps above.
+2. Monitor the system for 30 minutes for stability.
+3. If the issue persists, escalate per SOP-ESC-P1.
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-057863
+
+================================================================================

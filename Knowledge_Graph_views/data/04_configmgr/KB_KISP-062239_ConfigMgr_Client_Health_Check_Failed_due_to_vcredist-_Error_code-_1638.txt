@@ -1,0 +1,58 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-062239
+ConfigMgr: Client Health Check Failed due to vcredist- Error code- 1638
+================================================================================
+
+Article ID       : KISP-062239
+Language          : en-us
+Created           : 2025-04-01
+Last Modified     : 2025-04-02
+Views             : 5
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/configmgr-client-health-check-failed-due-to-vcredist-error-code-1638-65dd5211-5799-f432-b3cc-df7eba8b8d0f
+
+================================================================================
+CONTENT:
+================================================================================
+
+ConfigMgr: Client Health Check Failed due to vcredist- Error code- 1638
+Important: This was authored via https://aka.ms/contentidea. Follow Content Idea
+(CI) 201085 link for any updates. Author: Rajesh Kumar Dash Summary/Symptom
+Client Check Failed due to Pre-requisite rule check Cause Client health check is
+failing on the step "client prerequisites". Which is failing to install/repair
+the vcredist. CCMEval.log 02-25-2025 11:50:01.519 CcmEval 4684 (0x124c)
+Evaluating health check rule {2F373187-6295-4CBB-BE9E-8E43C459883A} :
+Verify/Remediate client prerequisites. 02-25-2025 11:57:02.272 CcmEval 4684
+(0x124c) Client or client prerequisite evaluation failed. 02-25-2025
+12:13:40.127 CcmEval 4684 (0x124c) Client or client prerequisite installation
+remediation failed. 02-25-2025 12:13:40.127 CcmEval 4684 (0x124c) Please check
+ccmsetup-ccmeval.log for further information. 02-25-2025 12:29:29.313 CcmEval
+4684 (0x124c) Client health check: FAILED 02-25-2025 12:22:45.252 ccmsetup 12840
+(0x3228) Installing file 'C:\WINDOWS\ccmsetup\vcredist_x86.exe' with options
+'/norestart /install /quiet /log
+%windir%\ccmsetup\logs\VCRedist_x86_Install.log'. 02-25-2025 12:22:45.903
+ccmsetup 12840 (0x3228) File 'C:\WINDOWS\ccmsetup\vcredist_x86.exe' returned
+failure exit code 1638. Fail the installation. 02-25-2025 12:22:46.524 ccmsetup
+12840 (0x3228) InstallFromManifest failed 0x80070666 01-01-0001 00:00:00.000
+[083C:83B4][2025-02-25T12:22:45]e000: Error 0x80070666: Cannot install a product
+when a newer version is installed. 01-01-0001 00:00:00.000
+[083C:79E8][2025-02-25T12:22:45]i500: Shutting down, exit code: 0x666 If we
+translate this MSI error code, it means Error Code: 0x666 (1638) Error Name:
+ERROR_PRODUCT_VERSION Error Source: Msi.h Error Message: Another version of this
+product is already installed. Installation of this version cannot continue. To
+configure or remove the existing version of this product, use Add/Remove
+Programs on the Control Panel. From the above log analysis, VCRedist is coming
+as not detected based on installer check in registry
+{D7A66DA5-B103-45C1-A0A7-736C08E2F464}, which is why it's trying to install it
+as part of remediation. And it fails because the version ConfigMgr is using the
+lower version of VCRedist. However the version which is installed is somehow
+corrupted or not properly installed since the registry itself is missing. As a
+result ConfigMgr is unable to detect VCRedist is installed. HKEY_LOCAL_MACHINE\S
+OFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{D7A66DA5-B103-45C1-A0A7-
+736C08E2F464} HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentV
+ersion\Uninstall\{D7A66DA5-B103-45C1-A0A7-736C08E2F464} Article resolution
+Uninstall the existing version and let CCMEval install the VCRedist as part of
+Remediation.OR Uninstall and reinstall VCRedist and ensure the uninstaller
+registries are present after reinstallation. More information Contact RADASH for
+comments/feedback
+
+================================================================================

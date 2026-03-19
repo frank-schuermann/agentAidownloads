@@ -1,0 +1,26 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-057863
+In-place upgrade (IPU) failing from Windows Server 2016 to 2022
+================================================================================
+
+Article ID       : KISP-057863
+Language          : en-us
+Created           : 2025-03-27
+Last Modified     : 2025-08-14
+Views             : 23
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/in-place-upgrade-ipu-failing-from-windows-server-2016-to-2022-2807bf20-4803-6bc9-a228-57d8b8f6fe40
+
+================================================================================
+CONTENT:
+================================================================================
+
+In-place upgrade (IPU) failing from Windows Server 2016 to 2022 Important: This
+was authored via https://aka.ms/contentidea. Follow Content Idea (CI) 200690
+link for any updates. Author: Monalika Priya Summary/Symptom Keep Files and
+Application option grayed out. Cause Mis-match of System Locale language and the
+ISO used for upgrade. Article resolution Issue got resolved once the customer
+used the ISO with English language instead of French. Notes: Support Topics:
+Windows Servers\Windows Server 2016\Windows Server 2016\Windows Setup, Upgrade
+and Deployment\Installing or upgrading Windows First published: Mar 27, 2025
+
+================================================================================

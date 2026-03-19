@@ -1,0 +1,48 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-042455
+The 'Add device' button is greyed out when attempting to add a printer on Windows 11 version 23H2.
+================================================================================
+
+Issue ID     : KI-KISP-042455
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-01-06
+Last Updated : 2025-06-09
+Source KB     : KISP-042455
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/the-add-device-button-is-greyed-out-when-attempting-to-add-a-printer-on-windows-11-version-23h2-4a32a8cb-9e97-6603-c886-72a7be1f98cc
+Tags         : Windows
+
+SYMPTOMS:
+---------
+Symptom The 'Add device' button is greyed out when attempting to add a printer
+on Windows 11 version 23H2 via Settings > Bluetooth & Devices >Printers &
+Scanner > ADD DEVICE.
+
+ROOT CAUSE:
+-----------
+Bug on Device Association Service (das.dll) Bug 49078478: [Ni] Random crash
+occurs when attempting to add printing device via Settings page - Boards
+(visualstudio.com)
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-042455
+for full scope.
+
+WORKAROUND:
+-----------
+Fix to be released on January (2025.01 D ) More information Over 700
+das!DasHostStartDevnodeManagement threads waiting on ALPC response. 0: kd> !di
+Windows 10 Kernel Version 22621 MP (12 procs) Free x64 Product: WinNt, suite:
+TerminalServer SingleUserTS Edition build lab:
+22621.2506.amd64fre.ni_release_svc_prod3.231018-1809 Kernel base =
+0xfffff802`41600000 PsLoadedModuleList = 0xfffff802`422134a0 Debug session time:
+Thu Feb 1 04:30:55.915 2024 (UTC - 6:00) System Uptime: 0 days 0:05:33.804
+SystemManufacturer = HP SystemProductName = HP Pro Tower 290 G9 Desktop PC
+Processor: 12th Gen Intel(R)
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-042455
+
+================================================================================

@@ -1,0 +1,45 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-052887
+Windows Search Not Working in "OneDriveSynced" Folders on Windows 11 23H2 machines
+================================================================================
+
+Issue ID     : KI-KISP-052887
+Severity     : P2
+Status       : Workaround Available
+Reported     : 2025-03-13
+Last Updated : 2025-06-09
+Source KB     : KISP-052887
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/windows-search-not-working-in-onedrivesynced-folders-on-windows-11-23h2-machines-c5f6a65f-ab9b-46dd-c69d-0f8e2c8c83e9
+Tags         : OneDrive, Windows
+
+SYMPTOMS:
+---------
+Symptom Reported on: Windows 11 23h2 Machines Reported Symptoms: When an end
+user searches within File Explorer for a file or folder in a OneDrive-synced
+folder, no results are displayed. Other information: Windows Search and File
+Explorer search function normally without any issues. We rebuilt the index, and
+under Indexing Options, OneDrive appears to be indexed under the Users
+directory. Additionally, Cloud Content Search is enabled. Problem snippet :
+OneDrive Sync folder problem snippet:
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-052887
+for full scope.
+
+WORKAROUND:
+-----------
+Later, we collected TTD traces for the explorer.exe and SearchIndexer.exe
+processes. These traces revealed that the Local ID data was incorrect. 0:005> dv
+Locale = 0x7d0 0:005> ?0x7d0 Evaluate expression: 2000 = 00000000`000007d0 This
+locale ID is not valid, the valid one is 0x2000 (8192) TransientLangId is set to
+wrong value: which is 2000: which shows in process monitor too: We went to the
+path: - HKEY_CURRENT_USER\Control Panel\International\User Profile\en-BE Wrong
+Value: 0x7d0( 2000) The correct value for en-BE is 0x2000 (8192 in decimal) And
+changed the value to 0x2000 (8192 in decimal)
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-052887
+
+================================================================================

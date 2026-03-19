@@ -1,0 +1,47 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-167038
+Window Server 2025: Input lag when using virtualization based security (VBS) or Secure Boot
+================================================================================
+
+Issue ID     : KI-KISP-167038
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-06-10
+Last Updated : 2025-06-10
+Source KB     : KISP-167038
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/window-server-2025-input-lag-when-using-virtualization-based-security-vbs-or-secure-boot-b88e6f28-b80a-8a08-5298-fa7800c93f19
+Tags         : Windows
+
+SYMPTOMS:
+---------
+can be reproduced on this VM Cause In windows server 2025 we can see from traces
+a lot of DPC calls - KiAbDeferredProcessingWorker This is due to code change in
+2025. Article
+
+ROOT CAUSE:
+-----------
+In windows server 2025 we can see from traces a lot of DPC calls -
+KiAbDeferredProcessingWorker This is due to code change in 2025.
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-167038
+for full scope.
+
+WORKAROUND:
+-----------
+Bug 57780645: JPMC Timer Interrupts - Microsoft and Broadcom Collaboration -
+Boards Temporary workaround for the customer - disable secure
+boot/VBS(virtualization based security) More information Traces that were very
+helpful in under understanding the issue: #xperf binary Download tss tool –
+aka.ms/gettss Extract it and and find in Bin folder two files – xperf.exe and
+perfctrl.dll on affected machine create C:\msdata folder and copy them over.
+Open elevated cmd and execute: C:\msdata\xperf -? C:\msdata\xperf -on
+proc_thread+loader+profile+interrupt+dpc+dispatcher+cswitch+timer+clockint
+-stack
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-167038
+
+================================================================================

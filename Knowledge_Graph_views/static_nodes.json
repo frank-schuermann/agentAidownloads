@@ -136,5 +136,96 @@
       "prerequisite": "Sentiment analysis enabled in workstream settings"
     },
     "tags": ["Sentiment", "Routing", "AI"]
+  },
+
+  {
+    "id": "SVC-WINDOWS",
+    "type": "Service",
+    "label": "Windows Client & Desktop",
+    "properties": {
+      "description": "Windows OS client services including desktop, shell, search, BitLocker, WSL, printing and device management.",
+      "platform": "Windows 10, Windows 11"
+    },
+    "tags": ["Windows", "Desktop", "BitLocker", "WSL", "Shell"]
+  },
+  {
+    "id": "SVC-WINSERVER",
+    "type": "Service",
+    "label": "Windows Server",
+    "properties": {
+      "description": "Windows Server platform services including RDS, Hyper-V, clustering, failover, servicing and in-place upgrades.",
+      "platform": "Windows Server 2016, 2019, 2022, 2025"
+    },
+    "tags": ["Windows Server", "RDS", "Hyper-V", "Cluster", "Upgrade"]
+  },
+  {
+    "id": "SVC-ADDS",
+    "type": "Service",
+    "label": "Active Directory & Identity",
+    "properties": {
+      "description": "Active Directory Domain Services, PKI, Kerberos, Group Policy, LSASS, W32time and related identity/security infrastructure.",
+      "platform": "Windows Server"
+    },
+    "tags": ["Active Directory", "ADDS", "PKI", "Kerberos", "Group Policy", "LSASS"]
+  },
+  {
+    "id": "SVC-CONFIGMGR",
+    "type": "Service",
+    "label": "Configuration Manager (SCCM/MECM)",
+    "properties": {
+      "description": "Microsoft Endpoint Configuration Manager — client management, software deployment, WSUS integration, cloud management gateway.",
+      "platform": "ConfigMgr"
+    },
+    "tags": ["ConfigMgr", "SCCM", "MECM", "WSUS"]
+  },
+  {
+    "id": "SVC-SHAREPOINT",
+    "type": "Service",
+    "label": "SharePoint Server",
+    "properties": {
+      "description": "SharePoint Server on-premises — web services, certificates, search and document management.",
+      "platform": "SharePoint Server 2019"
+    },
+    "tags": ["SharePoint", "Certificate"]
+  },
+  {
+    "id": "SVC-SQL",
+    "type": "Service",
+    "label": "SQL Server & Data Services",
+    "properties": {
+      "description": "SQL Server, ODBC drivers, VAMT, Remote Perfmon and database-related services.",
+      "platform": "SQL Server"
+    },
+    "tags": ["SQL", "ODBC", "VAMT", "Perfmon"]
+  },
+  {
+    "id": "SVC-NETWORKING",
+    "type": "Service",
+    "label": "Networking & Connectivity",
+    "properties": {
+      "description": "Windows networking stack — Wi-Fi, firewall, WMI, RPC, network services and connectivity.",
+      "platform": "Windows"
+    },
+    "tags": ["Wi-Fi", "Firewall", "WMI", "RPC", "Networking"]
+  },
+  {
+    "id": "SVC-INTUNE",
+    "type": "Service",
+    "label": "Microsoft Intune",
+    "properties": {
+      "description": "Cloud-based endpoint management — device compliance, app management, policy deployment.",
+      "platform": "Microsoft Intune"
+    },
+    "tags": ["Intune", "Endpoint Management"]
+  },
+  {
+    "id": "SVC-SECURITY",
+    "type": "Service",
+    "label": "Windows Security & Compliance",
+    "properties": {
+      "description": "VBS, Secure Boot, driver verification, security updates and vulnerability management.",
+      "platform": "Windows"
+    },
+    "tags": ["VBS", "Security", "Secure Boot", "Driver Verifier"]
   }
 ]

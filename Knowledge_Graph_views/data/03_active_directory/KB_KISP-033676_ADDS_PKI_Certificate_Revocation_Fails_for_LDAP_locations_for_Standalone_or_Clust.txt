@@ -1,0 +1,71 @@
+================================================================================
+KNOWLEDGE BASE ARTICLE — KISP-033676
+ADDS: PKI: Certificate Revocation Fails for LDAP locations for Standalone or Clustered CAs After Renewing CA with New Key
+================================================================================
+
+Article ID       : KISP-033676
+Language          : en-us
+Created           : 2024-11-18
+Last Modified     : 2025-06-09
+Views             : 45
+Keywords          : repub
+Source URL         : https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-certificate-revocation-fails-for-ldap-locations-for-standalone-or-clustered-cas-after-renewing-ca-with-new-key-e5323ef8-c9f1-943b-839d-f66291a5dd1a
+
+================================================================================
+CONTENT:
+================================================================================
+
+ADDS: PKI: Certificate Revocation Fails for LDAP locations for Standalone or
+Clustered CAs After Renewing CA with New Key Important: This was authored via
+https://aka.ms/contentidea. Follow Content Idea (CI) 195706 link for any
+updates. Author: Chris Cartwright (CSS DS) Summary/Symptom Abstract Customers
+may experience revocation failures on Standalone or Clustered CAs after renewing
+with a new private key. This should only apply to LDAP locations. HTTP locations
+are either updated manually or automatically and should not run into this
+problem. Symptoms PKIView displays the error "Unable to download" Revocation
+failures in environment for new certificates post CA renewal. Running certutil
+-verify -urlfetch against a cert (If publish was done incorrectly) fails with
+"Wrong Issuer" Cause When a CA is enrolled with a new private key, the index
+value increases. Enterprise, non-clustered CAs take care of this automatically.
+Standalone (Non domain joined) and Clustered CAs do not. Standalone CAs that
+aren't domain joined won't be able to update LDAP locations. Clustered CAs won't
+be able to update LDAP locations because the renewal isn't done from the cluster
+resource. It is done from an individual node. This means that certutil
+-dspublish must be used. However, documentation on how to leverage certutil is
+suboptimal, to say the least. There is a barely noted option for DSCDPCN, that
+mentions "DSCDPCN is the DS CDP object CN based on the sanitized CA short name
+and key index." This is not even covered on pkisolutions.com or sysadmins.lv,
+where we usually go to get better quality documentation. Article resolution
+Modify the certutil command to include the index. This index will be found in
+C:\Windows\System32\CertSrv\CertEnroll. It will be the number in parenthesis at
+the end of the filename. Format: certutil [options] -dspublish CRLfile
+[DSCDPContainer [DSCDPCN]] Example for Offline Root Contoso-Root-CA running on
+computer ContOffRoot: certutil -f -dspublish
+C:\Windows\System32\CertSrv\CertEnroll\Contoso-Root-CA(2).crl RootCA
+ContOffRoot(2) Example for clustered enterprise clustered subordinate CA Adatum-
+Issuing-CA running on cluster resource AdaSubCA: certutil -f -dspublish
+C:\Windows\System32\CertSrv\CertEnroll\Adatum-Issuing-CA(1).crl SubCA
+AdaSubCA(1) More information Author chcart@microsoft.com Notes: Support Topics:
+Windows Servers\Windows Server 2012\Windows Server 2012 ESU\Certificates and
+Public Key Infrastructure (PKI)\Certificate Chaining and Revocation, Windows
+Servers\Windows Server 2012 R2\Windows Server 2012 R2 ESU\Certificates and
+Public Key Infrastructure (PKI)\Certificate Chaining and Revocation, Windows
+Servers\Windows Server 2016\Windows Server 2016\Certificates and Public Key
+Infrastructure (PKI)\Certificate Chaining and Revocation, Windows
+Servers\Windows Server 2019\Windows Server 2019\Certificates and Public Key
+Infrastructure (PKI)\Certificate Chaining and Revocation, Windows
+Servers\Windows Server 2022\Windows Server 2022\Certificates and Public Key
+Infrastructure (PKI)\Certificate Chaining and Revocation, Windows
+Servers\Windows Server 2012\Windows Server 2012 ESU\Certificates and Public Key
+Infrastructure (PKI)\Active Directory Certificate Services (ADCS), Windows
+Servers\Windows Server 2012 R2\Windows Server 2012 R2 ESU\Certificates and
+Public Key Infrastructure (PKI)\Active Directory Certificate Services (ADCS),
+Windows Servers\Windows Server 2016\Windows Server 2016\Certificates and Public
+Key Infrastructure (PKI)\Active Directory Certificate Services (ADCS), Windows
+Servers\Windows Server 2019\Windows Server 2019\Certificates and Public Key
+Infrastructure (PKI)\Active Directory Certificate Services (ADCS), Windows
+Servers\Windows Server 2022\Windows Server 2022\Certificates and Public Key
+Infrastructure (PKI)\Active Directory Certificate Services (ADCS) First
+published: Nov 07, 2024 Keywords: repub
+
+================================================================================

@@ -1,0 +1,41 @@
+================================================================================
+STANDARD OPERATING PROCEDURE — SOP-KISP-052820
+Archived: XIA: Advocacy: Process: Mailbox Setup
+================================================================================
+
+SOP ID            : SOP-KISP-052820
+Category          : Operational Procedure
+Effective Date    : 2025-03-13
+Last Reviewed     : 2025-03-13
+Source KB          : KISP-052820
+Applies To        : Support Engineers, IT Administrators
+Reference         : https://internal.evergreen.microsoft.com/en-us/topic/archived-xia-advocacy-process-mailbox-setup-48fe9fb4-e9b7-c1a8-42c0-6fc166f1c9ec
+
+================================================================================
+PURPOSE:
+================================================================================
+This SOP documents the standard procedure for: Archived: XIA: Advocacy: Process: Mailbox Setup
+
+================================================================================
+PROCEDURE:
+================================================================================
+
+Archived: XIA: Advocacy: Process: Mailbox Setup This article has been archived.
+If this was a mistake, leave feedback in the survey at the bottom of the page.
+Change history Item Title Date CONTENT TRACKING 189659 Cross LOB: Project CT:
+Applying new archival standards to Archived folder in C3 - 2 3/24/2022 CONTENT
+TRACKING 184329 Advocacy Team: Archive 36 advocacy articles no longer used -
+(3rd set of 10KBs) 1/11/2022
+
+================================================================================
+COMPLETION CRITERIA:
+================================================================================
+- All steps executed successfully
+- Changes documented in the ticket/change record
+- Stakeholders notified of completion
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-052820
+
+================================================================================

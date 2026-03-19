@@ -1,0 +1,42 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-027772
+Driver Verifier false positive for ECP leak
+================================================================================
+
+Issue ID     : KI-KISP-027772
+Severity     : P1
+Status       : Fix Available
+Reported     : 2024-11-04
+Last Updated : 2025-06-09
+Source KB     : KISP-027772
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/driver-verifier-false-positive-for-ecp-leak-909a72b6-9408-c156-3127-698af4dd65a8
+
+SYMPTOMS:
+---------
+Symptom With driver verified enabled, if a filter driver attempts to free an
+Extra Create Parameter (ECP) buffer, driver verifier incorrectly attributes this
+to the filter manager rather than the filter driver and will bugcheck with the
+error "FILTER VERIFIER ERROR: A filter tried to release/free an object that it
+did not own.." Article
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-027772
+for full scope.
+
+WORKAROUND:
+-----------
+Verifier bug has been fixed in Dilithium build Bug 49376855: Verifier doesn't
+track references acquired on behalf of a filter - Boards More information
+SYSTEM_SERVICE_EXCEPTION (3b) An exception happened while executing a system
+service routine. Arguments: Arg1: 0000000080000003, Exception code that caused
+the BugCheck Arg2: fffff80749bc94e8, Address of the instruction which caused the
+BugCheck Arg3: ffffa980f71387e0, Address of the context record for the exception
+that caused the BugCheck Arg4: 0000000000000000, zero. 4: kd> !mex.t Process
+Thread CID UserTime KernelTime ContextSwitches Wait R
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-027772
+
+================================================================================

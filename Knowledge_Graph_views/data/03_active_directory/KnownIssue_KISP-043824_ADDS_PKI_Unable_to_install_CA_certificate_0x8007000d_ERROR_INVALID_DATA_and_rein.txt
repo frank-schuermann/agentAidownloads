@@ -1,0 +1,44 @@
+================================================================================
+KNOWN ISSUE — KI-KISP-043824
+ADDS: PKI: Unable to install CA certificate 0x8007000d ERROR_INVALID_DATA and reinstallation of ADCS role failed with 0x800700b7 ERROR_ALREADY_EXISTS
+================================================================================
+
+Issue ID     : KI-KISP-043824
+Severity     : P1
+Status       : Workaround Available
+Reported     : 2025-01-13
+Last Updated : 2025-06-09
+Source KB     : KISP-043824
+Reference    : https://internal.evergreen.microsoft.com/en-us/topic/adds-pki-unable-to-install-ca-certificate-0x8007000d-error-invalid-data-and-reinstallation-of-adcs-role-failed-with-0x800700b7-error-already-exists-8f04f92c-9478-5b57-6f33-ac6bd3f4d01d
+Tags         : Active Directory, PKI
+
+SYMPTOMS:
+---------
+s When running the command Certutil -f -v -installcert "XXXXXXXXX-
+SUBCA-20240319.cer", the following error message appears: “An error was detected
+while configuring Active Directory Certificate Services. The Active Directory
+Certificate Services Setup Wizard will need to be run to complete the
+configuration. The new Certification Authority certificate cannot be installed
+be
+
+IMPACT:
+-------
+Affects systems running the described configuration. See source KB KISP-043824
+for full scope.
+
+WORKAROUND:
+-----------
+The problem was mitigated by the use of `-OverwriteExistingDatabase` switch,
+which proved successful in overwriting the previous ADCS configuration and
+completing the setup without further issues. Install-AdcsCertificationAuthority
+-OverwriteExistingKey -OverwriteExistingCAInDS -OverwriteExistingDatabase
+@params Notes: Support Topics: Windows Servers\Windows Server 2016\Windows
+Server 2016, all editions (Preview)\Certificates and Public Key Infrastructure
+(PKI) (Preview)\Active Directory Certificate Services (ADCS) (Preview) SR
+Number: 2403260030003053 First published: Jan 13, 2025 Keywords: p
+
+RELATED ARTICLES:
+-----------------
+- KB Article: KISP-043824
+
+================================================================================
